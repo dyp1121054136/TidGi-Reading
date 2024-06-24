@@ -1,0 +1,18 @@
+caption: 记录
+created: 20240422015907646
+modified: 20240422022127085
+tags: 最近编辑的条目时间精确到秒
+title: 最近编辑的条目-时间精确到秒
+
+<div class="flex-table">
+  <div class="flex-table-row flex-table-header">
+    <div class="title-column header">条目名称</div>
+    <div class="date-column header">编辑时间</div>
+  </div>
+  <$list filter="[all[tiddlers]!is[system]!sort[modified]limit[5]]">
+     <div class="flex-table-row">
+       <div class="title-column"><$link/></div>
+       <div class="date-column"><$view field="modified" format=relativedate/></div>
+     </div>
+  </$list>
+</div>

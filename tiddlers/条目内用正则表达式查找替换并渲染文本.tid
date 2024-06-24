@@ -1,0 +1,56 @@
+created: 20240127182902229
+modified: 20240321080308385
+tags: 教程
+title: 条目内用正则表达式查找替换并渲染文本
+
+"""
+以下方案暂时弃用，仅供参考：
+
+JavaScript文件：
+[[$:/parsers/skeeve/rules/replace.js]]
+[[ReplacePragma说明书]]
+
+[[小说对话-中文双引号样式css]]
+
+标签 `$:/tags/Stylesheet`
+<<code src:""".quote {
+	color: hsl(210, 46%, 38%); /* 文字颜色 */
+}
+""" language:"css">>
+[[备用样式css]]
+<<code src:"""/* 背景颜色 50%表示半涂*/
+background-image: linear-gradient(to top, #F2E6CE 50%, transparent 0);
+background-color: unset;
+background-position: top left;
+background-repeat: no-repeat;
+background-size: 100% auto; 
+border-radius:0.4em; /* 圆角 */
+padding:0em 0em 0em 0em; /* 缩进，内边距，上右下左 */
+
+font-size: 0.9em; /* 字体大小为正文的90% */
+text-decoration: underline; /* 下划线，double双下划线，dotted虚线，wavy波浪线 */  
+text-underline-offset: 0.2em; 下划线与文字间距 */ 
+text-decoration-color: rgba(110, 139, 116, 0.5); /* 下划线颜色，使用rgba格式，透明度为0.5 */ 
+""" language:"css">>
+引用代码需在每个条目内容第一行加上：
+<<code src:"""\replace /“(.*?)”/<span class="quote">“$1”<\/span>/
+""" language:"tw">>
+`(.*?)` 表示匹配任意数量的字符，直到遇到下一个正则表达式中定义的元素；
+`$1` 表示第一个捕获组的内容不改变；
+这个正则表达式合起来的意思是，查找被中文双引号 `“”` 包裹的文字，并加上前缀 `<span 
+ class="quote">` 和后缀 `</span>`，即给文字套用 `class="quote"` 的样式。
+
+注意：`</span>` 应写作 `<\/span>`（在正则表达式中，反斜杠 `\` 通常用作转义字符，用于转义那些具有特殊意义的字符，例如在正则表达式中具有特殊功能的标点符号。）
+
+经测试，被渲染过样式的条目引用内容到其他条目，渲染样式也会生效，但是代码本身不能用引用的方式插入当前条目，不知道有没有更好的封装方式。
+
+可以自定义其他的正则表达式，写法：
+<<code src:"""\replace /查找的内容/替换的内容/
+""" language:"tw">>
+用正则表达式添加的 `html` 代码在编辑模式下看是隐形的，但在预览模式下又能看到套用了样式的效果，正文不需要重复写代码了，非常方便，而且不会影响正文嵌套其他样式。嘻嘻，我们中文也有自己的高亮！
+
+注：
+导入JavaScript后要保存wiki并刷新才会生效；
+
+请确保你写的正则表达式是正确的，再填入条目内容中，不然可能造成wiki卡死，可以先在草稿wiki中测试完无误之后再使用。
+"""

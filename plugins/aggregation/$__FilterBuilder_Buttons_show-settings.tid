@@ -1,0 +1,19 @@
+caption: show-settings
+description: Show settings
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/show-settings
+
+\whitespace trim
+<$reveal state=<<calloutState>> type="nomatch" text="settings">
+<$button tooltip="Open settings" class="fb-btn btn-small">
+settings
+<$action-setfield $tiddler="$:/temp/filterbuilder/calloutstate" text={{{ [<calloutState>get[text]] }}}/>
+<$action-setfield $tiddler=<<calloutState>> text="settings"/>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="settings">
+<$button tooltip="Close settings" class="fb-btn btn-small">
+{{$:/core/images/close-button}}
+<$action-setfield $tiddler=<<calloutState>> text={{$:/temp/filterbuilder/calloutstate}}/>
+</$button>
+</$reveal>

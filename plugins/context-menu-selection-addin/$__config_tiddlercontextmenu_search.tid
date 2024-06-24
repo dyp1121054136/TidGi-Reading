@@ -1,0 +1,10 @@
+caption: Advanced Search
+created: 20221004102413304
+icon: $:/core/images/advanced-search-button
+modified: 20221007013046170
+separate-after: 
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/search
+tm-message: tm-search
+
+show

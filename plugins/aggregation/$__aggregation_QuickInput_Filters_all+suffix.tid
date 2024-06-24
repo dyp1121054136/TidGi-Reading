@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 标题后缀为……
+filter: [all[shadows+tiddlers]suffix[…]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/all+suffix
+
+{{!!filter}}

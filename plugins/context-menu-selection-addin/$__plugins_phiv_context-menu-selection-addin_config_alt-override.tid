@@ -1,0 +1,10 @@
+caption: Holding "alt" disables the context menu and shows the regular browser context menu
+created: 20221218234258870
+description: Holding "alt" disables the context menu and shows the regular browser context menu
+list-ordering: 2
+modified: 20221219001954903
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/alt-override
+
+no

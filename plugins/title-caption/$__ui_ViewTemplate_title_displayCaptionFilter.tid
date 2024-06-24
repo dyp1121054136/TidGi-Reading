@@ -1,0 +1,7 @@
+list-before: $:/config/ViewTemplateTitleFilters/default
+revision: 0
+tags: $:/tags/ViewTemplateTitleFilter
+title: $:/ui/ViewTemplate/title/displayCaptionFilter
+type: text/vnd.tiddlywiki
+
+[<currentTiddler>has[caption]then[$:/ui/ViewTemplate/title/displayCaption]]

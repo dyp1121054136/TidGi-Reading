@@ -1,0 +1,14 @@
+.mulu-open-btn {
+  display: flex;
+  gap: 30px;
+}
+
+.mulu-open-btn button {
+  opacity: 0.5;
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+}
+
+.mulu-open-btn button:hover {
+  opacity: 1;
+}
+

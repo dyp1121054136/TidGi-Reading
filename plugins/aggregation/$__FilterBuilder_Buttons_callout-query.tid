@@ -1,0 +1,20 @@
+caption: callout-query
+description: Callout query
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/callout-query
+
+\whitespace trim
+<$reveal state=<<calloutState>> type="nomatch" text="query">
+<$button tooltip="Callout Query" class="fb-btn btn-small tc-tiny-gap-left">
+query
+<$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/QUERY"/>
+<$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/QUERY"/>
+<$action-setfield $tiddler=<<calloutState>> text="query"/>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="query">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+query
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>

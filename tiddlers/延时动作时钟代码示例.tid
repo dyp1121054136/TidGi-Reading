@@ -1,0 +1,14 @@
+created: 20240505171354366
+modified: 20240505171602182
+tags: 延时动作
+title: 延时动作时钟代码示例
+
+该代码不能直接在text字段使用，会导致一直提醒保存wiki
+<<code src:"""\define tick() <$action-setfield $tiddler="ticker" text=<<now "0hh:0mm:0ss">>/>
+\define stop(id) <$action-timeout clear={{$id$}}/><$action-deletetiddler $tiddler="$id$"/>
+
+<$action-timeout interval=1000 autostart=yes tid=timerID actions=<<tick>>/>
+<$action-timeout delay=30000 autostart=yes actions=<<stop timerID>>/>
+
+{{ticker}} <$list filter="[[timerID]is[tiddler]]" emptyMessage="STOPPED">RUNNING</$list>
+""" language:"tw">>

@@ -1,0 +1,488 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/aggregation/styles
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+/*
+** General
+*/
+
+.xp-controls a svg {
+    vertical-align: middle;
+}
+
+.xp-controls button svg, .xp-controls a svg {
+    fill: <<colour tiddler-controls-foreground>>;
+    margin: 0 0.25em;
+}
+
+.xp-controls button.tc-btn-invisible:hover svg,
+.xp-controls button:hover svg, .xp-controls a:hover svg {
+    fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.xp-search a svg {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: middle;
+}
+
+.xp-search button svg, .xp-search a svg {
+    fill: <<colour tiddler-controls-foreground>>;
+    height: 1.2em;
+    width: 1.2em;
+    margin: 0 0.25em;
+}
+
+.xp-search button:hover svg, .xp-search a:hover svg {
+    fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.xp-search-results {
+    padding: 0 7px 0 14px;
+    color: <<colour tab-foreground>>;
+    font-size: 0.985rem;
+}
+
+.xp-filtersearch button svg, .xp-filtersearch a svg {
+    height: 1em;
+    width: 1em;
+}
+
+.box-list-tags {
+    background: <<colour page-background>>;
+    border-radius: 2px / 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.xp-tag-divider {
+    border-right: 1px solid <<colour sidebar-tab-divider>>;
+    margin-right: 10px;
+}
+
+.xp-image-big-muted svg {
+    width: 3.5em;
+    height: 3.5em;
+    fill: <<colour muted-foreground>>;
+}
+
+.xp-active-indicator-muted {
+    box-shadow: inset 0 -1px <<colour muted-foreground>>;
+}
+
+.xp-image-click-popup {
+    fill: <<colour muted-foreground>>;
+<$reveal state="$:/palette" type="match" text="$:/palettes/Vanilla">
+    fill: #aaa;
+</$reveal>
+}
+
+.tc-link-info-item {
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+    border-color: <<colour tab-divider>> !important;
+</$list>
+}
+
+.aggrbtn-larger svg {
+    font-size: 1.1em;
+}
+
+.aggrbtn-mini svg {
+    font-size: 0.9em;
+}
+
+
+/*
+** Tiddler Template
+*/
+
+.xp-aggregation-card,
+.xp-aggregation-card-star {
+    padding: 5px 16px;
+    margin-bottom: 10px;
+    background: <<colour background>>;
+    border-radius: 8px;
+    <<box-shadow "1px 1px 5px rgba(0, 0, 0, 0.09)">>
+}
+
+.xp-aggregation-card-star {
+    border-left: 2px solid <<colour primary>>;
+}
+
+.xp-aggregation-evenodd {
+    padding: 1px 5px;
+}
+
+.xp-aggregation-evenodd:nth-child(odd) {
+    background: <<colour code-background>>;
+}
+
+.xp-aggregation-evenodd:nth-child(even) {
+    background-color: <<colour background>>;
+}
+
+.xp-aggregation-controls {
+    display: none;
+    font-size: .75em;
+    padding-right: .5em;
+    transition: opacity .5s ease-in-out;
+}
+
+.xp-aggregation-card:hover .xp-aggregation-controls,
+.xp-aggregation-card-star:hover .xp-aggregation-controls,
+.xp-aggregation-evenodd:hover .xp-aggregation-controls {
+	display: block;
+}
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+    .xp-aggregation-controls-phone {
+        display: block;
+    }
+
+}
+
+
+/*
+** aggregation-toc < $:/aggregation/macros
+*/
+
+.xp-aggregation-toc a.tc-tiddlylink {
+    color: <<colour foreground>>;
+}
+
+.xp-aggregation-toc-navigation {
+    color: <<colour sidebar-foreground>>;
+    font-size: .91em;
+    line-height: 1.7em;
+    padding: .5em 0;
+}
+
+.xp-aggregation-toc-caption svg {
+    width: 0.7em;
+    height: 0.7em;
+    vertical-align: middle;
+    fill: <<colour sidebar-foreground>>;
+}
+
+
+/*
+** aggregation-with-tag < $:/aggregation/macros
+*/
+
+.xp-wrapper-aggrfilter {
+    display: block;
+    padding: 0 16px;
+    margin: 1em 0;
+    border: 1px dotted <<colour table-border>>;
+    border-radius: 12px;
+    font-size: .911em;
+    background-color: rgba(255, 255, 255, .5);
+    -webkit-backdrop-filter: saturate(150%) contrast(85%) blur(8px);
+    backdrop-filter: saturate(150%) contrast(85%) blur(8px);
+
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+    background-color: rgba(0, 0, 0, .3);
+    -webkit-backdrop-filter: saturate(150%) contrast(87%) blur(8px);
+    backdrop-filter: saturate(150%) contrast(87%) blur(8px);
+</$list>
+}
+
+.xp-aggrfilter-category {
+    font-size: small;
+    margin-left: 10px;
+}
+
+.xp-aggrfilter-category-title {
+    font-style: italic;
+}
+
+.xp-aggrfilter-category-item {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 1em;
+    align-items: center;
+    justify-content: left;
+}
+
+.xp-aggrfilter-dynamic-btn {
+    border: 1px dotted <<colour table-border>>;
+    border-radius: 1em;
+    /*cursor: pointer;*/
+}
+
+.tc-block-dropdown.tc-edit-type-dropdown.xp-sorting-dropdown {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 250px;
+}
+
+.tc-block-dropdown.tc-edit-type-dropdown.xp-sorting-dropdown a {
+    flex: 1 0 calc(100% / 2);
+}
+
+
+/*
+** Manager View
+*/
+
+.xp-manager-item-heading {
+    padding: 5px 3px;
+}
+
+.xp-manager-item-content {
+    padding: 0 1em 0 1em;
+    border-bottom: 1px solid <<colour muted-foreground>>;
+}
+
+.xp-manager-item-content>pre {
+    margin: 0.5em 0 0.5em 0;
+    border: none;
+    background: inherit;
+}
+
+.xp-manager-item-content>table {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.xp-manager-item-content>table td {
+    border: none;
+}
+
+.xp-manager-item-content-tiddler {
+    flex: 3 1;
+    border-left: 2px solid <<colour muted-foreground>>;
+    border-right: 2px solid <<colour muted-foreground>>;
+    border-bottom: 2px solid <<colour muted-foreground>>;
+}
+
+.xp-manager-item-content-sidebar {
+    flex: 0.3 0;
+    background: <<colour tiddler-editor-background>>;
+    border-right: 2px solid <<colour muted-foreground>>;
+    border-bottom: 2px solid <<colour muted-foreground>>;
+    white-space: nowrap;
+}
+
+.xp-manager-item-tools button svg,
+.xp-manager-item-tools a svg {
+    fill: <<colour foreground>>;
+}
+
+.xp-manager-item-tools button.tc-btn-invisible:hover svg {
+    fill: <<colour background>>;
+}
+
+.xp-manager-item-tools a,
+.xp-manager-item-tools button {
+    display: block;
+    padding: 0 7px 0 7px;
+    width: 100%;
+    text-align: left;
+    color: <<colour foreground>>;
+    line-height: 1.75;
+    min-width: 83.23px;
+}
+
+.xp-manager-item-tools a:hover,
+.xp-manager-item-tools button:hover {
+    color: <<colour tiddler-link-background>>;
+    background-color: <<colour tiddler-link-foreground>>;
+    text-decoration: none;
+}
+
+
+/*
+* formatting-list-results-as-tables
+* SHOW ON PC
+*/
+
+<!-- Usage:
+@@.twocolumns
+<<list-links filter:"[tag[TiddlyWiki]]">>
+@@
+-->
+
+@media (min-width: <<sidebarbreakpoint>>) {
+  /* TWO COLUMN MODE */
+  .twocolumns {
+    display: block;
+    column-count: 2;
+    column-gap: 1em;
+    -moz-column-count: 2;
+    -moz-column-gap: 1em;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 1em;
+  }
+
+  /* THREE COLUMN MODE */
+  .fourcolumns {
+    display: block;
+    column-count: 3;
+    column-gap: 1em;
+    -moz-column-count: 3;
+    -moz-column-gap: 1em;
+    -webkit-column-count: 3;
+    -webkit-column-gap: 1em;
+  }
+
+  /* FOUR COLUMN MODE */
+  .fourcolumns {
+    display: block;
+    column-count: 4;
+    column-gap: 1em;
+    -moz-column-count: 4;
+    -moz-column-gap: 1em;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 1em;
+  }
+}
+
+
+/*
+** $:xp
+*/
+
+<$list filter="[[$:/xp]!plugin-type[plugin]]" variable="ignore">
+
+/* $:/xp/Stylesheet/popup */
+
+.xp-popup {
+	min-width: 380px;
+	border: 1px solid <<colour dropdown-border>>;
+	border-radius: 6px;
+	background-color: <<colour dropdown-background>>;
+	padding: 7px 0 7px 0;
+	margin: 4px 0 0 0;
+	text-shadow: none;
+	line-height: 1.4;
+}
+
+.xp-popup .tc-drop-down {
+	margin-left: 14px;
+}
+
+.xp-popup button svg, .xp-popup a svg {
+	fill: <<colour foreground>>;
+}
+
+.xp-popup button:disabled svg {
+	fill: <<colour muted-foreground>>;
+}
+
+.xp-popup button.tc-btn-invisible:hover svg {
+	fill: <<colour background>>;
+}
+
+.xp-popup svg {
+	width: 1em;
+	height: 1em;
+}
+
+.xp-popup img {
+	width: 1em;
+}
+
+.xp-popup .tc-file-input-wrapper button {
+	color: <<colour foreground>>;
+}
+
+.xp-popup button:hover, .xp-popup .tc-file-input-wrapper:hover button {
+	color: <<colour tiddler-link-background>>;
+	background-color: <<colour tiddler-link-foreground>>;
+	text-decoration: none;
+}
+
+.xp-popup .tc-tab-buttons button {
+	background-color: <<colour dropdown-tab-background>>;
+	color: <<colour tab-foreground>>;
+}
+
+.xp-popup .tc-tab-buttons button.tc-tab-selected {
+	background-color: <<colour dropdown-tab-background-selected>>;
+	border-bottom: 1px solid <<colour dropdown-tab-background-selected>>;
+}
+
+.xp-popup .tc-tab-buttons button.tc-tab-selected:hover {
+	background: <<colour dropdown-background>>;
+	color: <<colour tab-foreground-selected>>;
+}
+
+.xp-popup .tc-tab-buttons.tc-vertical button.tc-tab-selected {
+	border-bottom: 1px solid <<colour tab-border>>;
+}
+
+.xp-popup .tc-tab-contents a {
+	padding: 0 0.5em 0 0.5em;
+}
+
+.xp-popup .tc-dropdown-item-plain {
+	padding: 4px 14px 4px 7px;
+}
+
+.xp-popup .tc-dropdown-item {
+	padding: 4px 14px 4px 7px;
+	color: <<colour muted-foreground>>;
+}
+
+.xp-popup-title a {
+	display: block;
+	padding: 0 7px;
+	width: 100%;
+	text-align: left;
+	color: <<colour foreground>>;
+	line-height: 1.4;
+}
+
+.xp-popup-title a:hover, .xp-popup-title button:hover, .xp-popup-title .tc-file-input-wrapper:hover button {
+	color: <<colour tiddler-link-background>>;
+	background-color: <<colour tiddler-link-foreground>>;
+	text-decoration: none;
+}
+
+.xp-popup-text {
+	display: block;
+	padding: 0 14px 0 14px;
+	font-size: 0.88em;
+}
+
+/* $:/xp/Stylesheet/layouts */
+
+@media (min-width: <<sidebarbreakpoint>>) {
+
+    /* HIDE ON PC */
+    .only-on-phone {
+        display: none;
+    }
+
+    /* FLOAT RIGHT */
+    .xp-float-right {
+        float: right !important;
+    }
+
+    /* ALIGN RIGHT */
+    .xp-text-align-right {
+        text-align: right !important;
+        margin-bottom: -25px;
+    }
+
+}
+
+@media (max-width: <<sidebarbreakpoint>>) {
+
+    /* HIDE ON PHONE */
+    .only-on-pc {
+        display: none;
+    }
+
+}
+
+</$list>
+
+
+.doc-icon svg { width: 1em; height: 1em; vertical-align: middle; }

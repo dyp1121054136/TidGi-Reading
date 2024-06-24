@@ -1,0 +1,7 @@
+caption: Links
+description: Hard links
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/links
+
+<$list filter="[all[current]links[]sort[title]]" emptyMessage="This tiddler does not contain [[hard links|https://tiddlywiki.com/static/Hard%2520and%2520Soft%2520Links.html]]" template="$:/core/ui/ListItemTemplate">
+</$list>

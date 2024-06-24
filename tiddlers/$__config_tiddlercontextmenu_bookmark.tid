@@ -1,0 +1,11 @@
+caption: 书签
+created: 20240406141519300
+icon: $:/core/images/bookmark
+markup-prefix: 
+markup-suffix: <<bookmark 0>>
+modified: 20240410015143757
+tags: $:/tags/tiddlercontextmenu 书签
+title: $:/config/tiddlercontextmenu/bookmark
+tm-message: tm-markup
+
+show

@@ -1,0 +1,15 @@
+created: 20240505132855252
+modified: 20240509120026936
+tags: 字数统计
+title: 统计字数结果
+words: no
+
+"""
+共计：<span class="countnumber">{{$:/state/character-count/total}}</span> 个字符
+包含：<span class="countnumber">{{$:/state/character-count/words}}</span> 个字数
+"""
+<span class="countnumber">{{$:/state/character-count/chinese}}</span> 个汉字
+<span class="countnumber">{{$:/state/character-count/punctuation}}</span> 个标点(全角)
+<br/>
+<span class="countnumber">{{$:/state/character-count/letters}}</span> 个字母
+<span class="countnumber">{{$:/state/character-count/numbers}}</span> 个数字

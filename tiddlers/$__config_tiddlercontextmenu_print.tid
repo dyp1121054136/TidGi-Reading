@@ -1,0 +1,10 @@
+caption: 打开的条目另存为PDF
+created: 20220729234344703
+icon: $:/core/images/print-button
+modified: 20240109021213505
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/print
+tm-message: tm-print
+type: text/vnd.tiddlywiki
+
+hide

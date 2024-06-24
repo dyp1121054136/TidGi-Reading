@@ -1,0 +1,12 @@
+caption: Monoline
+created: 20220923155424786
+icon: $:/core/images/mono-line
+markup-prefix: `
+markup-suffix: `
+modified: 20221007013057982
+separate-after: 
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/monoline
+tm-message: tm-markup
+
+show

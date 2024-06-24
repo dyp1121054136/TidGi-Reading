@@ -1,0 +1,16 @@
+created: 20240502025135607
+modified: 20240502030715502
+tags: 正则表达式查找替换 按钮
+title: 正则表达式查找保存唯一匹配结果按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="快速编辑唯一匹配结果">
+编辑
+
+<$action-sendmessage $message="tm-get-match" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} regex={{$:/state/searchNreplace/regex}} stateTitle="$:/state/searchNreplace/quick-edit"/>
+
+<$action-setfield $tiddler="$:/state/searchNreplace/replace" $field="text" $value={{$:/state/searchNreplace/quick-edit}}/>
+
+</$button>
+</span>

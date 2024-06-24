@@ -1,0 +1,25 @@
+caption: {{$:/core/images/etoz}} 英文逗号转中文逗号
+created: 20240411061314075
+description: 英文逗号转中文逗号
+modified: 20240415065550338
+tags: 按钮 $:/tags/ViewToolbar 查找替换
+title: $:/core/ui/Buttons/etoz
+
+\whitespace trim
+\define ed() , 
+\define ed0() ,
+\define zd() ，
+
+<$button class="tc-btn-invisible" tooltip="英文逗号转中文逗号">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/etoz}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text=英文逗号转中文逗号/>
+</span>
+</$list>
+
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<ed>,<zd>search-replace:g:regexp<ed0>,<zd>] }}}
+/>
+</$button>

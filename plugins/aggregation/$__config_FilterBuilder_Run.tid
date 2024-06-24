@@ -1,0 +1,11 @@
+title: $:/config/FilterBuilder/Run
+
++[sort[]]
++[limit[1]]
++[count[]]
++[count[]!match[0]]
++[format:titlelist[]]
+-[is[draft]]
+:filter[lookup[$:/Visibility/]!match[hide]]
+:map[get[caption]else{!!title}]
+:cascade[all[shadows+tiddlers]tag[$:/tags/FieldEditorFilter]!is[draft]get[text]]

@@ -1,0 +1,12 @@
+tags: $:/tags/TiddlerColourFilter
+title: $:/config/TiddlerColourFilters/aggregation
+
+[tag[Book]then[#bbb]]
+[tag[Consumer]then[#bbb]]
+[tag[Course]then[#bbb]]
+[tag[Enterprise]then[#bbb]]
+[tag[Howto]then[#bbb]]
+[tag[People]then[#bbb]]
+[tag[Plugin Card]then[#bbb]]
+[tag[Software]then[#bbb]]
+[tag[Why]then[#bbb]]

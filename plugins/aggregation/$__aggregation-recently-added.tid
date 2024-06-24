@@ -1,0 +1,17 @@
+title: $:/aggregation-recently-added
+
+<$reveal default={{{ [tag<aggregationTag>!has[draft.of]count[]] }}} type="nomatch" text="0">
+
+Quantity limit&ensp;<$macrocall $name="keyboard-driven-input" tiddler=<<configTiddler>>
+  default="" placeholder="15" size="7"
+  type="search" tag="input" focus="false"
+  inputCancelActions="<$action-deletetiddler $filter=<<configTiddler>>/>"
+/>
+
+<$set name="limitParam" value={{{ [<configTiddler>get[text]] }}} emptyValue="15">
+<div style="margin:15px 0;padding:0 0 0 24px;">
+<<list-links filter:"[all[shadows+tiddlers]tag<aggregationTag>!has[draft.of]!sort[created]limit<limitParam>] -[<aggregationTag>]" type:"ol">>
+</div>
+</$set>
+
+</$reveal>

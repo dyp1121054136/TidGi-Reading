@@ -1,0 +1,178 @@
+caption: Export
+color: #bbb
+description: Batch Export
+icon: $:/core/images/export-button
+tags: $:/tags/BatchOperation
+title: $:/BatchExport
+
+\whitespace trim
+\define editTiddler() $:/temp/batchexport/input
+\define storeTiddler() $:/temp/batchexport
+\define zipTiddler() $:/temp/batchexport/_ZipTiddler
+\function exportFilter() [<storeTiddler>get[text]]
+
+\procedure batchExportButton(exportFilter)
+\procedure actions-render-json-tiddler()
+<$action-sendmessage $message="tm-zip-create" $param=<<zipTiddler>>/>
+<$set name="tv-filter-export-link" value="[slugify[]addsuffix[.json]]">
+<$list filter=<<exportFilter>>>
+<$action-sendmessage
+	$message="tm-zip-render-file"
+	$param=<<zipTiddler>>
+	filename={{{ [<currentTiddler>prefix[$:/]split[/]rest[1]join[_]addprefix[$__]addsuffix[.json]] ~[<currentTiddler>split[/]join[_]addsuffix[.json]] }}}
+	tiddler=<<currentTiddler>>
+	template="$:/core/templates/json-tiddler"
+/>
+</$list>
+</$set>
+<$action-sendmessage $message="tm-zip-download" $param=<<zipTiddler>> filename="jsontiddlers.zip"/>
+\end actions-render-json-tiddler
+
+\procedure actions-render-tid-tiddler()
+<$action-sendmessage $message="tm-zip-create" $param=<<zipTiddler>>/>
+<$set name="tv-filter-export-link" value="[slugify[]addsuffix[.tid]]">
+<$list filter=<<exportFilter>>>
+<$action-sendmessage
+	$message="tm-zip-render-file"
+	$param=<<zipTiddler>>
+	filename={{{ [<currentTiddler>prefix[$:/]split[/]rest[1]slugify[]join[_]addprefix[$__]addsuffix[.tid]] ~[<currentTiddler>split[/]join[_]addsuffix[.tid]] }}}
+	tiddler=<<currentTiddler>>
+	template="$:/core/templates/tid-tiddler"
+/>
+</$list>
+</$set>
+<$action-sendmessage $message="tm-zip-download" $param=<<zipTiddler>> filename="tiddlers.zip"/>
+\end actions-render-tid-tiddler
+
+<$vars hint={{$:/language/Buttons/ExportTiddlers/Hint}} caption={{$:/language/Buttons/ExportTiddlers/Caption}}>
+<span class="tc-popup-keep"><$button popup=<<qualify "$:/state/popup/batchexport">> dragFilter=<<exportFilter>> tooltip=<<hint>> aria-label=<<caption>> class=<<tv-config-toolbar-class>> selectedClass="tc-selected">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/export-button}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text"><$text text=<<caption>>/></span>
+</$list>
+</$button></span></$vars><$reveal state=<<qualify "$:/state/popup/batchexport">> type="popup" position="below" animate="yes">
+<div class="tc-drop-down">
+<$button class="tc-btn-invisible">
+<<actions-render-json-tiddler>>
+{{$:/language/Exporters/JsonFile}}
+</$button>
+<$button class="tc-btn-invisible">
+<<actions-render-tid-tiddler>>
+{{$:/language/Exporters/TidFile}}
+</$button>
+</div>
+</$reveal>
+\end batchExportButton
+
+\define cancel-search-actions()
+\whitespace trim
+<$list
+	filter="[{$:/temp/batchexport/input}!match{$:/temp/batchexport}]"
+	emptyMessage="<$action-deletetiddler $filter='[[$:/temp/batchexport]] [[$:/temp/batchexport/input]] [[$:/temp/batchexport/selected-item]]' />">
+	<$action-setfield $tiddler="$:/temp/batchexport/input" text={{$:/temp/batchexport}}/>
+	<$action-setfield $tiddler="$:/temp/batchexport/refresh" text="yes"/>
+</$list>
+\end
+
+\define clear-button()
+\whitespace trim
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+\end
+
+\define export-button()
+\whitespace trim
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$macrocall $name="batchExportButton" exportFilter=<<exportFilter>> />
+</$reveal>
+\end
+
+\define add-filter-button()
+<$button tooltip="Add current filter to the quick list" class="tc-btn-invisible tc-btn-mini">
+add
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$set name="savedFilter" filter="[all[shadows+tiddlers]tag[$:/tags/Filter/BatchExport]get[filter]match<exportFilter>limit[1]]" value="yes" emptyValue="no">
+<$list filter="[<savedFilter>match[yes]]">
+<$action-confirm $message="Filter already exists!" />
+</$list>
+<$list filter="[<savedFilter>match[no]]" variable="ignore">
+<$action-createtiddler $basetitle="$:/BatchExport/Filters/base" tags="$:/tags/Filter/BatchExport" filter=<<exportFilter>> caption="{{!!filter}}" text="{{!!filter}}"/>
+</$list>
+</$set>
+</$reveal>
+</$button>
+\end
+
+\define open-all-button()
+\whitespace trim
+<$button tooltip="Open all tiddlers and close others" class="tc-btn-invisible tc-btn-mini">
+open all
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$action-sendmessage $message="tm-close-all-tiddlers"/>
+<$let reverseSort=" +[order[reverse]]">
+<$list filter={{{ [<exportFilter>addsuffix<reverseSort>] }}}>
+<$action-navigate $to=<<currentTiddler>> $scroll="no"/>
+</$list>
+</$let>
+</$reveal>
+</$button>
+\end
+
+\define open-manager-button()
+<$button to="$:/BatchExport/QuickInputManager" tooltip="Manage the quick list" class="tc-btn-invisible tc-btn-mini">
+manage
+</$button>
+\end
+
+<<add-filter-button>> &#32; · &#32; <<open-all-button>> &#32; · &#32; <<open-manager-button>>
+
+<div class="tc-search tc-advanced-search batchexport-filter">
+<$macrocall
+	$name="keyboard-driven-input"
+	tiddler=<<editTiddler>>
+	storeTitle=<<storeTiddler>>
+	refreshTitle="$:/temp/batchexport/refresh"
+	selectionStateTitle="$:/temp/batchexport/selected-item"
+	type="search"
+	tag="input"
+	focus={{$:/config/Search/AutoFocus}}
+	configTiddlerFilter="[[$:/temp/batchexport]]"
+	firstSearchFilterField="text"
+	inputCancelActions=<<cancel-search-actions>>
+/>
+<i class='tc-tiny-gap'/>
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]!match[fluid-fixed]]" variable="ignore">
+<<clear-button>><<export-button>>
+</$list>
+</div>
+
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$let resultCount={{{ [subfilter<exportFilter>count[]] }}}>
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]match[fluid-fixed]]" variable="ignore">
+<span class="tc-search batchexport-filter">
+<<clear-button>><<export-button>>
+</span>
+<i class='tc-tiny-gap'/>{{$:/language/Search/Filter/Matches}}
+</$list>
+<div class="tc-search-results">
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]!match[fluid-fixed]]" variable="ignore">
+{{$:/language/Search/Filter/Matches}}
+</$list>
+<$list filter=<<exportFilter>>>
+<span class={{{[<currentTiddler>addsuffix[-primaryList]] -[[$:/temp/batchexport/selected-item]get[text]] +[then[]else[tc-list-item-selected]] }}}>
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</span>
+</$list>
+</div>
+</$let>
+</$reveal>
+
+<$reveal state=<<storeTiddler>> type="match" text="">
+{{$:/BatchExport/QuickList}}
+</$reveal>

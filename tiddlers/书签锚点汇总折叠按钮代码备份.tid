@@ -1,0 +1,11 @@
+created: 20240505072136798
+modified: 20240505072201929
+tags: 延时动作 书签
+title: 书签锚点汇总折叠按钮代码备份
+
+<<code src:"""\define toanchor-open-icon() $:/core/images/down-arrow
+\define toanchor-closed-icon() $:/core/images/right-arrow
+
+<$transclude tiddler=<<toanchor-open-icon>> />
+<$transclude tiddler=<<toanchor-closed-icon>> />
+""" language:"tw">>

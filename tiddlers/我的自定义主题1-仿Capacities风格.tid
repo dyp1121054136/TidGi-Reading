@@ -1,0 +1,19 @@
+created: 20240118094910496
+font: X
+modified: 20240303024658799
+tags: 样式
+title: 我的自定义主题1-仿Capacities风格
+
+"""
+[[$:/palettes/mycolor]]
+
+复制一个默认主题模板，修改条目标题后缀，修改字段内容：
+
+color-scheme: light
+description: 仿Capacities风格
+name: 我的自定义主题1
+
+代码字体颜色 `#9333EB (147,51,235)`
+代码背景颜色 `#F5F5F4 (245,245,244)`
+代码边框颜色按默认 `#e1e1e8` 或不要边框设置成 `transparent`
+"""

@@ -1,0 +1,16 @@
+caption: 添加可编辑段落
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240324130254975
+description: 添加可编辑段落
+icon: $:/core/images/paragraph
+modified: 20240325040259464
+shortcuts: ((paragraph))
+tags: 按钮 $:/tags/EditorToolbar 段落宏
+title: $:/core/ui/EditorToolbar/paragraph
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix='<<para "[['
+	suffix=']]">>'
+/>

@@ -1,0 +1,58 @@
+created: 20240402034701687
+modified: 20240520014748995
+tags: 书签 $:/tags/Macro
+title: 书签锚点宏
+
+<!-- 书签锚点 -->
+\define bookmark(number)
+<sup class="bk-color">{{$:/core/images/bookmark|0.9em}}$number$</sup><span class="bookmark-$number$"></span>
+\end
+
+<!-- 
+设置偏移量
+bookmark-anchor
+ -->
+
+<!-- 书签跳转按钮 -->
+\define abookmark(number)
+<$button class="tc-btn-invisible" tooltip="滚动到书签$number$位置">{{$:/core/images/bookmark}}<span class="bks-color">$number$</span>
+
+<$list filter="[<currentTiddler>!has:field[scrollpage]]">
+<$action-sendmessage $message="tm-scrollpage" targetElement="bookmark-$number$" scrollTime="0" offset="-10em"/>
+</$list>
+
+<$list filter="[<currentTiddler>field:scrollpage[yes]]">
+<$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="bookmark-$number$" scrollTime="0" offset="-25em"/>
+</$list>
+
+<!-- 
+使用系统自带的tm-scroll
+<$action-sendmessage $message="tm-scroll" selector=".bookmark-$number$" animationDuration="0"/>
+ -->
+
+</$button>
+\end
+
+<!-- 清除书签锚点 -->
+\define cbookmark(number)
+\define bk1() <<bookmark $number$>>
+\define bk2() <<bookmark "$number$">>
+\define bk0() 
+<$button class="tc-btn-invisible " tooltip="清除书签$number$">{{$:/core/images/clear-bookmark|16px}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<bk1>,<bk0>search-replace:g:regexp<bk2>,<bk0>]}}}
+/>
+</$button>
+\end
+
+<!-- 清除当前条目所有书签锚点 -->
+\define cbookmarks()
+\define bk1() <<bookmark ([^\s]*)>>
+\define bk0() 
+<$button class="tc-btn-invisible " tooltip="清除当前条目所有书签">{{$:/core/images/clear-bookmark|16px}}
+<$action-confirm $message="确认清除所有书签？" $prompt={{清除所有书签是否弹出确认提示
+书签}}>
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<bk1>,<bk0>] }}}
+/>
+</$action-confirm>
+</$button>
+\end

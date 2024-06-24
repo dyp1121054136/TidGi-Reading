@@ -1,0 +1,155 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/list
+
+\define aggr-preset-ctags(categoryPrefix)
+<$list filter="[all[shadows+tiddlers]prefix<__categoryPrefix__>!has[draft.of]has[text]]" variable="listItem">
+<$list filter="[<listItem>get[text]]"/>
+</$list>
+\end
+
+\define aggr-list-thumbnails(import,ctag,categoryPrefix,width:"220",height:"123")
+\import $import$
+<$wikify text=<<aggr-preset-ctags>> name="presetCtags">
+
+<div class="box-list-tags">
+  <$list filter="[<__ctag__>]">
+    <$transclude tiddler="$:/xp/ui/TagTemplate/aggregation"/>
+  </$list>
+  <$list filter="[tag<aggregationTag>tag<__ctag__>tags[]] -[<aggregationTag>] -[<__ctag__>] -[enlist<presetCtags>] +[limit[1]]">
+    <span class="xp-tag-divider"></span>
+  </$list>
+  <$list filter="[tag<aggregationTag>tag<__ctag__>tags[]sort[]] -[<aggregationTag>] -[<__ctag__>] -[enlist<presetCtags>]">
+    <span class="tc-tag-list-item">
+      <$set name="transclusion" value=<<currentTiddler>>>
+      <$macrocall $name="tag-pill-body" tag=<<currentTiddler>> icon={{!!icon}} colour={{!!color}} palette={{$:/palette}} element-tag="""$button""" element-attributes="""popup=<<qualify "$:/state/popup/tag">> dragFilter='[all[current]tagging[]]' tag='span'"""/>
+      <$reveal state=<<qualify "$:/state/popup/tag">> type="popup" position="below" animate="yes" class="tc-drop-down">
+      <$set name="tv-show-missing-links" value="yes">
+      <$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+      </$set>
+      <$list filter="[all[shadows+tiddlers]tag[$:/tags/TagDropdown]!has[draft.of]]" variable="listItem"> 
+      <$transclude tiddler=<<listItem>>/> 
+      </$list>
+      <hr>
+      <$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>> subFilter="tag<aggregationTag>tag<__ctag__>"/>
+      </$reveal>
+      </$set>
+    </span>
+  </$list>
+</div>
+
+<div style="font-size:0.7em;text-align:left;margin-top:2em;margin-bottom:2em;">
+<<list-thumbnails filter:"[tag<aggregationTag>tag<__ctag__>!has[draft.of]sort[]]" width:"$width$" height:"$height$">>
+</div>
+
+</$wikify>
+\end
+
+\define aggr-links-popup(import,ctag,categoryPrefix)
+\import $import$
+<$wikify text=<<aggr-preset-ctags>> name="presetCtags">
+
+<div class="box-list-tags">
+  <$list filter=<<__ctag__>>>
+    <$transclude tiddler="$:/xp/ui/TagTemplate/aggregation"/>
+  </$list>
+  <$list filter="[tag<aggregationTag>tag<__ctag__>tags[]] -[<aggregationTag>] -[<__ctag__>] -[enlist<presetCtags>] +[limit[1]]">
+    <span class="xp-tag-divider"></span>
+  </$list>
+  <$list filter="[tag<aggregationTag>tag<__ctag__>tags[]sort[]] -[<aggregationTag>] -[<__ctag__>] -[enlist<presetCtags>]">
+    <span class="tc-tag-list-item">
+      <$set name="transclusion" value=<<currentTiddler>>>
+      <$macrocall $name="tag-pill-body" tag=<<currentTiddler>> icon={{!!icon}} colour={{!!color}} palette={{$:/palette}} element-tag="""$button""" element-attributes="""popup=<<qualify "$:/state/popup/tag">> dragFilter='[all[current]tagging[]]' tag='span'"""/>
+      <$reveal state=<<qualify "$:/state/popup/tag">> type="popup" position="below" animate="yes" class="tc-drop-down">
+      <$set name="tv-show-missing-links" value="yes">
+      <$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+      </$set>
+      <$list filter="[all[shadows+tiddlers]tag[$:/tags/TagDropdown]!has[draft.of]]" variable="listItem"> 
+      <$transclude tiddler=<<listItem>>/> 
+      </$list>
+      <hr>
+      <$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>> subFilter="tag<aggregationTag>tag<__ctag__>"/>
+      </$reveal>
+      </$set>
+    </span>
+  </$list>
+</div>
+
+<div class="twocolumns" style="margin:15px 0;padding:0 0 0 24px;align-items:left;">
+
+{{{ [tag<aggregationTag>tag<__ctag__>!has[draft.of]sort[]] ||$:/templates/popup}}}
+
+</div>
+
+</$wikify>
+\end
+
+\define list-books(ctag)
+<$macrocall
+	$name="aggr-list-thumbnails"
+	import="$:/bookshelf-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-bookshelf/category/"
+	width="139"
+	height="200"
+/>
+\end
+
+\define list-consumer(ctag)
+<$macrocall
+	$name="aggr-links-popup"
+	import="$:/consumer-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-consumer/category/"
+/>
+\end
+
+\define list-courses(ctag)
+<$macrocall
+	$name="aggr-list-thumbnails"
+	import="$:/courses-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-courses/category/"
+/>
+\end
+
+\define list-enterprises(ctag)
+<$macrocall
+	$name="aggr-list-thumbnails"
+	import="$:/enterprises-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-enterprises/category/"
+/>
+\end
+
+\define list-howtos(ctag)
+<$macrocall
+	$name="aggr-links-popup"
+	import="$:/howtos-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-howtos/category/"
+/>
+\end
+
+\define list-whys(ctag)
+<$macrocall
+	$name="aggr-links-popup"
+	import="$:/whys-macros"
+	ctag=<<__ctag__>>
+	categoryPrefix="$:/config/xp/aggregation-whys/category/"
+/>
+\end
+
+\define codes(lang,src)
+\whitespace trim
+<div style="position:relative;">
+<div class="tc-page-controls" style="position:absolute;bottom:0;right:0;top:0;font-size:14px;margin:0;">
+<$button class="tc-btn-boxed" style="padding:3px;border:none;" message="tm-copy-to-clipboard" param=<<__src__>> tooltip={{$:/language/Buttons/CopyToClipboard/Hint}}>
+{{$:/core/images/copy-clipboard}}
+</$button>
+</div>
+</div>
+<$codeblock code=<<__src__>> language=<<__lang__>> />
+\end
+
+\define .icon(_) <span class="doc-icon">{{$_$}}</span>

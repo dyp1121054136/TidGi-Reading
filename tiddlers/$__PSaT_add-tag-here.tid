@@ -1,0 +1,19 @@
+caption: {{$:/core/images/new-here-button}} Add tag here
+created: 20220613014058062
+creator: simplify
+description: Add tag to current tiddler
+list-before: 
+modified: 20240415072908162
+modifier: Designer
+note: Can only occur when tag pill is displayed on the tiddler even when its not tagged
+tags: $:/tags/TagDropdown 标签下拉菜单
+title: $:/PSaT/add-tag-here
+
+<$list filter="[<storyTiddler>!tag<currentTiddler>then<currentTiddler>]" variable=currentTag>
+<$tiddler tiddler=<<storyTiddler>> ><$fieldmangler>
+   <$button tooltip="Add tag here" class="tc-btn-invisible">
+       <$action-sendmessage $message="tm-add-tag" $param=<<currentTag>>/>
+        {{$:/core/images/new-here-button}} Add <$macrocall $name=tag-pill tag=<<currentTag>>/> here.
+   </$button>
+</$fieldmangler></$tiddler>
+</$list>

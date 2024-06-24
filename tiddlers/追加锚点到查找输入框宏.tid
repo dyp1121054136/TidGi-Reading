@@ -1,0 +1,13 @@
+created: 20240506130140881
+modified: 20240506184806864
+tags: 查找结果汇总 $:/tags/Macro 正则表达式查找替换
+title: 追加锚点到查找输入框宏
+
+<!-- 追加锚点到查找输入框 -->
+\define editresult(number)
+<$button class="tc-btn-invisible" tooltip="编辑查找结果$number$">{{$:/core/images/edit-button|0.9em}}
+<$action-setfield $tiddler="$:/state/searchNreplace/search" text={{{[[$:/state/searchNreplace/search]get[text]addsuffix[<<result ]addsuffix<__number__>addsuffix[>>]]}}}/>
+</$button>
+\end
+
+<<editresult 1>>

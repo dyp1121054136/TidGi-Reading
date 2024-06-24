@@ -1,0 +1,7 @@
+caption: Backlinks
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/backlinks
+
+\define lingo-base() $:/language/TiddlerInfo/
+<$list filter="[all[current]backlinks[]!prefix[$:/temp/]!prefix[$:/state/]sort[title]]" emptyMessage=<<lingo References/Empty>> template="$:/core/ui/ListItemTemplate">
+</$list>

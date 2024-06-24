@@ -1,0 +1,62 @@
+created: 20240325114619853
+modified: 20240326031538203
+tags: 上下滚动
+title: 上下滚动按钮滚动距离
+
+<style>
+.center-align {
+  text-align: left; /* 靠左对齐 */
+  vertical-align: middle; /* 垂直居中对齐 */
+}
+
+.scroll input[type="text"] {
+  box-sizing: border-box;
+  width: 4em;
+  padding: 1px;
+  border: 1px solid #000;
+}
+</style>
+
+<table width="99%">
+<tr>
+<td class="center-align">
+电脑端上下滚动距离:
+</td>
+<td class="center-align">
+<$range tiddler="上下滚动css" field="scroll-top-bottom-pc" min="45" max="60" default="54.5" increment="0.5"/>
+{{上下滚动css!!scroll-top-bottom-pc}}em
+</td>
+</tr>
+<tr>
+<td class="center-align">
+移动端上下滚动距离:
+</td>
+<td class="center-align">
+<$range tiddler="上下滚动css" field="scroll-top-bottom-mobile" min="25" max="40" default="27.5" increment="0.5"/>
+{{上下滚动css!!scroll-top-bottom-mobile}}em
+</td>
+</tr>
+</table>
+
+<table width="99%">
+<tr>
+<td class="center-align">
+电脑端上下滚动距离:
+</td>
+<td class="center-align">
+<span class="scroll">
+<$edit-text tiddler="上下滚动css" field="scroll-top-bottom-pc" tag="input" placeholder="49.5" default=""/> em
+</span>
+</td>
+</tr>
+<tr>
+<td class="center-align">
+移动端上下滚动距离:
+</td>
+<td class="center-align">
+<span class="scroll">
+<$edit-text tiddler="上下滚动css" field="scroll-top-bottom-mobile" tag="input" placeholder="27.5" default=""/> em
+</span>
+</td>
+</tr>
+</table>

@@ -1,0 +1,10 @@
+caption: {{$:/core/images/bookmark}} 滚动到书签位置
+created: 20240402034227461
+description: 滚动到书签位置
+modified: 20240402040948881
+tags: 按钮 书签
+title: $:/core/ui/Buttons/bookmark
+
+<$button class="tc-btn-invisible" tooltip="滚动到书签位置">{{$:/core/images/bookmark|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".bookmark-001" animationDuration="0"/>
+</$button>

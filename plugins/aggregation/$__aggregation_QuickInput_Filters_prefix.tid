@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 标题前缀为……
+filter: [prefix[…]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/prefix
+
+{{!!filter}}

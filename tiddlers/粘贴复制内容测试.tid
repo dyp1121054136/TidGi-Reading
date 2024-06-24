@@ -1,0 +1,16 @@
+created: 20240430193009633
+modified: 20240501163808358
+tags: 正则表达式查找替换 测试
+title: 粘贴复制内容测试
+
+<$button class="tc-btn-invisible search-replace-btn" tooltip="粘贴剪贴板内容">
+<$action-sendmessage $message="tm-paste" pasteTitle="$:/state/ClipboardContent"/>粘贴剪贴板内容
+</$button>
+
+<!-- 创建一个新的tiddler来显示剪贴板内容 -->
+<$edit-text tiddler="$:/state/ClipboardContent" placeholder="剪贴板内容将显示在这里" field="text" tags="clipboard" class="search-replace-textarea"/>
+
+输出结果：
+
+<!-- 或者，如果你已经有一个tiddler来保存剪贴板内容，你可以这样显示它 -->
+<$text text={{$:/state/ClipboardContent}} />

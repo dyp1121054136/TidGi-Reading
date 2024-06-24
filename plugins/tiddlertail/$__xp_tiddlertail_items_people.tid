@@ -1,0 +1,74 @@
+caption: People
+description: Edit People Fields
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/people
+
+\define cancel-input-actions()
+<$action-deletefield $field=<<__field__>>/>
+\end
+
+\define edit-fields(field,textarea:"input",type:"")
+<tr class="tc-edit-field">
+<td class="tc-edit-field-name"><$text text=<<__field__>>/>:</td>
+<td class="tc-edit-field-value">
+<$keyboard key="((cancel-edit-tiddler))" actions=<<cancel-input-actions>>>
+<$keyboard key="((delete-field))" actions=<<cancel-input-actions>>>
+<$reveal default=<<__type__>> type="nomatch" text="">
+<$edit-text type=<<__type__>> tiddler=<<currentTiddler>> field=<<__field__>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} />
+</$reveal>
+<$edit-text tiddler=<<currentTiddler>> field=<<__field__>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} tag=<<__textarea__>> />
+</$keyboard></$keyboard>
+</td>
+<td class="tc-edit-field-remove">
+<$button class="tc-btn-invisible" tooltip={{$:/language/EditTemplate/Field/Remove/Hint}} aria-label={{$:/language/EditTemplate/Field/Remove/Caption}}>
+<<cancel-input-actions>>
+{{$:/core/images/delete-button}}
+</$button>
+</td>
+</tr>
+\end
+
+\define edit-fields-education(field:"education")
+<tr class="tc-edit-field">
+<td class="tc-edit-field-name"><$text text=<<__field__>>/>:</td>
+<td class="tc-edit-field-value">
+<$select tiddler=<<currentTiddler>> field=<<__field__>> default="">
+<$list filter="博士 硕士 本科 专科 高中 初中 小学">
+<option value={{!!title}}><$view field="title"/></option>
+</$list>
+<option value="">empty</option>
+</$select>
+<$keyboard key="((cancel-edit-tiddler))" actions=<<cancel-input-actions>>>
+<$keyboard key="((delete-field))" actions=<<cancel-input-actions>>>
+<$edit-text tiddler=<<currentTiddler>> field=<<__field__>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} />
+</$keyboard></$keyboard>
+</td>
+<td class="tc-edit-field-remove">
+<$button class="tc-btn-invisible" tooltip={{$:/language/EditTemplate/Field/Remove/Hint}} aria-label={{$:/language/EditTemplate/Field/Remove/Caption}}>
+<<cancel-input-actions>>
+{{$:/core/images/delete-button}}
+</$button>
+</td>
+</tr>
+\end
+
+\whitespace trim
+
+<$list filter="[all[current]!match[$:/xp/tiddlertail/items/people]]" variable="ignore">
+<table class="tc-edit-fields tc-edit-fields-small">
+<tbody>
+<<edit-fields caption>>
+<<edit-fields description textarea>>
+<<edit-fields-education>>
+<<edit-fields lifetime>>
+<<edit-fields wiki textarea>>
+<<edit-fields color>>
+<<edit-fields linkcolor type:"color">>
+<<edit-fields image>>
+<<edit-fields spouses>>
+<<edit-fields children>>
+<<edit-fields father>>
+<<edit-fields mother>>
+</tbody>
+</table>
+</$list>

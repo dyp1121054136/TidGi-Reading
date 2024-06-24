@@ -1,0 +1,57 @@
+code-body: yes
+tags: todo
+title: $:/plugins/kookma/section/templates/section-body
+type: text/vnd.tiddlywiki
+
+\define editActions()
+<!-- action when edit button is clicked -->
+<$action-setfield $tiddler=<<stateTid>> $index=<<counter>> $value="edit" />
+<$action-setfield $tiddler=<<editTid>> $field=text $value=<<currentSection>> throttle.refresh=""/>
+\end
+
+\define xxdoneActions()
+<!-- NOT WORKING: keep it and use when GitHub issue resolved -->
+<!-- action when done button is clicked -->
+<$action-setfield $tiddler=<<stateTid>> $index=<<counter>> $value="view" />
+<$vars for=<<currentSection>> with={{{[<editTid>get[text]]}}}>
+<$action-setfield $tiddler=<<source>> $field=text $value={{{[<source>get[text]search-replace::regexp<for>,<with>]}}} />
+<$action-deletetiddler $tiddler=<<editTid>> />
+</$vars>
+\end
+
+\define doneActions()
+<!-- action when done button is clicked -->
+<$action-setfield $tiddler=<<stateTid>> $index=<<counter>> $value="view" />
+<$vars for=<<currentSection>> with={{{[<editTid>get[text]]}}}>
+<$action-setfield $tiddler=<<source>> $field=text $value={{{[<source>get[text]split<for>join<with>]}}} />
+<$action-deletetiddler $tiddler=<<editTid>> />
+</$vars>
+\end
+
+\define cancelActions()
+<!-- action when cancel button is clicked -->
+<$action-confirm $message="""Do you wish to discard changes to the current section in "$(currentTiddler)$" tiddler?""">
+<$action-setfield $tiddler=<<stateTid>> $index=<<counter>> $value="view" />
+<$action-deletetiddler $tiddler=<<editTid>> />
+</$action-confirm>
+\end
+
+\whitespace trim
+<!-- Toggle and action buttons -->
+<div class="se-section-toolbar">
+<$reveal type="nomatch" stateTitle=<<stateTid>> stateIndex=<<counter>> text="edit">
+    <$button actions=<<editActions>> class="tc-btn-invisible">{{$:/core/images/edit-button}}</$button>
+</$reveal>
+<$reveal type="match" stateTitle=<<stateTid>> stateIndex=<<counter>>  text="edit">
+    <$button actions=<<cancelActions>> class="tc-btn-invisible">{{$:/core/images/cancel-button}}</$button>
+    <$button actions=<<doneActions>>   class="tc-btn-invisible">{{$:/core/images/done-button}}  </$button>
+</$reveal>
+</div>
+
+<!-- Display section in edit or view mode -->
+<$reveal stateTitle=<<stateTid>> stateIndex=<<counter>> type="nomatch" text="edit" tag=div class="se-section-view"> <!--todo: calss-->
+<$transclude tiddler="$:/plugins/kookma/section/templates/view" mode=block/>
+</$reveal>
+<$reveal stateTitle=<<stateTid>> stateIndex=<<counter>> type="match"   text="edit" tag=div class="se-section-edit"> <!--todo: calss-->
+<$transclude tiddler="$:/plugins/kookma/section/templates/edit" mode=block/>
+</$reveal>

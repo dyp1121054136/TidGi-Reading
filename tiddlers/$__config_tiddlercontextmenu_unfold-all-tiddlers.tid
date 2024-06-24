@@ -1,0 +1,10 @@
+caption: 展开所有条目
+created: 20220729220222119
+icon: $:/core/images/unfold-all-button
+modified: 20240109020734403
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/unfold-all-tiddlers
+tm-message: tm-unfold-all-tiddlers
+type: text/vnd.tiddlywiki
+
+hide

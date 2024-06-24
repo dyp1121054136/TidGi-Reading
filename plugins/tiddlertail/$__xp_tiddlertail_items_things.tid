@@ -1,0 +1,41 @@
+caption: Things
+description: Getting Things Done
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/things
+
+\import $:/xp/aggregation-gtd/macros
+\define lingo-base() $:/language/projectify/
+
+<$vars today=<<now YYYY0MM0DD>>>
+<$wikify name="createdDate" text="<$view field=created format=date template='YYYY0MM0DD'/>">
+<$wikify name="createdDateReadable" text="<$view field=created format=date template='YYYY-0MM-0DD'/>">
+<div class="xp-gtd-sidebar">
+
+<$reveal default=<<createdDate>> type="match" text=<<today>>>
+
+<h3>
+<$button to="GettingThingsDone" class="tc-btn-invisible xp-gtd-list-header-btn">
+<span class="tc-sidebar-header">~GettingThingsDone</span>
+</$button>
+</h3>
+
+<div class="xp-gtd-sidebar-addtodo">
+{{$:/xp/tiddlertail/AddTodo}}
+</div>
+
+<<scheduleTodoList>>
+
+<<thingsDoneToday>>
+
+</$reveal>
+
+<$reveal default=<<createdDate>> type="nomatch" text=<<today>>>
+
+<<thingsDoneToday caption:"<<createdDateReadable>>" itemTemplate:"$:/xp/aggregation-gtd/today-no-time/ItemTemplate">>
+
+</$reveal>
+
+</div>
+</$wikify>
+</$wikify>
+</$vars>

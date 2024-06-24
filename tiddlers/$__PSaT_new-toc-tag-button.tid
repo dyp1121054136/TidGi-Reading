@@ -1,0 +1,27 @@
+created: 20220505064026354
+creator: !user
+filename: new-toc-tag-button
+modified: 20240416093846053
+modifier: !user
+package-filter: [prefix[$:/PSaT/new-toc-tag-button]]
+psat-project: new-toc-tag-button
+psat-version: 0.0.1
+tags: $:/tags/TagDropdown 标签下拉菜单
+title: $:/PSaT/new-toc-tag-button
+
+\define source()
+<<tag "$(tocTag)$">> <$button to="$(basetitle)$" tooltip="在故事河打开该目录" class="tc-btn-invisible">{{$:/PSaT/new-toc-tag-button/open-image}}</$button>
+<div class="tc-table-of-contents">
+   <<toc-selective-expandable "$(tocTag)$">>
+</div>
+\end
+<$let tocTag=<<currentTiddler>> basetitle={{{ [<tocTag>] [[ - toc]] +[join[]] }}} >
+<$list filter="[<basetitle>!has[title]]" variable=~>
+<$button tooltip="以该标签新建侧边栏目录列表" class="tc-btn-invisible">
+<$action-createtiddler $basetitle=<<basetitle>> caption=<<tocTag>> tags="$:/tags/SideBar" text=<<source>> />
+{{$:/core/images/new-button}} 新建目录列表 — <$text text=<<tocTag>>/>
+</$button>
+</$list>
+<$list filter="[<basetitle>has[title]]" variable=~><$button tooltip="打开已以该标签生成的目录列表" to=<<basetitle>> class="tc-btn-invisible">{{$:/PSaT/new-toc-tag-button/toc-image}} 打开目录</$button></$list>
+</$let>
+<hr>

@@ -1,0 +1,125 @@
+caption: Tag
+color: #bbb
+first-search-filter: [subfilter{$:/temp/batch-modification/filter}tags[]!is[system]sort[]search:title<userInput>]
+icon: $:/xp/images/batch-modification
+second-search-filter: [subfilter{$:/temp/batch-modification/filter}tags[]is[system]sort[]search:title<userInput>]
+tags: $:/tags/BatchModification
+title: $:/BatchModification/Tag
+
+\import [all[shadows+tiddlers]tag[$:/tags/Commander/Macro]] $:/BatchOperation/macros
+\whitespace trim
+
+\define input-cancel-actions() <$action-deletetiddler $filter="[<editTiddler>] [<searchTiddler>] [<tagSelectionState>]"/>
+
+\define search-results-list()
+\whitespace trim
+<$vars userInput={{$(searchTiddler)$}}>
+<div class="tc-search-results">
+<$list filter=<<nonSystemTagsFilter>> variable="tag">
+<div class="tc-menu-list-item">
+<$link to=<<tag>>/>
+</div>
+</$list>
+<$list filter=<<systemTagsFilter>> variable="tag">
+<div class="tc-menu-list-item">
+<$link to=<<tag>>/>
+</div>
+</$list>
+</div>
+</$vars>
+\end
+
+\define bm-tag-picker(type:"newtag",placeholder:"new")
+\whitespace trim
+<div class="tc-edit-field-add">
+<$vars
+	editTiddler="$:/temp/batch-modification/$type$"
+	searchTiddler="$:/temp/batch-modification/$type$/input"
+	tagsFilter="[subfilter{$:/temp/batch-modification/filter}tags[]search:title<userInput>]"
+	nonSystemTagsFilter="[subfilter{$:/temp/batch-modification/filter}tags[]!is[system]sort[]search:title<userInput>]"
+	systemTagsFilter="[subfilter{$:/temp/batch-modification/filter}tags[]is[system]sort[]search:title<userInput>]"
+	tagSelectionState=<<qualify "$:/temp/batch-modification/$type$/selected-item">>
+	refreshTitle=<<qualify "$:/temp/batch-modification/$type$/refresh">>>
+<div class="tc-edit-field-add-name-wrapper">
+<$macrocall $name="keyboard-driven-input"
+	tiddler=<<editTiddler>>
+	storeTitle=<<searchTiddler>>
+	refreshTitle=<<refreshTitle>>
+	selectionStateTitle=<<tagSelectionState>>
+	inputCancelActions=<<input-cancel-actions>>
+	tag="input"
+	placeholder="$placeholder$"
+	focusPopup=<<qualify "$:/state/popup/search-dropdown/$type$">>
+	class="tc-edit-texteditor tc-popup-handle"
+	tabindex=<<tabIndex>>
+	focus={{{ [{$:/config/AutoFocus}match[tags]then[true]] ~[[false]] }}}
+	filterMinLength={{$:/config/Tags/MinLength}}
+	cancelPopups="yes"
+	configTiddlerFilter="[[$:/BatchModification/Tag]]"/>
+<$button popup=<<qualify "$:/state/popup/search-dropdown/$type$">> class="tc-btn-invisible tc-btn-dropdown tc-tiny-gap-left" tooltip={{$:/language/EditTemplate/Tags/Dropdown/Hint}} aria-label={{$:/language/EditTemplate/Tags/Dropdown/Caption}}>{{$:/core/images/down-arrow}}</$button><$reveal state=<<editTiddler>> type="nomatch" text=""><$button class="tc-btn-invisible tc-small-gap tc-btn-dropdown" tooltip={{$:/language/EditTemplate/Tags/ClearInput/Hint}} aria-label={{$:/language/EditTemplate/Tags/ClearInput/Caption}}>{{$:/core/images/close-button}}<<input-cancel-actions>></$button></$reveal>
+</div>
+<div class="tc-block-dropdown-wrapper">
+<$reveal tag="div" class="tc-block-dropdown tc-search-drop-down fb-search-drop-down" state=<<qualify "$:/state/popup/search-dropdown/$type$">> type="nomatch" text="" default="">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler=<<editTiddler>> text=<<navigateTo>>/><$action-deletetiddler $tiddler=<<searchTiddler>>/>">
+<<search-results-list>>
+</$linkcatcher>
+</$set>
+</$reveal>
+</div>
+</$vars>
+</div>
+\end
+
+\define bmTagsOpsAdd()
+\whitespace trim
+<$button class="tc-tiny-gap"> Add
+<$list filter="[subfilter{$:/temp/batch-modification/filter}!is[missing]limit[1]]" variable="ignore">
+<$list filter="[<newTag>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Tags Operation">>
+	<$list filter="[subfilter{$:/temp/batch-modification/filter}!tag<newTag>]" variable="target">
+	<$action-listops $tiddler=<<target>> $tags="[<newTag>trim[]]"/>
+	<$macrocall $name="log-add-single-operation" msg="""new tag `$(newTag)$` added""" tidItem=<<target>>/>
+	</$list>
+</$list></$list>
+</$button>
+\end
+
+\define bmTagsOpsRemove()
+\whitespace trim
+<$button> Remove
+<$list filter="[subfilter{$:/temp/batch-modification/filter}!is[missing]limit[1]]" variable="ignore">
+<$list filter="[<oldTag>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Tags Operation">>
+	<$list filter="[subfilter{$:/temp/batch-modification/filter}tag<oldTag>]" variable="target">
+	<$action-listops $tiddler=<<target>> $tags="-[<oldTag>]"/>
+	<$macrocall $name="log-add-single-operation" msg="""old tag `$(oldTag)$` removed""" tidItem=<<target>>/>
+	</$list>
+</$list></$list>
+</$button>
+\end
+
+\define bmTagsOpsReplace()
+\whitespace trim
+<$button> Replace
+<$list filter="[subfilter{$:/temp/batch-modification/filter}!is[missing]limit[1]]" variable="ignore">
+<$list filter="[<oldTag>trim[]!is[blank]]" variable="ignore">
+<$list filter="[<newTag>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Tags Operation">>
+	<$list filter="[subfilter{$:/temp/batch-modification/filter}tag<oldTag>]" variable="target">
+	<$action-listops $tiddler=<<target>> $tags="-[<oldTag>]"/>
+	<$action-listops $tiddler=<<target>> $tags="[<newTag>trim[]]"/>
+	<$macrocall $name="log-add-single-operation" msg="""tag `$(oldTag)$` replaced with `$(newTag)$`""" tidItem=<<target>>/>
+	</$list>
+</$list></$list></$list>
+</$button>
+\end
+
+<<bm-tag-picker oldtag old>><<bm-tag-picker>>
+
+<$vars oldTag={{$:/temp/batch-modification/oldtag}} newTag={{$:/temp/batch-modification/newtag}}>
+<<bmTagsOpsRemove>>
+<<bmTagsOpsAdd>>
+<<bmTagsOpsReplace>>
+</$vars>
+<<boLogButton>>

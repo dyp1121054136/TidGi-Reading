@@ -1,0 +1,13 @@
+created: 20240118140553865
+modified: 20240203084439102
+tags: AI问答存档
+title: 一些宏macro
+
+`$:/tags/Macro`
+
+<<code src:"""\define check(x)
+<$list filter="[[$x$]match[yes]]">是的, 它是真的！</$list><$list filter="[[$x$]match[no]]">不, 这不是真的。</$list>
+\end
+""" language:"tw">>
+
+在一个Tiddler中使用这个宏，你可以写 `<<check yes>>` 将会显示"是的, 它是真的！"，如果你写 `<<check no>>` 将会显示“不, 这不是真的。”。

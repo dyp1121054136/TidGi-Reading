@@ -1,0 +1,43 @@
+title: $:/FilterBuilder/Search/FilterOperators
+
+\whitespace trim
+
+\define search-results-list()
+\whitespace trim
+<$vars userInput={{$(searchTiddler)$}} st="[]">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/FilterBuilder/Operators]!is[draft]] -[[$:/tags/FilterBuilder/Operators]]">
+<$list filter="[enlist{!!text}search:title<userInput>count[]!match[0]]" variable="ignore">
+<div class="tc-dropdown-item">
+<$view field="caption"/>
+</div>
+</$list>
+<$list filter="[enlist{!!text}sort[]search:title<userInput>]">
+<$link to={{{ [{!!title}addsuffix<st>] }}}><$view field="title"/></$link>
+</$list>
+</$list>
+</$vars>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[[$:/temp/filterbuilder/search/operators]] [<searchTiddler>]"/>
+\define input-accept-actions() <$vars st="[]"><$action-setfield $tiddler=<<editTid>> filter={{{ [<searchTiddler>get[text]addsuffix<st>] }}}/></$vars>
+
+<div class="tc-edit-field-add">
+<$vars editTiddler="$:/temp/filterbuilder/search/operators" searchTiddler="$:/temp/filterbuilder/search/operators/input">
+<div class="tc-edit-field-add-name-wrapper fb-search-operators">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTiddler>> storeTitle=<<searchTiddler>> 
+    tag="input" default="" focus="no" placeholder="operator"
+    focusPopup=<<qualify "$:/state/popup/search-dropdown">> class="tc-edit-texteditor tc-popup-handle"
+    inputCancelActions=<<cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+<$button popup=<<qualify "$:/state/popup/search-dropdown">> class="tc-btn-invisible tc-btn-dropdown tc-small-gap">{{$:/core/images/down-arrow}}</$button>
+</div>
+<$reveal state=<<qualify "$:/state/popup/search-dropdown">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler=<<editTid>> filter=<<navigateTo>>/>">
+<<search-results-list>>
+</$linkcatcher>
+</$set>
+</div>
+</$reveal>
+</$vars>
+</div>

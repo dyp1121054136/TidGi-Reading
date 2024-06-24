@@ -1,0 +1,16 @@
+created: 20220525022915050
+list-after: 
+modified: 20240326034346239
+tags: $:/tags/EditTemplate 条目底部编辑按钮 上下滚动
+title: 条目底部编辑按钮-编辑模式
+
+\define config-title()
+$:/config/EditToolbarButtons/Visibility/$(listItem)$
+\end
+<$list filter="[all[current]is[draft]]" variable=~>
+<div class="tc-tiddler-title tc-tiddler-edit-title">
+<$view field="title"/>
+<span class="tc-tiddler-controls tc-titlebar"><$list filter="[all[shadows+tiddlers]tag[$:/tags/EditToolbar]!has[draft.of]]" variable="listItem"><$reveal type="nomatch" state=<<config-title>> text="hide"><$transclude tiddler=<<listItem>>/></$reveal></$list></span>
+<div style="clear: both;"></div>
+</div>
+</$list>

@@ -1,0 +1,20 @@
+created: 20240509113134181
+modified: 20240509133016253
+tags: 正则表达式查找替换
+title: 更多设置按钮弹出页面
+
+<$list filter={{{[[统计字数结果]get[words]]+[match[yes]]}}}>
+{{||统计字数结果}}
+</$list>
+
+<span class="search-replace-checkbox">
+<$checkbox default="no" unchecked="no" checked="yes" field="words" tiddler="统计字数结果"> 字数</$checkbox>
+</span>
+
+<span class="search-replace-btn-all">
+{{||每行添加定位锚点按钮}}
+{{||每行清除定位锚点按钮}}
+{{||js转换为时间戳锚点按钮}}
+{{||粘贴复制内容到查找按钮}}
+{{||统计字数按钮}}
+</span>

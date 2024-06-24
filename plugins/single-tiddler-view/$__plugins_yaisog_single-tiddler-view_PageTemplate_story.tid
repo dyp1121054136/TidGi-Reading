@@ -1,0 +1,37 @@
+created: 20230211054107536
+list-after: $:/core/ui/PageTemplate/story
+modified: 20230521172632800
+tags: 
+title: $:/plugins/yaisog/single-tiddler-view/PageTemplate/story
+
+\whitespace trim
+
+\define single-tiddler() [{$:/HistoryList!!current-tiddler}] :intersection[list<tv-story-list>]
+
+\define story-filter() [{$:/view}!match[minimal]] :then[list<tv-story-list>] :else[subfilter<single-tiddler>]
+
+<section class="tc-story-river" role="main">
+
+<section class="story-backdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/AboveStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+<$list filter="[subfilter<story-filter>]" history="$:/HistoryList" template="$:/core/ui/StoryTiddlerTemplate" storyview={{$:/view}} emptyMessage={{$:/config/EmptyStoryMessage}}/>
+
+<section class="story-frontdrop">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/BelowStory]!has[draft.of]]">
+
+<$transclude/>
+
+</$list>
+
+</section>
+
+</section>

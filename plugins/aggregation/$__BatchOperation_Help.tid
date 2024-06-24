@@ -1,0 +1,33 @@
+title: $:/BatchOperation/Help
+
+\define helpTid() $:/temp/batchoperation/help
+
+<$tiddler tiddler=<<helpTid>>>
+<$radio default="bm" value="bm"> 批量修改 </$radio>&ensp;
+<$radio value="bc"> 批量创建 </$radio>&ensp;
+<$radio value="be"> 批量加密 </$radio>&ensp;
+<$radio value="bx"> 批量导出 </$radio>
+</$tiddler>
+
+---
+
+<$reveal state=<<helpTid>> type="match" text="bm" default="bm">
+
+{{$:/BatchModification/Help}}
+
+</$reveal>
+<$reveal state=<<helpTid>> type="match" text="bc" default="bm">
+
+{{$:/BatchCreation/Help}}
+
+</$reveal>
+<$reveal state=<<helpTid>> type="match" text="be" default="bm">
+
+{{$:/language/Help/batchencryption}}
+
+</$reveal>
+<$reveal state=<<helpTid>> type="match" text="bx" default="bm">
+
+{{$:/BatchExport/Help}}
+
+</$reveal>

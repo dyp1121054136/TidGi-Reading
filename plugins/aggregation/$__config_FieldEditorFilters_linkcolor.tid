@@ -1,0 +1,4 @@
+tags: $:/tags/FieldEditorFilter
+title: $:/config/FieldEditorFilters/linkcolor
+
+[<currentField>match[linkcolor]then[$:/xp/ui/EditTemplate/fieldEditor/linkcolor]]

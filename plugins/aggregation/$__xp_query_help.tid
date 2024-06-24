@@ -1,0 +1,56 @@
+title: $:/xp/query/help
+
+[[Query|$:/QUERY]] 是一个多词查找的小工具。你可以在 $:/AdvancedSearch 或者 $:/FilterBuilder（settings 中勾选 callout-query） 中使用。
+
+!! 逻辑运算
+
+Query 使用 A、B、C 作为正数（要包括的东西），X、Y、Z 作为负数（要排除的东西），这使得语法清晰。
+
+* 与运算 `A+B`：表示同时包含 A 和 B。也就是将含有 A 的条目与含有 B 的条目求交集。
+* 或运算 `A.B`：表示包含 A 或者包含 B。也就是 A 与 B 的并集。
+* 非运算 `A-X`：表示包含 A 但是不包含 X。也就是 A 与 X 的差集。
+
+
+!! 查找类型
+
+Query 支持的查找类型为：
+
+# 链接（query links）
+#* `ql`：查找含有链接 A 的条目。
+#* `ql+`：查找含有链接 A 和 B 的条目。
+#* `ql++`：查找含有链接 A 和 B 和 C 的条目。
+#* `ql.`：查找含有链接 A 或 B 的条目。
+#* `ql..`：查找含有链接 A 或 B 或 C 的条目。
+#* `ql-`：查找含有链接 A 但不含 X 的条目。
+# 提及（query mentions）
+#* `qm`：（不区分大小写）查找含有字符串 A 的条目。
+#* `qm+`：查找含有字符串 A 和 B 的条目。
+#* `qm.`：查找含有字符串 A 或 B 的条目。
+#* `qm-`：查找含有字符串 A 但不含 X 的条目。
+#* `qm-link`：查找含有字符串 A 但不含链接 X 的条目。
+# 前缀（query prefix）
+#* `qp`：查找标题前缀为 A 的条目。
+# 嵌入（query transclusion）
+#* `qt`：查找嵌入了 A 的条目。
+#* `qt.`：查找嵌入了 A 或 B 的条目。
+#* `qt-`：查找嵌入了 A 但无 X 的条目。
+
+<div class="blue-box">
+
+特别说明：
+
+# 查询类型没有「标签」。主要是我认为使用 $:/FilterBuilder 就能查询标签，而且会比 Query 更灵活。
+# 查询宏定义在 <<tag $:/tags/Macro/Query>>。为了便于输入，类型名尽量简短化。比如 `ql+` 是 `ql:A+B` 的简化，`ql.` 是 `ql:A.B` 的简化，`ql-` 是 `ql:A-X` 的简化……
+
+</div>
+
+
+!! 其他说明
+
+使用 <kbd>Tab</kbd> 键跳转到下一个输入框，使用 <kbd>shift-Tab</kbd> 返回上一个输入框。
+
+<div class="gray-box">
+
+造它的原因是 arunnbabu81 对 tw-xp 提了一个 [[issue|https://github.com/keatonlao/tiddlywiki-xp/issues/8]]，而我刚好很好奇。于是开始了学习……
+
+</div>

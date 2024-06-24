@@ -1,0 +1,32 @@
+created: 20220924224426162
+modified: 20240228011505513
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/changelog
+
+|!version|!release date|!major changes|
+|0.3.1|27 Feb 2024|minor update of readme and added a <kbd>keyboard</kbd> menu item |
+|0.3.0|7 Sep 2023|integrated fix by BurningTreeC to address compatibility with the [ext[Multi-Column Layout|]] plugin |
+|0.2.9|6 Sep 2023|fixed icon issues introduced with core 5.3.0/5.3.1; fixed stylesheet to leverage `very-muted-foreground` instead of hard coded value; added option to hide completely disabled menu options, instead of strike-through/`very-muted-foreground` for small screens |
+|0.2.8|25 Jan 2023|fixed issue with `Copy to Clipboard` context menu option, added `Tag with selection` context menu option|
+|0.2.7|18 Dec 2022|moved configuration settings to their own tiddlers; using the configuration tiddler fields was not working reliably<br/>improved case handling when linking|
+|0.2.6|13 Dec 2022|improved handling of `New tiddler from selection` when the tiddler already exists|
+|0.2.5|17 Oct 2022|fixed sanitize logic issue impacting stream nodes with / character|
+|0.2.4|16 Oct 2022|added experimental protection against replacement/formatting occurring inside transclusions, macros or macro definitions with advanced regular expressions|
+|0.2.3|16 Oct 2022|overhauled quick edit code base to benefit from enabling/ordering/styling available for other menu items|
+|0.2.2|15 Oct 2022|improved handling of quotes in quick-edit and cleaned up code; fixed typo in config|
+|0.2.1|15 Oct 2022|added optional quick edit menu item, improved configuration options|
+|0.2.0|4 Oct 2022|added advanced search menu item|
+|0.1.9|2 Oct 2022|restores compatibility with [ext[Saq's Links Context Menu plugin|https://saqimtiaz.github.io/tw5-plugins-sandbox/#Links%20Context%20Menu]]<br/>added condition field to `$:/config/tiddlercontextmenu/print-river`|
+|0.1.8|1 Oct 2022|added excise and transclude item; default name based on target of context menu event and <br/>minor improvement in configuration UI / menu (separators shown even if item is hidden)|
+|0.1.7|1 Oct 2022|excise feature added<br/>improved configuration UI|
+|0.1.6|30 Sep 2022|minor enhancement to the configuration UI for 3rd party plugins|
+|0.1.5|30 Sep 2022|added configuration UI to show, order and set separators; added subscript and superscript|
+|0.1.4|30 Sep 2022|improved handing of special characters in text selection by escaping in regular expression and support to clear basic line formatting|
+|0.1.3|27 Sep 2022|add compatibility with Stream nodes|
+|0.1.2|25 Sep 2022|improved handling of context menu when no text selection is first made, fixed Quote option|
+|0.1.1|25 Sep 2022|minor logic fix in new code for 0.1.0 & improved documentation|
+|0.1.0|25 Sep 2022|fixed packaging error for quote; now includes visual indicators when the selection is not matched in raw wikitext or when the number of matches is greater than 1|
+|0.0.9|25 Sep 2022|simplified logic to a single javascript block with carriage return parsing in markup-prefix and markup-suffix<br/>fixed highlight style|
+|0.0.8|25 Sep 2022|added heading mode, license, improved handling of hidden options with CSS for the menu separator, enhanced readme, renamed indent to quote for consistency with ~TiddlyWiki language|
+|0.0.7|24 Sep 2022|re-packaged, added indent|
+|0.0.6|24 Sep 2022|overhauled logic to increase customization; conditional menu items|

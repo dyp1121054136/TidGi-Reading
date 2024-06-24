@@ -1,0 +1,11 @@
+caption: Excise and link
+condition: [all[shadows]prefix[$:/config/flibbles/relink/]]
+created: 20221001000656330
+icon: $:/core/images/excise
+mode: link
+modified: 20221002015356121
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/excise-link
+tm-message: tm-excise
+
+show

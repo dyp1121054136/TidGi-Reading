@@ -1,0 +1,13 @@
+{
+    "created": "20240129081234751",
+    "title": "$:/plugins/dyp/FiraCode-Regular",
+    "tags": "",
+    "modified": "20240129082037857",
+    "version": "0.0.1",
+    "name": "Font",
+    "description": "FiraCode-Regular",
+    "author": "dyp",
+    "list": "readme usage",
+    "plugin-type": "plugin",
+    "packaged-by": "Gatha on 29th 一月 2024, 16:20:50"
+}

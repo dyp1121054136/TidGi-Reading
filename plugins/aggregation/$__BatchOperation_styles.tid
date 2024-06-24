@@ -1,0 +1,119 @@
+tags: $:/tags/Stylesheet
+title: $:/BatchOperation/styles
+
+\function sidebarbreakpoint() [[$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint]get[text]]
+\function sidebarwidth() [[$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth]get[text]]
+
+/*
+** Batch Operation
+*/
+
+.batch-items {
+    width: 100%;
+}
+
+.batch-items input.tc-edit-texteditor,
+.batch-items select.tc-edit-texteditor {
+    padding: 3px 3px 3px 3px;
+    border: 1px solid <<colour tiddler-editor-border>>;
+    line-height: 1.3em;
+	font-family: {{$:/themes/tiddlywiki/vanilla/settings/editorfontfamily}};
+}
+
+.batch-items table,
+.batch-items tr,
+.batch-items th,
+.batch-items td {
+    border: none;
+    padding: 4px;
+}
+
+.batch-items .batch-textbox input {
+    width: 100%;
+    max-width: 500px;
+}
+
+.batch-items .tc-edit-texteditor {
+    margin: 4px 0 4px 0;
+}
+
+.batch-items a.tc-tiddlylink {
+    color: <<colour foreground>>;
+    font-weight: bold;
+}
+
+.tc-sidebar-lists .batch-items a.tc-tiddlylink {
+    color: <<colour sidebar-tiddler-link-foreground>>;
+    font-weight: bold;
+}
+
+.batch-textarea {
+    display: block;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+
+/*
+** Button
+*/
+
+.btn-modification:hover {
+    border-width: 1px;
+    border-color: orange;
+}
+
+.btn-modification:active {
+    box-shadow: 0 0 0 0.2rem #FFEB3B;
+}
+
+<!-- 
+
+.batch-items>tbody>.batch-item:nth-child(odd) {
+    background-color: <<colour background>>;
+}
+
+.batch-items>tbody>.batch-item:nth-child(even) {
+    background-color: <<colour code-background>>;
+}
+
+-->
+
+/*
+** $:/BatchCreation/Records
+*/
+
+.xp-card-record {
+    font-size: 0.9em;
+    line-height: 1.2;
+    padding: 5px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px dotted <<colour pre-border>>;
+    background: <<colour pre-background>>;
+}
+
+.xp-card-record h1 {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+
+/*
+** Batch Export
+*/
+
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fixed-fluid]match[fluid-fixed]]" variable="ignore">
+@media (min-width: <<sidebarbreakpoint>>) {
+
+  .batchexport-filter button svg, .batchexport-filter a svg {
+    height: 1em !important;
+    width: 1em !important;
+  }
+
+  .batchexport-filter input {
+    width: calc(<<sidebarwidth>> - 42px)  !important;
+  }
+
+}
+</$list>

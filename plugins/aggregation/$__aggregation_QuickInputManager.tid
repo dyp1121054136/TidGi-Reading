@@ -1,0 +1,54 @@
+title: $:/aggregation/QuickInputManager
+
+\whitespace trim
+\define quicklistDeleteButton()
+\whitespace trim
+<$button popup=<<qualify "$:/state/quicklist/filterDeleteDropdown">> class="tc-btn-invisible tc-btn-mini tc-small-gap-right" tooltip="Delete this filter">
+{{$:/core/images/delete-button}}
+<$action-setfield $tiddler="$:/temp/filter/quicklist/target" text=<<currentTiddler>>/>
+</$button>
+
+<$reveal state=<<qualify "$:/state/quicklist/filterDeleteDropdown">> type="popup" position="belowleft" animate="yes">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<div class="tc-dropdown-item-plain">
+Are you sure you wish to delete this filter?
+</div>
+<div class="tc-dropdown-item-plain">
+<$button class="tc-btn">
+Delete
+<$action-sendmessage $message="tm-close-tiddler" param={{$:/temp/filter/quicklist/target}}/>
+<$action-deletetiddler $tiddler={{$:/temp/filter/quicklist/target}}/>
+</$button>
+</div>
+</div>
+</div>
+</$reveal>
+\end
+
+Drag and drop to change the ordering
+
+<$vars quickinputTag="$:/tags/Filter/AggregationView">
+
+<i><$count filter="[all[shadows+tiddlers]tag<quickinputTag>!has[draft.of]]"/>&nbsp;filters:</i>
+
+<div class="tc-sidebar-tab-open" style="padding:0 16px;line-height:22px;">
+<div class="tc-sidebar-tab-open-item">
+<$macrocall
+	$name="list-tagged-draggable"
+	tag=<<quickinputTag>>
+	subFilter="!tag[hide]"
+	itemTemplate="$:/templates/filter-quicklist-item"
+/>
+<$list filter="[all[shadows+tiddlers]tag<quickinputTag>tag[hide]!has[draft.of]limit[1]]">
+<small class="tc-muted">Hidden</small>
+</$list>
+<$list filter="[all[shadows+tiddlers]tag<quickinputTag>tag[hide]!has[draft.of]]">
+<div>
+<$checkbox tiddler=<<currentTiddler>> tag="hide"/>&nbsp;<<quicklistDeleteButton>><s><$link to={{!!title}} tooltip={{!!description}}><$view field="filter"/></$link></s>&emsp;<small><i class="tc-muted">--&nbsp;<$view field="description"/></i></small>
+</div>
+</$list>
+</div>
+</div>
+
+</$vars>

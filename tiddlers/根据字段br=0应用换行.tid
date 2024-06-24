@@ -1,0 +1,21 @@
+code-body: yes
+created: 20240322182628281
+modified: 20240511131225948
+tags: $:/tags/Stylesheet 根据字段内容动态应用样式
+title: 根据字段br=0应用换行
+
+<$list filter="[br[0]]"> 
+[data-tiddler-title^="<$view field=title/>"] .tc-tiddler-body {
+  font-family: "LXGWWenKaiScreen";
+  text-align: justify; /* 两端对齐 */
+  /* text-indent: 2em; */  /* 段首缩进 */
+  line-height: 1.5; /* 行高*/
+  letter-spacing: 0em; /* 增加字符间距 */
+
+/* 硬式换行 */
+  word-break: normal; 
+  word-wrap: break-word; 
+  /* white-space: pre-wrap; 保留空白字符，包括空格、制表符和换行符。 */
+  white-space:pre-line; /* 连续的空白字符合并成一个空格 */
+}
+</$list>

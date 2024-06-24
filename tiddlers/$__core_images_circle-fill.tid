@@ -1,0 +1,8 @@
+created: 20240109075910458
+modified: 20240109080728375
+tags: $:/tags/Image 图标
+title: $:/core/images/circle-fill
+
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+  <circle cx="8" cy="8" r="8"/>
+</svg>

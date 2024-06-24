@@ -1,0 +1,77 @@
+created: 20240324113824758
+modified: 20240325040056194
+tags: $:/tags/Macro 宏 段落宏
+title: 段落宏para
+
+<!-- <<para "[[条目名称]]">> -->
+\define stateEditTid() $:/state/edit/$(content)$
+
+\define huancun() $:/temp/edit/$(content)$
+
+\define createTemp() <$action-setfield $tiddler="$(huancun)$" text={{$(content)$}}/>
+
+\define saveTemp() <$action-setfield $tiddler="$(content)$" text={{$(huancun)$}}/>
+
+\define deleteStateTemp() 
+<$action-deletetiddler $tiddler=<<huancun>>/>
+<$action-deletetiddler $tiddler=<<stateEditTid>>/>
+\end
+
+\define para(filter buttonclass:"tc-btn-invisible" textareaclass:"tc-edit-texteditor") 
+
+<$list filter="$filter$" variable="content">
+
+<div class="para">
+
+<$reveal type="match" state=<<stateEditTid>> text="yes" tag="div" class="float-right">
+<$button class="tc-btn-invisible" tooltip="取消修改">
+<<deleteStateTemp>>
+{{$:/core/images/no|20px}}
+</$button>
+<$button class="tc-btn-invisible" tooltip="确认修改">
+<<saveTemp>>
+<<deleteStateTemp>>
+{{$:/core/images/yes|23px}}
+</$button>
+</$reveal>
+<$reveal type="nomatch" state=<<stateEditTid>> text="yes" tag="div" class="float-right-edit">
+<$button class="tc-btn-invisible" set=<<stateEditTid>> setTo="yes" tooltip="编辑">
+<<createTemp>>
+{{$:/core/images/edit-button}}
+</$button>
+</$reveal>
+
+<div class="notitle">
+
+<h3>
+<$transclude tiddler=<<content>> field="caption">
+<$view tiddler=<<content>> field="title"/>
+</$transclude>
+</h3>
+
+</div>
+
+<$reveal type="match" state=<<stateEditTid>> text="yes">
+
+<!-- 编辑器工具栏 -->
+<$list filter="[<huancun>]" class="para-editor-toolbar" template="$:/core/ui/EditTemplate/body"/>
+
+<!-- <$edit-text tiddler=<<huancun>> class="$textareaclass$"> 不带编辑器工具栏文本框-->
+
+</$reveal>
+
+<$reveal type="nomatch" state=<<stateEditTid>> text="yes">
+
+<div class="paragraph-body">
+
+<$transclude tiddler=<<content>>/>
+
+</div>
+
+</$reveal>
+
+</div>
+
+</$list>
+
+\end

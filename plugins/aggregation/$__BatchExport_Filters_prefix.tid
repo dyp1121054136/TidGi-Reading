@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 标题前缀为……
+filter: [prefix[…]]
+tags: $:/tags/Filter/BatchExport
+title: $:/BatchExport/Filters/prefix
+
+{{!!filter}}

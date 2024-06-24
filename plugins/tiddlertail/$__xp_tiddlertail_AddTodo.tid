@@ -1,0 +1,60 @@
+title: $:/xp/tiddlertail/AddTodo
+
+\define lingo-base() $:/language/projectify/
+
+\define add-todo-actions()
+\whitespace trim
+<$list filter="[<stateTiddler>get[todo-name]trim[]!is[blank]]" variable="ignore">
+  <$action-createtiddler
+    $basetitle={{{ [[$:/gtd/]addsuffix<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">] }}}
+    tags={{{ [{$:/config/xp/aggregation-gtd/QuadrantTag}addsuffix[ GTD]] }}}
+    caption={{{ [<stateTiddler>get[todo-name]] }}}
+    due=<<now YYYY0MM0DD120000000>>>
+    <$reveal state="$:/config/xp/aggregation-gtd/ContentType" type="nomatch" text="">
+      <$action-setfield $tiddler=<<createTiddler-title>> type={{$:/config/xp/aggregation-gtd/ContentType}}/>
+    </$reveal>
+    <$action-listops $tiddler={{$:/config/xp/aggregation-gtd/QuadrantTag}} $subfilter="[<createTiddler-title>]"/>
+  </$action-createtiddler>
+  <$action-deletefield $tiddler=<<stateTiddler>> todo-name qtag />
+  <$action-sendmessage $message="tm-auto-save-wiki"/>
+</$list>
+\end
+
+\define cancel-input-actions() <$action-deletefield $tiddler=<<stateTiddler>> todo-name />
+
+<$vars stateTiddler="$:/temp/gtd/add-todo/sidebar">
+  <div class="xp-gtd-addtodo">
+  <div class="xp-gtd-addtodo-textbox">
+    <$keyboard key="escape" actions=<<cancel-input-actions>>>
+    <$keyboard key="enter" actions=<<add-todo-actions>>>
+    <$keyboard key="ctrl+1" actions="<$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantIcon' text='$:/xp/images/q1'/><$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantTag' text='$:/q1'/>">
+    <$keyboard key="ctrl+2" actions="<$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantIcon' text='$:/xp/images/q2'/><$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantTag' text='$:/q2'/>">
+    <$keyboard key="ctrl+3" actions="<$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantIcon' text='$:/xp/images/q3'/><$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantTag' text='$:/q3'/>">
+    <$keyboard key="ctrl+4" actions="<$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantIcon' text='$:/xp/images/q4'/><$action-setfield $tiddler='$:/config/xp/aggregation-gtd/QuadrantTag' text='$:/q4'/>">
+<$edit-text
+  tiddler=<<stateTiddler>>
+  field="todo-name"
+  class="xp-gtd-addtodo-textbox-input"
+  placeholder="Add todo..."
+/>
+    </$keyboard>
+    </$keyboard>
+    </$keyboard></$keyboard></$keyboard></$keyboard>
+  </div>
+
+  <$list filter="[<stateTiddler>get[todo-name]trim[]!is[blank]]" variable="ignore" storyview="pop">
+  <$button
+    class="tc-btn-invisible tc-tiny-gap-left"
+    actions=<<add-todo-actions>>
+    tooltip="Add new item"
+    aria-label="new item"
+  >
+    {{$:/core/images/new-button}}
+  </$button>
+  <i class="tc-tiny-gap"/>
+    <$vars currentTiddler=<<stateTiddler>>>
+  <$transclude tiddler="$:/xp/aggregation-gtd/ui/SideBar/TodoQuadrant" mode="inline"/>
+    </$vars>
+  </$list>
+  </div>
+</$vars>

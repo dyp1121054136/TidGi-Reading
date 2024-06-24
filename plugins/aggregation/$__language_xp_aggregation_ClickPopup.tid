@@ -1,0 +1,13 @@
+title: $:/language/xp/aggregation/ClickPopup
+
+<style>
+.clickpopup {
+  vertical-align: baseline;
+  color: <<colour muted-foreground>>;
+  fill: <<colour muted-foreground>>;
+}
+</style>
+
+<div class="clickpopup">
+<small>点击图标 <<.icon $:/xp/images/click-popup>> 快速浏览条目的内容。</small>
+</div> 

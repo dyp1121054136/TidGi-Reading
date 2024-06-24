@@ -1,0 +1,11 @@
+caption: Superscript
+created: 20220930182925537
+icon: $:/core/images/superscript
+markup-prefix: ^^
+markup-suffix: ^^
+modified: 20220930194852444
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/superscript
+tm-message: tm-markup
+
+hide

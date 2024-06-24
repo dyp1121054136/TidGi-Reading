@@ -1,0 +1,25 @@
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: moscow
+title: $:/table-dynamic/templates/body/moscow
+
+\define showCell() <$transclude tiddler=<<currentRecord>> field=<<currentColumn>> mode="inline" />
+\define showCell_Locked() <span style="font-style:oblique;"><<showCell>></span>
+\define select_moscow()
+<$select tiddler=<<currentRecord>> field=<<currentColumn>> default="">
+<option value='M'>Must have</option>
+<option value='S'>Should have</option>
+<option value='C'>Could have</option>
+<option value='W'>Won’t have</option>
+<option value=''>empty</option>
+</$select>
+\end
+
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<select_moscow>>   >
+ <<showCell_Locked>>
+</$list>
+</$reveal>

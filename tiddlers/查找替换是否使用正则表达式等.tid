@@ -1,0 +1,15 @@
+created: 20240430134936635
+modified: 20240509114112243
+tags: 正则表达式查找替换
+title: 查找替换是否使用正则表达式等
+
+<span class="search-replace-checkbox">
+<$checkbox default="yes" unchecked="no" checked="yes" field="text" tiddler="$:/state/searchNreplace/global"> 全局</$checkbox>
+
+<$checkbox default="no" unchecked="no" checked="yes" field="text" tiddler="$:/state/searchNreplace/regex"> 正则</$checkbox>
+</span>
+
+<span class="search-replace-checkbox">
+<$checkbox default="input" unchecked="input" checked="textarea" field="text" tiddler="切换单行输入框和多行文本框"> 多行</$checkbox>
+<$checkbox default="no" unchecked="no" checked="yes" field="count" tiddler="查找匹配到的结果数量"> 计数</$checkbox>
+</span>

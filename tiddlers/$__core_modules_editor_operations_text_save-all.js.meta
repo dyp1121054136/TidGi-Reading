@@ -1,0 +1,6 @@
+created: 20240316102143957
+modified: 20240316103148035
+module-type: texteditoroperation
+tags: 全选并保存 首行缩进和空行
+title: $:/core/modules/editor/operations/text/save-all.js
+type: application/javascript

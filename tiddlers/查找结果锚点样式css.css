@@ -1,0 +1,49 @@
+.result-anchor {
+  position: relative;
+  top: -10em; /* 相对于当前位置向上移动 */
+}
+
+.re-color {
+  color: red;
+}
+
+.res-color {
+  /* color: black; */
+  font-size: 0.8em;
+}
+
+.result-item-body {
+  display: flex; /* 使用flex布局 */
+  flex-wrap: wrap; /* 允许换行 */
+  max-height: 200px; /* 设置最大高度 */
+  overflow-y: auto; /* 启用垂直滚动 */
+  width: 100%; /* 确保容器的宽度 */
+  align-items: flex-start; /* 垂直方向上从头开始排列 */
+  gap: 5px; /* 减小行和列之间的间隔 */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.result-item-body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari 和 Opera */
+}
+
+.result-item {
+  display: flex; /* 每排使用flex布局 */
+  width: 100%; /* 每排宽度占满父容器 */
+  justify-content: space-between; /* 每排内的按钮平均分布，两端对齐 */
+  margin: -10px 0;
+}
+
+.result-item-body button {
+  font-size: 1.3em;
+  flex-grow: 1; /* 按钮宽度根据父容器自动调整 */
+  flex-basis: 0; /* 没有基础宽度，让flex-grow生效 */
+  max-width: 100%; /* 按钮最大宽度不超过其基础宽度 */
+  margin: 0; /* 清除外边距 */
+  padding: 10px; /* 添加内边距 */
+  text-align: center; /* 文本居中显示 */
+  border-radius: 4px; /* 添加圆角 */
+  border: none; /* 移除边框 */
+  background-color: transparent; /* 设置背景色为透明，如果需要的话 */
+}

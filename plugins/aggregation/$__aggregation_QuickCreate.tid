@@ -1,0 +1,83 @@
+title: $:/aggregation/QuickCreate
+
+\define newAggregation()
+<$button aria-label="new aggregation button">
+Create
+<$let
+	trim={{{ [[$:/temp/new-aggregation/Topic]get[text]trim[]] }}}
+	tl={{{ [<trim>lowercase[]split[ ]join[-]] }}}
+	ts={{{ [<trim>lowercase[]sentencecase[]] }}}
+	tu={{{ [<trim>uppercase[]] }}}
+	macroTid={{{ [<tl>addprefix[$:/]addsuffix[-macros]] }}}
+	taghandlerTid={{{ [<tl>addprefix[$:/xp/tag-handler/items/]] }}}
+	configTid={{{ [<tl>addprefix[$:/config/xp/aggregation-]addsuffix[/category/preset]] }}}
+	uiTitle={{{ [<tl>addprefix[$:/config/xp/aggregation/ui/]] }}}
+	fieldsTiddler={{{ [<tl>addprefix[$:/config/xp/aggregation-]addsuffix[/TableFields]] }}}
+	defaultView={{{ [<tl>addprefix[$:/config/xp/aggregation-]addsuffix[/DefaultView]] }}}
+	readingMode={{{ [<tl>addprefix[$:/config/xp/aggregation-]addsuffix[/ReadingMode]] }}}
+	helpTid={{{ [<tl>addprefix[$:/]addsuffix[-help]] }}}
+	listTid={{{ [<tl>addprefix[$:/]addsuffix[/default-tiddlers]] }}}
+	pt="[["
+	st="]]"
+	presetFields={{$:/config/xp/new-aggregation/TableFields}}>
+<$reveal type="nomatch" state=<<tu>> text="">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/topicExists"/>
+</$reveal>
+<$reveal type="match" state=<<tu>> text="">
+<!-- Create Topic -->
+<$action-createtiddler $overwrite="no" $basetitle=<<tu>> $template="$:/aggregation-template-english"/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[english],<tl>] }}}/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[English],<ts>] }}}/>
+<$action-setfield $tiddler=<<tu>> text={{{ [<tu>get[text]search-replace:g[ENGLISH],<tu>] }}}/>
+<$action-setfield $tiddler=<<tu>> caption={{{ [<tu>get[caption]search-replace[ENGLISH],<tu>] }}}/>
+<!-- Create Macro File -->
+<$action-createtiddler $overwrite="no" $basetitle=<<macroTid>> $template="$:/people-macros"/>
+<$action-setfield $tiddler=<<macroTid>> text={{{ [<macroTid>get[text]search-replace:g[people],<tl>] }}}/>
+<$action-setfield $tiddler=<<macroTid>> text={{{ [<macroTid>get[text]search-replace:g[People],<ts>] }}}/>
+<!-- Setting Tag Handler -->
+<$action-createtiddler $overwrite="no" $basetitle=<<taghandlerTid>> $template="$:/xp/tag-handler/items/people"/>
+<$action-setfield $tiddler=<<taghandlerTid>> text={{{ [<taghandlerTid>get[text]search-replace:g[people],<tl>] }}}/>
+<$action-setfield $tiddler=<<taghandlerTid>> filter={{{ [<taghandlerTid>get[filter]search-replace:g[People],<ts>] }}}/>
+<!-- Setting Others -->
+<$action-setfield $tiddler=<<fieldsTiddler>> text=<<presetFields>> list=<<presetFields>>/>
+<$action-setfield $tiddler=<<defaultView>> text="table"/>
+<$action-setfield $tiddler=<<readingMode>> text="off"/>
+<$list filter="[<configTid>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<configTid>> text="此处存放预设置的「分类标签」。删除配置条目则不做设置。"/>
+</$list>
+<$list filter="[<uiTitle>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<uiTitle>> text=<<tu>>/>
+</$list>
+<!-- Create Default Tiddlers List -->
+<$list filter="[<listTid>!is[tiddler]]" variable="ignore">
+<$action-setfield $tiddler=<<listTid>> text={{{ [<pt>addsuffix<tu>addsuffix<st>addsuffix[
+]addsuffix<listTid>addsuffix[
+]addsuffix<macroTid>addsuffix[
+]addsuffix<helpTid>addsuffix[
+]addsuffix<taghandlerTid>addsuffix[
+]addsuffix<configTid>addsuffix[
+]addsuffix<fieldsTiddler>addsuffix[
+]addsuffix<defaultView>addsuffix[
+]addsuffix<readingMode>addsuffix[
+]addsuffix<uiTitle>] }}}/>
+</$list>
+<!-- Create Help File -->
+<$list filter="[<helpTid>!is[tiddler]]" variable="ignore">
+<$action-createtiddler $basetitle=<<helpTid>> $template="$:/aggregation-template-help"/>
+<$action-setfield $tiddler=<<helpTid>> text={{{ [<helpTid>get[text]search-replace:g[english],<tl>] }}}/>
+<$action-setfield $tiddler=<<helpTid>> text={{{ [<helpTid>get[text]search-replace:g[English],<ts>] }}}/>
+</$list>
+<!-- Show UI and Setting Preset Tags -->
+<$action-navigate $to=<<tu>>/>
+<$action-navigate $to=<<configTid>>/>
+</$reveal>
+</$let>
+</$button>
+\end
+
+
+<div style="line-height:1.8;">
+
+|<$link to="$:/temp/new-aggregation/Topic">Tag</$link> |<$edit-text tiddler="$:/temp/new-aggregation/Topic" default="" tag="input"/> <<newAggregation>> |
+
+</div>

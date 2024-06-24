@@ -1,0 +1,20 @@
+caption: open-all
+description: Open all tiddlers and close others
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/open-all
+
+\whitespace trim
+\define excluded()
+$:/StoryList $:/HistoryList $:/FilterBuilder/History
+\end
+
+<$list filter="[subfilter<resultsFilter>] -[prefix[$:/temp/]] -[prefix[$:/state/]] -[enlist<excluded>] +[limit[1]]" variable="ignore">
+<$button tooltip="Open all tiddlers and close others" class="fb-btn btn-small tc-tiny-gap-left">
+open all
+<$action-sendmessage $message="tm-close-all-tiddlers"/>
+<$list filter="[subfilter<resultsFilter>] -[prefix[$:/temp/]] -[prefix[$:/state/]] -[enlist<excluded>] +[order[reverse]]">
+<$action-navigate $to=<<currentTiddler>> $scroll="yes"/>
+</$list>
+<<history-actions>>
+</$button>
+</$list>

@@ -1,0 +1,75 @@
+created: 20240503184744313
+modified: 20240503185236689
+tags: 条目行间批注
+title: 条目行间批注宏代码备份
+
+<!-- 样式css已添加硬式换行，宏定义避免空格空行，以免影响内容排版 -->
+\define sidenote(title, content)
+
+<details class="details-ji sidenote">
+<summary>
+
+<$list filter={{{[[条目行间批注sidenote开启编辑模式]get[edit-text]]+[match[no]]}}}>
+$title$
+</$list>
+
+<$list filter={{{[[条目行间批注sidenote开启编辑模式]get[edit-text]]+[match[yes]]}}}>
+<textarea class="sidenote-edit-textarea-t">
+$title$
+</textarea>
+</$list>
+</summary>
+
+{{||条目行间批注sidenote开启编辑模式}}
+
+<blockquote class="zhedie">
+
+<$list filter={{{[[条目行间批注sidenote开启编辑模式]get[edit-text]]+[match[no]]}}}>
+$content$
+</$list>
+
+<$list filter={{{[[条目行间批注sidenote开启编辑模式]get[edit-text]]+[match[yes]]}}}>
+<textarea class="sidenote-edit-textarea">
+$content$
+</textarea>
+</$list>
+
+</blockquote>
+</details>
+\end
+
+\define sidelink(link, title)
+
+<details class="details-ji sidelink">
+<summary>
+
+<$list filter={{{[[条目行间批注sidelink开启编辑模式]get[edit-text]]+[match[no]]}}}>
+<$link to=$link$ tooltip="跳转到引用条目">
+$title$
+</$link>
+</$list>
+
+<$list filter={{{[[条目行间批注sidelink开启编辑模式]get[edit-text]]+[match[yes]]}}}>
+
+<textarea class="sidenote-edit-textarea-t">
+$title$</textarea>
+</$list>
+
+</summary>
+
+{{||条目行间批注sidelink开启编辑模式}}
+
+<blockquote class="zhedie">
+
+<$list filter={{{[[条目行间批注sidelink开启编辑模式]get[edit-text]]+[match[yes]]}}}>
+
+<$edit-text tiddler=<<__link__>> tag="textarea" class="sidenote-edit-textarea"/>
+</$list>
+
+<$list filter={{{[[条目行间批注sidelink开启编辑模式]get[edit-text]]+[match[no]]}}}>
+<$transclude tiddler=$link$>
+</$list>
+
+</blockquote>
+</details>
+\end

@@ -1,0 +1,133 @@
+created: 20240116080443406
+modified: 20240126160504393
+se-type: 
+tags: 参考
+title: Tiddlywiki官网&第三方资源
+
+!!!! 官网：
+"""
+
+中文官网 http://tw5-zh-hans.tiddlyspot.com/
+繁体官网 http://tw5-zh.tiddlyspot.com/
+英文官网 http://tiddlywiki.com
+
+升级更新 https://tiddlywiki.com/upgrade.html
+"""
+
+!!!! 教程：
+"""
+
+太微中文教程 https://tw-cn.netlify.app/
+
+xp教程 https://keatonlao.github.io/tiddlywiki-xp/
+xp GitHub https://github.com/keatonlao/tiddlywiki-xp
+xp Gitee https://gitee.com/keatonlao/tiddlywiki-xp/blob/master/version/tiddlywiki-xp.zip
+
+墨屉教程 https://oflg.github.io/Tidme/manual/zh-Hans
+
+Grok教程 https://groktiddlywiki.com/read/
+
+TW-Scripts by Mohammad
+https://kookma.github.io/TW-Scripts/
+"""
+
+!!!! 插件库：
+"""
+
+在线文档 https://dynalist.io/d/zUP-nIWu2FFoXH-oM7L7d9DM
+TW-CPL https://tw-cpl.netlify.app/#Welcome:Welcome
+
+Kookma
+https://kookma.github.io/TW-Utility/
+
+tobibeer
+https://tobibeer.github.io/tw5-plugins/#Welcome
+
+Saq's TW5 Sandbox
+https://saqimtiaz.github.io/tw5-plugins-sandbox/#Documentation%3A%20ExternalContent
+
+benwebber
+https://benwebber.github.io/tiddlywiki-plugins/
+"""
+
+!!!! 其他发行版/笔记模板：
+"""
+
+Stroll https://giffmex.org/stroll/stroll.html（双链笔记）
+RR-TW5 https://rr-tw5.github.io/#DAILY%20NOTES（大纲笔记）
+My Volantis https://kookma-volantis-template.tiddlyhost.com/（可拖拽侧边吸附式卡片笔记）
+
+MemoryKeeper（适合作家、历史学家、记者、摄影师使用）
+MemoryKeeper官网说明书 https://clsturgeon.github.io/MemoryKeeper/
+MemoryKeeper示例网站 https://clsturgeon.github.io/MemoryKeeper/AlexanderGrahamBell/AlexanderGrahamBell.html
+
+空的主题模板
+Neotw https://neotw-empty.tiddlyhost.com/
+feather4 https://feather4.tiddlyhost.com/
+Captivate https://cdruan.github.io/tw5-captivate/
+
+MPTW5暗色主题
+说明书 https://simon.tiddlyhost.com/
+偏黄 https://mptw5.tiddlyhost.com/
+偏蓝 https://mptw5x.tiddlyhost.com/
+"""
+
+!!!! 论坛：
+"""
+
+中文论坛 https://talk.tidgi.fun/
+英文论坛 https://talk.tiddlywiki.org/
+Google论坛 https://groups.google.com/g/TiddlyWiki
+"""
+
+!!!! 启动：
+"""
+
+网页端 https://twpub-book.netlify.app/tiddlystow.html
+安卓端 https://github.com/donmor/Tiddloid
+
+桌面端
+太记 https://github.com/tiddly-gittly/TidGi-Desktop
+"""
+
+
+!!!! TiddlyHost：
+"""
+
+登陆 https://tiddlyhost.com/
+参考网站/博客 https://tiddlyhost.com/hub
+"""
+
+!!!! 案例网站：
+"""
+
+仿生猫不会梦见电子猫粮 https://jefftay.com/
+
+rizi（阅读书库） https://rizi.me/
+
+zhiheng https://wiki.zhiheng.io/
+
+FSpark https://wiki.fspark.me/
+
+Notebook System https://zacharia2.github.io/T2NLC-PubWiki/#Index:Index
+
+机杼 https://dongrentianyu.github.io/WENAI/
+
+pimgeek的数字乐园
+https://pimgeek.com/notes/#pimgeek:pimgeek%20welcome
+
+林一二的模因和想法
+https://onetwo.ren/wiki/#:Index
+
+很漂亮的表格型笔记
+http://pespot.tiddlyspot.com/
+
+双栏阅读主题（很漂亮但有bug）
+绿色主题 https://be-rad-edition.tiddlyhost.com/
+黄色主题 https://be-rad-gsd.tiddlyhost.com
+作者的贴子
+https://talk.tiddlywiki.org/t/wip-be-rad-an-alternative-layout/5046 
+https://talk.tiddlywiki.org/t/be-rad-edition-alternative-layout-with-custom-ui-elements/6308
+
+ChloeTiddlyKasten https://chloetiddlykasten.chloegilbert.me/#Productivity
+"""

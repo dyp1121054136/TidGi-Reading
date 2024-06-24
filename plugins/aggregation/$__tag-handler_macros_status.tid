@@ -1,0 +1,40 @@
+tags: $:/tags/Macro/TagHandler
+title: $:/tag-handler/macros/status
+
+\define statusTag()
+Planning Ongoing Completed
+\end
+
+\define current-tags-nostatus-filter()
+[all[current]tags[]!is[system]sort[]] [all[current]tags[]is[system]sort[]] -[enlist<statusTag>]
+\end
+
+\define statustag-filter()
+[all[current]tag[Planning]] [all[current]tag[Ongoing]] [all[current]tag[Completed]] +[limit[1]]
+\end
+
+\define statusItems()
+<$checkbox tiddler=<<currentTiddler>> tag="Planning" checkactions="<$action-listops $tags='-Ongoing -Completed'/>"> <span class="xp-indicator-purple">Planning</span></$checkbox>
+<$checkbox tiddler=<<currentTiddler>> tag="Ongoing" checkactions="<$action-listops $tags='-Planning -Completed'/>"> <span class="xp-indicator-orange">Ongoing</span></$checkbox>
+<$checkbox tiddler=<<currentTiddler>> tag="Completed" checkactions="<$action-listops $tags='-Planning -Ongoing'/>"> <span class="xp-indicator-green">Completed</span></$checkbox>
+\end
+
+\define taghandler-status-table()
+<div class="xp-tag-handler">
+<table class="tc-view-field-table">
+<tbody>
+<$list filter=<<statustag-filter>> variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<span class="tc-muted">Status:</span><<statusItems>>
+</span>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+\end
+
+<pre><$view field="text"/></pre>

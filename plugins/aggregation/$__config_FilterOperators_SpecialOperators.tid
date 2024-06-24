@@ -1,0 +1,18 @@
+caption: Special Operators
+tags: $:/tags/FilterBuilder/Operators
+title: $:/config/FilterOperators/SpecialOperators
+
+commands
+deserialize
+deserializers
+editiondescription
+editions
+getvariable
+modulesproperty
+modules
+moduletypes
+plugintiddlers
+shadowsource
+storyviews
+subtiddlerfields
+variables

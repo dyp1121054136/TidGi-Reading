@@ -1,0 +1,24 @@
+created: 20240505063421664
+modified: 20240510145326782
+tags: 延时动作 书签
+title: 筛选器列出带bookmark锚点的条目-最近修改
+
+<$list filter="[field:anchor[yes]!is[system]!sort[modified]limit[10]]">
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/open-anchor]] }}} name="open-anchorTiddler">
+<span class="toanchor-btn">
+<$button popup=<<open-anchorTiddler>> tooltip="打开锚点汇总" class=<<tv-config-toolbar-class>>>
+<$list filter="[<currentTiddler>search:text[<<bookmark]]">
+{{$:/core/images/toanchor|20px}}
+</$list>
+</$button>
+</span>
+
+<$reveal type="popup" state=<<open-anchorTiddler>> position="belowright" tag="div" class="tc-popup-keep">
+<span class="toanchor-item-body">
+{{||导航到当前条目书签锚点按钮}}
+</span>
+</$reveal>
+
+<$link/><div class="anchor-date-column"><$view field="modified" format=relativedate/></div><div class="anchor-date-column">{{||$:/plugins/ajh/favorites/template}}</div><br>
+</$set>
+</$list>

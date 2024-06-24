@@ -1,0 +1,10 @@
+caption: tag
+description: filter the input by tag
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/tag
+
+<td class="fb-item-name"><<getCaption>></td>
+<td class="fb-item-input">
+{{$:/FilterBuilder/Search/Tags}}{{$:/FilterBuilder/Search/SystemTags}}
+</td>
+<td class="fb-item-add"><<tagOneMoreButton>></td>

@@ -1,0 +1,49 @@
+code-body: yes
+tags: $:/tags/Global/View
+title: $:/aggregation/procedures_View
+
+\procedure navigateToMainStory()
+<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+<$action-navigate $to=<<navigateTo>>/>
+</$navigator>
+\end navigateToMainStory
+
+\procedure substory-navigator(text,catchlink:"no",filter,openLinkFromInsideRiver:"below",openLinkFromOutsideRiver:"bottom")
+\procedure pagination-actions()
+<$reveal state=<<pageTiddler>> type="nomatch" text="yes">
+<$action-navigate $to=<<navigateTo>>/>
+</$reveal>
+<$reveal state=<<pageTiddler>> type="match" text="yes">
+<$action-setfield $tiddler=<<pageStateTiddler>> text=<<getPageNumber>>/>
+<$action-navigate $to=<<navigateTo>>/>"
+</$reveal>
+\end pagination-actions
+
+\procedure actions()
+<$list filter="[<navigateTo>subfilter<filter>]">
+<$let
+  tiddler-number={{{ [subfilter<listFilter>allbefore:include<navigateTo>count[]] }}}
+  getPageNumber={{{ [<tiddler-number>divide<entries-per-page>untrunc[]] }}}
+  tiddler-on-current-page={{{ [subfilter<finalFilter>match<navigateTo>then[yes]] }}}
+  >
+<$list filter=<<filter-state-exists>> emptyMessage=<<pagination-actions>> variable="ignore">
+<$reveal default=<<tiddler-on-current-page>> type="match" text="yes">
+<$action-navigate $to=<<navigateTo>>/>
+</$reveal><$reveal default=<<tiddler-on-current-page>> type="nomatch" text="yes">
+<<navigateToMainStory>>
+</$reveal>
+</$list>
+</$let>
+</$list><$list filter="[<navigateTo>!subfilter<filter>]">
+<<navigateToMainStory>>
+</$list>
+\end actions
+
+<$navigator story=<<SubStoryList>> history=<<SubHistoryList>> openLinkFromInsideRiver=<<openLinkFromInsideRiver>> openLinkFromOutsideRiver=<<openLinkFromOutsideRiver>>>
+<$list filter="[<catchlink>match[yes]]" emptyMessage=<<text>> variable="ignore">
+<$linkcatcher actions=<<actions>>>
+<<text>>
+</$linkcatcher>
+</$list>
+</$navigator>
+\end substory-navigator

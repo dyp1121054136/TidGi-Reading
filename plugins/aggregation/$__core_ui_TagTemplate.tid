@@ -1,0 +1,38 @@
+rewrite: 5.2.5
+title: $:/core/ui/TagTemplate
+
+\whitespace trim
+\define subtiddler-count-button()
+<$reveal state="$:/config/view-subtiddler/TagDropdown" type="match" text="yes">
+<$set name="resultCount" value={{{ [all[current]tagging[]count[]] }}}>
+<$reveal default=<<resultCount>> type="gteq" text={{$:/config/view-subtiddler/Threshold}}>
+<$button tooltip="Open this list in the sidebar" aria-label="view subtiddler" class="tc-btn-invisible tc-btn-mini">
+//<small style="font-size:0.7em;"><<resultCount>>&nbsp;tiddlers</small>//
+<$vars storeTiddler="$:/config/view-subtiddler/tag" configTiddler="$:/xp/ui/SideBar/Subtiddler">
+<$list filter="[<currentTiddler>is[tag]]">
+<$action-setfield $tiddler=<<storeTiddler>> $value=<<currentTiddler>>/>
+<$action-setfield $tiddler=<<configTiddler>> tags="$:/tags/SideBar"/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<configTiddler>>/>
+</$list>
+</$vars>
+</$button>
+</$reveal>
+</$set>
+</$reveal>
+\end
+<span class="tc-tag-list-item" data-tag-title=<<currentTiddler>>>
+<$set name="transclusion" value=<<currentTiddler>>>
+<$macrocall $name="tag-pill-body" tag=<<currentTiddler>> icon={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/TiddlerIconFilter]!is[draft]get[text]] }}} colour={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/TiddlerColourFilter]!is[draft]get[text]] }}} palette={{$:/palette}} element-tag="""$button""" element-attributes="""popup=<<qualify "$:/state/popup/tag">> dragFilter='[all[current]tagging[]]' tag='span'"""/>
+<$reveal state=<<qualify "$:/state/popup/tag">> type="popup" position="below" animate="yes" class="tc-drop-down">
+<$set name="tv-show-missing-links" value="yes">
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</$set>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TagDropdown]!has[draft.of]]" variable="listItem"> 
+<$transclude tiddler=<<listItem>>/> 
+</$list>
+<hr>
+<<subtiddler-count-button>>
+<$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>>/>
+</$reveal>
+</$set>
+</span>

@@ -1,0 +1,19 @@
+created: 20240430125020741
+modified: 20240430185035210
+tags: 正则表达式查找替换 按钮
+title: 正则表达式查找替换按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="确认替换">
+替换
+
+<$action-confirm $message="确认替换？" $prompt={{查找替换是否弹出确认提示}}>
+
+<$action-sendmessage $message="tm-replace" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} replace={{$:/state/searchNreplace/replace}} global={{$:/state/searchNreplace/global}}
+regex={{$:/state/searchNreplace/regex}} prefix={{$:/state/searchNreplace/prefix}} suffix={{$:/state/searchNreplace/suffix}}/>
+
+</$action-confirm>
+
+</$button>
+</span>

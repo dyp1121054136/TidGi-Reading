@@ -1,0 +1,23 @@
+caption: {{$:/xp/images/filtersearch}} filter search
+description: Viewing tiddlers with aggregation view
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/filter-search
+
+\whitespace trim
+\define filter-search-button(class)
+\whitespace trim
+<$button to="$:/FilterSearch" tooltip="Filter search" aria-label="filter search" class="""$(tv-config-toolbar-class)$ $class$""">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/filtersearch}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+filter search
+</span>
+</$list>
+</$button>
+\end
+
+<$list filter="[list[$:/StoryList]] +[field:title[$:/FilterSearch]]" emptyMessage=<<filter-search-button>>>
+<<filter-search-button "tc-selected">>
+</$list>

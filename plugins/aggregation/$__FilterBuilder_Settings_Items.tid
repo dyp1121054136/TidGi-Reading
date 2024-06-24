@@ -1,0 +1,8 @@
+tags: $:/tags/FilterBuilder/Settings
+title: $:/FilterBuilder/Settings/Items
+
+\define config-base() $:/config/FilterBuilder/Items/Visibility/
+
+<p>Choose which items are displayed on the panel. Drag and drop to change the ordering</p>
+
+<$macrocall $name="list-tagged-draggable" tag="$:/tags/FilterBuilder" itemTemplate="$:/core/ui/ControlPanel/Toolbars/ItemTemplate"/>

@@ -1,0 +1,44 @@
+caption: {{$:/core/images/bookmark}} 查看工具栏书签汇总
+created: 20240303094109356
+description: 显示当前条目书签列表
+modified: 20240505052225661
+tags: $:/tags/ViewToolbar 弹出内容 书签 书签汇总 按钮
+title: 弹出内容按钮
+
+\whitespace trim
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/]] }}} name="stateTiddler">
+<$button popup=<<stateTiddler>> tooltip="书签" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/bookmark}}</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">查看工具栏书签汇总</span></$list>
+</$button>
+<$reveal type="popup" state=<<stateTiddler>> position="belowleft" tag="div" class="tc-popup-keep">
+
+<div class="bookmarks-body">
+<span class="bookmarks-list">
+<span class="cbookmarks">
+清除所有书签：
+<<cbookmarks>>
+<br/>
+时间戳书签：
+{{||$:/core/ui/Buttons/quick-editfix/bookmark}}
+</span>
+<<showbookmarks>>
+</span>
+</div>
+
+</$reveal>
+</$set>
+
+<!--
+<ul class="vertical-list">
+<li><<abookmark 1>></li>
+<li><<abookmark 2>></li>
+<li><<abookmark 3>></li>
+<li><<abookmark 4>></li>
+<li><<abookmark 5>></li>
+<li><<abookmark 6>></li>
+<li><<abookmark 7>></li>
+<li><<abookmark 8>></li>
+<li><<abookmark 9>></li>
+</ul>
+-->

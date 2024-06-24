@@ -1,0 +1,25 @@
+created: 20180203172237667
+creator: TonGerner
+modified: 20230827110045185
+modifier: TonGerner
+tags: 
+title: $:/plugins/tg/mark-button/readme
+
+\define icn(icon)
+<button class="tc-btn-invisible"> {{$icon$}}</button>
+\end
+
+A button (<<icn $:/core/images/mark>>) that applies coloring / highlighting  to the selected text<br>
+Assigned shortcut: {{$:/config/shortcuts/mark}}
+
+''Note'': $:/plugins/tg/mark-button/styles contains the applied 'mark' classes:
+
+|Class |CSS ||h
+|`tgc` |`@@background-color:Cyan;`|@@.tgc text@@|
+|`tglc` |`@@background-color:LightCyan;`|@@.tglc text@@|
+|`tgy` |`@@background-color:Yellow;`|@@.tgy text@@|
+|`tgb` |`@@color:Blue;`|@@.tgb text@@|
+|`tgr` |`@@color:Red;`|@@.tgr text@@|
+|`tgwr` |`@@color:White;background-color:Red;`|@@.tgwr text@@|
+
+You can add new entries via 'Add your own' in the dropdown menu.

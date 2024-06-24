@@ -1,0 +1,15 @@
+created: 20230316235615037
+creator: !build
+list-after: $:/PSaT/filter-pills/copy-list
+modified: 20240415071737719
+modifier: !build
+source-tiddler: $:/PSaT/filter-pills/copy-list
+tags: $:/tags/FilterDropdown 筛选器下拉菜单
+title: $:/PSaT/filter-pills/copy-filter
+
+<$button class="tc-btn-invisible" tooltip="复制筛选公式"> {{$:/core/images/copy-clipboard}} 复制筛选公式
+   <$action-sendmessage $message="tm-copy-to-clipboard" $param=<<filter>> />
+   <$action-setfield $tiddler="$:/clipboard" $value=<<filter>>/>
+   <$action-setfield $tiddler="$:/clipboard/log" $index=<<now [UTC]YYYY0MM0DD0hh0MM0ss0XXX>> $value=<<filter>>/>
+   <$action-setfield $tiddler="$:/clipboard/filter" $value=<<filter>>/>
+</$button>

@@ -1,0 +1,21 @@
+caption: send-to-sidebar-advsearch
+description: Send to sidebar advanced search
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/send-to-sidebar-advsearch
+
+\whitespace trim
+<$list filter="[[$:/xp/ui/AdvancedSearch/Filter]has[title]]" variable="ignore">
+<$list filter="[subfilter<resultsFilter>] +[limit[1]]" variable="ignore">
+<$button tooltip="Send to sidebar advanced search" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/xp/images/sidebar-advanced-search}}
+<$action-setfield $tiddler="$:/temp/advancedsearch" text=<<resultsFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/input" text=<<resultsFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/refresh" text="yes"/>
+<$action-setfield $tiddler="$:/state/tab--20210602130115732" text="$:/xp/ui/AdvancedSearch/Filter"/>
+<$action-setfield $tiddler="$:/state/advancedsearchinsidebar/currentTab" text="$:/xp/ui/AdvancedSearch/Filter"/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="$:/xp/ui/SideBar/AdvancedSearch"/>
+<$action-setfield $tiddler="$:/state/sidebar" text="yes"/>
+<<history-actions>>
+</$button>
+</$list>
+</$list>

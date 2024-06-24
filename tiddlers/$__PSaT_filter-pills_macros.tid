@@ -1,0 +1,45 @@
+code-body: yes
+created: 20230316222720267
+creator: !build
+discussion: https://talk.tiddlywiki.org/t/how-to-create-a-field-macro-similar-to-the-tag-macro/5975/23?u=tw_tones
+modified: 20240415071938029
+modifier: !build
+tags: $:/tags/Macro 筛选器下拉菜单
+title: $:/PSaT/filter-pills/macros
+
+\define filter-pill(filter label:"<<__filter__>>" tooltip:"Filter Pill" icon-tiddler:"$:/PSaT/filter-pills/filter-icon" pillcolour:lightblue textcolour:black show-count:"yes" id)
+\whitespace trim
+<$let popupID=<<qualify """$:/temp/state/$label$$id$""">> filter="$filter$" show-count="$show-count$">
+<$set name=item-count filter="[subfilter<filter>count[]]">
+<$button tooltip="""$tooltip$""" dragFilter="$filter$" class="tc-tag-label tc-btn-invisible" style="background-color:$pillcolour$; color:$textcolour$;" popup=<<popupID>> >
+   {{$icon-tiddler$}}$label$<$list filter="[<show-count>match[yes]]" variable=~>&nbsp;^^<$text text=<<item-count>>/>^^</$list>
+</$button>
+<$reveal type="popup" state=<<popupID>> >
+<div class="tc-drop-down">
+<$list filter="[tag[$:/tags/FilterDropdown]]" variable=dropdown-item>
+   <$transclude tiddler=<<dropdown-item>>/>
+</$list>
+<hr>
+<$list filter="[subfilter<filter>]" template="$:/PSaT/filter-pills/ListItem"/>
+</div>
+</$reveal>
+</$set></$let>
+\end
+\define search-filter-count(filter)
+\whitespace trim
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler="$:/temp/advancedsearch" $value="""$filter$"""/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/input" $value="""$filter$"""/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/refresh" text="yes"/>
+<$action-setfield $tiddler="$:/state/tab--1498284803" $value="$:/core/ui/AdvancedSearch/Filter"/>
+<$action-navigate $to="$:/AdvancedSearch"/>
+<$action-sendmessage $message="tm-focus-selector" $param=".tc-advanced-search input"/>
+''<$count filter="""$filter$"""/>''
+&#32;
+{{$:/core/images/advanced-search-button}}&nbsp;高级搜索
+</$button>
+\end
+
+<<filter-pill "[all[tiddlers]prefix[a]]" "[all[tiddlers]prefix[a]]">>
+<<filter-pill "[all[tiddlers]prefix[b]!sort[]]" >>
+

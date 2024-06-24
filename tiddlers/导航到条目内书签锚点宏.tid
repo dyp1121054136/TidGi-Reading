@@ -1,0 +1,31 @@
+created: 20240504120529543
+modified: 20240520015052810
+tags: 延时动作 $:/tags/Macro 宏
+title: 导航到条目内书签锚点宏
+
+\define toanchor(tid,anchor)
+
+\define navigate-to-tid() <$action-navigate $to=<<__tid__>>/>
+
+\define scroll-to-anchor() <!-- <$action-sendmessage $message="tm-scroll" selector=".$anchor$" animationDuration="0"/> --><$list filter="[<currentTiddler>!has:field[scrollpage]]"><$action-sendmessage $message="tm-scrollpage" targetElement="$anchor$" scrollTime="0" offset="-10em"/></$list><$list filter="[<currentTiddler>field:scrollpage[yes]]"><$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="$anchor$" scrollTime="0" offset="-25em"/></$list>
+
+\whitespace trim
+<span class="toanchor-btn">
+<$button class="tc-btn-invisible" tooltip="$tid$-$anchor$">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/toanchor|22px}}
+</$list>
+
+  <<navigate-to-tid>>
+  <$action-timeout delay="10" actions=<<scroll-to-anchor>>/>
+</$button>
+</span>
+\end
+
+<!-- 
+按钮写法：
+<<toanchor "条目标题" "css类名">>
+<$transclude $variable="toanchor" tid="条目标题" anchor="css类名"/>
+ -->
+<<toanchor "带有锚点的目标条目" "test-anchor">>
+<$transclude $variable="toanchor" tid="带有锚点的目标条目" anchor="test-anchor"/>

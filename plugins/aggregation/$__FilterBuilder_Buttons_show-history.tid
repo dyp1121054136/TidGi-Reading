@@ -1,0 +1,20 @@
+caption: show-history
+description: Show history
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/show-history
+
+\whitespace trim
+<$list filter="[<historyTiddler>indexes[]limit[1]]" variable="ignore">
+<$reveal state=<<calloutState>> type="nomatch" text="history">
+<$button tooltip="Open history" class="fb-btn btn-small tc-tiny-gap-left">
+history
+<$action-setfield $tiddler=<<calloutState>> text="history"/>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="history">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+history
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

@@ -1,0 +1,8 @@
+created: 20240516170615602
+modified: 20240518072509167
+tags: 滚动翻页
+title: 向下滚动按钮-mobile
+
+<$button class="tc-btn-invisible" tooltip="向上滚动">{{$:/core/images/scroll-next|23px}}
+<$action-sendmessage $message="tm-scrollpage" direction="next" scrollTime="0" scrollContainerSelector=".tc-scrollpage" scrollDistance="70vh" extraLines="0"/>
+</$button>

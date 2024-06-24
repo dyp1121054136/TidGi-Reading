@@ -1,0 +1,55 @@
+created: 20240129033448382
+modified: 20240203063001452
+se-type: 
+tags: AI问答存档
+title: 分析这个js-horizrule
+
+!!!! ''分析这个js-horizrule''
+"""
+
+（wiki自带这个规则，不需要额外写）
+<<code src:"""/*\
+title: $:/core/modules/parsers/wikiparser/rules/horizrule.js
+type: application/javascript
+module-type: wikirule
+
+Wiki text block rule for rules. For example:
+
+```
+---
+```
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.name = "horizrule";
+exports.types = {block: true};
+
+exports.init = function(parser) {
+	this.parser = parser;
+	// Regexp to match
+	this.matchRegExp = /-{3,}\r?(?:\n|$)/mg;
+};
+
+exports.parse = function() {
+	// Move past the match
+	this.parser.pos = this.matchRegExp.lastIndex;
+	return [{type: "element", tag: "hr"}];
+};
+
+})();
+""" language:"js">>
+这段代码是 TiddlyWiki 的一个解析模块，特定用于解析水平线规则。
+
+此模块的名字为 "horizrule"，并且定义为一个块级的规则。
+
+在这个模块中设定了一个正则表达式 `/-{3,}\r?(?:\n|$)/mg` 用于匹配含有至少3个连续的 "-"（即水平线）的字符串，且可以配合回车或者文本结束。
+
+当解析模块在解析文本时遇到符合此正则表达式的匹配时，就会将此匹配部分解析为一个 `<hr>`元素。
+
+这里的 `<hr>` 是HTML的标签，用于在网页中绘制一条水平分割线。所以，这个模块的作用就是在 TiddlyWiki 中实现类似的功能，根据用户输入的 "---" 来绘制一条水平分割线。
+"""

@@ -1,0 +1,16 @@
+created: 20200603041057439
+creator: dev
+modified: 20240407154633383
+modifier: dev
+tags: 标签下拉菜单
+title: $:/PSaT/tagging-here
+
+;It is possible to use the following transculusions
+:`{{||$:/PSaT/tagging-here/pill}}` A Tag icon appears if there are any tiddlers tagging the current one
+:`{{||$:/PSaT/tagging-here/TagTemplate}}` A Tag icon appears always
+:`{{tiddlername||$:/PSaT/tagging-here/pill}}` A Tag icon appears if there are any tiddlers tagging //tiddlername//
+:`{{tiddlername||$:/PSaT/tagging-here/TagTemplate}}` A Tag icon appears always for //tiddlername//
+
+;Please note:
+: The tiddler $:/PSaT/tagging-here/pill is already tagged $:/tags/ViewToolbar2
+:and will be visible below the view toolbar if you have installed $:/PSaT/ViewToolbar2

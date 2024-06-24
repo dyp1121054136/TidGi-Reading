@@ -1,0 +1,174 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/quicktable
+
+\define quick-table-controls()
+\whitespace trim
+<span style="padding-right:5px;padding-left:3px;">
+<<toggle-edit-view-trim>>
+<span class="xp-controls" style="padding-left:.25em;">
+<<quick-table-new-tiddler>>
+<<aggregation-fields-panel-button>>
+<<sorting-button>>
+<<toggle-pagination>>
+<<footer-rows-button>>
+</span>
+<<select-footer-rows>>
+</span>
+<$reveal state=<<rowsState>> type="nomatch" text="yes">
+<$text text=<<__caption__>>/>
+</$reveal>
+<span style="font-size:.8em;"><<unsort-button>></span>
+\end
+
+\define quick-table-new-tiddler()
+\whitespace trim
+<$button class="tc-btn-invisible tc-btn-mini" tooltip={{$:/language/Buttons/NewTiddler/Hint}} aria-label={{$:/language/Buttons/NewTiddler/Caption}}>
+{{$:/core/images/new-button}}
+<$let
+  template={{{ [subfilter<__filter__>!is[draft]sortan[]last[]] }}}
+  number={{{ [<template>split[/]last[]] }}}
+  number1={{{ [<number>add[1]] }}}
+  newNumber1={{{ [<number1>addprefix[00]] }}}
+  newNumber2={{{ [<number1>addprefix[0]] }}}
+  filter1="[compare:number:lteq[9]then<newNumber1>]"
+  filter2="[compare:number:gt[9]compare:number:lteq[99]then<newNumber2>]"
+  filter3="[compare:number:gt[99]then<number1>]"
+  newNumber={{{ [<number1>] :cascade[<filter1>append<filter2>append<filter3>] }}}
+  newTitle={{{ [<template>removesuffix<number>addsuffix<newNumber>] }}}
+  >
+<$action-createtiddler $basetitle=<<newTitle>> $template=<<template>> />
+</$let>
+</$button>
+\end
+
+\define quick-table(baseFilter, filter, fields:"tbl-expand title", indexes:"", sortOp:"sort", caption:"", class:"w-100", stateTiddler:"quicktable", emptyMessage)
+\import [all[shadows+tiddlers]tag[$:/tags/Table/Macro]]
+<!--above commands import utility macros-->
+<$let
+  fieldsTiddler="""$:/config/quicktable/$stateTiddler$/TableFields"""
+  fieldsState="""$:/state/quicktable/$stateTiddler$/ModifyTableFields"""
+  sortState={{{ [[$:/state/dynamictables/$stateTiddler$/sortby]is[tiddler]] ~[[$:/temp/quicktable/$stateTiddler$/Sorting]] }}}
+  tempTableSort="""$:/state/dynamictables/$stateTiddler$/sortby"""
+  sortIndex={{{ [[$:/state/dynamictables/$stateTiddler$/sortby]getindex[sortIndex]] }}}
+  sortTiddler="""$:/temp/quicktable/$stateTiddler$/Sorting"""
+  sortPanel="""$:/temp/quicktable/$stateTiddler$/SortingPanel"""
+  pageTiddler="""$:/config/quicktable/$stateTiddler$/Pagination"""
+  pagination={{{ [<pageTiddler>is[tiddler]get[text]] ~no }}}
+  rowsTiddler="""$:/config/quicktable/$stateTiddler$/FooterRows"""
+  rowsState="""$:/state/quicktable/$stateTiddler$/FooterRows"""
+  footerTiddler="""$:/keepstate/dynamictables/$stateTiddler$/footer"""
+
+  inputFilter="[subfilter<__filter__>!has[draft.of]]"
+  sortType=<<__sortOp__>>
+  pagination={{{ [<pageTiddler>is[tiddler]get[text]] ~no }}}
+  footerRows={{{ [<rowsTiddler>is[tiddler]get[text]] ~0 }}}
+
+  defaultFields={{{ [<fieldsTiddler>has[text]get[text]] ~[[tbl-expand title]] }}}
+  >
+<$set name=currentTable value=<<__stateTiddler__>> emptyValue=<<currentTiddler>> >
+<$reveal state=<<fieldsState>> type="match" text="yes" animate="yes">
+<<aggregation-fields-panel>>
+</$reveal>
+<$reveal state=<<sortPanel>> type="match" text="yes" animate="yes">
+<<aggr-sorting-fields>>
+</$reveal>
+<!-- check what type of columns are sent, fileds or indexes (data tiddlers as records) -->
+<$set name=fieldOrIndex filter="[<__fields__>!is[blank]]" value="field" emptyValue="index">
+<<check_tiddlers_type_for_table_from_indexes isEditable:"$editButton$">>
+<$set name=columns filter="[<fieldOrIndex>]-index" value=<<__fields__>> emptyValue=<<__indexes__>> >
+<!--check input filter parameter-->
+<$list filter="[subfilter<inputFilter>limit[1]]" emptyMessage=<<__emptyMessage__>> variable=ignore>
+<$set name=sortneg tiddler=<<tempTableSort>> index="negate">
+<!--calculate the number of columns in edit and view mode -->
+<$set name=ncols filter="[<tempTableEdit>getindex[mode]match[edit]]" value={{{ [subfilter<columnFilter>count[]] }}} emptyValue={{{ [subfilter<columnFilter>count[]subtract[1]] }}}>
+<div class="tbl-container" style="max-width:100%;">
+<table class=<<__class__>> style="caption-side:top">
+<!-- reveal caption and edit button -------------------->
+<caption style="text-align:left;">
+<<quick-table-controls>>
+</caption>
+
+<!-- create header -------------------->
+<thead>
+<<confirm-delete>>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="headerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/HeaderTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<headerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/header/default">
+ <$transclude tiddler=<<headerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</thead>
+
+<!-- create footer -------------------->
+<$reveal type="gt" default=<<footerRows>> text="0" tag="tfoot" class="shiraz-dtable-footer">
+<tr><td colspan=<<ncols>> style="font-weight:bold;background-color:transparent;">Numerical summary</td></tr>
+<$list filter="[range<footerRows>addprefix[footer-]]" variable=footerRow>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="footerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/FooterTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<footerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/footer/default">
+<$transclude tiddler=<<footerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</$list>
+</$reveal>
+
+<!-- reveal main body of table (generate records) -------------------->
+<tbody>
+<$set name=tableBody filter="[<fieldOrIndex>]-index" value="display_body_fields" emptyValue="display_body_indexes" >
+<!-- setup pagination variables -->
+<$vars total-entries={{{[subfilter<inputFilter>count[]] }}}
+			 page-number={{{[<pageStateTiddler>get[text]] ~[[1]]}}} 
+			 entries-per-page={{{ [<entryPerPageStateTiddler>get[text]] ~[[25]]   }}}  >
+<$vars low={{{ [<page-number>subtract[1]multiply<entries-per-page>] }}}  
+       high={{{[<page-number>multiply<entries-per-page>]            }}} >	 
+<$macrocall $name=<<tableBody>> />
+<!--on demand display the pagination row-->
+<$reveal type="match" default=<<pagination>> text="yes" tag="tr" class="shiraz-dtable-page-footer">
+<td colspan=<<ncols>> >
+<<prev-button>>
+Displaying <$text text={{{[<low>add[1]]}}}/> through <$text text={{{ [<high>compare:number:lt<total-entries>then<high>else<total-entries>] }}}/> of <<total-entries>> Results | <<limit-entries>>
+<<next-button>>
+</td>
+</$reveal><!-- end of pagination ui -->
+</$vars>
+</$vars>
+</$set>
+</tbody>
+</table>
+</div><!-- container-->
+</$set>
+</$set>
+</$list><!--check input filter parameter-->
+</$set>
+</$set>
+</$set>
+</$let>
+\end
+
+
+\define qtable(prefix,caption,class)
+\whitespace trim
+<$let
+  filter="""[prefix[$prefix$]!suffix[Record]]"""
+  id={{{ [[$prefix$Record]get[id]] }}}
+  config-base={{{ [[$:/config/quicktable/]addsuffix<id>addsuffix[/TableFields/Visibility/]] }}}
+  fields-config={{{ [[$:/config/quicktable/]addsuffix<id>addsuffix[/TableFields]] }}}
+  >
+<$list filter="[<id>!is[blank]]" emptyMessage="<p>ERROR: `id` value missing</p>" variable="ignore">
+<$wikify name="dtableFields" text="""<$list filter="[list<fields-config>]"><$reveal type="match" state=<<b-c-title>> text="show"> <$text text={{{ [<currentTiddler>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$macrocall
+  $name="quick-table"
+  baseFilter=<<filter>>
+  filter=<<filter>>
+  fields=<<dtableFields>>
+  stateTiddler=<<id>>
+  caption=<<__caption__>>
+  class=<<__class__>>
+/>
+</$wikify>
+</$list>
+</$let>
+\end

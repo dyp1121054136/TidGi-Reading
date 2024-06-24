@@ -1,0 +1,13 @@
+caption: Annotation
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/annotation
+
+<$list filter="[prefix[$:/annotation/]annotate-tiddler<currentTiddler>limit[1]]" variable="ignore">
+
+<$list filter="[prefix[$:/annotation/]annotate-tiddler<currentTiddler>]">
+
+<$transclude tiddler="$:/templates/transclusion-annotation" mode="block"/>
+
+</$list>
+
+</$list>

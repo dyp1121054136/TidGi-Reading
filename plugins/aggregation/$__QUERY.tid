@@ -1,0 +1,229 @@
+caption: Query
+tags: $:/tags/AdvancedSearch
+title: $:/QUERY
+
+\whitespace trim
+
+<div class="xp-query-wrapper">
+{{$:/xp/query/ui/input/QueryType}}
+<$list filter="[enlist<query-types>match{$:/temp/query}]" variable="ignore">
+<div class="xp-query-param-list">
+{{$:/xp/query/ui/input/paramA}}
+<$list filter="[enlist<query-types-paramB>match{$:/temp/query}]" variable="ignore">
+{{$:/xp/query/ui/input/paramB}}
+</$list>
+<$list filter="[enlist<query-types-paramC>match{$:/temp/query}]" variable="ignore">
+{{$:/xp/query/ui/input/paramC}}
+</$list>
+<$list filter="[enlist<query-types-paramX>match{$:/temp/query}]" variable="ignore">
+{{$:/xp/query/ui/input/paramX}}
+</$list>
+<!-- 
+<$list filter="[enlist<query-types-paramY>match{$:/temp/query}]" variable="ignore">
+{{$:/xp/query/ui/input/paramY}}
+</$list>
+<$list filter="[enlist<query-types-paramZ>match{$:/temp/query}]" variable="ignore">
+{{$:/xp/query/ui/input/paramZ}}
+</$list>
+-->
+</div>
+</$list>
+</div>
+
+<$let
+    paramA={{{ [[$:/temp/query/paramA]get[text]] }}}
+    paramB={{{ [[$:/temp/query/paramB]get[text]] }}}
+    paramC={{{ [[$:/temp/query/paramC]get[text]] }}}
+    paramX={{{ [[$:/temp/query/paramX]get[text]] }}}
+    paramY={{{ [[$:/temp/query/paramY]get[text]] }}}
+    paramZ={{{ [[$:/temp/query/paramZ]get[text]] }}}
+    >
+
+<!-- Query links results -->
+<$reveal state="$:/temp/query" type="match" text="ql" animate="yes">
+<$list filter="[<paramA>!is[blank]]">
+<$macrocall $name="ql" A=<<paramA>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="ql+" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name="ql+" A=<<paramA>> B=<<paramB>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='ql' A=<<paramA>> />
+</$list>
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='ql' A=<<paramB>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="ql++" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql++" A=<<paramA>> B=<<paramB>> C=<<paramC>> />
+</$list>
+<!-- -paramC -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql+" A=<<paramA>> B=<<paramB>> />
+</$list>
+<!-- -paramB -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql+" A=<<paramA>> B=<<paramC>> />
+</$list>
+<!-- -paramA -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql+" A=<<paramB>> B=<<paramC>> />
+</$list>
+<!-- -paramB -paramC -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramA>> />
+</$list>
+<!-- -paramA -paramC -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramB>> />
+</$list>
+<!-- -paramA -paramB -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramC>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="ql." animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name="ql." A=<<paramA>> B=<<paramB>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='ql' A=<<paramA>> />
+</$list>
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='ql' A=<<paramB>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="ql.." animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql.." A=<<paramA>> B=<<paramB>> C=<<paramC>> />
+</$list>
+<!-- -paramC -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql." A=<<paramA>> B=<<paramB>> />
+</$list>
+<!-- -paramB -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql." A=<<paramA>> B=<<paramC>> />
+</$list>
+<!-- -paramA -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name="ql." A=<<paramB>> B=<<paramC>> />
+</$list>
+<!-- -paramB -paramC -->
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramA>> />
+</$list>
+<!-- -paramA -paramC -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] [<paramC>is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramB>> />
+</$list>
+<!-- -paramA -paramB -->
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>is[blank]then[B]] [<paramC>!is[blank]then[C]] +[count[]match[3]]">
+<$macrocall $name='ql' A=<<paramC>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="ql-" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>!is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name="ql-" A=<<paramA>> X=<<paramX>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name='ql' A=<<paramA>> />
+</$list>
+</$reveal>
+
+
+<!-- Query mentions results -->
+<$reveal state="$:/temp/query" type="match" text="qm" animate="yes">
+<$list filter="[<paramA>!is[blank]]">
+<$macrocall $name="qm" A=<<paramA>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qm+" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name="qm+" A=<<paramA>> B=<<paramB>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramA>> />
+</$list>
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramB>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qm." animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name="qm." A=<<paramA>> B=<<paramB>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramA>> />
+</$list>
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramB>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qm-" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>!is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name="qm-" A=<<paramA>> X=<<paramX>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramA>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qm-link" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>!is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name="qm-link" A=<<paramA>> X=<<paramX>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name='qm' A=<<paramA>> />
+</$list>
+</$reveal>
+
+
+<!-- Query prefix results -->
+<$reveal state="$:/temp/query" type="match" text="qp" animate="yes">
+<$list filter="[<paramA>!is[blank]]">
+<$macrocall $name="qp" A=<<paramA>> />
+</$list>
+</$reveal>
+
+
+<!-- Query transclusion results -->
+<$reveal state="$:/temp/query" type="match" text="qt" animate="yes">
+<$list filter="[<paramA>!is[blank]]">
+<$macrocall $name="qt" A=<<paramA>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qt." animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name="qt." A=<<paramA>> B=<<paramB>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramB>is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qt' A=<<paramA>> />
+</$list>
+<$list filter="[<paramA>is[blank]then[A]] [<paramB>!is[blank]then[B]] +[count[]match[2]]">
+<$macrocall $name='qt' A=<<paramB>> />
+</$list>
+</$reveal>
+
+<$reveal state="$:/temp/query" type="match" text="qt-" animate="yes">
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>!is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name="qt-" A=<<paramA>> X=<<paramX>> />
+</$list>
+<$list filter="[<paramA>!is[blank]then[A]] [<paramX>is[blank]then[X]] +[count[]match[2]]">
+<$macrocall $name='qt' A=<<paramA>> />
+</$list>
+</$reveal>
+
+</$let>

@@ -1,0 +1,66 @@
+title: $:/FilterBuilder/macros/use-filter
+
+\define fb-use-filter(filter)
+<p style="color:red;">[[List Widget|https://tiddlywiki.com/static/ListWidget.html]]</p>
+<<codes js src:"""<<list-links filter:"$filter$" type:"ol">>
+
+<$list filter="$filter$" template="$:/templates/transclusion-infocard"/>
+""">>
+<<codes js src:"""<$list filter="$filter$" variable="listItem" emptyMessage="" storyview="">
+
+</$list>
+""">>
+<<codes js src:"""<table>
+<tbody>
+<$list filter="$filter$" variable="listItem">
+<tr>
+<td><$link to=<<listItem>>><$text text=<<listItem>>/></$link></td>
+<td><$list filter="[<listItem>tags[]sort[title]]" template="$:/core/ui/TagTemplate"/></td>
+</tr>
+</$list>
+</tbody>
+</table>
+""">>
+
+<p style="color:red;">[[Filtered Transclusion|https://tiddlywiki.com/static/Transclusion%2520in%2520WikiText.html]]</p>
+<<codes js src:"""{{{ $filter$ || $:/templates/transclusion-infocard }}}""">>
+
+<p style="color:red;">[[ButtonWidget|https://tiddlywiki.com/static/ButtonWidget.html]]</p>
+<<codes js src:"""<$button> Batch Operation
+<$action-confirm $message="To keep your data safe, please do it in a test environment! Are you sure to execute?">
+<$list filter="$filter$" variable="listItem">
+<$vars newText={{{ [<listItem>get[text]addprefix<PREFIX>] }}}>
+<$action-setfield $tiddler=<<listItem>> text=<<newText>>/>
+</$vars>
+<!-- setfield -->
+<$action-setfield $tiddler=<<listItem>> tags="NewTag [[Another New Tag]]" color="red"/>
+<$action-listops $tiddler=<<listItem>> $tags="abc 123 -NewTag"/>
+<$action-listops $tiddler=<<listItem>> $field="myfield" $subfilter="-efg ijk xyz [[this is a title]] +[sort[]]"/>
+<!-- deletefield created/modified -->
+<$action-setfield $tiddler="$:/config/TimestampDisable" $value="yes"/>
+<$action-deletefield $tiddler=<<listItem>> created modified/>
+<$action-setfield $tiddler="$:/config/TimestampDisable" $value="no"/>
+<!-- deletetiddler -->
+<$action-deletetiddler $tiddler=<<listItem>>/>
+</$list>
+</$action-confirm>
+</$button>
+""">>
+
+<p style="color:red;">[[SelectWidget|https://tiddlywiki.com/static/SelectWidget.html]]</p>
+<<codes js src:"""<$select tiddler=<<qualify 'select-demo'>> default='HelloThere'>
+<$list filter="$filter$">
+<option value=<<currentTiddler>>><$view field='title'/></option>
+</$list>
+</$select>
+""">>
+
+<p style="color:red;">[[SetWidget|https://tiddlywiki.com/static/SetWidget.html]]</p>
+<<codes js src:"""<$set name="myVariable" filter="$filter$" value="1" emptyValue="0">
+<$text text=<<myVariable>>/>
+</$set>
+""">>
+\end
+
+
+<pre><$view field="text"/></pre>

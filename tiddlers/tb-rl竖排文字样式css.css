@@ -1,0 +1,43 @@
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+  .scrollpage-tb-rl {
+    width: 1000px;
+  }
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+  .scrollpage-tb-rl {
+    width: 350px;
+  }
+}
+
+.scrollpage-tb-rl
+{
+  height: 500px; 
+  top: 0px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  writing-mode: tb-rl; /* 从上往下，从右向左排列 */
+  text-align: left; /* 文字左对齐 */
+  font-family: "京華老宋体v1.007";
+  margin: auto;
+  width: 100%;
+}
+
+.scrollpage-tb-rl p {
+  line-height: 1.3em;
+}
+
+.scrollpage-tb-rl h3, .scrollpage-tb-rl h4 {
+  color: #dc3545;
+}

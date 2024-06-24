@@ -1,0 +1,15 @@
+[
+    {
+        "created": "20240412113840283",
+        "text": "hide",
+        "title": "$:/config/tiddlercontextmenu/highlight-marker",
+        "tags": "$:/tags/tiddlercontextmenu 右键高亮",
+        "caption": "高亮marker",
+        "icon": "$:/core/images/highlight",
+        "tm-message": "tm-markup",
+        "modified": "20240412113850080",
+        "markup-prefix": "@@.marker ",
+        "markup-suffix": "@@",
+        "list-after": "$:/config/tiddlercontextmenu/quick-editfix"
+    }
+]

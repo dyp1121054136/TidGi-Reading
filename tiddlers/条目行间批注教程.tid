@@ -1,0 +1,28 @@
+created: 20240303034408059
+modified: 20240504034925441
+tags: 教程 条目行间批注
+title: 条目行间批注教程
+
+; Sidenote & Sidelink: 条目侧边批注
+"""
+用法：
+
+`<<sidenote "小标题" "内容">>` （小标题和内容都可以重复，内容可以换行）
+`<<sidelink "条目标题" "小标题">>` （链接到的条目标题不可重复，小标题可重复）
+
+文件：
+[[条目行间批注宏]]
+[[条目行间批注样式css]]
+
+示例：
+[[sidenote宏演示]]
+[[sidelink宏演示]]
+
+按钮：
+[[添加sidenote批注|$:/core/ui/EditorToolbar/sidenote]]
+[[添加sidelink批注|$:/core/ui/EditorToolbar/sidelink]]
+
+图标：
+[[$:/core/images/sidenote]]
+[[$:/core/images/sidelink]]
+"""

@@ -1,0 +1,11 @@
+caption: Underline
+created: 20220923121041074
+icon: $:/core/images/underline
+markup-prefix: __
+markup-suffix: __
+modified: 20220925152901292
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/underline
+tm-message: tm-markup
+
+show

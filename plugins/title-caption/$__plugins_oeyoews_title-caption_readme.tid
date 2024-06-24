@@ -1,0 +1,9 @@
+created: 20220523085428537
+modified: 20220528064442074
+revision: 0
+tags: 
+title: $:/plugins/oeyoews/title-caption/readme
+type: text/vnd.tiddlywiki
+
+* if have caption, show it
+* [[Ref|https://talk.tiddlywiki.org/t/displaying-the-caption-instead-of-title-in-tw-5-2-1-using-the-new-cascade-filters/1791]]

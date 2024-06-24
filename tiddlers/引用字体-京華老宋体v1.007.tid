@@ -1,0 +1,11 @@
+created: 20240127181831405
+modified: 20240127181925550
+tags: 字体 $:/tags/Stylesheet
+title: 引用字体-京華老宋体v1.007
+
+@font-face {
+	font-family: "京華老宋体v1.007";
+	font-style: normal;
+	font-weight: 400;
+	src: local("京華老宋体v1.007"), url(<<datauri "京華老宋体v1.007.woff">>) format("woff");
+}

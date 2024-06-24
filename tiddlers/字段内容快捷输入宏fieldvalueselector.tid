@@ -1,0 +1,12 @@
+created: 20240106112123983
+modified: 20240203064511418
+tags: 教程
+title: 字段内容快捷输入宏fieldvalueselector
+
+把宏 [[$:/_TWaddle/fieldvalueselector]] 拖到自己的tiddlywiki；
+
+修改核心 [[$:/core/ui/EditTemplate/fields]]，加上内容：
+<<code src:"""<<new-field-value-dropdown>>
+<span class="tc-edit-field-add-button">
+<$macrocall $name="new-field"/>
+""" language:"tw">>

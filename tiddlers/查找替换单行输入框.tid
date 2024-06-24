@@ -1,0 +1,11 @@
+created: 20240430134756489
+modified: 20240509114803009
+tags: 正则表达式查找替换 输入框
+title: 查找替换单行输入框
+
+<$edit-text tiddler="$:/state/searchNreplace/search" tag="input" class="search-replace-textarea" default="" placeholder="查找"/>
+<$edit-text tiddler="$:/state/searchNreplace/replace" tag="input" class="search-replace-textarea" default="" placeholder="替换"/>
+<details><summary><span class="countnumber">前缀/后缀</span></summary>
+<$edit-text tiddler="$:/state/searchNreplace/prefix" tag="input" class="search-replace-textarea" default="" placeholder="前缀"/>
+<$edit-text tiddler="$:/state/searchNreplace/suffix" tag="input" class="search-replace-textarea" default="" placeholder="后缀"/>
+</details>

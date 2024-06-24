@@ -1,0 +1,13 @@
+caption: {{$:/core/images/clear-highlight}} 清除样式为xhx的高亮
+created: 20240412112416095
+description: 清除样式为xhx的高亮
+modified: 20240412112446167
+tags: 按钮 右键高亮
+title: $:/core/ui/Buttons/clear-highlight-xhx
+
+\define highlight1() @@.xhx ([^@@]*)@@
+\define highlight0() $1
+<$button class="tc-btn-invisible " tooltip="清除当前条目样式为xhx的高亮">{{$:/core/images/clear-highlight}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<highlight1>,<highlight0>] }}}
+/>
+</$button>

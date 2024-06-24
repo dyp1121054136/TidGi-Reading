@@ -1,0 +1,20 @@
+caption: use-filter
+description: Use filter
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/use-filter
+
+\whitespace trim
+<$list filter="[list<fbTiddler>prefix[$:/temp/filterbuilder/]!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]has[filter]limit[1]]">
+<$reveal state=<<calloutState>> type="nomatch" text="use">
+<$button tooltip="Use filter" class="fb-btn btn-small tc-tiny-gap-left">
+use
+<$action-setfield $tiddler=<<calloutState>> text="use"/>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="use">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+use
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

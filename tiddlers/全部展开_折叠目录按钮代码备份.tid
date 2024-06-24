@@ -1,0 +1,30 @@
+created: 20240430034430493
+modified: 20240430040718287
+tags: 目录工具
+title: 全部展开/折叠目录按钮代码备份
+
+\whitespace trim
+\define mulu-open-close-btn()
+
+<$button set=<<qualify "$:/state/openmenu">> setTo="open" class="tc-btn-invisible" tooltip="全部展开">
+
+{{$:/core/images/mulu-open|15px}}
+
+<$list filter="[prefix[$:/state/toc/]suffix<qualify>]"><$action-setfield text="open"/></$list></$button>
+\end
+
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[open]]}}} emptyMessage=<<mulu-open-close-btn>>>
+<$button set=<<qualify"$:/state/openmenu">> setTo="close" class="tc-btn-invisible" tooltip="全部折叠">
+
+<!-- 全部折叠时图标 -->
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[close]]}}}>
+{{$:/core/images/mulu-open|15px}}
+</$list>
+
+<!-- 全部展开时图标 -->
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[open]]}}}>
+{{$:/core/images/mulu-close|15px}}
+</$list>
+
+<$list filter="[prefix[$:/state/toc/]suffix<qualify>]"><$action-setfield text="close"/></$list></$button>
+</$list>

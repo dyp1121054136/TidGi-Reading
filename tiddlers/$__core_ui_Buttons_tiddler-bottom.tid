@@ -1,0 +1,10 @@
+caption: {{$:/core/images/tiddler-bottom}} 滚动到条目底部
+created: 20240326032747194
+description: 滚动到条目底部
+modified: 20240326062845513
+tags: 按钮 上下滚动
+title: $:/core/ui/Buttons/tiddler-bottom
+
+<$button class="tc-btn-invisible" tooltip="滚动到条目底部">{{$:/core/images/tiddler-bottom|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".tiddler-bottom" animationDuration="0"/>
+</$button>

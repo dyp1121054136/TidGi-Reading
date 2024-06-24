@@ -1,0 +1,10 @@
+caption: Holding "shift" disables the context menu and shows the regular browser context menu
+created: 20221218234321748
+description: Holding "shift" disables the context menu and shows the regular browser context menu
+list-ordering: 3
+modified: 20221219002006489
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/shift-override
+
+no

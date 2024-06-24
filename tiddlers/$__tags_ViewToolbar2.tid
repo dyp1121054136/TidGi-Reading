@@ -1,0 +1,9 @@
+created: 20200603053315919
+creator: dev
+modified: 20240407154633382
+modifier: dev
+tags: 标签下拉菜单
+title: $:/tags/ViewToolbar2
+
+:Tag used to place items tagged with <<tag $:/tags/ViewToolbar2>> on a second Toolbar below the view toolbar
+:see $:/PSaT/ViewToolbar2

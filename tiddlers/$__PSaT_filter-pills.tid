@@ -1,0 +1,15 @@
+created: 20230316231055994
+creator: !build
+description: Display a Filter based pill
+export-date: 20230606005604341
+filename: filter-pills
+filepath: I:\TW5 Intranet\MyBundles\Working\filter-pills.json
+last-export-date: 20230317055214914
+modified: 20240322015816960
+modifier: !build
+package-filter: [prefix[$:/PSaT/filter-pills]]
+package-owner: Gold packages
+package-version: 0.1.1
+tags: 筛选器下拉菜单
+title: $:/PSaT/filter-pills
+wiki-path: file:///I:/TW5%20Intranet/MyBundles/Working/new-gold-packages-wiki.html

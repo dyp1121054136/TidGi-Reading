@@ -1,0 +1,14 @@
+created: 20240502084225038
+modified: 20240502114225591
+simple: no
+tags: 正则表达式查找替换
+title: 精简模式界面
+
+<$edit-text tiddler="$:/state/searchNreplace/search" tag="input" class="search-replace-textarea" default="" placeholder="查找"/>
+<$edit-text tiddler="$:/state/searchNreplace/replace" tag="input" class="search-replace-textarea" default="" placeholder="替换"/>
+
+<span class="search-replace-btn-all">
+{{||撤销按钮}}
+{{||重做按钮}}
+{{||正则表达式查找替换按钮}}
+</span>

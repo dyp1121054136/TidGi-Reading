@@ -1,0 +1,9 @@
+title: $:/config/FilterBuilder/Start
+
+all[tiddlers]!is[system]
+all[tiddlers]is[system]
+all[shadows+tiddlers]tag[$:/tags/PageControls]
+all[shadows+tiddlers]tag[$:/tags/ViewToolbar]
+all[shadows+tiddlers]prefix[]
+all[shadows+tiddlers]suffix[]
+all[shadows+tiddlers]tag[]search-replace[<search-term>],[<replacement>]

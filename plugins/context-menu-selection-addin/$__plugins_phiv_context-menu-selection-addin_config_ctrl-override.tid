@@ -1,0 +1,10 @@
+caption: Holding "ctrl" disables the context menu and shows the regular browser context menu
+created: 20221218234153774
+description: Holding "ctrl" disables the context menu and shows the regular browser context menu
+list-ordering: 1
+modified: 20221219001850349
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/ctrl-override
+
+yes

@@ -1,0 +1,35 @@
+caption: callout-filtersearch
+description: Callout Filter Search
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/callout-filtersearch
+
+\import $:/FilterSearch
+\whitespace trim
+<$list filter="[subfilter<resultsFilter>] +[limit[1]]" variable="ignore">
+<$reveal state=<<calloutState>> type="nomatch" text="filtersearch">
+<$button tooltip="Callout FilterSearch" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/xp/images/filtersearch}}
+<$action-setfield $tiddler="$:/config/xp/aggregation/MainFilter" text=<<resultsFilter>>/>
+<!-- delete old data -->
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]] [prefix<fieldsTiddler>regexp[TableFields/Visibility]prefix<config-base>]"/>
+<$list filter="[<presetTiddler>get[text]enlist-input[]]" variable="listField">
+<$action-setfield $tiddler=<<config-title>> text="show"/>
+</$list>
+<$action-deletefield $tiddler=<<fieldsTiddler>> list/>
+<$action-setfield $tiddler=<<fieldsTiddler>> list={{{ [<presetTiddler>get[text]] }}}/>
+<$list filter="[subfilter<mainFilter>] +[fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[format:titlelist[]]" variable="listField">
+<$action-listops $tiddler=<<fieldsTiddler>> $subfilter="+[append<listField>]"/>
+</$list>
+<$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<fieldTiddler>] [<valueTiddler>]"/>
+<!-- /delete old data -->
+<$action-setfield $tiddler=<<calloutState>> text="filtersearch"/>
+<<history-actions>>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="filtersearch">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+{{$:/xp/images/filtersearch}}
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

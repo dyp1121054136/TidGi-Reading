@@ -1,0 +1,31 @@
+created: 20200603030044209
+creator: dev
+description: Alternative Tag template transclude $:/PSaT/TagTemplate
+modified: 20240407154633389
+modifier: dev
+tags: 标签下拉菜单
+title: $:/PSaT/tagging-here/TagTemplate
+
+\define tag-pill-inner(tag,icon,colour:"#ffffff",fallbackTarget,colourA,colourB,element-tag,element-attributes,actions)
+<$vars foregroundColor=<<contrastcolour target:"""$colour$""" fallbackTarget:"""$fallbackTarget$""" colourA:"""$colourA$""" colourB:"""$colourB$""">> backgroundColor="""$colour$""">
+<$element-tag$ $element-attributes$ class="tc-tag-label tc-btn-invisible" style=<<tag-pill-styles>>>
+$actions$ {{$:/PSaT/tagging-here/images/tag}}
+</$element-tag$>
+</$vars>
+\end
+\whitespace trim
+<span class="tc-tag-list-item">
+<$set name="transclusion" value=<<currentTiddler>>>
+<$macrocall $name="tag-pill-body" tag=<<currentTiddler>> icon={{!!icon}} colour={{!!color}} palette={{$:/palette}} element-tag="""$button""" element-attributes="""popup=<<qualify "$:/state/popup/tag">> dragFilter='[all[current]tagging[]]' tag='span'"""/>
+<$reveal state=<<qualify "$:/state/popup/tag">> type="popup" position="below" animate="yes" class="tc-drop-down">
+<$set name="tv-show-missing-links" value="yes">
+<$transclude tiddler="$:/PSaT/tagging-here/ListItemTemplate"/>
+</$set>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TagDropdown]!has[draft.of]]" variable="listItem"> 
+<$transclude tiddler=<<listItem>>/> 
+</$list>
+<hr>
+<$macrocall $name="list-tagged-draggable" tag=<<currentTiddler>>/>
+</$reveal>
+</$set>
+</span>

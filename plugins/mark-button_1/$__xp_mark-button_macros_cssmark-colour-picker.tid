@@ -1,0 +1,24 @@
+tags: $:/tags/Macro
+title: $:/xp/mark-button/macros/cssmark-colour-picker
+
+\define cssmark-colour-picker-inner(actions)
+<$button tag="a" tooltip="""$(colour-picker-value)$""">
+
+$actions$
+
+<span style="display:inline-block; background-color: $(colour-picker-value)$; width: 100%; height: 100%; border-radius: 50%;"/>
+
+</$button>
+\end
+
+\define cssmark-colour-picker(actions)
+<div class="tc-colour-chooser">
+
+---
+
+<$list filter="Red Green Blue Brown Gray Orange Pink Purple Turquoise Violet Yellow" variable="colour-picker-value">
+<$macrocall $name="cssmark-colour-picker-inner" actions="""$actions$"""/>
+</$list>
+
+</div>
+\end

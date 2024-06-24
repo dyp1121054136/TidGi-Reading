@@ -1,0 +1,340 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/aggregation/FilterBuilder/styles
+
+\define sidebarbreakpoint()
+<$text text={{$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint}}/>
+\end
+
+[data-tiddler-title="$:/FilterBuilder"] {
+  background: <<colour page-background>>;
+  border: 1px solid <<colour page-background>>;
+  <<box-shadow "none">>
+}
+
+[data-tiddler-title="$:/FilterBuilder"] .tc-titlebar {
+  background: <<colour page-background>>;
+}
+
+.xp-filterbuilder {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  margin: 0 auto;
+}
+
+/*
+** Panel
+*/
+
+.fb-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: justify;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.fb-panel {
+  display: block;
+  width: auto;
+  border-radius: 20px;
+  border: 1px dotted <<colour table-border>>;
+  background-color: <<colour page-background>>;
+
+<$reveal state="$:/palette" type="match" text="$:/palettes/Vanilla">
+border: none;
+background: linear-gradient(145deg, #ffffff, rgba(207,207,207,0.5));
+box-shadow:  15px 15px 50px rgba(207,207,207,0.8),
+            -15px 5px 30px #ffffff;
+</$reveal>
+
+<$reveal state="$:/palette" type="match" text="$:/xp/theme-changer/palettes/DarkGreen">
+border: none;
+background: none;
+box-shadow: inset 15px 15px 25px #1c1c1c,
+            inset -15px -15px 25px #262626,
+            15px 15px 25px #1c1c1c;
+</$reveal>
+}
+
+@media (min-width: <<sidebarbreakpoint>>) {
+<$list filter="[[$:/themes/tiddlywiki/vanilla/options/sidebarlayout]get[text]] +[else[fluid-fixed]!match[fixed-fluid]]" variable="ignore">
+<$reveal stateTitle="$:/_sq/Stories/Story2StoryList" stateField="list" type="match" text="" default="">
+
+  .fb-panel {
+    min-width: 680px;
+  }
+
+</$reveal><$reveal state="$:/config/_sq/Stories/story2" type="match" text="no" default="yes">
+
+  .fb-panel {
+    min-width: 680px;
+  }
+
+</$reveal>
+</$list>
+}
+
+.fb-panel header {
+  display: block;
+  line-height: 36px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 3px 16px;
+  position: relative;
+  width: 100%;
+  text-align: left;
+}
+
+.fb-droppable-area {
+}
+
+.fb-input-panel {
+  width: 100%;
+  margin: 0;
+  border-top: 1px solid <<colour tiddler-controls-foreground>>;
+  border-bottom: 1px solid <<colour tiddler-controls-foreground>>;
+}
+
+.fb-input-panel.fb-input-panel-small {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.fb-input-panel table, .fb-input-panel tr, .fb-input-panel td {
+  border: none;
+  padding: 4px;
+}
+
+.fb-input-panel > tbody > .fb-item:nth-child(odd) {
+  background-color: <<colour background>>;
+}
+
+.fb-input-panel > tbody > .fb-item:nth-child(even) {
+  background-color: <<colour code-background>>;
+}
+
+.fb-input-panel > tbody > .fb-item:first-child {
+  border-top: 2px solid <<colour tiddler-controls-foreground>>;
+}
+
+.fb-input-panel > tbody > .fb-item:last-child {
+  border-bottom: 2px solid <<colour tiddler-controls-foreground>>;
+}
+
+.fb-item-name {
+  text-align: right;
+  font-weight: bold;
+}
+
+.fb-item-input {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1em;
+  vertical-align: middle;
+}
+
+.fb-item-input .fb-item-input-textbox {
+  flex-grow: 1;
+}
+
+.fb-item-input .tc-edit-texteditor {
+  width: 100%;
+}
+
+.fb-item-add {
+}
+
+.fb-item-add svg {
+  height: 1em;
+  width: 1em;
+  fill: <<colour muted-foreground>>;
+  vertical-align: middle;
+}
+
+.fb-select {
+  margin: 4px 0 4px 0;
+  padding: 3px 3px 3px 3px;
+  border: 1px solid <<colour tiddler-editor-border>>;
+  line-height: 1.3em;
+  font-family: {{$:/themes/tiddlywiki/vanilla/settings/editorfontfamily}};
+  max-width: 200px;
+}
+
+.fb-panel footer {
+  display: block;
+  line-height: 36px;
+  padding: 10px 16px 6px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.fb-settings {
+  line-height: 22px;
+}
+
+/*
+** Button
+*/
+
+.fb-btn {
+  border-radius: 1.5em;
+  border: 1px solid #ccc;
+  background: <<colour tiddler-background>>;
+  font-weight: 300;
+  padding: .3em 1em;
+  cursor: pointer;
+  transition: box-shadow ease-in .1s;
+}
+
+.fb-btn:focus {
+  outline: 0 none;
+}
+
+.fb-btn:active {
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, .08);
+}
+
+.fb-btn.btn-selected {
+  color: #dd1144;
+  fill: #dd1144;
+}
+
+.fb-btn.btn-small {
+  font-size: .9em;
+  padding: .2em .8em;
+}
+
+.fb-btn.btn-primary {
+  background-color: <<colour primary>>;
+  border-color: <<colour primary>>;
+  color: <<colour background>>;
+  fill: <<colour background>>;
+}
+
+.fb-btn.btn-primary:active {
+  box-shadow: 0 0 0 0.2rem rgba(0,125,255,.3);
+}
+
+.fb-btn.btn-danger,
+.fb-btn.btn-danger:hover {
+  border-color: #e73939;
+  color: #e73939;
+  fill: #e73939;
+}
+
+.fb-btn.btn-danger:hover {
+  color: #fff;
+  fill: #fff;
+  background-color: #e73939;
+}
+
+.fb-btn.btn-danger:active {
+  box-shadow: 0 0 0 0.2rem rgba(255,0,0,.2);
+}
+
+.fb-btn.btn-warning:hover {
+  border-color: #FF9800;
+  background: none;
+}
+
+.fb-btn.btn-warning:active {
+  box-shadow: 0 0 0 0.2rem #FFEB3B;
+}
+
+.fb-btn.btn-bracket {
+  padding: .3em .3em;
+  color: red;
+}
+
+.fb-btn.btn-bracket.left-bracket {
+  border-radius: 1.5em 0 0 1.5em;
+}
+
+.fb-btn.btn-bracket.right-bracket {
+  border-radius: 0 1.5em 1.5em 0;
+}
+
+.fb-btn.btn-step {
+  padding: .3em .3em;
+}
+
+.fb-btn.btn-bracket,
+.fb-btn.btn-step {
+
+<$reveal state="$:/palette" type="match" text="$:/palettes/Vanilla">
+border: none;
+box-shadow: 5px 5px 10px rgba(207,207,207,1),
+            -5px -5px 10px #ffffff;
+</$reveal>
+
+<$reveal state="$:/palette" type="match" text="$:/xp/theme-changer/palettes/DarkGreen">
+border: none;
+box-shadow: 7px 7px 12px #1c1c1c,
+            -7px -7px 12px #262626;
+</$reveal>
+
+}
+
+.fb-btn.btn-step:hover {
+  transition: box-shadow 50ms ease-out;
+
+<$reveal state="$:/palette" type="match" text="$:/palettes/Vanilla">
+box-shadow: inset 5px 5px 10px rgba(207,207,207,0.5),
+            inset -5px -5px 10px #ffffff,
+            1px 1px 5px rgba(207,207,207,1);
+</$reveal>
+
+<$reveal state="$:/palette" type="match" text="$:/xp/theme-changer/palettes/DarkGreen">
+box-shadow: 7px 7px 12px #1c1c1c,
+            -7px -7px 12px #262626,
+            2px 2px 6px #262626;
+</$reveal>
+}
+
+.fb-btn.btn-step:active {
+
+<$reveal state="$:/palette" type="match" text="$:/palettes/Vanilla">
+box-shadow: 0 0 0 rgba(0, 0, 0, .4),
+            0 0 0 rgba(255, 255, 255, .9),
+            inset 7px 7px 12px rgba(207,207,207,0.8),
+            inset -7px -7px 12px #ffffff,
+            2px 2px 12px rgba(207,207,207,1);
+</$reveal>
+
+<$reveal state="$:/palette" type="match" text="$:/xp/theme-changer/palettes/DarkGreen">
+box-shadow: 0 0 0 rgba(0, 0, 0, .4),
+            0 0 0 rgba(255, 255, 255, .9),
+            inset 7px 7px 12px #1c1c1c,
+            inset -7px -7px 12px #262626,
+            2px 2px 12px #262626;
+</$reveal>
+
+}
+
+.fb-btn-invisible {
+  text-align: left;
+}
+
+.fb-btn-invisible svg, .fb-btn-invisible img {
+  height: 1em;
+  width: 1em;
+  fill: <<colour tiddler-controls-foreground>>;
+}
+
+.fb-btn-invisible:hover svg, .fb-btn-invisible:hover img {
+  fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.fb-panel footer .fb-fun-btns {
+  float: right;
+}
+
+.fb-search-drop-down a.tc-tiddlylink-missing {
+  font-style: normal;
+}

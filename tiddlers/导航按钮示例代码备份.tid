@@ -1,0 +1,20 @@
+created: 20240504100747903
+modified: 20240504125831155
+tags: 延时动作
+title: 导航按钮示例代码备份
+
+<<code src:"""\define navigate-to-tid() <$action-navigate $to="带有锚点的目标条目"/>
+
+\define scroll-to-anchor() <$action-sendmessage $message="tm-scroll" selector=".test-anchor" animationDuration="0"/>
+
+<$button>
+  导航到条目内书签锚点
+  <<navigate-to-tid>>
+  <$action-timeout delay="10" actions=<<scroll-to-anchor>>/>
+</$button>
+""" language:"tw">>
+
+参考id动作和id锚点写法：
+<<code src:"""<$action-sendmessage $message="tm-scroll" $name="selector" $value="#left" animationDuration="0"/>
+<span id="left"/>
+""" language:"tw">>

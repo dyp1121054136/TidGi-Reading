@@ -1,0 +1,34 @@
+title: $:/BatchCreation/Templates
+
+\import $:/Manager
+
+<div class="tc-manager-list">
+<$list filter="[all[shadows+tiddlers]prefix[$:/BatchCreation/Templates/]!has[draft.of]sort[]]">
+<$vars transclusion=<<currentTiddler>>>
+  <div class="tc-manager-list-item">
+    <$button popup=<<qualify "$:/state/batch-creation">> class="tc-btn-invisible tc-manager-list-item-heading xp-manager-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+      <$text text=<<currentTiddler>>/>
+      <$list filter="[all[current]!text[]]">
+        {{$:/xp/images/file}}
+      </$list>
+    </$button>
+    <$reveal state=<<qualify "$:/state/batch-creation">> type="nomatch" text="" default="" tag="div" class="tc-manager-list-item-content tc-popup-handle">
+      <div class="tc-manager-list-item-content-tiddler">
+        <$list filter="$:/Manager/ItemMain/Fields $:/Manager/ItemMain/WikifiedText $:/Manager/ItemMain/RawText" variable="listItem">
+      <<list-item-content-item>>
+        </$list>
+      </div>
+      <div class="xp-manager-item-content-sidebar">
+        <div class="xp-manager-item-tools">
+          <p>
+      <$button to=<<currentTiddler>> class="tc-btn-invisible">{{$:/core/images/link}} open</$button>
+      <$button message="tm-new-tiddler" param=<<currentTiddler>> class="tc-btn-invisible">{{$:/core/images/clone-button}} clone</$button>
+      <$button message="tm-edit-tiddler" param=<<currentTiddler>> class="tc-btn-invisible">{{$:/core/images/edit-button}} edit</$button>
+          </p>
+        </div>
+      </div>
+    </$reveal>
+  </div>
+</$vars>
+</$list>
+</div>

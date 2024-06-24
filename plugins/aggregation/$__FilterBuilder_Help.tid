@@ -1,0 +1,106 @@
+title: $:/FilterBuilder/Help
+
+\define btn(text) <$button class="fb-btn btn-small">$text$</$button>
+
+! Filter Builder
+
+: ''功能''：快速构建一个筛选表达式。
+: ''快捷键''：<kbd>ctrl-shift-X</kbd> （如果冲突可改为 <kbd>ctrl-shift-U</kbd>）
+
+!! 过滤器的用途
+
+# 编辑内容时，将过滤器用于宏和微件中，进行内容呈现。比如，目录宏、ListWidget、批量嵌入。
+# 使用过滤器筛选出一组条目，用于查阅或者管理（编辑、删除、导出等）。
+> 在浏览器搜索引擎中，可以使用操作符（通配符）对搜索结果进行过滤。比如 `-广告` `"整词搜索"`。而在 TiddlyWiki 中，可以使用过滤器来筛选维基条目。所以过滤器是呈现或者管理一组条目的桥梁。
+
+
+! 使用 Filter Builder
+
+前面的内容是思想建设，现在开始学习如何使用 $:/FilterBuilder。
+
+本着 Learning-by-doing 的原则，我们通过使用 $:/FilterBuilder 构建下面的筛选表达式，来学会使用它。
+
+```js
+[
+all[shadows+tiddlers]
+tag[$:/tags/PageControls]
+!suffix[r]
+prefix[$:/xp]
+has[caption]
+get[description]
+is[missing]
+titlecase[]
+]
++[limit[3]]
+```
+
+<<<
+你可以将此帮助条目在新窗口中打开。或者，在 XP 中最大化故事河后使用双栏，将 $:/FilterBuilder 在右栏中打开。
+<<<
+
+默认有些操作项目没有显示在输入面板中，点击 <<btn settings>> 按钮打开设置，将所有操作项目勾选进行显示。关闭设置。
+
+然后，通过下面 10 步创建该筛选表达式：
+
+<div style="line-height:1.75;">
+
+| |项目 |操作 |h
+| |!Start |此例中不做任何输入。Start 项目用于输入自定义的起始过滤器步骤或者自己常用的过滤器。''点击条目链接可查看配置文件''。<br>Start 和 all 两个项目的输入不会共存。 |
+|1 |!all |选择 `shadows+tiddlers`。点击输入面板底部的 <<btn run>> 按钮查看结果。  |
+|2 |!tag |使用 `page` 搜索系统标签，选择 `$:/tags/PageControls`。<br>备注：''点击 one more 按钮，可再添加一个操作符''。 |
+|3 |!prefix |下拉框中选择 `prefix[]`，然后编辑框中输入参数 `$:/xp`，结果为 `prefix[$:/xp]`。 |
+|4 |!suffix |下拉框中选择 `suffix[]`，然后编辑框中输入参数 `r`。<br>按住顶部的操作按钮 <<btn suffix[r]>> 将它拖到 <<btn "<$text text='prefix[$:/xp]'/>">> 上方放开，''调整操作步骤的顺序''。<br>由于 suffix ''操作符支持否定判断，点击操作按钮进行反转''：<<btn !suffix[r]>>。 |
+|5 |!has |点击 field 输入框，输入 `title` 按 <kbd>Enter</kbd> 键确认。再在右边的编辑框中，将 `title` 修改为 `caption`。 |
+|6 |!field |点击 field 输入框，选择或者输入 `class`。<br>将操作按钮 <<btn class[]>> 拖到输入面板头部（<<btn Initialize>> 按钮那一列），出现加号后放开，''删掉多余的操作步骤''。<br>备注：自定义的字段，可以手动在输入框中添加 `!` 进行否定判断。 |
+|7 |!get |选择 `description`。 |
+|8 |!is |选择 `missing`。 |
+|9 |!Operators |搜索 `case` 选择 `titlecase`。（重点）''Operators 可以搜索到 v5.3.3 的所有核心操作符。''<br>可以在 input 编辑框中手动输入多个操作步骤，这取决于你的手速。 |
+|10 |!Run |下拉框中选择 `+[limit[]]`，然后输入参数 `3`。 |
+| |!Search |此例中不做任何输入。Search 项目用于搜索条目。<br>与 all 项目配合使用，比默认的 $:/AdvancedSearch 还好用。 |
+
+</div>
+
+到此，目标筛选表达式已经生成。
+
+编辑框快捷键：
+
+* 如果项目有 <<.icon $:/core/images/new-button>> one more 按钮，在 input 编辑框中使用 <kbd>Enter</kbd> 键，等同于点击 one more 按钮。
+* 在 Search 项目的 search 编辑框中直接输入内容，然后按 <kbd>Enter</kbd> 键即可快速搜索。
+
+输入面板底部的功能按钮：
+
+# <<btn {{$:/core/images/copy-clipboard}}>>：复制生成的过滤器。
+# <<btn "open all">>：将结果列表在故事河中打开。
+# 联动按钮
+#* <<btn {{$:/xp/images/filtersearch}}>>：调出[[聚合视图|$:/FilterSearch]]。
+#* <<btn {{$:/xp/images/batch-modification}}>>：调出[[批量修改|$:/BatchModification]]。
+#* <<btn {{$:/plugins/kookma/commander/images/commander.svg}}>>：调出 [[Commander|$:/plugins/kookma/commander]]。
+#* <<btn {{$:/xp/images/sidebar-advanced-search}}>>：发送到侧栏高级查找。
+#* <<btn {{$:/core/images/advanced-search-button}}>>：调出高级查找。
+#> 当过滤器运行结果不为空时，才会显示联动按钮。联动是为了应用过滤器，它减少了中间环节，使得整个操作过程更加丝滑。这是一个杀手锏，相当好用！
+# <<btn history>>：查看历史记录。（点击上方三种按钮，会将筛选表达式存为历史）
+# <<btn use>>：在 WikiText 中使用过滤器。比如编写内容时，使用 list 微件列出条目列表。
+
+输入面板顶部的功能按钮：
+
+* <<btn Initialize>>：进行初始化，重置所有项目输入。
+
+恭喜恭喜，你学会了！
+
+
+! 其他说明
+
+Operators 项目可以搜索到 tiddlywiki v5.3.3 的所有核心操作符。后续版本新增的操作符，可以自行添加到对应分类的配置文件中。配置文件的标签为：<<tag '$:/tags/FilterBuilder/Operators'>>。
+
+!! 如何查看是否新增了操作符？
+
+我觉得翻看[[版本发布说明|https://tiddlywiki.com/static/Releases.html]]的方法效率低下，所以搞了一个「[[操作符检查表|$:/FilterBuilder/CheckTable]]」。
+
+将
+<$button
+    dragFilter="$:/FilterBuilder/CheckTable [[$:/tags/FilterBuilder/Operators]tagging[]!is[draft]] $:/config/FilterOperators/CommonOperators"
+    class="tc-btn-big-green tc-primary-btn tc-draggable"
+    style="padding:3px 20px;border-radius:1em;">
+{{$:/core/images/export-button}}<span class="tc-btn-text">Tiddlers</span>
+</$button>
+拖到官方文档中，导入条目后打开检查表，检查是否新增了 [[Filter Operators]] 。

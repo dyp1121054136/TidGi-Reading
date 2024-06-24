@@ -1,0 +1,12 @@
+caption: Make todo from selection
+condition: [all[shadows]prefix[$:/plugins/JJ/ToDo/]]
+created: 20220924180625020
+icon: $:/plugins/JJ/ToDo/icon
+markup-prefix: <<ToDo "
+markup-suffix: " "" "">>
+modified: 20221001115128379
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/make-todo
+tm-message: tm-markup
+
+hide

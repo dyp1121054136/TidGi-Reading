@@ -1,0 +1,234 @@
+tags: $:/tags/Macro/TagHandler
+title: $:/tag-handler/macros
+
+\define taghandler-list-aggregation-filter()
+<$list filter="[[$:/tags/TagHandler]tagging[]!is[draft]has[filter]get[filter]]" variable="listItem">
+<$text text=<<listItem>>/>
+</$list>
+ +[limit[1]]
+\end
+
+\define taghandler-button-content()
+\whitespace trim
+<$set name="hasStatusTag" filter="[all[current]tag[Planning]] [all[current]tag[Ongoing]] [all[current]tag[Completed]]" value="yes" emptyValue="no">
+<$reveal default=<<hasStatusTag>> type="match" text="no">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+<span class="xp-indicator-muted">{{$:/xp/images/status-dot}}</span>
+</$list>
+</$reveal>
+<$reveal default=<<hasStatusTag>> type="match" text="yes">
+<$list filter="[all[current]tag[Planning]]">
+<span class="xp-indicator-purple">{{$:/xp/images/status-dot}}</span>
+</$list>
+<$list filter="[all[current]tag[Ongoing]]">
+<span class="xp-indicator-orange">{{$:/xp/images/status-dot}}</span>
+</$list>
+<$list filter="[all[current]tag[Completed]]">
+<span class="xp-indicator-green">{{$:/xp/images/status-dot}}</span>
+</$list>
+</$reveal>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text={{$:/language/Buttons/TagHandler/Caption}}/>
+</span>
+</$list>
+</$set>
+\end
+
+\define taghandler-button()
+\whitespace trim
+<$reveal state="$:/config/TagHandler/Position" type="nomatch" text="hide" default="right">
+<$list filter="[all[current]tag[Star]] [all[current]!is[system]!is[shadow]has[created]!has:field[.taghandler]]">
+<span class="xp-taghandler-button tc-tag-list-item tc-small-gap-right">
+<!-- Star Button -->
+<$list filter="[all[current]tag[Star]]">
+<div class="xp-tag-handler-item">
+<$button tooltip="Unstar" class="tc-btn-invisible tc-btn-mini tc-tiny-gap-right">
+<$action-confirm $message="Are you sure you wish to unstar this tiddler?">
+<span class="xp-indicator-star">{{$:/core/images/star-filled}}</span>
+<$action-listops $tags="-Star"/>
+</$action-confirm>
+</$button>
+</div>
+</$list>
+<!-- Tag Handler Button -->
+<$list filter="[all[current]!is[system]!is[shadow]has[created]!has:field[.taghandler]]">
+<div class="xp-tag-handler-item">
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="popup">
+<$button popup=<<tagHandlerState>> tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class="tc-btn-invisible tc-btn-mini" selectedClass="tc-selected">
+<$macrocall $name="taghandler-button-content" mode="inline"/>
+</$button>
+</$reveal>
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="sticky">
+<$reveal state=<<tagHandlerState>> type="match" text="" default="">
+<$button set=<<tagHandlerState>> setTo="yes" tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class="tc-btn-invisible tc-btn-mini" selectedClass="tc-selected">
+<$macrocall $name="taghandler-button-content" mode="inline"/>
+</$button>
+</$reveal>
+<$reveal state=<<tagHandlerState>> type="nomatch" text="" default="">
+<$button set=<<tagHandlerState>> setTo="" tooltip={{$:/language/Buttons/TagHandler/Hint}} aria-label={{$:/language/Buttons/TagHandler/Caption}} class="tc-btn-invisible tc-btn-mini" selectedClass="tc-selected">
+<$macrocall $name="taghandler-button-content" mode="inline"/>
+</$button>
+</$reveal>
+</$reveal>
+</div>
+</$list>
+</span>
+</$list>
+</$reveal>
+\end
+
+\define taghandler-aggregation-preset-tags(macros,state)
+\import $macros$
+\whitespace trim
+<$list filter="[all[current]tag<aggregationTag>]">
+<$wikify text=<<listPresetCtags>> name="presetCtags">
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<div class="xp-tag-handler">
+<table class="tc-view-field-table">
+<tbody>
+<$list filter=<<statustag-filter>> variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted">Status</td>
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<<statusItems>>
+</span>
+</td>
+</tr>
+</$list>
+<$list filter=<<aggr-category>> variable="listItem">
+<$macrocall $name="aggrFilterCategory" title={{{ [<listItem>split[/]last[1]sentencecase[]] }}} configTiddler=<<listItem>>/>
+</$list>
+<$list filter="[enlist<tagsInUse>] -[enlist<presetCtags>] -[enlist<statusTag>] +[limit[1]]" variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted">Others</td>
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>sort[]] -[enlist<presetCtags>] -[enlist<statusTag>]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+</$wikify>
+</$wikify>
+</$list>
+\end
+
+\define TTTButton()
+\whitespace trim
+<span style="font-size:.85em;">
+<$reveal tag="span" state=<<TTTState>> type="nomatch" text="show">
+<$button set=<<TTTState>> setTo="show" tooltip="Show Tag Tagging Tags" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon xp-indicator-muted">{{$:/core/images/chevron-down}}</span>
+</$button>
+</$reveal>
+<$reveal tag="span" state=<<TTTState>> type="match" text="show">
+<$button set=<<TTTState>> setTo="hide" tooltip="Hide Tag Tagging Tags" class="tc-btn-invisible tc-btn-mini">
+<span class="tc-btn-icon xp-indicator-muted">{{$:/core/images/chevron-up}}</span>
+</$button>
+</$reveal>
+</span>
+\end
+
+\define taghandler-ttt-inner()
+<div class="xp-tag-handler">
+<table class="tc-view-field-table">
+<tbody>
+<$list filter=<<statustag-filter>> variable="ignore">
+<tr class="tc-view-field">
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<span class="tc-muted">Status:</span><<statusItems>>
+</span>
+</td>
+</tr>
+</$list>
+<$list filter=<<current-tags-nostatus-filter>> variable="listTag">
+<$list filter="[tag<listTag>tags[]] -[all[current]tags[]] +[limit[1]]" variable="ignore">
+<tr class="tc-view-field">
+<th class="tc-view-field-name tc-muted" style="text-align:left;"><$text text=<<listTag>>/></th>
+</tr>
+<tr class="tc-view-field">
+<td class="tc-view-field-value">
+<span class="xp-aggrfilter-category-item">
+<$list filter="[<listTag>tagging[]tags[]!is[system]sort[]] [<listTag>tagging[]tags[]is[system]sort[]] -[all[current]tags[]]" variable="listItem">
+<$macrocall $name="aggrfilteritem" item=<<listItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list></$list>
+</tbody>
+</table>
+</div>
+\end
+
+\define taghandler-ttt()
+\whitespace trim
+<$reveal state=<<TTTState>> type="nomatch" text="show">
+<$set name="hasStatusTag" filter="[all[current]tag[Planning]] [all[current]tag[Ongoing]] [all[current]tag[Completed]]" value="yes" emptyValue="no">
+<$reveal default=<<hasStatusTag>> type="match" text="yes" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<$reveal state=<<qualify "$:/state/popup/tags-auto-complete">> type="nomatch" text="" default="">
+<<taghandler-tag-picker-results>>
+</$reveal>
+<<taghandler-status-table>>
+
+</$reveal>
+<$reveal default=<<hasStatusTag>> type="match" text="no">
+<$reveal state=<<qualify "$:/state/popup/tags-auto-complete">> type="nomatch" text="" default="" tag="div" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+<<taghandler-tag-picker-results>>
+</$reveal>
+</$reveal>
+</$set>
+</$reveal>
+<$reveal state=<<TTTState>> type="match" text="show" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<$reveal state=<<qualify "$:/state/popup/tags-auto-complete">> type="nomatch" text="" default="">
+<<taghandler-tag-picker-results>>
+</$reveal>
+<<taghandler-ttt-inner>>
+
+</$reveal>
+\end
+
+\define taghandler-close-button()
+<$reveal state="$:/config/TagHandler/Position" type="match" text="left" default="right">
+<$reveal state="$:/config/TagHandler/Mode" type="match" text="sticky">
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;font-size:1.25em;margin-top:2px;">
+<$button set=<<tagHandlerState>> setTo="" tooltip="Exit" aria-label="exit tag handler" class="tc-btn-invisible">
+{{$:/xp/images/exit}}
+</$button>
+</div>
+</div>
+</$reveal></$reveal>
+\end
+
+\define taghandler-standard()
+<$macrocall $name='taghandler-edit-tags-template' tttButton='yes'/>
+<<taghandler-close-button>>
+<<taghandler-ttt>>
+\end
+
+\define taghandler-aggregation()
+\whitespace trim
+<<taghandler-edit-tags-template>>
+<<taghandler-close-button>>
+<$reveal state=<<tagHandlerState>> type="nomatch" text="" tag="div" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+<$reveal state=<<qualify "$:/state/popup/tags-auto-complete">> type="nomatch" text="" default="">
+<<taghandler-tag-picker-results>>
+</$reveal>
+<$list filter="[[$:/tags/TagHandler]tagging[]!is[draft]has[text]get[text]]" variable="listItem">
+<$macrocall $name="taghandler-aggregation-preset-tags" macros=<<listItem>>/>
+</$list>
+</$reveal>
+\end
+
+<pre><$view field="text"/></pre>

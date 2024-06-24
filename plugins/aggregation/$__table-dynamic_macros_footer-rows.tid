@@ -1,0 +1,37 @@
+tags: $:/tags/Table/Macro
+title: $:/table-dynamic/macros/footer-rows
+
+\define footer-rows-button()
+\whitespace trim
+<span class="tc-search">
+<$button tooltip="Select footer rows" class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
+<span style="font-size:0.68em;vertical-align:middle;">
+{{$:/core/images/menu-button}}
+</span>
+<$reveal state=<<rowsState>> type="nomatch" text="yes">
+<$action-setfield $tiddler=<<rowsState>> text="yes"/>
+</$reveal>
+<$reveal state=<<rowsState>> type="match" text="yes">
+<$action-setfield $tiddler=<<rowsState>> text="no"/>
+</$reveal>
+</$button>
+</span>
+\end
+
+\define select-footer-rows()
+<$reveal state=<<rowsState>> type="match" text="yes" animate="yes">
+<$tiddler tiddler=<<rowsTiddler>>>
+<$list filter="[range[0,7]]" variable="row">
+<$radio value=<<row>> actions=<<select-footer-rows-actions>> default=0> <<row>></$radio>&nbsp;
+</$list>
+</$tiddler>
+</$reveal>
+\end
+
+\define select-footer-rows-actions()
+<$action-setfield $tiddler=<<rowsState>> text="no"/>
+<$reveal state=<<footerTiddler>> type="match" text="">
+<$action-createtiddler $basetitle=<<footerTiddler>> $template="$:/table-dynamic/templates/footer" />
+</$reveal>
+\end
+

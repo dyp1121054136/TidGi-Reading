@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 所有条目：含有标签……
+filter: [all[shadows+tiddlers]tag[]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/all+tag
+
+{{!!filter}}

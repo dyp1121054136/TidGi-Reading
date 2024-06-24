@@ -1,0 +1,12 @@
+tags: $:/tags/Table/Macro
+title: $:/table-dynamic/macros/toggle-edit-view
+
+\define toggle-edit-view-trim()
+\whitespace trim
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit">
+<$button class="tc-btn-invisible tc-tiddlylink" setTitle=<<tempTableEdit>> setIndex="mode" setTo="edit">{{$:/core/images/edit-button}}</$button>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit">
+<$button class="tc-btn-invisible tc-tiddlylink" setTitle=<<tempTableEdit>> setIndex="mode" setTo="view">{{$:/core/images/done-button}}</$button>
+</$reveal>
+\end

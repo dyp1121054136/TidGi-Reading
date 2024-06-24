@@ -1,0 +1,65 @@
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.mulu-nav-top {
+  padding-left: 80%;
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.mulu-nav-top {
+  padding-left: 60%;
+}
+}
+
+.mulu-nav-top {
+  width: 100%;
+  margin-top: 1em;
+  padding-right: 5px;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  text-underline-offset: 0.2em;
+  display: table;
+  table-layout: fixed;
+}
+
+.mulu-nav-top > div {
+  display: table-cell;
+  vertical-align: top; /* middle; */
+  /* 设置一个较小的宽度，或者根据需要设置为具体的像素值 */
+  width: 1%; 
+  /* 如果需要，可以调整内外边距 */
+  padding: 0; 
+  margin: 0;
+}
+
+.mulu-nav-left-top {
+  text-align: right;
+}
+
+.mulu-nav-center-top {
+  text-align: right;
+}
+
+.mulu-nav-right-top {
+  text-align: right;
+}
+
+.mulu-nav-left-top,
+.mulu-nav-right-top {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 50px; 
+}

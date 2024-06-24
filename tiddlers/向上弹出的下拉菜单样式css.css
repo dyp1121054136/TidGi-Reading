@@ -1,0 +1,88 @@
+.zhu {
+  text-align: center;
+  font-weight: bold; /* 加粗文本 */
+  font-size: 1.2em; /* 增大字号 */
+}
+
+.dropdown-mulu {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content-mulu {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  text-align: left;
+  font-size: 0.9em;
+  z-index: 999;
+  padding: 15px 50px;
+  max-height: 65vh; /* 限制最大高度为视口高度的百分比 */
+  overflow-y: auto; /* 如果内容过多，允许滚动 */
+  border-radius: 10px;
+  margin-bottom: 30px; /* 提供向下的一些空间，使得菜单向上弹出 */
+}
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.dropdown-content-mulu {
+  bottom: auto; /* 取消底部定位 */
+  top: 50%; /* 顶部位置设置为50% */
+  left: 50%; /* 水平居中 */
+  transform: translate(-50%, -50%); /* 水平和垂直居中 */
+}
+
+.dropdown-content-mulu {
+  min-width: 400px;
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.dropdown-content-mulu {
+  top: auto; /* 取消顶部定位 */
+  bottom: 100%; /* 底部定位，使得菜单在触发元素的上方 */
+  left: 50%; /* 水平居中 */
+  transform: translateX(-50%); /* 仅水平居中 */
+  }
+}
+
+.dropdown-content-mulu a {
+  color: black; 
+  padding: 2px 6px;
+  text-decoration: none;
+  display: block;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  text-underline-offset: 0.2em;  /*下划线与文字间距 */
+}
+
+/* 选中链接时样式 */
+.dropdown-content-mulu a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropbtn-mulu {
+/* font-size: 150%; */
+  opacity: 0.6;
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+}
+
+.dropbtn-mulu:hover {
+  opacity: 1;
+}
+
+.dropdown-content-mulu::-webkit-scrollbar-thumb {
+  background-color: transparent; 
+}

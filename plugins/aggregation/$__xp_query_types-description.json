@@ -1,0 +1,17 @@
+{
+    "ql": "Query links: A",
+    "ql+": "Query links: A+B",
+    "ql++": "Query links: A+B+C",
+    "ql.": "Query links: A.B",
+    "ql..": "Query links: A.B.C",
+    "ql-": "Query links: A-X",
+    "qm": "Query mentions: A",
+    "qm+": "Query mentions: A+B",
+    "qm.": "Query mentions: A.B",
+    "qm-": "Query mentions: A-X",
+    "qm-link": "Query mentions: A-X-link",
+    "qp": "Query prefix: A",
+    "qt": "Query transclusion: A",
+    "qt.": "Query transclusion: A.B",
+    "qt-": "Query transclusion: A-X"
+}

@@ -1,0 +1,16 @@
+caption: {{$:/core/images/tag-button}}
+created: 20200908091242441
+creator: Tony
+description: Indicates if a tiddler is a Tag and the count of its use  [[more|$:/PSaT/tag-indicator]]
+list-before: 
+modified: 20240415074717462
+modifier: Tony
+tags: $:/tags/TagDropdown 标签下拉菜单
+title: $:/PSaT/tag-indicator/tag-dropdown
+
+<$list filter="[all[current]is[tag]]" variable=nul>
+<$button class="tc-btn-invisible" tooltip="该标签的子条目数">
+<span style="font-size: 85%;">该标签有<$text text={{{ [tag<currentTiddler>count[]] }}}/>个子条目</span>
+
+</$button>
+</$list>

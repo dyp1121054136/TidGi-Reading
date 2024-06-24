@@ -1,0 +1,32 @@
+created: 20160609120738579
+creator: twMat
+modified: 20240119084217477
+modifier: kl
+source: https://linkstyle.tiddlyspot.com/
+tags: $:/tags/Stylesheet
+title: $:/xp/LinkStyle
+type: text/vnd.tiddlywiki
+
+\define linkstyle()
+<$set name="uri" value=<<makedatauri """$(tid)$""" "text/plain">> >
+<$list variable="urititle" filter="""[<uri>removeprefix[data:text/plain,]]""">
+<style>
+a[href='#<<urititle>>'] { color:$(color)$; <<style>> }
+.tc-sidebar-lists a[href='#<<urititle>>'] { color:$(color)$; <<style>> }
+a[href="#<<urititle>>"]:before { <<style-before>> }
+a[href="#<<urititle>>"]:after { <<style-after>> }
+</style>
+</$list>
+</$set>
+\end
+
+<$list filter="""[all[shadows+tiddlers]has[linkcolor]] [all[shadows+tiddlers]has[linkstyle]] [all[shadows+tiddlers]has[linkstyle-before]] [all[shadows+tiddlers]has[linkstyle-after]]""">
+<$vars tid={{!!title}}
+            color={{!!linkcolor}}
+            style={{!!linkstyle}}
+            style-before={{!!linkstyle-before}}
+            style-after={{!!linkstyle-after}}
+>
+<<linkstyle>>
+</$vars>
+</$list>

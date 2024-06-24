@@ -1,0 +1,10 @@
+caption: {{$:/core/images/tiddler-top}} 滚动到条目顶部
+created: 20240326033759920
+description: 滚动到故事河顶部
+modified: 20240326062614368
+tags: 按钮 上下滚动
+title: $:/core/ui/Buttons/tiddler-top
+
+<$button class="tc-btn-invisible " tooltip="滚动到条目顶部">{{$:/core/images/tiddler-top|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".tiddler-top" animationDuration="0"/>
+</$button>

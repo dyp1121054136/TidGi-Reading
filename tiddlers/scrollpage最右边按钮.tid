@@ -1,0 +1,9 @@
+created: 20240517030023139
+modified: 20240517032448117
+tags: 滚动翻页
+title: scrollpage最右边按钮
+
+<$button class="tc-btn-invisible" tooltip="scrollpage最右边">
+<$action-sendmessage $message="tm-scrollpage" direction="rightMost" scrollTime="0" scrollContainerSelector=".tc-scrollpage"/>
+{{$:/core/images/tiddler-right-scrollpage|23px}}
+</$button>

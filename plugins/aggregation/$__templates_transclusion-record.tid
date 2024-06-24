@@ -1,0 +1,43 @@
+title: $:/templates/transclusion-record
+
+\define copyButton()
+\whitespace trim
+<$button message="tm-copy-to-clipboard" param={{!!text}} tooltip="Copy code" class="tc-btn-invisible tc-btn-mini">
+{{$:/core/images/copy-clipboard}}
+</$button>
+\end
+
+\define deleteButton()
+\whitespace trim
+<$button tooltip="Delete this record" class="tc-btn-invisible tc-btn-mini">
+{{$:/core/images/delete-button}}
+<$list filter="[{!!id}] [{!!caption}] +[count[]match[2]]" variable="ignore">
+<$action-confirm $message="Do you wish to delete this record?">
+<$let macrocall={{!!text}}>
+<$list filter="[!prefix[$:/config]!prefix[$:/state]!tag[$:/tags/BatchCreation/Record]search:text{!!caption}search:text:literal,casesensitive[qtable]]">
+<$action-setfield text={{{ [{!!text}search-replace:g<macrocall>,[]] }}}/>
+</$list>
+<$action-deletetiddler $filter="[prefix<configPrefix>] [prefix<statePrefix>] [prefix{!!caption}]"/>
+</$let>
+</$action-confirm>
+</$list>
+</$button>
+\end
+
+\whitespace trim
+
+<div class="xp-card-record">
+<$let
+  configPrefix={{{ [[$:/config/quicktable/]addsuffix{!!id}] }}}
+  statePrefix={{{ [[$:/state/quicktable/]addsuffix{!!id}] }}}>
+
+<$link><b><$view field="id"><$view field="title"/></$view></b></$link><i class="tc-small-gap"/><span class="tc-tiddler-controls"><<deleteButton>></span>
+
+<span class="tc-tiddler-controls" style="float:right;"><<copyButton>></span><pre style="border:none;"><$text text={{!!text}}/></pre>
+
+<$list filter="[!tag[$:/tags/BatchCreation/Record]search:text{!!caption}search:text:literal,casesensitive[qtable]]">
+<$link class="tc-small-gap"/>
+</$list>
+
+</$let>
+</div>

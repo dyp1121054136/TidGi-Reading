@@ -1,0 +1,14 @@
+{
+    "languages": [
+        "zh-Hans"
+    ],
+    "plugins": [
+        "tiddlywiki/highlight",
+        "tiddlywiki/jszip",
+        "tiddlywiki/mobiledragdrop"
+    ],
+    "themes": [
+        "tiddlywiki/snowwhite",
+        "tiddlywiki/vanilla"
+    ]
+}

@@ -1,0 +1,17 @@
+caption: Template
+description: Using the template
+tags: $:/tags/BatchCreation
+title: $:/BatchCreation/Items/Template
+
+\whitespace trim
+<td><$link to="$:/BatchCreation/Templates">{{!!caption}}</$link> </td>
+<td>
+<$tiddler tiddler=<<editTid>>>
+  <$select class="fb-select">
+    <$list filter="[all[shadows+tiddlers]prefix[$:/BatchCreation/Templates/]!is[draft]sort[]]">
+    <option value=<<currentTiddler>>> <$transclude field="caption"/> </option>
+    </$list>
+  </$select>
+</$tiddler>
+<<bcTemplateButton>>
+</td>

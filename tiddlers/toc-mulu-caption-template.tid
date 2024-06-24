@@ -1,0 +1,25 @@
+code-body: yes
+created: 20220815090403473
+modified: 20240424141438789
+tags: 目录工具
+title: toc-mulu-caption-template
+
+\whitespace trim
+
+\define extraField() mulu-note
+
+\define toc-default-caption()
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu-kong()  ^\s+
+\define mulu0() 
+\whitespace trim
+
+<$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>search-replace:g:regexp<mulu-kong>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify>
+\end
+
+<$list filter="[all[current]has<extraField>]" variable=ignore emptyMessage=<<toc-default-caption>>>
+<<toc-default-caption>>
+<span class="extra-field tc-big-gap-left" ><$transclude field=<<extraField>>/></span> 
+</$list>
+

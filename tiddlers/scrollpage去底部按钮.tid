@@ -1,0 +1,9 @@
+created: 20240516180359833
+modified: 20240516183934970
+tags: 滚动翻页
+title: scrollpage去底部按钮
+
+<$button class="tc-btn-invisible" tooltip="scrollpage去底部">
+<$action-sendmessage $message="tm-scrollpage" direction="bottom" scrollTime="0" scrollContainerSelector=".tc-scrollpage"/>
+{{$:/core/images/tiddler-bottom-scrollpage|23px}}
+</$button>

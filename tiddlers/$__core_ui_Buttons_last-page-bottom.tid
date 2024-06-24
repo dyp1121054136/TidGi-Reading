@@ -1,0 +1,23 @@
+caption: 底部目录-上一页
+code-body: yes
+created: 20240401123117975
+modified: 20240422160650064
+tags: 按钮 目录工具
+title: $:/core/ui/Buttons/last-page-bottom
+
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu0() 
+
+<span class="lian caption-title">
+<$list filter="[enlist{!!list}] :else[tag{!!title}sort{目录排序字段}] +[before<currentNavStep>]">
+<$link to=<<currentTiddler>> tooltip={{!!title}}>« 上一页
+<br/>
+<$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify>
+</$link>
+</$list>
+</span>
+
+<!--
+search-replace:g:regexp<mulu1>,<mulu0>
+-->

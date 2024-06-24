@@ -1,0 +1,10 @@
+created: 20200603023805476
+creator: dev
+modified: 20240407154633388
+modifier: dev
+tags: $:/tags/ViewToolbar2 标签下拉菜单
+title: $:/PSaT/tagging-here/pill
+
+<$list filter="[all[current]tagging[]limit[1]]" variable=nul>
+{{||$:/PSaT/tagging-here/TagTemplate}}
+</$list>

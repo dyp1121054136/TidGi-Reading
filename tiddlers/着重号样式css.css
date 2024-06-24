@@ -1,0 +1,12 @@
+.dot
+{
+font-style: normal;
+-webkit-text-emphasis: filled triangle;
+-webkit-text-emphasis-position:under;
+text-emphasis: filled triangle; 
+
+/* 圆形circle; 同心圆double-circle; 点dot; 三角形triangle;  */
+/* filled实心; 空心open; */
+
+text-emphasis-position:under right;
+}

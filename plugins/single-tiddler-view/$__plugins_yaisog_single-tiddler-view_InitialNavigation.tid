@@ -1,0 +1,6 @@
+created: 20230521171428495
+modified: 20230521172644221
+tags: $:/tags/StartupAction
+title: $:/plugins/yaisog/single-tiddler-view/InitialNavigation
+
+<$action-setfield $tiddler="$:/HistoryList" $field="current-tiddler" $value={{{ [subfilter{$:/DefaultTiddlers}first[]] }}} />

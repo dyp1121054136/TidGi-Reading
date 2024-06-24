@@ -1,0 +1,7 @@
+caption: PageTemplate
+description: 页面模板
+filter: [all[shadows+tiddlers]tag[$:/tags/PageTemplate]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/PageTemplate
+
+{{!!filter}}

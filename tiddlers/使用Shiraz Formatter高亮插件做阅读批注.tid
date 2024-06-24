@@ -1,0 +1,59 @@
+created: 20231221064406059
+modified: 20240203063808783
+tags: 教程
+title: 使用Shiraz Formatter高亮插件做阅读批注
+
+需要安装插件：
+[[$:/plugins/kookma/shiraz]]和[[$:/plugins/kookma/shiraz-formatter]]
+
+并拖动 [[$:/highlight/macro]] 和 [[$:/highlight/css]] 到自己的tiddlywiki
+
+<details>
+<summary>同时高亮文字颜色和背景颜色</summary>
+<blockquote>
+"""
+<<code src:"""<<thl "文本" 文字颜色代码 背景颜色代码>>
+<<thlp "文本" 文字颜色代码 背景颜色代码>>
+""" language:"tw">>
+<<thl "红运满杯车厘子 Pop Cherry" #775360 #ECCFCF>>
+<<thlp "红运满杯车厘子 Pop Cherry" #775360 #ECCFCF>>
+"""
+</blockquote>
+</details>
+
+<details>
+<summary>添加文字阴影</summary>
+<blockquote>
+"""
+<<code src:"""<<tcs "文本" 文字颜色代码 阴影颜色代码>>
+<<thls "文本" 文字颜色代码 背景颜色代码 阴影颜色代码>>
+<<thlps "文本" 文字颜色代码 背景颜色代码 阴影颜色代码>>
+""" language:"tw">>
+<<tcs "抹茶派派-草绿&森绿" #ABC255 #4A5E27>>
+<<thls "抹茶派派-草绿&森绿" #ABC255 #ECDFA6 #D18C9B>>
+<<thlps "抹茶派派-草绿&森绿" #ABC255 #ECDFA6 #D18C9B>>
+"""
+</blockquote>
+</details>
+
+<details>
+<summary>渐变文字</summary>
+<blockquote>
+"""
+<<code src:"""<<tcj "文本" 颜色代码1 颜色代码2>>
+""" language:"tw">>
+<<tcj "烟雨入江南，山水如墨染。" #B3C198 #EFCBB9>>
+"""
+</blockquote>
+</details>
+
+<details>
+<summary>高亮文字颜色并加下划线</summary>
+<blockquote>
+"""
+<<code src:"""<<tu "文本" 文字颜色代码>>
+""" language:"tw">>
+<<tu "这是一句话。" #CF6862>>
+"""
+</blockquote>
+</details>

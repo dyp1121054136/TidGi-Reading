@@ -1,0 +1,3 @@
+title: $:/xp/ui/EditTemplate/fieldEditor/date
+
+<$edit-text type="date" tiddler=<<currentTiddler>> field=<<currentField>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} cancelPopups="yes"/>

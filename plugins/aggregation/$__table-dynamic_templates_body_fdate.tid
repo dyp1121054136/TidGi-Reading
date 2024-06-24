@@ -1,0 +1,21 @@
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: fdate
+title: $:/table-dynamic/templates/body/fdate
+
+\define showCell()
+<$set tiddler=<<currentRecord>> field=<<currentColumn>> name=fdate>
+<$text text={{{[<fdate>split[-]split[.]join[]format:date[YYYY.0MM.0DD]]}}} />
+</$set>
+\end
+\define showCell_Locked() <span style="font-style:oblique;"><<showCell>></span>
+\define edit_fdate() <$edit-text tag=input type=date tiddler=<<currentRecord>> field=<<currentColumn>>/>
+
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td" class="shiraz-dtable-date">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<edit_fdate>> >
+ <<showCell_Locked>>
+</$list>
+</$reveal>

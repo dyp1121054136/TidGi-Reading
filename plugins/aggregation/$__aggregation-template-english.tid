@@ -1,0 +1,33 @@
+.taghandler: 
+caption: {{$:/xp/images/aggregation-nc}} ENGLISH
+color: #bbb
+icon: $:/xp/images/aggregation-nc
+title: $:/aggregation-template-english
+
+<$vars aggregationTag="""English""" uiTitle="""$:/config/xp/aggregation/ui/english""">
+
+<div class="tc-sidebar-lists xp-float-right">
+<$button tooltip="Create a new english" aria-label="new english" class="tc-btn-invisible tc-btn-mini">
+<$action-sendmessage
+  $message="tm-new-tiddler"
+  title=<<now "english/YYYY0MM0DD0hh0mm0ssXXX">>
+  tags={{{ [<aggregationTag>format:titlelist[]] }}}
+  caption="english"
+  color=""
+  description=""
+  importance=""
+/>
+<span class="tc-btn-icon">{{$:/core/images/new-button}}</span> new english
+</$button>&emsp;<<aggregationCount>>&emsp;<<help-button-to "$:/english-help">>
+</div>
+
+<$macrocall
+  $name="aggregation-with-tag"
+  state="aggregation-english"
+  class=""
+  cardTemplate=""
+  searchClass="xp-search-english"
+  promptTiddler=""
+/>
+
+</$vars>

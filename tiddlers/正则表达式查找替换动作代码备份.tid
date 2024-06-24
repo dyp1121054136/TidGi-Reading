@@ -1,0 +1,32 @@
+created: 20240501030409774
+modified: 20240502030617119
+tags: 正则表达式查找替换
+title: 正则表达式查找替换动作代码备份
+
+查找替换：
+<<code src:"""<$action-sendmessage $message="tm-replace" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} replace={{$:/state/searchNreplace/replace}} global={{$:/state/searchNreplace/global}}
+regex={{$:/state/searchNreplace/regex}} prefix={{$:/state/searchNreplace/prefix}} suffix={{$:/state/searchNreplace/suffix}}/>
+""" language:"tw">>
+计数：
+<<code src:"""<$action-sendmessage $message="tm-count" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} regex={{$:/state/searchNreplace/regex}} countTitle="$:/state/searchNreplace/count"/>
+""" language:"tw">>
+撤销：
+<<code src:"""<$action-sendmessage $message="tm-undo" source=<<currentTiddler>> undo={{$:/state/searchNreplace/undo}}/>
+""" language:"tw">>
+重做：
+<<code src:"""<$action-sendmessage $message="tm-redo" source=<<currentTiddler>> redo={{$:/state/searchNreplace/redo}}/>
+""" language:"tw">>
+记录位置信息(已弃用)：
+<<code src:"""<$action-sendmessage $message="tm-find-positions" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} regex={{$:/state/searchNreplace/regex}} targetTitle="$:/state/searchNreplace/target" currentMatchId={{$:/state/currentMatchId}}/>
+""" language:"tw">>
+添加锚点：
+<<code src:"""<$action-sendmessage $message="tm-add-suffix" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} regex={{$:/state/searchNreplace/regex}} countTitle="$:/state/searchNreplace/count"/>
+""" language:"tw">>
+清除锚点：
+<<code src:"""<$action-sendmessage $message="tm-clear-suffix" source=<<currentTiddler>>/>
+""" language:"tw">>
+保存唯一匹配结果并粘贴到替换输入框：
+<<code src:"""<$action-sendmessage $message="tm-get-match" source=<<currentTiddler>> search={{$:/state/searchNreplace/search}} regex={{$:/state/searchNreplace/regex}} stateTitle="$:/state/searchNreplace/quick-edit"/>
+
+<$action-setfield $tiddler="$:/state/searchNreplace/replace" $field="text" $value={{$:/state/searchNreplace/quick-edit}}/>
+""" language:"tw">>

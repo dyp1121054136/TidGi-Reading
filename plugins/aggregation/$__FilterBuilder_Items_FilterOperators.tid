@@ -1,0 +1,15 @@
+caption: Operators
+description: all core operators (tiddlywiki v5.3.3)
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/FilterOperators
+
+<td class="fb-item-name"><<getCaption>></td>
+<td class="fb-item-input">
+  {{$:/FilterBuilder/Search/FilterOperators}}
+  <span class="fb-item-input-textbox">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="filter"
+      type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"
+      inputCancelActions=<<fb-cancel-input-actions>> inputAcceptActions=<<fb-input-accept-actions>>/>
+  </span>
+</td>
+<td class="fb-item-add"><<operatorsOneMoreButton>></td>

@@ -1,0 +1,15 @@
+caption: has
+description: filter the input by field existence
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/has
+
+<td class="fb-item-name"><<getCaption>></td>
+<td class="fb-item-input">
+  {{$:/FilterBuilder/Search/HasFields}}
+  <span class="fb-item-input-textbox">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="filter"
+      type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"
+      inputCancelActions=<<fb-cancel-input-actions>> inputAcceptActions=<<fb-input-accept-actions>>/>
+  </span>
+</td>
+<td class="fb-item-add"><<hasOneMoreButton>></td>

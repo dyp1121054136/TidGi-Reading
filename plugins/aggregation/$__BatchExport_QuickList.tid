@@ -1,0 +1,14 @@
+title: $:/BatchExport/QuickList
+
+\define config-base() $:/config/xp/batchexport/Items/Visibility/
+\whitespace trim
+<div style="padding:3px;line-height:22px;">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter/BatchExport]!has[draft.of]] :filter[lookup<config-base>!match[hide]]">
+<$button class="tc-btn-invisible tc-btn-mini" style="width:100%;text-align:left;" tooltip={{!!description}}>
+	<$action-setfield $tiddler="$:/temp/batchexport" text={{!!filter}}/>
+	<$action-setfield $tiddler="$:/temp/batchexport/input" text={{!!filter}}/>
+	<$action-setfield $tiddler="$:/temp/batchexport/refresh" text="yes"/>
+<span class="tc-icon-wrapper" style="white-space:nowrap;"><$view field="caption" format="plainwikified"/></span>
+</$button>
+</$list>
+</div>

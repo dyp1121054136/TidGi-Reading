@@ -1,0 +1,36 @@
+created: 20240430160250446
+modified: 20240507153025898
+tags: 清空 正则表达式查找替换
+title: 批量清空查找替换
+
+<$set name="clearSearch" value="
+[[$:/state/searchNreplace/search]]
+[[$:/state/searchNreplace/replace]]
+[[$:/state/searchNreplace/prefix]]
+[[$:/state/searchNreplace/suffix]]
+[[$:/state/searchNreplace/count]]
+[[$:/state/character-count/total]]
+[[$:/state/character-count/words]]
+[[$:/state/character-count/chinese]]
+[[$:/state/character-count/punctuation]]
+[[$:/state/character-count/letters]]
+[[$:/state/character-count/numbers]]
+">
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip=批量清空查找替换>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+清空
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text=批量清空查找替换/>
+</span>
+</$list>
+
+<$list filter="[enlist<clearSearch>]" variable="clearSearch-tid">
+<$action-setfield $tiddler=<<clearSearch-tid>> $field="text" $value=""/>
+</$list>
+</$button>
+</span>
+
+</$set>

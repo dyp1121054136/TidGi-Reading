@@ -1,0 +1,56 @@
+created: 20240501125016908
+modified: 20240520021101723
+tags: $:/tags/Macro 正则表达式查找替换 查找结果汇总
+title: 查找结果锚点宏
+
+<!-- <<result 001>> -->
+<!-- 查找结果锚点 -->
+\define result(number)
+<sup class="re-color"><!-- {{$:/core/images/search-replace|0.9em}} -->$number$</sup><span class="result-$number$"></span>
+\end
+
+<!-- 
+设置偏移量
+result-anchor
+ -->
+
+<!-- 查找结果跳转按钮 -->
+\define aresult(number)
+<$button class="tc-btn-invisible" tooltip="滚动到查找结果$number$位置"><span class="res-color">{{$:/core/images/search-replace}}$number$</span>
+
+<$list filter="[<currentTiddler>!has:field[scrollpage]]">
+<$action-sendmessage $message="tm-scrollpage" targetElement="result-$number$" scrollTime="0" offset="-10em"/>
+</$list>
+
+<$list filter="[<currentTiddler>field:scrollpage[yes]]">
+<$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="result-$number$" scrollTime="0" offset="-25em"/>
+</$list>
+
+\end
+
+<!-- 
+使用系统自带滚动动作tm-scroll
+<$action-sendmessage $message="tm-scroll" selector=".result-$number$" animationDuration="0"/>
+</$button>
+ -->
+
+<!-- 清除查找结果锚点 -->
+\define cresult(number)
+\define re1() <<result $number$>>
+\define re2() <<result "$number$">>
+\define re0() 
+<$button class="tc-btn-invisible " tooltip="清除结果锚点$number$">{{$:/core/images/clear-result|16px}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<re1>,<re0>search-replace:g:regexp<re2>,<re0>]}}}
+/>
+</$button>
+\end
+
+<!-- 清除当前条目所有查找结果锚点 -->
+\define cresults()
+\define re1() <<result ([^\s]*)>>
+\define re0() 
+<$button class="tc-btn-invisible " tooltip="清除当前条目所有结果锚点">{{$:/core/images/clear-result}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<re1>,<re0>] }}}
+/>
+</$button>
+\end

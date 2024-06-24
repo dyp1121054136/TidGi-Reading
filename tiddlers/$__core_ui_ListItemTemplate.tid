@@ -1,0 +1,14 @@
+caption: 标签丸弹出标题模板
+created: 20240423013518128
+modified: 20240426062346781
+tags: 目录工具 SystemTiddlers
+title: $:/core/ui/ListItemTemplate
+
+\whitespace trim
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu0()
+
+<div class="tc-menu-list-item"><$link to=<<currentTiddler>>>
+<$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify>
+</$link></div>

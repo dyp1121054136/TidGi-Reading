@@ -1,0 +1,54 @@
+/* 针对特定按钮的默认透明度 */
+.unique-button {
+  opacity: 0.5; /* 设置按钮为半透明 */
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+  float: right;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  align-items: center; /* 垂直居中对齐 */
+  justify-content: center; /* 水平居中对齐 */
+  padding: 5px 15px; /* 添加一些内边距 */
+}
+
+/* 针对特定按钮的悬停效果 */
+.unique-button:hover {
+  opacity: 1; /* 悬停时取消透明度 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.positionButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  position: fixed;
+  overflow: hidden;
+  z-index: 999;
+  width: 100%; 
+  height: 50px; 
+}
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.positionButton {
+  display: none /* 电脑端隐藏 */
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.positionButton {
+  bottom: 0px;
+  right: 0px;
+}
+}

@@ -1,0 +1,19 @@
+caption: Basetitle
+description: The initial title that will be attempted. If a tiddler with that title already exists, then a numerical counter is added to the title and incremented until it is unique
+tags: $:/tags/BatchCreation
+title: $:/BatchCreation/Items/Basetitle
+
+<th><$link to=<<configTid>>><$text text={{!!caption}}/></$link> </th>
+<td class="tc-edit-fields">
+<$tiddler tiddler=<<editTid>>>
+  <$select class="fb-select">
+    <$list filter="[<configTid>get[text]enlist-input[]]">
+    <option value=<<currentTiddler>>> <$text text=<<currentTiddler>>/> </option>
+    </$list>
+  </$select>
+</$tiddler>
+<div class="batch-textbox">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTid>>
+    type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"/>
+</div>
+</td>

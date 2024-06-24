@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 用户条目：含有标签……
+filter: [tag[]]
+tags: $:/tags/Filter/BatchExport
+title: $:/BatchExport/Filters/tag
+
+{{!!filter}}

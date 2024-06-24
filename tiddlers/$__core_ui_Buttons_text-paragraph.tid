@@ -1,0 +1,44 @@
+caption: {{$:/core/images/text-paragraph}} 每段首行缩进两字符并空一行
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[application/x-tiddler-dictionary]]
+created: 20240311232118077
+description: 首行缩进加空行
+icon: $:/core/images/text-paragraph
+modified: 20240316103615576
+shortcuts: ((text-paragraph))
+tags: $:/tags/EditorToolbar 按钮 首行缩进加空行 首行缩进和空行
+title: $:/core/ui/Buttons/text-paragraph
+
+\define temp() $:/temp/text-paragraph
+\define blank-line() \n
+
+<$let>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-all"
+	tiddler=<<temp>>
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text={{{ [<temp>get[text]search-replace:g:regexp<blank-line>,[
+
+]]}}}
+/>
+<$action-deletetiddler $tiddler=<<temp>> />
+</$let>
+
+<$let
+	lbr="
+">
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-all"
+	tiddler=<<temp>>
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text={{{ [<temp>get[text]splitregexp[\n]] +[addprefix[　　]]+[join<lbr>] }}}
+/>
+<$action-deletetiddler $tiddler=<<temp>> />
+</$let>

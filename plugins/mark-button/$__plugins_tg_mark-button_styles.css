@@ -1,0 +1,28 @@
+/* Standard yellow highlight */
+.tgy {
+    background-color:Yellow;
+}
+/* Background color Cyan */
+.tgc {
+    background-color:Cyan;
+}
+/* Background color LightCyan */
+.tglc {
+    background-color:LightCyan;
+}
+/* Text color red */
+.tgr {
+    color:Red;
+}
+/* Text color blue */
+.tgb {
+    color:Blue;
+}
+/* White text on red background */
+.tgwr {
+    color:White;background-color:Red;
+}
+/* Purple text */
+.tgp {
+    color: Purple;
+}

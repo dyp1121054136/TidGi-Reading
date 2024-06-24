@@ -1,0 +1,12 @@
+title: $:/aggregation/FilterButtons/delete
+
+\whitespace trim
+<$button class="tc-btn-invisible">
+<$action-confirm $message="Are you sure you wish to delete these tiddlers?">
+<$list filter=<<searchFilter>>>
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+{{$:/core/images/delete-button}}
+</$button>

@@ -1,0 +1,44 @@
+created: 20240410072514966
+modified: 20240410184145391
+tags: 书签
+title: 右键插入带时间戳的书签锚点
+
+<<code src:"""if (action === "tm-quick-editfix") {
+    // 预先计算未修剪文本的匹配数量，以便设置格式化菜单项的样式
+    const qe_re = new RegExp("(?<!<<[^>]*|{{[^}]*|\\\\define[^\n]*)"+escapeRegex(selection)+"(?![^<]*>>|}}[^{]*|[.\n]*\\\\end)","g"); // 首先转义选中文本中的特殊字符
+    const qe_match_count = (selection.length === 0) ? 0 : (tiddlerText.match(qe_re) || []).length; // 如果没有匹配项，则禁用标记
+    decorator = ((qe_match_count === 0) ? "item-disabled" : ((qe_match_count > 1) ? "red" : "green"));
+
+    // 获取当前时间并格式化为 "YYYY-0MM-0DD 0hh:0mm:0ss"
+    const getCurrentTime = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1; // 月份是从0开始的
+        const day = now.getDate();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+
+        // 格式化月份、日期、小时、分钟、秒数，确保它们前面有0
+        const formattedMonth = month < 10 ? `0${month}` : month;
+        const formattedDay = day < 10 ? `0${day}` : day;
+        const formattedHours = hours < 10 ? `0${hours}` : hours;
+        const formattedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+        const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+
+        return `"${year}${formattedMonth}${formattedDay}${formattedHours}${formattedMinutes}${formattedSeconds}"`;
+    };
+
+    // 后缀的值，包含当前时间
+    const suffix = "<<bookmark " + getCurrentTime() + ">>";
+
+// 从wiki存储中获取是否添加后缀的配置
+const addSuffixConfig = $tw.wiki.getTiddlerText("$:/quick-editfix/bookmark", "yes");
+const addSuffix = addSuffixConfig === "yes" ? true : false;
+
+    // 将后缀添加到选中文本的后面，如果addSuffix为true
+    const editedSelection = addSuffix ? selection + suffix : selection;
+
+    menuHtml.push(`<li class="${separator}${hideme} ${decorator}"><label>修改: ` + ((qe_match_count > 1) ? "(" + qe_match_count + ")" : "") + `</label><input type="hidden" id="selectionStore" value="${sanitize(selection)}" /><input type="text" id="quick-editfix" value="${sanitize(editedSelection)}" /></li>`);
+}
+""" language:"JavaScript">>

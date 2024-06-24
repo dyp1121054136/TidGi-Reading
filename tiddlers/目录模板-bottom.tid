@@ -1,0 +1,51 @@
+created: 20240322073928875
+list-after: $:/core/ui/ViewTemplate/body
+modified: 20240422061134211
+tags: $:/tags/ViewTemplate 模板 目录工具
+title: 目录模板-bottom
+type: text/vnd.tiddlywiki
+
+<$set name="currentNavStep" value={{!!title}}>
+
+<$list filter="
+[is[current]tag[目录]]
+[is[current]tag[册]]
+[is[current]tag[卷]]
+[is[current]tag[章]]
+[is[current]tag[节]]
+[is[current]mulu[yes]]
+">
+{{||目录全部展开折叠}}
+
+<!--
+{{||自定义toc目录宏}}
+-->
+</$list>
+
+<$list filter="
+[is[current]tags[]tag[目录]first[]]
+[is[current]tags[]tag[册]first[]]
+[is[current]tags[]tag[卷]first[]]
+[is[current]tags[]tag[章]first[]]
+[is[current]tags[]tag[节]first[]]
+[is[current]tags[]mulu[yes]first[]]
+" variable="_"> 
+<$list filter="
+[is[current]tags[]tag[目录]sort{目录排序字段}]
+[is[current]tags[]tag[册]sort{目录排序字段}]
+[is[current]tags[]tag[卷]sort{目录排序字段}]
+[is[current]tags[]tag[章]sort{目录排序字段}]
+[is[current]tags[]tag[节]sort{目录排序字段}]
+[is[current]tags[]mulu[yes]sort{目录排序字段}]
+">
+
+<div class="mulu-nav">
+  <div class="mulu-nav-left">{{||$:/core/ui/Buttons/last-page-bottom}}</div>
+  <div class="mulu-nav-center">{{||$:/core/ui/TagTemplate-mulu}}</div>
+  <div class="mulu-nav-right">{{||$:/core/ui/Buttons/next-page-bottom}}</div>
+</div>
+
+</$list>
+</$list>
+
+</$set>

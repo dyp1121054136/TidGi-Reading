@@ -1,0 +1,11 @@
+created: 20240502025318703
+modified: 20240502031136799
+save: yes
+tags: 正则表达式查找替换
+title: 查找匹配到的唯一结果
+
+[[$:/state/searchNreplace/quick-edit]]
+
+查找匹配到的唯一结果：
+
+<$text text={{$:/state/searchNreplace/quick-edit}}/>

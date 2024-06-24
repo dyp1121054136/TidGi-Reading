@@ -1,0 +1,47 @@
+title: $:/xp/images/pie-kara
+
+<$set name="PI" value="3.14">
+<$let dataBlockStartDelimiter ="@@.todo"
+      dataBlockEndDelimiter   = "@@"  
+      doneMark="[x]"
+      undoneMark="[ ]">
+<$let dblock0 = {{{ [<currentTiddler>get[text]splitregexp<dataBlockStartDelimiter>butfirst[1]] }}}
+      dblock  = {{{ [<dblock0>splitregexp<dataBlockEndDelimiter>butlast[1]] }}} >
+  <$set name="circumference" value={{{ [<PI>multiply[2]multiply[5]] }}}>
+    <$set name="all" value={{{ [<dblock>splitregexp[\n]!is[blank]count[]] }}}>
+      <$set name="closed" value={{{ [<dblock>splitregexp[\n]!is[blank]prefix<doneMark>count[]] }}}>
+  <$set name="ratio" value={{{ [<all>is[0]then<circumference>else<circumference>multiply<closed>divide<all>] }}}>
+        <svg
+          class="py-icon py-pie"
+          height="1em"
+          width="1em"
+          viewBox="0 0 30 30">
+
+          <circle
+            class="border"
+            r="14"
+            cx="15"
+            cy="15"
+            fill="white"
+            stroke="tomato"
+            stroke-width="2"/>
+
+          <circle
+            class="border"
+            r="5"
+            cx="15"
+            cy="15"
+            fill="transparent"
+            stroke="tomato"
+            stroke-width="10"
+            transform="rotate(-90) translate(-30)"
+            stroke-dasharray={{{ [<ratio>addsuffix[ 31.42]] }}}/>
+
+        </svg>
+  </$set>
+      </$set>
+    </$set>
+  </$set>
+</$let>
+</$let>
+</$set>

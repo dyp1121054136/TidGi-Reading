@@ -1,0 +1,7 @@
+caption: Map
+description: TiddlyMap Live View
+icon: $:/xp/images/tiddlymap
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/map
+
+<$tmap view="Live View" height="800px" show-buttons="false"></$tmap>

@@ -1,0 +1,31 @@
+ISBN: 
+br: 0
+created: 20231228041121907
+modified: 20240323051043341
+tags: 豆瓣读书模板
+title: 引用豆瓣读书模板
+书名: 
+作者: 
+出版年: 
+出版社: 
+定价: 
+封面: 
+装帧: 
+页数: 
+
+<$transclude mode="block" tiddler=豆瓣读书模板/>
+
+"""
+<h4><<tc "内容简介" "#007722">></h4>
+
+<h4><<tc "作者简介" "#007722">></h4>
+
+<span class="small">
+<details>
+<summary>目录</summary>
+<blockquote>
+
+</blockquote>
+</details>
+</span>
+"""

@@ -1,0 +1,50 @@
+created: 20170416111415955
+creator: Mat von TWaddle
+modified: 20240416015808037
+modifier: Mat von TWaddle
+tags: $:/tags/Stylesheet tab样式 筛选器下拉菜单
+title: $:/plugins/TWaddle/PlainTabs/Stylesheet
+type: text/vnd.tiddlywiki
+
+/* See http://plaintabs.tiddlyspot.com  */
+
+<pre>
+.tc-tab-buttons {
+  margin-bottom:0px;
+  padding-left:.5vw;
+}
+.tc-tab-divider {
+  margin-top:-1px;
+}
+.tc-tab-buttons button {
+  opacity:.9;
+}
+.tc-tab-buttons button.tc-tab-selected {
+  border-bottom:1px solid <<colour background>>;
+  opacity:1;
+}
+.tc-tab-buttons.tc-vertical button {
+  background-image:none;
+  border: 1px solid transparent;
+  opacity:.9;
+}
+.tc-tab-buttons.tc-vertical button.tc-tab-selected {
+  background:inherit;
+  border:1px solid <<colour tab-border-selected>>;
+  border-right: 1px solid <<colour background>>;
+  opacity:1;
+}
+.tc-sidebar-lists .tc-tab-buttons button {
+  border:0;
+}
+.tc-sidebar-lists .tc-tab-buttons button.tc-tab-selected {
+  border-bottom: 1px solid <<colour page-background>>;
+}
+.tc-tab-content.tc-vertical {
+  border-left:1px solid  <<colour tab-divider>>;
+}
+.tc-more-sidebar .tc-tab-buttons button.tc-tab-selected {
+  border: 1px solid <<colour sidebar-tab-border-selected>>;
+  border-right: 1px solid <<colour page-background>>;
+}
+</pre>

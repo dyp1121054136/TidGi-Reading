@@ -1,0 +1,46 @@
+title: $:/FilterBuilder/CheckTable
+
+\define .operator-rows(filter,configTitle,newFilter)
+<tr>
+<td><$count filter="$filter$"/></td>
+<td><$count filter="[enlist{$configTitle$}]"/></td>
+<td><$list filter="$newFilter$"><$text text={{!!title}}/><br></$list></td>
+</tr>
+\end
+
+\define .group-heading(_)
+<tr><th colspan="5" align="left">$_$</th></tr>
+\end
+
+
+将
+<$button
+    dragFilter="$:/FilterBuilder/CheckTable [[$:/tags/FilterBuilder/Operators]tagging[]!is[draft]] $:/config/FilterOperators/CommonOperators"
+    class="tc-btn-big-green tc-primary-btn tc-draggable"
+    style="padding:3px 20px;border-radius:1em;">
+{{$:/core/images/export-button}}<span class="tc-btn-text">Tiddlers</span>
+</$button>
+拖到官方文档中，导入条目后打开检查表，检查是否新增了 [[Filter Operators]] 。
+
+<table>
+<tr>
+<th align="left">TiddlyWiki</th>
+<th align="left">Filter Builder</th>
+<th align="left" style="color:Red;">New</th>
+</tr>
+<<.operator-rows "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators" "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators}]">>
+<<.group-heading "Order Operators">>
+<<.operator-rows "[tag[Filter Operators]tag[Order Operators]!tag[Listops Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators/OrderOperators" "[tag[Filter Operators]tag[Order Operators]!tag[Listops Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/OrderOperators}]">>
+<<.group-heading "Listops Operators">>
+<<.operator-rows "[tag[Filter Operators]tag[Listops Operators]tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators/ListopsOperators" "[tag[Filter Operators]tag[Listops Operators]tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/ListopsOperators}]">>
+<<.group-heading "String Operators">>
+<<.operator-rows "[tag[Filter Operators]!tag[Order Operators]tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators/StringOperators" "[tag[Filter Operators]!tag[Order Operators]tag[String Operators]!tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/StringOperators}]">>
+<<.group-heading "Mathematics Operators">>
+<<.operator-rows "[tag[Filter Operators]!tag[Order Operators]tag[Mathematics Operators]!tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators/MathematicsOperators" "[tag[Filter Operators]!tag[Order Operators]tag[Mathematics Operators]!tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/MathematicsOperators}]">>
+<<.group-heading "Tag Operators">>
+<<.operator-rows "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]tag[Tag Operators]!tag[Special Operators]sort[]]" "$:/config/FilterOperators/TagOperators" "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]tag[Tag Operators]!tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/TagOperators}]">>
+<<.group-heading "Special Operators">>
+<<.operator-rows "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]tag[Special Operators]sort[]]" "$:/config/FilterOperators/SpecialOperators" "[tag[Filter Operators]!tag[Order Operators]!tag[Mathematics Operators]!tag[String Operators]!tag[Tag Operators]tag[Special Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/SpecialOperators}]">>
+<<.group-heading "Common Operators">>
+<<.operator-rows "[tag[Common Operators]sort[]]" "$:/config/FilterOperators/CommonOperators" "[tag[Common Operators]sort[]get[caption]] -[enlist{$:/config/FilterOperators/CommonOperators}]">>
+</table>

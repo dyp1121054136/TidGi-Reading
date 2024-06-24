@@ -1,0 +1,11 @@
+caption: 最近
+created: 20240228014405843
+modified: 20240416092046979
+tags: $:/tags/SideBar 筛选器下拉菜单 编辑记录和历史记录 编辑记录
+title: $:/core/ui/SideBar/Recent2
+
+<<filter-pill "[!is[system]!sort[modified]limit[10]]" 最近修改过的条目>>
+
+<<timeline limit:10 format:"YYYY年0MM月0DD日">>
+
+<!-- 子筛选器 subfilter:"tag[标签]" -->

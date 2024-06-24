@@ -1,0 +1,155 @@
+footer: <$let   modeTiddler="$:/config/FilterSearch/searchOperator/SearchMode"   casesensitiveTiddler="$:/config/FilterSearch/searchOperator/casesensitive"   anchoredTiddler="$:/temp/FilterSearch/searchOperator/anchored"   fieldlistTiddler="$:/temp/FilterSearch/searchOperator/field-list"   exclusionSymbol={{{ [<fieldlistTiddler>text[except]] [<fieldlistTiddler>has[list]!list[*]then[1]] +[count[]match[2]then[-]] }}}   flag-list-code="""<$set filter="[<modeTiddler>get[text]] [<casesensitiveTiddler>text[yes]then[casesensitive]] [<anchoredTiddler>text[yes]then[anchored]] +[join[,]addprefix[:]]" name="target" select=0><$text text=<<target>>/></$set>"""   field-list-code="""<$set filter="[list<fieldlistTiddler>] +[join[,]addprefix<exclusionSymbol>]" name="target" select=0><$text text=<<target>>/></$set>""" > <$wikify text=<<flag-list-code>> name="flag-list"> <$wikify text=<<field-list-code>> name="field-list"> <$let runp="+[search:" runs="<userInput>]"> <a class="tc-muted" style="font-size:0.8em;padding-left:7px;float:left;" href="https://tiddlywiki.com/static/search%2520Operator.html" rel="noopener noreferrer" target="_blank"> Help </a> <$button style="margin-right:5px;"> Cancel <$action-sendmessage $message="tm-close-tiddler"/> </$button><$button style="width:59.6px;"> OK <$action-setfield $tiddler="$:/config/FilterSearch/searchOperatorCustomization" text={{{ [<field-list>addsuffix<flag-list>] }}} filter={{{ [<runp>addsuffix<field-list>addsuffix<flag-list>addsuffix<runs>] }}}/> <$action-setfield $tiddler="$:/config/xp/aggregation-view/SearchScope" text={{{ [<runp>addsuffix<field-list>addsuffix<flag-list>addsuffix<runs>] }}}/> <$action-sendmessage $message="tm-close-tiddler"/> </$button> </$let> </$wikify> </$wikify> </$let>
+subtitle: {{$:/core/images/advanced-search-button}} search Operator Customization
+title: $:/FilterSearch/searchOperatorCustomization
+
+\define lingo-base() $:/language/EditTemplate/
+\define modeTiddler() $:/config/FilterSearch/searchOperator/SearchMode
+\define casesensitiveTiddler() $:/config/FilterSearch/searchOperator/casesensitive
+\define anchoredTiddler() $:/temp/FilterSearch/searchOperator/anchored
+\define fieldlistTiddler() $:/temp/FilterSearch/searchOperator/field-list
+\define filterState() $:/temp/FilterSearch/searchOperator/field-list
+
+\define fieldlistRadioActions()
+<$reveal stateTitle=<<fieldlistTiddler>> stateField=list type="match" text="*">
+<$action-deletefield $tiddler=<<fieldlistTiddler>> list/>
+<$list filter="[<fieldlistTiddler>has[checktiddler]get[checktiddler]enlist-input[]status[selected]]" variable="checktiddler">
+<$let field={{{ [<checktiddler>split[--]first[]removeprefix[$:/temp/]] }}}>
+<$action-listops $tiddler=<<filterState>> $subfilter="[<field>]"/>
+</$let>
+</$list>
+</$reveal>
+\end
+
+\define checkactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="[[$item$]]"/>
+<$action-listops $tiddler=<<filterState>> $field="checktiddler" $subfilter={{{ [<qualify """$:/temp/$item$""">format:titlelist[]] }}}/>
+<$list filter="[list<filterState>] -[fields[]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define uncheckactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="-[[$item$]]"/>
+<$list filter="[list<filterState>] -[fields[]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<qualify """$:/temp/$item$""">> field="status" checked="selected" checkactions=<<checkactions """$item$""">> uncheckactions=<<uncheckactions """$item$""">> default="closed"> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define modalFooter()
+<$let
+  modeTiddler="$:/config/FilterSearch/searchOperator/SearchMode"
+  casesensitiveTiddler="$:/config/FilterSearch/searchOperator/casesensitive"
+  anchoredTiddler="$:/temp/FilterSearch/searchOperator/anchored"
+  fieldlistTiddler="$:/temp/FilterSearch/searchOperator/field-list"
+  exclusionSymbol={{{ [<fieldlistTiddler>text[except]] [<fieldlistTiddler>has[list]!list[*]then[1]] +[count[]match[2]then[-]] }}}
+  flag-list-code="""<$set filter="[<modeTiddler>get[text]] [<casesensitiveTiddler>text[yes]then[casesensitive]] [<anchoredTiddler>text[yes]then[anchored]] +[join[,]addprefix[:]]" name="target" select=0><$text text=<<target>>/></$set>"""
+  field-list-code="""<$set filter="[list<fieldlistTiddler>] +[join[,]addprefix<exclusionSymbol>]" name="target" select=0><$text text=<<target>>/></$set>"""
+>
+<$wikify text=<<flag-list-code>> name="flag-list">
+<$wikify text=<<field-list-code>> name="field-list">
+<$let runp="+[search:" runs="<userInput>]">
+<a class="tc-muted" style="font-size:0.8em;padding-left:7px;float:left;" href="https://tiddlywiki.com/static/search%2520Operator.html" rel="noopener noreferrer" target="_blank">
+Help
+</a>
+<$button style="margin-right:5px;">
+Cancel
+<$action-sendmessage $message="tm-close-tiddler"/>
+</$button><$button style="width:59.6px;">
+OK
+<$action-setfield $tiddler="$:/config/FilterSearch/searchOperatorCustomization" text={{{ [<field-list>addsuffix<flag-list>] }}} filter={{{ [<runp>addsuffix<field-list>addsuffix<flag-list>addsuffix<runs>] }}}/>
+<$action-setfield $tiddler="$:/config/xp/aggregation-view/SearchScope" text={{{ [<runp>addsuffix<field-list>addsuffix<flag-list>addsuffix<runs>] }}}/>
+<$action-sendmessage $message="tm-close-tiddler"/>
+</$button>
+</$let>
+</$wikify>
+</$wikify>
+</$let>
+\end
+
+<table>
+<tbody>
+<tr align="left">
+<th>flag list</th>
+</tr>
+<tr align="left">
+<td>
+<small class="tc-muted">//Search mode// </small><br>
+  <$tiddler tiddler=<<modeTiddler>>>
+    <$radio field=text value=literal> <$text text=literal/></$radio>
+    <$radio field=text value=whitespace> <$text text=whitespace/></$radio>
+    <$radio field=text value=regexp actions="<$action-deletetiddler $tiddler=<<anchoredTiddler>>/>"> <$text text=regexp/></$radio>
+    <$radio field=text value=words> <$text text=words/></$radio>
+    <$radio field=text value=some actions="<$action-deletetiddler $tiddler=<<anchoredTiddler>>/>"> <$text text=some/></$radio>
+  </$tiddler>
+</td>
+</tr>
+<tr align="left">
+<td>
+  <$checkbox tiddler=<<casesensitiveTiddler>> field="text" checked="yes" unchecked="no" default="no"> casesensitive </$checkbox>
+</td>
+</tr>
+<$list filter="[<modeTiddler>text[literal]] [<modeTiddler>text[whitespace]] [<modeTiddler>text[words]] +[limit[1]]" variable="ignore">
+<tr align="left">
+<td>
+  <$checkbox tiddler=<<anchoredTiddler>> field="text" checked="yes" unchecked="no" default="no"> anchored </$checkbox>
+</td>
+</tr>
+</$list>
+<tr align="left">
+<th>field list</th>
+</tr>
+<tr align="left">
+<td>
+  <$tiddler tiddler=<<fieldlistTiddler>>>
+    <$radio field=text value=add actions=<<fieldlistRadioActions>>> <$text text="select fields"/></$radio>
+    <$radio field=text value=all actions="<$action-setfield $tiddler=<<fieldlistTiddler>> list='*'/>"> <$text text="all fields"/></$radio>
+    <$radio field=text value=except actions=<<fieldlistRadioActions>>> <$text text="all fields except the selected fields"/></$radio>
+  </$tiddler>
+</td>
+</tr>
+</tbody>
+</table>
+
+<!-- Fields Panel -->
+<$list filter="[<fieldlistTiddler>text[add]] [<fieldlistTiddler>text[except]] +[limit[1]]" variable=ignore>
+<div class="xp-wrapper-aggrfilter">
+
+<<aggrbtn-filter-deselect>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted"><<lingo Fields/Add/Dropdown/User>></span></td>
+</tr>
+<tr>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[subfilter{$:/config/xp/aggregation/MainFilter}!is[shadow]!is[system]fields[]sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted"><<lingo Fields/Add/Dropdown/System>></span></td>
+</tr>
+<tr>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[subfilter{$:/config/xp/aggregation/MainFilter}fields[]sort[]] -[subfilter{$:/config/xp/aggregation/MainFilter}!is[shadow]!is[system]fields[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</$list>

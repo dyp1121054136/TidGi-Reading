@@ -1,0 +1,56 @@
+created: 20180201154415737
+modified: 20180201204624807
+tags: 
+title: $:/core/ui/EditorToolbar/mark-dropdown
+
+\define toolbar-button-mark-inner()
+<$button tag="a">
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{$(snippetTitle)$}}
+	suffix="@@"
+/>
+
+<$action-deletetiddler
+	$tiddler=<<dropdown-state>>
+/>
+
+<$view tiddler=<<snippetTitle>> field="caption" mode="inline">
+
+<$view tiddler=<<snippetTitle>> field="title" mode="inline"/>
+
+</$view>
+
+</$button>
+\end
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/TextEditor/Marklet]!has[draft.of]sort[caption]]" variable="snippetTitle">
+
+<<toolbar-button-mark-inner>>
+
+</$list>
+
+----
+
+<$button tag="a">
+
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	tags="$:/tags/TextEditor/Marklet"
+	caption={{$:/language/Buttons/Mark/New/Title}}
+	text={{$:/language/Buttons/Mark/New/Text}}
+/>
+
+<$action-deletetiddler
+	$tiddler=<<dropdown-state>>
+/>
+
+<em>
+
+<$text text={{$:/language/Buttons/Mark/Caption/New}}/>
+
+</em>
+
+</$button>

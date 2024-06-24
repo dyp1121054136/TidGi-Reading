@@ -1,0 +1,18 @@
+.zhquote {
+/* 基础样式 */
+	color: hsl(210, 46%, 38%);  /* 文字颜色 备选hsl(210, 46%, 38%); */
+
+/* 备用样式 */
+/* 背景颜色 50%表示半涂*/
+/* background-image: linear-gradient(to top, #F2E6CE 50%, transparent 0); */
+background-color: unset;
+background-position: top left;
+background-repeat: no-repeat;
+background-size: 100% auto; 
+border-radius:0.4em; /* 圆角 */
+padding:0em 0em 0em 0em; /* 缩进，内边距，上右下左 */
+
+font-size: 1em; /* 备选0.9em 字体大小为正文的90% */
+text-decoration: underline rgba(173, 216, 230, 0.5); /* 下划线，double双下划线，dotted虚线，wavy波浪线 备选颜色rgba(110, 139, 116, 0.5); */  
+text-underline-offset: 0.2em;  /*下划线与文字间距 */ 
+}

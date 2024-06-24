@@ -1,0 +1,7 @@
+color: #b5c25f
+created: 20240119173221006
+modified: 20240119173945186
+tags: 技巧
+title: 在字段内容添加拾色器
+
+<div style.color={{!!color}}>在字段内容添加拾色器，快速设置字体颜色</div>

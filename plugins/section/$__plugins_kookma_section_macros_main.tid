@@ -1,0 +1,24 @@
+code-body: yes
+tags: 
+title: $:/plugins/kookma/section/macros/main
+type: text/vnd.tiddlywiki
+
+\define pattern() \n\s*(?=!{1,$(hn)$}[^!])
+
+\define sectionizeSingleTiddler(sourceTiddler)
+\import $:/plugins/kookma/section/macros/definition
+<$vars hn={{{ [<se-hlevelTid>get[text]else[2]] }}} > <!-- default level of headings 2 -->
+<$macrocall $name=sectionizer source=<<__sourceTiddler__>> pattern=<<pattern>> />
+</$vars>
+\end
+
+
+\define sectionizePatchworkTiddler(sourceTiddler)
+<$vars patchfilter={{{ [<__sourceTiddler__>get[se-type]]  }}} >
+<$list filter="[subfilter<patchfilter>]">
+{{||$:/plugins/kookma/section/templates/tiddler-header}}
+<$macrocall $name=sectionizeSingleTiddler sourceTiddler=<<currentTiddler>> />
+{{||$:/plugins/kookma/section/templates/tiddler-footer}}
+</$list>
+</$vars>
+\end

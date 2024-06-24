@@ -1,0 +1,49 @@
+caption: 目录模板
+code-body: yes
+created: 20240401093136098
+modified: 20240423043603650
+tags: 目录工具 标签 模板
+title: $:/core/ui/TagTemplate-mulu
+
+\whitespace trim
+\define title-string() "title": "
+\define end-title() "
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu0()
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/mulu-list]] }}} name="mulu-list">
+<div class="dropdown-container-mulu">
+    <div class="dropdown-mulu">
+<$button popup=<<mulu-list>> tooltip="打开目录" class="tc-btn-invisible dropbtn-mulu caption-title">
+目录
+</$button>
+<$reveal type="popup" state=<<mulu-list>> position="belowleft" tag="div" class="tc-popup-keep">
+
+        <div class="dropdown-content-mulu">
+<!-- 链接到主条目 -->
+<span class="zhu">
+<$link class="lian"><$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify></$link>
+</span>
+
+<!--
+<$set name="tv-show-missing-links" value="yes">
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</$set>
+-->
+
+<!-- 子条目列表 -->
+<!--
+<<list-links filter:"[enlist{!!list}] :else[all[current]tagging[]sort{目录排序字段}]" type:"ol">>
+-->
+
+<$list filter="[enlist{!!list}] :else[all[current]tagging[]sort{目录排序字段}]">
+<$link class="lian"><$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify></$link>
+</$list>
+
+        </div>
+
+</$reveal>
+</div>
+</div>
+</$set>

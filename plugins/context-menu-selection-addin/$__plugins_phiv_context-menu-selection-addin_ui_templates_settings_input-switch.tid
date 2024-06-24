@@ -1,0 +1,6 @@
+created: 20221219000537423
+modified: 20221219001833885
+title: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+
+<!-- this component is copied from https://saqimtiaz.github.io/streams/ -->
+<label class="squi-form-label"><$link tooltip={{!!description}}>{{!!caption}}</$link></label><$checkbox field="text" checked="yes" unchecked="no" class="squi-form-switch"/>

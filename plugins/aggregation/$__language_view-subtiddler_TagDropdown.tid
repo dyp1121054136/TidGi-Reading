@@ -1,0 +1,6 @@
+caption: Subtiddler Tag Dropdown
+title: $:/language/view-subtiddler/TagDropdown
+
+选中状态，会在标签丸下拉菜单中显示一个子条目计数按钮。点击该按钮，会在侧边栏中打开子条目列表。
+
+可以设置一个阈值（Threshold），子条目数量 ≥ 阈值，则显示该计数按钮。比如，阈值为 1，表示有子条目就显示按钮。阈值为 10，表示子条目数量 ≥ 10 则显示按钮。

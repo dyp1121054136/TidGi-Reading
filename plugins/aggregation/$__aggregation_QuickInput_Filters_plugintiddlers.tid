@@ -1,0 +1,7 @@
+caption: <$view field="filter"/>
+description: 列出插件中的条目。Ex: [[$:/core]plugintiddlers[]]
+filter: [[]plugintiddlers[]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/plugintiddlers
+
+<$text text={{!!filter}}/>

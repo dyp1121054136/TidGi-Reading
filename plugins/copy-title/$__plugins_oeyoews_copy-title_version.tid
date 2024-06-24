@@ -1,0 +1,7 @@
+created: 20220517023423595
+modified: 20220517091720085
+revision: 0
+title: $:/plugins/oeyoews/copy-title/version
+type: text/vnd.tiddlywiki
+
+{{$:/plugins/oeyoews/copy-title!!version}}

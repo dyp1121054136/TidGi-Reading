@@ -1,0 +1,8 @@
+key: ((filter-builder))
+list-after: $:/core/ui/KeyboardShortcuts/advanced-search
+tags: $:/tags/KeyboardShortcut
+title: $:/xp/ui/KeyboardShortcuts/filter-builder
+
+<$navigator story="$:/StoryList" history="$:/HistoryList">
+<$action-navigate $to="$:/FilterBuilder" $scroll="yes"/>
+</$navigator>

@@ -1,0 +1,104 @@
+code-body: yes
+first-search-filter: [tags[]!is[system]search:title<userInput>sort[]]
+second-search-filter: [tags[]is[system]search:title<userInput>sort[]]
+tags: $:/tags/Macro/TagHandler
+title: $:/tag-handler/macros/tag-picker
+
+\define taghandler-tag-picker-inner(actions,tagField:"tags",tttButton:"no")
+\whitespace trim
+<$vars newTagNameInputTiddlerQualified=<<qualify "$:/temp/NewTagName/input">> newTagNameSelectionTiddlerQualified=<<qualify "$:/temp/NewTagName/selected-item">> fallbackTarget={{$(palette)$##tag-background}} colourA={{$(palette)$##foreground}} colourB={{$(palette)$##background}}>
+<$vars storeTitle={{{ [<newTagNameInputTiddler>!match[]] ~[<newTagNameInputTiddlerQualified>] }}} tagSelectionState={{{ [<newTagNameSelectionTiddler>!match[]] ~[<newTagNameSelectionTiddlerQualified>] }}}>
+<$vars refreshTitle=<<qualify "$:/temp/NewTagName/refresh">> nonSystemTagsFilter="[tags[]!is[system]search:title<userInput>sort[]]" systemTagsFilter="[tags[]is[system]search:title<userInput>sort[]]">
+<div class="tc-edit-add-tag">
+<div>
+<span class="tc-add-tag-name tc-small-gap-right">
+<$macrocall $name="keyboard-driven-input" tiddler=<<newTagNameTiddler>> storeTitle=<<storeTitle>> refreshTitle=<<refreshTitle>>
+		selectionStateTitle=<<tagSelectionState>> inputAcceptActions="<$macrocall $name='add-tag-actions' actions=<<__actions__>> tagField=<<__tagField__>>/>"
+		inputCancelActions=<<clear-tags-actions>> tag="input" placeholder={{$:/language/EditTemplate/Tags/Add/Placeholder}}
+		focusPopup=<<qualify "$:/state/popup/tags-auto-complete">> class="tc-edit-texteditor tc-popup-handle" tabindex=<<tabIndex>> 
+		focus="false" filterMinLength={{$:/config/Tags/MinLength}}
+		cancelPopups=<<cancelPopups>> configTiddlerFilter="[[$:/core/macros/tag-picker]]"/>
+</span><$button popup=<<qualify "$:/state/popup/tags-auto-complete">> class="tc-btn-invisible tc-btn-dropdown" tooltip={{$:/language/EditTemplate/Tags/Dropdown/Hint}} aria-label={{$:/language/EditTemplate/Tags/Dropdown/Caption}}>{{$:/core/images/down-arrow}}</$button><$reveal state=<<storeTitle>> type="nomatch" text=""><$button class="tc-btn-invisible tc-small-gap tc-btn-dropdown" tooltip={{$:/language/EditTemplate/Tags/ClearInput/Hint}} aria-label={{$:/language/EditTemplate/Tags/ClearInput/Caption}}>{{$:/core/images/close-button}}<<delete-tag-state-tiddlers>></$button></$reveal><span class="tc-add-tag-button tc-small-gap-left">
+<$set name="tag" value={{{ [<newTagNameTiddler>get[text]] }}}>
+<$button set=<<newTagNameTiddler>> setTo="" class="">
+<$action-listops $tiddler=<<saveTiddler>> $field=<<__tagField__>> $subfilter="[<tag>trim[]]"/>
+$actions$
+<$set name="currentTiddlerCSSEscaped" value={{{ [<saveTiddler>escapecss[]] }}}>
+<<delete-tag-state-tiddlers>><$action-sendmessage $message="tm-focus-selector" $param=<<get-tagpicker-focus-selector>>/>
+</$set>
+{{$:/language/EditTemplate/Tags/Add/Button}}
+</$button>
+</$set>
+</span>
+<$reveal state="$:/state/tag-handler/multitasking" type="nomatch" text="on" default="off">
+<$list filter="[<__tttButton__>match[yes]]" variable="ignore">
+<i class='tc-small-gap'/>
+<$let TTTState={{{ [<saveTiddler>addprefix[$:/state/tag-handler/ttt/]] }}}>
+<<TTTButton>>
+</$let>
+</$list>
+<$reveal state="$:/config/TagHandler/Position" type="nomatch" text="left" default="right">
+<$tiddler tiddler=<<saveTiddler>>>
+<i class='tc-tiny-gap'/><<taghandler-button>>
+</$tiddler>
+</$reveal>
+</$reveal>
+</div>
+</div>
+</$vars>
+</$vars>
+</$vars>
+\end
+
+\define taghandler-tag-picker(actions,tagField:"tags",tttButton:"no")
+\whitespace trim
+<$vars saveTiddler=<<currentTiddler>> palette={{$:/palette}}>
+<$list filter="[<newTagNameTiddler>match[]]" emptyMessage="<$macrocall $name='taghandler-tag-picker-inner' actions=<<__actions__>> tagField=<<__tagField__>> tttButton=<<__tttButton__>>/>">
+<$set name="newTagNameTiddler" value=<<qualify "$:/temp/NewTagName">>>
+<$macrocall $name="taghandler-tag-picker-inner" actions=<<__actions__>> tagField=<<__tagField__>> tttButton=<<__tttButton__>>/>
+</$set>
+</$list>
+</$vars>
+\end
+
+\define taghandler-tag-picker-results-inner(actions,tagField:"tags")
+\whitespace trim
+<$let
+	newTagNameInputTiddlerQualified=<<qualify "$:/temp/NewTagName/input">>
+	fallbackTarget={{$(palette)$##tag-background}}
+	colourA={{$(palette)$##foreground}}
+	colourB={{$(palette)$##background}}
+	storeTitle={{{ [<newTagNameInputTiddler>!match[]] ~[<newTagNameInputTiddlerQualified>] }}}
+	nonSystemTagsFilter="[tags[]!is[system]search:title<userInput>sort[]]"
+	systemTagsFilter="[tags[]is[system]search:title<userInput>sort[]]"
+>
+<div class="xp-taghandler-tags">
+<$set name="userInput" value={{{ [<storeTitle>get[text]] }}}>
+<$list filter="[<userInput>minlength{$:/config/Tags/MinLength}limit[1]]" emptyMessage="<div class='tc-search-results'>{{$:/language/Search/Search/TooShort}}</div>" variable="listItem">
+<$list filter=<<nonSystemTagsFilter>> variable="tag">
+<$vars button-classes="tc-btn-invisible" actions=<<__actions__>> tagField=<<__tagField__>> currentTiddler=<<tag>>>{{||$:/core/ui/TagPickerTagTemplate}}</$vars>
+</$list></$list>
+<$list filter="[subfilter<systemTagsFilter>limit[1]]">
+<div class="xp-taghandler-tags-item">
+<hr class='hr-table-border'/>
+</div>
+</$list>
+<$list filter="[<userInput>minlength{$:/config/Tags/MinLength}limit[1]]" emptyMessage="<div class='tc-search-results'>{{$:/language/Search/Search/TooShort}}</div>" variable="listItem">
+<$list filter=<<systemTagsFilter>> variable="tag">
+<$vars button-classes="tc-btn-invisible" actions=<<__actions__>> tagField=<<__tagField__>> currentTiddler=<<tag>>>{{||$:/core/ui/TagPickerTagTemplate}}</$vars>
+</$list></$list>
+</$set>
+</div>
+</$let>
+\end
+
+\define taghandler-tag-picker-results(actions,tagField:"tags")
+\whitespace trim
+<$vars saveTiddler=<<currentTiddler>> palette={{$:/palette}}>
+<$list filter="[<newTagNameTiddler>match[]]" emptyMessage="<$macrocall $name='taghandler-tag-picker-results-inner' actions=<<__actions__>> tagField=<<__tagField__>>/>">
+<$set name="newTagNameTiddler" value=<<qualify "$:/temp/NewTagName">>>
+<$macrocall $name="taghandler-tag-picker-results-inner" actions=<<__actions__>> tagField=<<__tagField__>>/>
+</$set>
+</$list>
+</$vars>
+\end

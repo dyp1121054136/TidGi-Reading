@@ -1,0 +1,5 @@
+filter: [all[current]tag[Software]]
+tags: $:/tags/TagHandler
+title: $:/xp/tag-handler/items/software
+
+$:/software-macros

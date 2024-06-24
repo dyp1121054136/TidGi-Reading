@@ -1,0 +1,14 @@
+.tc-story-river {
+  display: flex;
+  flex-wrap: nowrap; /* 不限制并列条目数nowrap; */
+}
+
+.tc-tiddler-frame
+{
+  max-width: 99%; margin-right: 1%;
+}
+
+::-webkit-scrollbar-corner { /* white box fix */
+        background-color: transparent !important;
+}
+

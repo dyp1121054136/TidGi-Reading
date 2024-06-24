@@ -1,0 +1,40 @@
+caption: Mathematics Operators
+tags: $:/tags/FilterBuilder/Operators
+title: $:/config/FilterOperators/MathematicsOperators
+
+abs
+acos
+add
+asin
+atan
+atan2
+average
+ceil
+compare
+cos
+divide
+exponential
+fixed
+floor
+log
+max
+maxall
+median
+min
+minall
+multiply
+negate
+power
+precision
+product
+remainder
+round
+sign
+sin
+standard-deviation
+subtract
+sum
+tan
+trunc
+untrunc
+variance

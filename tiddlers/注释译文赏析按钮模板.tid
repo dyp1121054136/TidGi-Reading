@@ -1,0 +1,13 @@
+created: 20231229061047265
+modified: 20240323044849631
+tags: 注释译文赏析按钮
+title: 注释译文赏析按钮模板
+type: text/vnd.tiddlywiki
+
+<div class="zhuyi">
+<$appear mode="inline" show="{{$:/core/images/zhushi-show}}" hide="{{$:/core/images/zhushi-hide}}"></$appear>
+
+<$appear mode="custom" show="{{$:/core/images/yiwen-show}}" hide="{{$:/core/images/yiwen-hide}}"></$appear> 
+
+<$appear mode="popup" show="{{$:/core/images/shangxi-show}}" hide="{{$:/core/images/shangxi-hide}}"></$appear>
+</div>

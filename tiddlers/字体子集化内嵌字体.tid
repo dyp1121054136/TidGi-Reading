@@ -1,0 +1,34 @@
+created: 20240101090556905
+font: X
+modified: 20240511131410221
+se-type: 
+tags: 教程
+title: 字体子集化内嵌字体
+
+!!!! 字体子集化
+"""
+
+以下字体文件已做子集化处理，为了减小wiki体积，只针对相应文章的文字进行了转码。
+<<list-links "[tag[字体]]">>
+引用woff格式字体示例：
+<<code src:"""@font-face {
+	font-family: "LXGWWenKaiScreen";
+	font-style: normal;
+	font-weight: 400;
+	src: local("LXGWWenKaiScreen"), url(<<datauri "LXGWWenKaiScreen.woff">>) format("woff");
+}
+""" language:"css">>
+记得加标签 `$:/tags/Stylesheet`
+
+[[根据字段font应用字体]]
+<<code src:"""<$list filter="[font[X]]"> 
+[data-tiddler-title^="<$view field=title/>"] .tc-tiddler-body {
+  font-family: "LXGWWenKaiScreen";
+}
+</$list>
+""" language:"css">>
+表示带有字段 `font=X`的条目使用字体 `"LXGWWenKaiScreen";`
+
+tiddlywiki字体合集
+https://dav.yiandrive.com/s/3rxns5
+"""

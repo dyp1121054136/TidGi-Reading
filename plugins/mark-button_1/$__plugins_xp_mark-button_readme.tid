@@ -1,0 +1,18 @@
+title: $:/plugins/xp/mark-button/readme
+
+A button ({{$:/xp/images/marker}}) for the Editor toolbar that applies coloring or highlighting  to the selected text<br>
+Assigned shortcut: {{$:/config/shortcuts/mark}}
+
+> See also: [[$:/plugins/tg/mark-button|http://tw5custom.tiddlyspot.com/#%24%3A%2Fplugins%2Ftg%2Fmark-button]]
+
+!! Issues
+
+You can use `@@color:red;WORD@@` for color marking in English sentences, but it does not apply to Chinese sentences:
+
+```
+欢迎来到 TiddlyWiki，这是一款独特的@@color:red;非线性@@笔记本，用于@@color:red;捕获@@、@@color:red;组织@@和@@color:red;分享@@复杂信息。
+```
+
+欢迎来到 TiddlyWiki，这是一款独特的@@color:red;非线性@@笔记本，用于@@color:red;捕获@@、@@color:red;组织@@和@@color:red;分享@@复杂信息。
+
+> See also: $:/core/modules/parsers/wikiparser/rules/styleinline.js

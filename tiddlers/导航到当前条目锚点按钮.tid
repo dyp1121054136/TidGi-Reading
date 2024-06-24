@@ -1,0 +1,6 @@
+created: 20240505043300048
+modified: 20240505043420936
+tags: 按钮 延时动作
+title: 导航到当前条目锚点按钮
+
+<$transclude $variable="toanchor" tid=<<currentTiddler>> anchor="test-anchor"/>

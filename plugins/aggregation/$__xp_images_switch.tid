@@ -1,0 +1,5 @@
+tags: $:/tags/Image
+title: $:/xp/images/switch
+
+\parameters (size:"22pt")
+<svg width=<<size>> height=<<size>> class="xp-image-switch tc-image-button" viewBox="0 0 1024 1024"><path fill-rule="evenodd" d="M832 512.512v-192H320v128.384L64.352 256.512 320 63.872v128.64h640v320h-128z m-640 192h512v-128.64l255.584 192.64L704 960.896v-128.384H64v-320h128v192z"/></svg>

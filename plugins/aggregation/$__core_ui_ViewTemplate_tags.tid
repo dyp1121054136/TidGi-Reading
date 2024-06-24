@@ -1,0 +1,90 @@
+.taghandler: 
+tags: $:/tags/ViewTemplate
+title: $:/core/ui/ViewTemplate/tags
+
+\import [[$:/tags/Macro/TagHandler]tagging[]!is[draft]] $:/aggregation/macros/general $:/core/ui/EditTemplate/tags
+\whitespace trim
+
+\define tagHandlerState() $:/state/tag-handler/$(currentTiddler)$
+
+\define TTTState() $:/state/tag-handler/ttt/$(currentTiddler)$
+
+\define aggrFilterCategory(title,configTiddler)
+<tr class="tc-view-field">
+<td class="tc-view-field-name tc-muted"><$link to=<<__configTiddler__>> overrideClass="tc-muted">$title$</$link></td>
+<td class="tc-view-field-value"><span class="xp-aggrfilter-category-item"><$macrocall $name="aggrfilteritemlist" configTiddler=<<__configTiddler__>>/></span></td>
+</tr>
+\end
+
+\define aggrfilteritemlist(configTiddler)
+<$list filter="[enlist{$configTiddler$}] -[enlist<statusTag>]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+\end
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<currentTiddler>> tag=<<__item__>>> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define taghandler-edit-tags-template(tagField:"tags",tttButton:"no")
+\whitespace trim
+<div class="tc-edit-tags" style="border:none;padding:0;">
+<$reveal state="$:/state/tag-handler/multitasking" type="nomatch" text="on" default="off">
+<$reveal state="$:/config/TagHandler/Position" type="match" text="left" default="right">
+<<taghandler-button>>
+</$reveal>
+</$reveal>
+<$list filter="[list[!!$tagField$]sort[title]]" storyview="pop">
+<$macrocall $name="tag-body" colour={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/TiddlerColourFilter]!is[draft]get[text]] }}} palette={{$:/palette}} icon={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/TiddlerIconFilter]!is[draft]get[text]] }}} tagField=<<__tagField__>>/>
+</$list>
+<$vars tabIndex={{$:/config/EditTabIndex}}>
+<$set name="cancelPopups" filter="[{$:/config/TagHandler/Mode}match[sticky]] [[$:/state/tag-handler/multitasking]is[tiddler]text[on]]" value="yes" emptyValue="no">
+<$macrocall $name="taghandler-tag-picker" tagField=<<__tagField__>> tttButton=<<__tttButton__>>/>
+</$set>
+</$vars>
+</div>
+\end
+
+<$reveal type="nomatch" stateTitle=<<folded-state>> text="hide" tag="div" retain="yes" animate="yes">
+<!-- Normal Mode -->
+<$reveal state="$:/state/tag-handler/multitasking" type="nomatch" text="on" default="off">
+<$set name="block" filter="[all[current]is[system]!has[tags]] [all[current]is[shadow]!has[tags]] [all[current]!is[shadow]!is[system]!has[tags]!has[created]] [all[current]!is[shadow]!is[system]!has[tags]has:field[.taghandler]]" value="hide" emptyValue="show">
+<$list filter="[<block>match[show]]" variable="ignore">
+<div class="tc-tags-wrapper">
+<$reveal state=<<tagHandlerState>> type="match" text="" default="">
+<$reveal state="$:/config/TagHandler/Position" type="match" text="left" default="right">
+<<taghandler-button>>
+</$reveal>
+<$list filter="[all[current]tags[]sort[title]]" template="$:/core/ui/TagTemplate" storyview="pop"/>
+<$reveal state="$:/config/TagHandler/Position" type="nomatch" text="left" default="right">
+<<taghandler-button>>
+</$reveal>
+</$reveal>
+<$reveal state=<<tagHandlerState>> type="nomatch" text="" default="" class="tc-popup-handle" animate="yes">
+<$set name="saveTiddler" value=<<currentTiddler>>>
+<$wikify text=<<taghandler-list-aggregation-filter>> name="taghandler-aggregation-filter">
+<$list filter=<<taghandler-aggregation-filter>> emptyMessage=<<taghandler-standard>> variable="ignore">
+<<taghandler-aggregation>>
+</$list>
+</$wikify>
+</$set>
+</$reveal>
+</div>
+</$list>
+</$set>
+</$reveal>
+</$reveal><!-- folded-state -->
+
+<!-- Multitasking Mode -->
+<$reveal state="$:/state/tag-handler/multitasking" type="match" text="on" default="off">
+<div class="tc-tags-wrapper">
+<$set name="saveTiddler" value=<<currentTiddler>>>
+<<taghandler-edit-tags-template>>
+</$set>
+<$reveal state=<<qualify "$:/state/popup/tags-auto-complete">> type="nomatch" text="" default="" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<<taghandler-tag-picker-results>>
+
+</$reveal>
+</div>
+</$reveal>

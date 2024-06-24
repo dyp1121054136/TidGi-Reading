@@ -1,0 +1,5 @@
+filter: [all[current]tag[People]]
+tags: $:/tags/TagHandler
+title: $:/xp/tag-handler/items/people
+
+$:/people-macros

@@ -1,0 +1,15 @@
+caption: {{$:/core/images/tc-scrollpage}} 开启/关闭条目内上下滚动按钮
+created: 20240516170853355
+modified: 20240517010916568
+tags: $:/tags/ViewToolbar 按钮 滚动翻页
+title: $:/core/ui/Buttons/tc-scrollpage
+
+<$button class="tc-btn-invisible" tooltip="开启/关闭条目内上下滚动">
+<$list filter="[<currentTiddler>has:field[scrollpage]]">
+<$action-deletefield $field="scrollpage"/>
+</$list>
+<$list filter="[<currentTiddler>!has:field[scrollpage]]">
+<$action-setfield $field="scrollpage" $value="yes"/>
+</$list>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/tc-scrollpage|30px}}</$list><$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">开启/关闭条目内上下滚动</span></$list>
+</$button>

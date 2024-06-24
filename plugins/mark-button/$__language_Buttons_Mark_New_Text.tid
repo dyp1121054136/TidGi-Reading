@@ -1,0 +1,15 @@
+created: 20180201203941132
+creator: TonGerner
+modified: 20221229122558346
+modifier: TonGerner
+tags: 
+title: $:/language/Buttons/Mark/New/Text
+
+
+* The only thing you have to add here is a CSS class prefixed by `@@`, e.g: `@@.xyz ` (note the extra space at the end)
+** The closing `@@` will be added automatically upon applying the 'mark'.
+* Define the class in $:/plugins/tg/mark-button/styles, e.g. `.xyx {color: Purple;}`
+* Add a descriptive title in the caption field of this tiddler, e.g. 'Text color Purple'
+* Add an appropriate title to this tiddler
+* Save this tiddler
+** Remove this help text before saving!

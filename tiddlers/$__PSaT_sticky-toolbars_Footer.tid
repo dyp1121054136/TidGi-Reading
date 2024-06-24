@@ -1,0 +1,17 @@
+created: 20211111235850645
+creator: visitor
+list: 
+modified: 20240322190959828
+modifier: visitor
+tags: $:/tags/ViewTemplate 粘性编辑器工具栏
+title: $:/PSaT/sticky-toolbars/Footer
+
+<!--
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewToolbar]count[]compare:number:gt[0]]" variable=~> 
+<div class="tc-tiddler-title sticky-footer tc-titlebar">
+<span class="tc-tiddler-controls">
+<$list filter="[enlist{$:/PSaT/sticky-toolbars/Footer!!list}!has[draft.of]]" variable="listItem"><$reveal type="nomatch" state=<<config-title>> text="hide"><$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]"><$transclude tiddler=<<listItem>>/></$set></$reveal></$list>
+</span>
+</div>
+</$list>
+ -->

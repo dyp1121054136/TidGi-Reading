@@ -1,0 +1,99 @@
+title: $:/aggregation/ShowCaption
+
+\define dataTiddler() $:/aggregation/ShowCaption/data
+\define helpTiddler() $:/temp/ShowCaption/help
+
+\define showCaptionButton()
+\whitespace trim
+<$vars getName={{{ [{$:/temp/ShowCaption/Name}trim[]lowercase[]split[ ]join[-]] }}}
+	getStep={{{ [{$:/temp/ShowCaption/Step}trim[]] }}}
+	configTitle={{{ [{$:/temp/ShowCaption/Name}trim[]lowercase[]split[ ]join[-]addprefix[$:/config/ViewTemplateTitleFilters/]] }}}
+	pt="["
+	st="then[$:/xp/ui/ViewTemplate/title/caption]]"
+	before-title="$:/config/ViewTemplateTitleFilters/system"
+>
+<$list filter="[[$:/temp/ShowCaption/Name]has[text]] [[$:/temp/ShowCaption/Step]has[text]] +[count[]match[2]]" emptyMessage="Value cannot be null" variable="ignore">
+<$button> Set up
+<$action-createtiddler
+	$basetitle=<<configTitle>>
+	tags="$:/tags/ViewTemplateTitleFilter"
+	text={{{ [<getStep>addprefix<pt>addsuffix<st>] }}}
+	$overwrite="no"
+/>
+<$action-listops
+	$tiddler="$:/tags/ViewTemplateTitleFilter"
+	$subfilter="+[insertbefore:before-title<configTitle>]"
+/>
+<$action-setfield $tiddler=<<dataTiddler>> $index=<<getName>> $value=<<getStep>> />
+</$button>
+</$list>
+</$vars>
+\end
+
+\define helpButton()
+\whitespace trim
+<$reveal state=<<helpTiddler>> type="match" text="">
+<span class="tc-sidebar-lists">
+<$button tooltip="Show help" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<helpTiddler>> text=<<helpText>>/>
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+</span>
+</$reveal>
+\end
+
+\define helpText()
+!! Filter Steps Help
+
+|`prefix[snippet/]` |前缀为 `snippet/` 的用户条目，在故事河中显示 Caption。 |
+|`tag[todo]` |含有标签 `todo` 的条目，在故事河中显示 Caption。 |
+\end
+
+\define deleteButton()
+\whitespace trim
+<$button tooltip="Delete this item" class="tc-btn-invisible tc-btn-mini tc-small-gap-right">
+{{$:/core/images/delete-button}}
+<$action-confirm $message="Are you sure you wish to delete this item?">
+<$action-setfield $tiddler=<<dataTiddler>> $index=<<item>> />
+<$action-deletetiddler $tiddler=<<configTitle>> />
+<$action-listops $tiddler="$:/tags/ViewTemplateTitleFilter" $subfilter="-[<configTitle>]" />
+</$action-confirm>
+</$button>
+\end
+
+<div style="line-height:1.8;">
+
+|<$link to="$:/temp/ShowCaption/Name">Name</$link> |<$edit-text tiddler="$:/temp/ShowCaption/Name" default="" tag="input"/> |
+|<$link to="$:/temp/ShowCaption/Step">Filter Steps</$link> |<$edit-text tiddler="$:/temp/ShowCaption/Step" default="" tag="input"/> <<helpButton>> |
+|>| <<showCaptionButton>> |
+
+</div>
+<$transclude tiddler=<<helpTiddler>> mode="block"/>
+
+
+<$list filter="[<dataTiddler>indexes[]limit[1]]" variable="ignore">
+
+!! Configured Items
+
+<table style="line-height:1.8;">
+<tr align="left">
+<th>Name</th><th>Filter Steps</th><th></th>
+</tr>
+<$list filter="[<dataTiddler>indexes[]sort[]]" variable="item">
+<$vars configTitle={{{ [<item>addprefix[$:/config/ViewTemplateTitleFilters/]] }}}>
+<tr align="left">
+<td>
+<$link to=<<configTitle>>><$text text=<<item>>/></$link>
+</td>
+<td><code><$text text={{{ [<dataTiddler>getindex<item>] }}}/></code></td>
+<td>
+<$list filter="[<configTitle>!is[shadow]]" variable="ignore">
+<<deleteButton>>
+</$list>
+</td>
+</tr>
+</$vars>
+</$list>
+</table>
+
+</$list>

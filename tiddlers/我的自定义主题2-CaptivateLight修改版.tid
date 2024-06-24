@@ -1,0 +1,14 @@
+br: 0
+created: 20240413124132237
+modified: 20240414044616806
+tags: 样式
+title: 我的自定义主题2-CaptivateLight修改版
+
+[[$:/palettes/CaptivateLight]]
+[[tc-tiddler-frame背景]]
+部分编辑框圆角背景 [[$:/plugins/kookma/section/styles/themes/yuanjiao-002]]
+
+代码配色
+背景色：`#ecf5f9`
+边框色：`#d8ecf3`
+前景色：`#1266ba`

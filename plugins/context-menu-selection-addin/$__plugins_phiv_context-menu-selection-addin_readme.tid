@@ -1,0 +1,74 @@
+created: 20220924225158249
+modified: 20240228011401950
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/readme
+
+|!Version |{{$:/plugins/phiv/context-menu-selection-addin!!version}} |
+|!Build date |<$view tiddler="$:/plugins/phiv/context-menu-selection-addin/changelog" field="modified" format="date" template="MMM DDth, YYYY" /> |
+|!TW5 compatibility |{{$:/plugins/phiv/context-menu-selection-addin!!core-version}} |
+
+!! What is this?
+
+The [[Context Menu Selection Add-In|https://fastfreddy.gitlab.io/context-menu-selection-add-in/]] is an extension to the excellent [ext[context-menu-plugin|https://context-menu-plugin.tiddlyhost.com/]]. It adds a few more context menu items that interact with the user selection, from view mode. For example, you can select text from a tiddler, and create a new tiddler with that title (at the same time replacing the original text with a link), or excise the text and replace it with a transclusion or link. You can quickly edit the selected text directly from the context menu. Another use is to apply or clear formatting or style to the selection, for example highlight, bold, italics, strikethrough or even monoblock. Lastly, if you use Stobot's [[Sticky plugin|https://stobot.github.io/sticky/]] or [[JanJo's ToDo plugin|https://szen.io/ToDo/]], you will have the option of turning the selected text in a sticky/todo item.
+
+The design of the plugin enables users to rapidly add new context menu items to apply specific formatting.
+
+!!Screen capture
+[img[$:/plugins/phiv/context-menu-selection-addin/screen1.png]]
+
+
+!! Why would I want to do this?
+
+Great question! Mainly for convenience and speed. This add-in provides a few shortcuts from the context menu for simple things like editing text, formatting, excising or creating new tiddlers, without having to enter into edit mode.
+
+!! Features
+
+# ''Quick edit''. Since version 0.2.1, this menu item lets the user rapidly search and replace the original selection with the text entered in the input field. This menu item can be disabled through the [[user preferences|$:/plugins/phiv/context-menu-selection-addin/config]].
+# ''New tiddler from selection''. This menu item lets the user 1) rapidly create new tiddler from selected text (uses the text selection as title) and 2) modifies the text selection into a ~WikiText link. The title can be converted to title case, based on [[user preferences|$:/plugins/phiv/context-menu-selection-addin/config]]. Note that this option will change to `Link to tiddler` if the tiddler already exists.
+# ''New Sticky or ~ToDo from selection''. These menu items (when either Stobot's [[Sticky plugin|https://stobot.github.io/sticky/]] or [[JanJo's ToDo plugin|https://szen.io/ToDo/]] plugins are installed), turn the text selection into a todo entry using the appropriate macro
+# ''~WikiText line formatting''. Lets the user rapidly apply line format (e.g. //bold//, //underline//, //strikethrough//, //italics//, //monoline//) the selected text. Additionally, if the [[Mark plugin|https://tw-cpl.netlify.app/#Plugin_202207202018626:Plugin_202207202018626%20Plugin_202207202018763]] is installed, you will also have the ''Highlight'' option which turns the text red.
+## since version 0.1.4, it is possible to also clear line formatting of the selection, from the context menu.
+# ''~WikiText block formatting''. Lets the user rapidly block format (e.g. //monoblock//, //quote//) the selected text.
+# ''~WikiText heading''. Lets you rapidly turn the selected text into a heading (//H1// to //H6// included, though //H4//, //H//5, //H6// are hidden by default.
+# ''Advanced search'': since version 0.2.0, this menu item will bring up the advanced search interface with the text selection.
+# Since version 0.1.5, a sweet [[configuration interface|$:/plugins/phiv/context-menu-selection-addin/config]] was added to let the user hide/show, re-order and add/remove separators.
+# please note some context menu options will be disabled if there are no text selection, or if the selected text is not present in the underlying raw ~WikiText (e.g. rendering from transclusion or macros). Please note that the context menu options will be shown in red font if the number of text matches is greater than 1, which indicates that multiple replacements will occur.
+# since version 0.2.1, [[users can set|$:/plugins/phiv/context-menu-selection-addin/config]] one or more modifier key(s) that will prevent this context menu from displaying and instead will bring up the default browser menu.
+
+!! Installation
+
+# First, you need to install the original [ext[context-menu-plugin — Configurable context menus for tiddlers|https://context-menu-plugin.tiddlyhost.com/]] plugin.
+# Then, install the [[$:/plugins/phiv/context-menu-selection-addin]] by dragging it to your ~TiddlyWiki. You will then need to ''reload'' your ~TiddlyWiki because the two plugins include javascript code
+# You can then try your hand at a few things on the [[lorem]] tiddler below. Once installed, you can still access the regular browser context menu by holding the <kbd>ctrl</kbd> key whilst right-clicking.
+
+!!! Advanced installation
+
+# Users wanting to hide some of the menu options included with this plugin are encouraged to to so through [[user preferences|$:/plugins/phiv/context-menu-selection-addin/config]].
+# Users wanting to add formatting options (e.g. //superscript//) can clone one of the included tiddlers (e.g. [[$:/config/tiddlercontextmenu/bold]]), adjust a few settings, in particular the `caption`, `markup-prefix` and `markup-suffix` fields. Use the sweet [[configuration interface|$:/plugins/phiv/context-menu-selection-addin/config]] to re-order the list or hide/show entries or add separators.
+# It is possible to add a `condition` field to a menu item, which is ideal for items that depend on a third-party plugin to be installed. The menu items will then only be displayed when the condition is met (i.e. when the plugin dependency is loaded). Look at [[$:/config/tiddlercontextmenu/make-sticky]], [[$:/config/tiddlercontextmenu/make-todo]] or [[$:/config/tiddlercontextmenu/highlight]] for examples.
+
+!! Technical details
+
+* The plugin performs a __simple__ "global" search and replace of the selected within the source tiddler. This may or may not be desirable. It may also break fancy ~WikiText (macros, transclusions, filters) if the selection term is present within them. Best to be careful and select larger and/or unique text if you don't wish to apply the formatting anywhere else than the selection.
+
+!! FAQs
+
+* ''When I right-click, most new options in the context menu are shown in light grey and disabled. How come?'' The markup options will be disabled if there are no selection or if the selected text is not present in the underlying raw ~WikiText (e.g. rendered text is generated by a transclusion or a macro).
+* ''When I right-click, most new options in the context menu are shown in red with a number next to them. How come?'' The markup options will be show in red if the selected text is found multiple times in the underlying tiddler's ~WikiText, indicating that the replacement will occur for each of the matches.
+** ''I tried to format a word, and every instance of that word was also modified in my tiddler!'': The plugin performs a simple "global" search and replace of the selected within the source tiddler. This may or may not be desirable. It may also break fancy ~WikiText (macros, transclusions, filters) if the selection term is present within them. Best to be careful and select larger and/or unique text if you don't wish to apply the formatting anywhere else than the selection.
+* ''After installing the main context-menu plugin and this extension, I only see the regular browser context menu. What gives?'' Not all browsers let the user javascript display a context menu. For example, the original plugin works in Chrome, but not in Vivaldi even though they're both based on the chromium engine. Try it with Chrome directly on this [[page|https://fastfreddy.gitlab.io/context-menu-selection-add-in/]] to see what it should look like.
+* ''How can I use the regular browser context menu after I installed these plugins?'' Users can set a modifier key (or several modifier keys) that will override (when pressed) this context menu and instead display the browser default context menu.
+* ''How can I reorder the entries of the context menu?'' Use the sweet [[configuration interface|$:/plugins/phiv/context-menu-selection-addin/config]].
+* ''How can I remove some of the entries of the context menu?'' Use the sweet [[configuration interface|$:/plugins/phiv/context-menu-selection-addin/config]].
+* ''I can't see the Sticky option shown in your screen capture?'' This option is only shown if you have also installed Stobot's [[Sticky plugin|https://stobot.github.io/sticky/]].
+** ''What if I prefer ~JanJo's ~ToDo modifcation?'' No trouble, just install [[JanJo's ToDo plugin|https://szen.io/ToDo/]] and the option will appear in the context menu.
+* ''I can't see the Highlight option shown in your screen capture?'' This option is only shown if you have also installed the [[Mark plugin|https://tw-cpl.netlify.app/#Plugin_202207202018626:Plugin_202207202018626%20Plugin_202207202018763]]
+* ''How do use this add-in from a mouse-less device like a phone or a tablet?'' Not supported at the moment. 
+
+!! Credits
+
+* ahanniga's [ext[context-menu-plugin — Configurable context menus for tiddlers|https://context-menu-plugin.tiddlyhost.com/]]
+* [ext[Vector Icons and Stickers - PNG, SVG, EPS, PSD and CSS|https://www.flaticon.com/]]
+* users from the ~TiddlyWiki Talk community, in particular this [[thread|https://talk.tiddlywiki.org/t/can-we-access-the-selection-in-the-widgetmessage-tm-edit-text-operation/4558/49]]
+* Brian_Radspinner for inspiring the sweet [[configuration interface|$:/plugins/phiv/context-menu-selection-addin/config]] with his  [ext[BR Sidebar Tabs Ledger — easily show/hide Sidebar Tabs|https://br-tabs-organizer.tiddlyhost.com/]]
+* [ext[Tinka — easy plugin packer|https://tinkaplugin.github.io/#%24%3A%2Fplugins%2Fahahn%2Ftinka]]

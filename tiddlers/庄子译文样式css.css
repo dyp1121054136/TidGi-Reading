@@ -1,0 +1,22 @@
+.yiwen
+{
+color: #518564;
+word-break: normal; 
+word-wrap: break-word;
+white-space: pre-wrap;
+}
+
+.yiwen::before {
+content: "译文";
+color: #6E8B74;
+text-align: center;
+display: block;
+margin: 25px auto 5px auto;
+vertical-align: middle;
+border: 1px dashed #6E8B74;
+padding: 0 5px;
+border-radius: 15px;
+width: 3em;
+font-weight: bold;
+background-image: linear-gradient(to top, #F2E6CE 50%, transparent 0);
+}

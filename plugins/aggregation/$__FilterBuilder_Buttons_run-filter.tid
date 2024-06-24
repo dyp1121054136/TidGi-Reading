@@ -1,0 +1,20 @@
+caption: run-filter
+description: Run the filter using the list widget
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/run-filter
+
+\whitespace trim
+<$list filter="[list<fbTiddler>prefix[$:/temp/filterbuilder/]!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]has[filter]limit[1]]">
+<$reveal state=<<calloutState>> type="nomatch" text="run">
+<$button tooltip="Run filter" class="fb-btn btn-small tc-tiny-gap-left">
+run
+<$action-setfield $tiddler=<<calloutState>> text="run"/>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="run">
+<$button tooltip="Cancel" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+run
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

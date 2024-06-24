@@ -1,0 +1,77 @@
+.para .notitle {
+  display: none;
+ }
+
+.para {
+  position: relative; 
+}
+
+/* 编辑按钮在右侧 */
+.para .float-right-edit,
+.para .float-right {
+  opacity: 0.5; 
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.para .float-right-edit {
+  position: absolute;
+  right: -10px;
+}
+
+.para .float-right {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column; /* column纵向 row横向 */
+  gap: 10px; /* 添加间距 */
+
+  position: absolute; /* 备选relative; */
+  right: -10px;
+  z-index: 999;
+}
+
+.para:hover .float-right-edit,
+.para:hover .float-right {
+  opacity: 1;
+}
+
+/* 粘性编辑器工具栏 */
+.para-editor-toolbar {
+  position: -webkit-sticky;
+  position: -moz-sticky;
+  position: -o-sticky;
+  position: -ms-sticky;
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+  background-color: transparent !important;  /* 备选#f3f3f3; */
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.para .float-right-edit {
+/*   top: 14%;
+  right: 510px; */
+} 
+
+.para .float-right {
+/*   top: 28%;
+  right: 510px; */
+} 
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.para .float-right-edit
+ {
+/*   top: 20%;
+  right: 5px; */
+} 
+
+.para .float-right
+ {
+/*   top: 20%;
+  right: 5px; */
+} 
+}

@@ -1,0 +1,9 @@
+title: $:/templates/aggregation-categories-item
+
+\define config-title()
+$(config-base)$$(currentTiddler)$
+\end
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="show"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <span class="tc-muted">-- <$link to={{!!ctag}}><$view field="ctag"/></$link></span></span>
+</$draggable>

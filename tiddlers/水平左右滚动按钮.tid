@@ -1,0 +1,11 @@
+created: 20240517042910397
+modified: 20240517043123229
+tags: 滚动翻页 左右滚动
+title: 水平左右滚动按钮
+
+<div class="scrollpage-button-tb-rl-all">
+<span class="unique-scrollpage-button-tb-rl">{{||scrollpage-tb-rl最左边按钮}}</span>
+<span class="unique-scrollpage-button-tb-rl">{{||scrollpage-tb-rl最右边按钮}}</span>
+<span class="unique-scrollpage-button-tb-rl">{{||向左滚动按钮}}</span>
+<span class="unique-scrollpage-button-tb-rl">{{||向右滚动按钮}}</span>
+</div>

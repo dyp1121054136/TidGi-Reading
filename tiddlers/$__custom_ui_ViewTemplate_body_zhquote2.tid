@@ -1,0 +1,16 @@
+code-body: yes
+created: 20240329014222972
+modified: 20240329125349280
+tags: 正则表达式 级联 根据字段应用对话高亮
+title: $:/custom/ui/ViewTemplate/body/zhquote2
+
+\define zh1()  “([^”]*)”
+\define zh2() <span class="zhquote">“$1”</span>
+
+<$let filteredText={{{ [{!!text}search-replace:g:regexp<zh1>,<zh2>] }}} ><$transclude $variable="filteredText" $mode="block" /></$let>
+
+<!--
+样式css已添加硬式换行，宏定义避免空格空行，以免影响内容排版
+条目$:/config/ViewTemplateBodyFilters/zhquote要添加字段
+list-before=$:/config/ViewTemplateBodyFilters/default
+-->

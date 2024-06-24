@@ -1,0 +1,11 @@
+caption: Quote
+created: 20220924223139433
+icon: $:/core/images/quote
+markup-prefix: \n\n<<<\n
+markup-suffix: \n<<<\n\n
+modified: 20221001000204728
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/quote
+tm-message: tm-markup
+
+hide

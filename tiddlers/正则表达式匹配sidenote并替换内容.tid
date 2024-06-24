@@ -1,0 +1,31 @@
+created: 20240505194001113
+modified: 20240506132248383
+tags: 条目行间批注 教程
+title: 正则表达式匹配sidenote并替换内容
+
+查找所有sidenote：
+<<code src:"""<<sidenote\s+"([^\"]+)"\s+"([^\"]+)">>
+""" language:"tw">>
+添加结果定位锚点成为唯一选项，例：
+<<code src:"""<<sidenote\s+"([^\"]+)"\s+"([^\"]+)">><<result 1>>
+""" language:"tw">>
+仅修改内容可以替换为：
+<<code src:"""<<sidenote "$1" "新内容">><<result 1>>
+""" language:"tw">>
+注：匹配到唯一结果后可以点击 `编辑` 按钮，抓取整个宏的内容进行修改。
+
+<br/>
+新小标题：
+<<code src:"""<<sidenote "新小标题" "$2">>
+""" language:"tw">>
+新内容：
+<<code src:"""<<sidenote "$1" "新内容">>
+""" language:"tw">>
+示例：
+
+查找任意小标题，以缩进两字符加以“此外，”开头的内容：
+<<code src:"""<<sidenote\s+"([^\"]+)"\s+"　　此外，([^\"]+)">>
+""" language:"tw">>
+替换为新内容（之前匹配的空格和开头字符也会被删除）：
+<<code src:"""<<sidenote "$1" "新内容">>
+""" language:"tw">>

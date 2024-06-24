@@ -1,0 +1,35 @@
+title: $:/plugins/xp/tiddlertail/settings
+
+\define config-title()
+$:/config/xp/tiddlertail/Items/Visibility/$(currentTiddler)$
+\end
+
+!! Switch
+
+<$checkbox tiddler="$:/config/TiddlerTail/Switch" field="text" checked="on" unchecked="off" checkactions="<$action-deletetiddler $tiddler='$:/config/TiddlerTail/Switch'/>"> [[Show tiddler tail|$:/config/TiddlerTail/Switch]]</$checkbox>
+
+!! Panel Mode
+
+<$link to="$:/config/TiddlerTail/Mode">Control when the tiddler tail panel closes:</$link>
+
+<$radio tiddler="$:/config/TiddlerTail/Mode" value="popup"> Tiddler tail panel closes automatically </$radio>
+
+<$radio tiddler="$:/config/TiddlerTail/Mode" value="sticky"> Tiddler tail panel stays open until explicitly closed </$radio>
+
+!! Visibility
+
+<$checkbox tiddler="$:/config/TiddlerTail/Visibility" field="text" checked="hover" uncheckactions="<$action-deletetiddler $tiddler='$:/config/TiddlerTail/Visibility'/>"> [[Show tiddlertail on mouse hover|$:/config/TiddlerTail/Visibility]]</$checkbox>
+
+!! Items
+
+Select which items will be shown.
+
+<<tag $:/tags/TiddlerTail>>
+
+<$vars tv-config-toolbar-icons="yes" tv-config-toolbar-text="yes">
+<$list filter="[[$:/tags/TiddlerTail]tagging[]!is[draft]]">
+<div>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="hide"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+</div>
+</$list>
+</$vars>

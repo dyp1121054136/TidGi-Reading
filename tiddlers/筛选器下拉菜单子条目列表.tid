@@ -1,0 +1,18 @@
+caption: 子条目
+created: 20240416060030826
+modified: 20240420011847564
+tags: 筛选器下拉菜单
+title: 筛选器下拉菜单子条目列表
+
+\whitespace trim
+
+<div class="my-filter-pill-btn1">
+{{||筛选器下拉菜单关闭其他条目}}
+</div>
+<div class="my-filter-pill-mulu">
+<<list-links filter:"[tag<currentTiddler>]"  type:"ol">>
+</div>
+
+<!--写法2
+<<list-links filter:"[tag{!!title}]"  type:"ol">>
+-->

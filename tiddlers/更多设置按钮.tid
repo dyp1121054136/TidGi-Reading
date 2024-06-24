@@ -1,0 +1,21 @@
+created: 20240509113015603
+modified: 20240509115917625
+tags: 正则表达式查找替换 按钮
+title: 更多设置按钮
+
+\whitespace trim
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/more-btn]] }}} name="open-more-btn">
+<span class="search-replace-btn">
+<$button popup=<<open-more-btn>> class="tc-btn-invisible" tooltip="更多设置按钮">
+更多
+</$button>
+</span>
+<$reveal type="popup" state=<<open-more-btn>> position="aboveleft" tag="div" class="tc-popup-keep">
+
+<div class="search-replace-body">
+<$transclude tiddler="更多设置按钮弹出页面"/>
+</div>
+
+</$reveal>
+</$set>

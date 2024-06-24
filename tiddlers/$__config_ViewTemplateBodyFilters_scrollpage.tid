@@ -1,0 +1,7 @@
+created: 20240516170146130
+list-before: $:/config/ViewTemplateBodyFilters/default
+modified: 20240516171004795
+tags: $:/tags/ViewTemplateBodyFilter 级联 滚动翻页
+title: $:/config/ViewTemplateBodyFilters/scrollpage
+
+[field:scrollpage[yes]then[$:/custom/ui/ViewTemplate/body/scrollpage]]

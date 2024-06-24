@@ -1,0 +1,32 @@
+caption: {{$:/core/images/clear-highlight}} 清除高亮
+created: 20240412085847971
+description: 清除高亮
+modified: 20240412114729338
+tags: 按钮 $:/tags/ViewToolbar 右键高亮
+title: $:/core/ui/Buttons/clear-highlights
+
+\whitespace trim
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/clear-highlights]] }}} name="highlightTiddler">
+<$button popup=<<highlightTiddler>> tooltip="清除高亮" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/clear-highlight}}</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">清除高亮</span></$list>
+</$button>
+<$reveal type="popup" state=<<highlightTiddler>> position="belowleft" tag="div" class="tc-popup-keep">
+
+<div class="highlight-body">
+<ul class="no-bullets">
+<li>清除所有高亮：{{||$:/core/ui/Buttons/clear-highlight}}</li>
+<li>清除额外class高亮：{{||$:/core/ui/Buttons/clear-highlight-class}}</li>
+<li>清除样式为tg的高亮： {{||$:/core/ui/Buttons/clear-highlight-tg}}</li>
+<li>清除样式为xhx的高亮： {{||$:/core/ui/Buttons/clear-highlight-xhx}}</li>
+<li>清除样式为marker的高亮： {{||$:/core/ui/Buttons/clear-highlight-marker}}</li>
+</ul>
+</div>
+
+</$reveal>
+</$set>
+
+<!--
+清除所有高亮： {{||$:/core/ui/Buttons/clear-highlight}}
+清除样式为tg的高亮： {{||$:/core/ui/Buttons/clear-highlight-tg}}
+-->

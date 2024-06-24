@@ -1,0 +1,4 @@
+created: 20240322181335617
+list: $:/core/ui/Buttons/delete $:/plugins/kookma/trashbin/ui/toolbar-button $:/core/ui/Buttons/cancel $:/plugins/telmiger/EditButtons/Buttons/save-open $:/core/ui/Buttons/save $:/plugins/telmiger/EditButtons/Buttons/cancel-and-close $:/plugins/telmiger/EditButtons/Buttons/save-and-close
+modified: 20240322181335617
+title: $:/tags/EditToolbar

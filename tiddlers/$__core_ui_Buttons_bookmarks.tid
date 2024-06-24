@@ -1,0 +1,21 @@
+caption: {{$:/core/images/bookmark}} 打开书签汇总
+created: 20240509151554622
+description: 打开书签汇总
+modified: 20240509154756421
+tags: 按钮 $:/tags/PageControls 书签 书签汇总
+title: $:/core/ui/Buttons/bookmarks
+
+\whitespace trim
+<$button tooltip="打开书签汇总" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/core/images/bookmark|22px}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+<$text text=打开书签汇总/>
+</span>
+</$list>
+
+<$action-navigate $to="历史列表书签汇总"/>
+
+</$button>

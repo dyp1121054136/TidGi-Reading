@@ -1,0 +1,9 @@
+title: $:/BatchCreation/Records
+
+<$list filter="[tag[$:/tags/BatchCreation/Record]limit[1]]" emptyMessage="<p class='tc-muted'>Empty</p>">
+<$list
+	filter="[tag[$:/tags/BatchCreation/Record]!sort[created]]"
+	template="$:/templates/transclusion-record"
+	storyview="pop"
+/>
+</$list>

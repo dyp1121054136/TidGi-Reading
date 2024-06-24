@@ -1,0 +1,16 @@
+caption: all
+description: find all titles of a fundamental category
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/all
+
+<$vars pt="all[" st="]">
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+  <$tiddler tiddler=<<editTid>>>
+  <$list filter="[<configTid>get[text]enlist-input[]]" variable="listItem">
+    <$radio field="filter" value={{{ [<listItem>addprefix<pt>addsuffix<st>] }}} actions="<$action-deletefield $tiddler='$:/temp/filterbuilder/Start' filter/>"> <$text text=<<listItem>>/> </$radio>
+  </$list>
+  </$tiddler>
+</td>
+<td class="fb-item-add"></td>
+</$vars>

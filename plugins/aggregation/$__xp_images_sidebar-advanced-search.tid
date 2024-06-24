@@ -1,0 +1,30 @@
+tags: $:/tags/Image
+title: $:/xp/images/sidebar-advanced-search
+
+\parameters (size:"22pt")
+<svg width=<<size>> height=<<size>> class="xp-image-sidebar-advanced-search tc-image-button" viewBox="0 0 128 128">
+  <g
+     id="g10"
+     transform="matrix(-1,0,0,1,125.05358,0)"
+     style="fill-rule:evenodd">
+    <path
+       d="M 74.565,87.985 A 47.776,47.776 0 0 1 48,96 C 21.49,96 0,74.51 0,48 0,21.49 21.49,0 48,0 c 26.51,0 48,21.49 48,48 0,9.854 -2.97,19.015 -8.062,26.636 l 34.347,34.347 a 9.443,9.443 0 0 1 0,13.36 9.446,9.446 0 0 1 -13.36,0 z M 48,80 C 65.673,80 80,65.673 80,48 80,30.327 65.673,16 48,16 30.327,16 16,30.327 16,48 16,65.673 30.327,80 48,80 Z"
+       id="path2"
+       inkscape:connector-curvature="0" />
+    <circle
+       cx="48"
+       cy="48"
+       r="8"
+       id="circle4" />
+    <circle
+       cx="28"
+       cy="48"
+       r="8"
+       id="circle6" />
+    <circle
+       cx="68"
+       cy="48"
+       r="8"
+       id="circle8" />
+  </g>
+</svg>

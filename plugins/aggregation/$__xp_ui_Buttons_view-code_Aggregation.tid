@@ -1,0 +1,15 @@
+caption: {{$:/xp/images/code}} {{$:/language/Buttons/ViewCode/Caption}}
+description: {{$:/language/Buttons/ViewCode/Hint}}
+title: $:/xp/ui/Buttons/view-code_Aggregation
+
+\whitespace trim
+<$reveal state=<<viewCodeState>> type="nomatch" text="show" default="hide">
+<$button set=<<viewCodeState>> setTo="show" tooltip="Show code" aria-label="show code" class=<<tv-config-toolbar-class>>>
+{{$:/xp/images/code}}
+</$button>
+</$reveal>
+<$reveal state=<<viewCodeState>> type="match" text="show" default="hide">
+<$button set=<<viewCodeState>> setTo="hide" tooltip="Hide code" aria-label="hide code" class=<<tv-config-toolbar-class>>>
+{{$:/xp/images/code}}
+</$button>
+</$reveal>

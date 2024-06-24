@@ -1,0 +1,16 @@
+tags: $:/tags/PageTemplate
+title: $:/xp/ui/PageTemplate/help
+
+<$reveal type="match" state={{$:/config/ShowHelp}} text="yes">
+<div class="tc-help-panel">
+<div class="tc-tiddler-controls">
+<$button set={{$:/config/ShowHelp}} setTo="no" class="tc-btn-invisible">{{$:/core/images/close-button}}</$button> ''Help Panel''
+</div>
+<$macrocall
+  $name="tabs"
+  tabsList={{$:/config/ShowHelp/tabsList}}
+  default={{{ [subfilter{$:/config/ShowHelp/tabsList}limit[1]] }}}
+  state="$:/state/tab/showhelp"
+/>
+</div>
+</$reveal>

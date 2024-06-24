@@ -1,0 +1,7 @@
+created: 20240329014105058
+list-before: $:/config/ViewTemplateBodyFilters/default
+modified: 20240329125400857
+tags: $:/tags/ViewTemplateBodyFilter 正则表达式 级联 根据字段应用对话高亮
+title: $:/config/ViewTemplateBodyFilters/zhquote
+
+[field:zhquote[2]then[$:/custom/ui/ViewTemplate/body/zhquote2]]

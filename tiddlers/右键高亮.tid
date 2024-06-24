@@ -1,0 +1,13 @@
+br: 0
+created: 20240412061654247
+modified: 20240412065801705
+tags: 导出
+title: 右键高亮
+
+<<filter-pill "[tag[右键高亮]][[右键高亮]]" 样式-右键高亮>>
+
+查看模式右键高亮需要安装
+右键增强插件
+[[$:/plugins/ahanniga/context-menu-plugin]]
+右键增强补充包插件
+[[$:/plugins/phiv/context-menu-selection-addin]]

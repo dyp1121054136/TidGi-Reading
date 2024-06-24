@@ -1,0 +1,5 @@
+caption: all except text
+description: Search all fields except the text field
+filter: [tag<aggregationTag>sort[]search:-text<userInput>]
+tags: $:/tags/Filter/Aggregation
+title: $:/aggregation/Filter/SearchAllFieldsExceptText

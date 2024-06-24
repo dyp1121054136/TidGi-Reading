@@ -1,0 +1,10 @@
+caption: Quick Edit
+created: 20221016170509615
+icon: $:/core/images/edit-button
+modified: 20221016172419575
+separate-after: 
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/quick-edit
+tm-message: tm-quick-edit
+
+show

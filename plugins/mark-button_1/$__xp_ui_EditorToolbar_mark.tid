@@ -1,0 +1,8 @@
+caption: {{$:/language/Buttons/Mark/Caption}}
+condition: [<targetTiddler>type[]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[text/x-markdown]] [<targetTiddler>type[text/markdown]]
+description: {{$:/language/Buttons/Mark/Hint}}
+dropdown: $:/xp/ui/EditorToolbar/mark-dropdown
+icon: $:/xp/images/marker
+shortcuts: ((mark))
+tags: $:/tags/EditorToolbar
+title: $:/xp/ui/EditorToolbar/mark

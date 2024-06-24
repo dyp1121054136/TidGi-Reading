@@ -1,0 +1,10 @@
+caption: Invert Title Casing behaviour when pressing "ctrl" and clicking menu item
+created: 20221219000856006
+description: Invert Title Casing behaviour when pressing "ctrl" and clicking menu item
+list-ordering: 5
+modified: 20221219002019978
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/case-ctrl-override
+
+yes

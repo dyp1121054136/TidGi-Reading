@@ -1,0 +1,24 @@
+created: 20220930182829911
+modified: 20221219002034679
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config
+
+!!!Menu items
+Drag-n-drop to change the ordering of the items:
+
+<ol class="tabsLedger">
+<li>
+<strong>Sidebar Tabs</strong>
+<strong>Show</strong>
+<strong>Separator after</strong>
+</li>
+<$macrocall $name="list-tagged-draggable"  emptyMessage="looks like the tag you picked does not exist" tag="$:/tags/tiddlercontextmenu" itemTemplate="$:/plugins/phiv/context-menu-selection-addin/template" />
+</ol>
+
+
+!!!Other options
+<$list filter="[all[shadows+tiddlers]prefix[$:/plugins/phiv/context-menu-selection-addin/config]has[settings-template]sort[list-ordering]]">
+<div class="sq-list-group-item">
+<$transclude tiddler={{!!settings-template}}/>
+</div>
+</$list>

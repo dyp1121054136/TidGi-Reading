@@ -1,0 +1,3 @@
+title: $:/xp/ui/EditTemplate/fieldEditor/linkcolor
+
+<$edit-text type="color" tiddler=<<currentTiddler>> field=<<currentField>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} cancelPopups="yes"/><$edit-text tiddler=<<currentTiddler>> field=<<currentField>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} cancelPopups="yes"/>

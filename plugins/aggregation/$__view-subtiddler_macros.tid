@@ -1,0 +1,63 @@
+title: $:/view-subtiddler/macros
+
+\define storeTiddler() $:/config/view-subtiddler/tag
+\define configTiddler() $:/xp/ui/SideBar/Subtiddler
+
+\define vst-show-button()
+\whitespace trim
+<$button to="$:/Subtiddler" tooltip="Show results in the story river" class="tc-btn-invisible tc-btn-mini">
+show
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="TableOfContents"/>
+</$button>
+\end
+
+\define vst-back-button()
+\whitespace trim
+<$button tooltip="Go back to the sidebar tab" class="tc-btn-invisible tc-btn-mini">
+back
+<$action-setfield $tiddler=<<configTiddler>> tags="$:/tags/SideBar" caption="Subtiddler"/>
+<$action-sendmessage $message="tm-close-tiddler" param="$:/Subtiddler"/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<configTiddler>>/>
+</$button>
+\end
+
+\define vst-openall-button()
+\whitespace trim
+<$button tooltip="Open all tiddlers and close others" class="tc-btn-invisible tc-btn-mini">
+open all
+<$action-sendmessage $message="tm-close-all-tiddlers"/>
+<$list filter="[all[shadows+tiddlers]tag<targetTag>order[reverse]]">
+<$action-navigate $to=<<currentTiddler>>/>
+</$list>
+</$button>
+\end
+
+\define vst-delete-button()
+\whitespace trim
+<$button tooltip="Delete all tiddlers" aria-label="delete all tiddlers" class="tc-btn-invisible tc-btn-mini">
+delete
+<$reveal state=<<storeTiddler>> type="nomatch" text="">
+<$action-confirm $message="Are you sure you wish to delete these tiddlers?">
+<$list filter="[all[shadows+tiddlers]tag<targetTag>]">
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+</$reveal>
+</$button>
+\end
+
+\define vst-close-button()
+\whitespace trim
+<$button tooltip="Close this tab" aria-label="close this tab" class="tc-btn-invisible tc-btn-mini">
+close
+<$action-deletetiddler $filter=<<configTiddler>>/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text="TableOfContents"/>
+</$button>
+\end
+
+\define vst-count()
+//<small class="tc-big-gap-left"><$count filter="[all[shadows+tiddlers]tag<targetTag>]"/></small>//
+\end
+
+<pre><$view field="text"/></pre>

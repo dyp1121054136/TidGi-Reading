@@ -1,0 +1,17 @@
+tags: $:/tags/Stylesheet
+title: $:/plugins/benwebber/tag-count/styles
+
+\whitespace trim
+
+.tc-tag-label:after {
+  font-size: 0.8em;
+  opacity: calc(2/3);
+  vertical-align: middle;
+  margin-left: 0.25em;
+}
+
+{{$:/temp/plugins/benwebber/tag-count/cache||$:/plugins/benwebber/tag-count/templates/rules}}
+
+.tc-untagged-label:after {
+  content: "<$count filter="[untagged[]!is[system]] -[tags[]]"/>";
+}

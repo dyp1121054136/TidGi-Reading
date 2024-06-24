@@ -1,0 +1,8 @@
+created: 20240421120647191
+modified: 20240422022108730
+tags: 最近编辑的条目时间精确到秒
+title: 最近编辑的条目时间精确到秒源代码
+
+<$list filter="[all[tiddlers]!is[system]!sort[modified]limit[5]]">
+   <$link/> <$view field="modified" format=relativedate/><br>
+</$list>

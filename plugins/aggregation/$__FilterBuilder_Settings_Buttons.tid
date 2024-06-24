@@ -1,0 +1,8 @@
+tags: $:/tags/FilterBuilder/Settings
+title: $:/FilterBuilder/Settings/Buttons
+
+\define config-base() $:/config/FilterBuilder/Buttons/Visibility/
+
+<p>Choose which buttons are displayed on the panel. Drag and drop to change the ordering</p>
+
+<$macrocall $name="list-tagged-draggable" tag="$:/tags/FilterBuilder/Buttons" subFilter="remove[$:/FilterBuilder/Buttons/show-settings]" itemTemplate="$:/core/ui/ControlPanel/Toolbars/ItemTemplate"/>

@@ -1,0 +1,62 @@
+created: 20240518132106935
+modified: 20240518133856545
+tags: 滚动翻页
+title: 条目内滚动翻页配置
+
+<style>
+.center-align {
+  text-align: left; /* 靠左对齐 */
+  vertical-align: middle; /* 垂直居中对齐 */
+}
+
+.scroll input[type="text"] {
+  box-sizing: border-box;
+  width: 4em;
+  padding: 1px;
+  border: 1px solid #000;
+}
+</style>
+
+<table width="99%">
+<tr>
+<td class="center-align">
+电脑端容器高度:
+</td>
+<td class="center-align">
+<$range tiddler="条目内滚动翻页补充样式css" field="tc-scrollpage-pc" min="10" max="100" default="71" increment="1"/>
+{{条目内滚动翻页补充样式css!!tc-scrollpage-pc}}vh
+</td>
+</tr>
+<tr>
+<td class="center-align">
+移动端容器高度:
+</td>
+<td class="center-align">
+<$range tiddler="条目内滚动翻页补充样式css" field="tc-scrollpage-mobile" min="10" max="100" default="70" increment="1"/>
+{{条目内滚动翻页补充样式css!!tc-scrollpage-mobile}}vh
+</td>
+</tr>
+</table>
+
+<table width="99%">
+<tr>
+<td class="center-align">
+电脑端容器高度:
+</td>
+<td class="center-align">
+<span class="scroll">
+<$edit-text tiddler="条目内滚动翻页补充样式css" field="tc-scrollpage-pc" tag="input" placeholder="71" default=""/> vh
+</span>
+</td>
+</tr>
+<tr>
+<td class="center-align">
+移动端容器高度:
+</td>
+<td class="center-align">
+<span class="scroll">
+<$edit-text tiddler="条目内滚动翻页补充样式css" field="tc-scrollpage-mobile" tag="input" placeholder="70" default=""/> vh
+</span>
+</td>
+</tr>
+</table>

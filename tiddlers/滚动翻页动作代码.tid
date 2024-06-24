@@ -1,0 +1,68 @@
+created: 20240516121438455
+modified: 20240520014812471
+tags: 滚动翻页
+title: 滚动翻页动作代码
+
+上一页：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" direction="prev" scrollTime="0"/>
+""" language:"tw">>
+下一页：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" direction="next" scrollTime="0"/>
+""" language:"tw">>
+向左翻页：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" direction="left" scrollTime="0"/>
+""" language:"tw">>
+向右翻页：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" direction="right" scrollTime="0"/>
+""" language:"tw">>
+滚动到带特定css类名的位置（类名无需再加.）：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" targetElement="css类名" scrollTime="0"/>
+""" language:"tw">>
+无动画：
+<<code src:"""scrollTime="0"
+""" language:"tw">>
+在指定类名的容器内滚动（类名需加.）：
+<<code src:"""scrollContainerSelector=".tc-scrollpage"
+""" language:"tw">>
+
+滚动距离：（不设置滚动距离数值则默认为100）
+
+滚动距离-根据视窗高度：
+<<code src:"""scrollDistance="100vh"
+""" language:"tw">>
+滚动距离-根据视窗宽度：
+<<code src:"""scrollDistance="100vw"
+""" language:"tw">>
+滚动到容器内顶部、底部、最左边、最右边：
+<<code src:"""direction="top"
+direction="bottom"
+direction="leftMost-tb-rl"
+direction="rightMost-tb-rl"
+""" language:"tw">>
+增加额外滚动行数：
+<<code src:"""extraLines="1"
+""" language:"tw">>
+增加额外滚动字符数（可以是0，正数、负数、小数）：
+<<code src:"""extraChars="-1"
+""" language:"tw">>
+进阶用法-跳转到可滚动容器内css类名位置，代码参考：
+<<code src:"""不在容器内：
+<$list filter="[<currentTiddler>!has:field[scrollpage]]">
+<$action-sendmessage $message="tm-scrollpage" targetElement="css类名" scrollTime="0"/>
+</$list>
+
+在容器内：
+<$list filter="[<currentTiddler>field:scrollpage[yes]]">
+<$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="css类名" scrollTime="0"/>
+</$list>
+""" language:"tw">>
+增加额外偏移量（未成功，仅备份想要的效果动作代码）：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" targetElement="css类名" scrollTime="0"  offsetX="0em" offsetY="-10em"/>
+
+<$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="css类名" scrollTime="0"  offsetX="0em" offsetY="-30em"/>
+""" language:"tw">>
+已实现增加上下偏移量：
+<<code src:"""<$action-sendmessage $message="tm-scrollpage" targetElement="css类名" scrollTime="0"  offset="-10em"/>
+
+<$action-sendmessage $message="tm-scrollpage" scrollContainerSelector=".tc-scrollpage" targetElement="css类名" scrollTime="0"  offset="-25em"/>
+""" language:"tw">>

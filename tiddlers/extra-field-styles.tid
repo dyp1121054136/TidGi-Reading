@@ -1,0 +1,9 @@
+created: 20220815163513609
+modified: 20240422093519161
+tags: $:/tags/Stylesheet 样式 目录工具
+title: extra-field-styles
+
+.extra-field {
+  font-size: 0.8em;
+  color: <<colour code-foreground>>;
+}

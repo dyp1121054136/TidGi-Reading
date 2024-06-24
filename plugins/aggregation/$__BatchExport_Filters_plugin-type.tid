@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 插件……
+filter: [plugin-type[plugin]] -$:/core
+tags: $:/tags/Filter/BatchExport
+title: $:/BatchExport/Filters/plugin-type
+
+{{!!filter}}

@@ -1,0 +1,127 @@
+/* 章节标题样式 */
+div.chapter-part-title {
+  float: right;
+  writing-mode: tb-rl; /* 从上往下，从右向左排列 */
+  border: double 4px; /* 边框双线圆角 */
+  border-radius: 5px;
+  padding: 15px 5px; 
+  font-family: "LXGWWenKaiScreen";
+  font-size: 150%;
+  letter-spacing: -2px; /* 减少字符间距 */
+  line-height: 1;
+  margin-left: 15px;
+  margin-bottom: 15px;
+  text-indent: 0 !important;
+}
+
+.chapter-part-title-small
+{
+  font-size: 70%;
+}
+
+/* 插图样式 */
+.chapter-head-img{
+  float: right;
+  clear: right; /* 防止堆叠 */
+  shape-outside: circle(50% at 50% 50%); /* 圆心在元素的中心，半径为元素宽度的一半 */
+/* 不规则多边形polygon(0 0, 10% 97%, 25% 90%, /* 其他点... */, 0 100%, 0 0); */
+  shape-margin: 10px;
+  text-indent: 0 !important;
+}
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+  .chapter-head-img {
+    width: 20%;
+  }
+div.cover
+{
+    width: 30%;
+  }
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+  .chapter-head-img {
+    width: 50%;
+  }
+div.cover
+{
+    width: 50%;
+  }
+}
+
+/* 卷标题样式 */
+.xiaoshuo-j {
+  writing-mode: tb-rl; /* 从上往下，从右向左排列 */
+  height: 500px;
+  margin: auto;
+  font-family: "LXGWWenKaiScreen";
+  line-height: 1.3;
+  font-size: 110%;
+}
+
+.xiaoshuo-j p {
+  border-left: 2px ridge; /* 增加左边框 */
+  padding-left: 10px; /* 增加左边框的内边距 */
+  letter-spacing: -3px; /* 减少字符间距 */
+}
+
+.xiaoshuo-j h1, .xiaoshuo-j h2 {
+  text-align: center; /* 居中对齐 */
+  letter-spacing: -5px; /* 减少字符间距 */
+  line-height: 0.6;
+  display: inline-block; /* 使h1和h2水平排列 */
+  margin-right: -20px;
+}
+
+.xiaoshuo-j h1 + h2 {
+  margin-top: 30px; /* 增加h1和h2之间的垂直间距 */
+}
+
+/* 内容简介 */
+div.cover {
+  text-indent: 0;
+  box-shadow: 3px 3px 3px #535353;
+  margin: auto;
+}
+
+div.feiye-book-nmae {
+  margin: 0.1em 0;
+  text-align: center;
+  text-indent: 0;
+  font-size: 120%;
+  font-family: "小标宋", sans-serif;
+}
+
+div.feiye-author {
+  margin: 0.5em 0;
+  text-align: center;
+  text-indent: 0;
+  font-size: 100%;
+  color: #909090;
+  font-family: "小标宋", sans-serif;
+}
+
+div.feiye-content {
+  display: flex; /* 使用flexbox布局 */
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中，如果文本是多行的话 */
+  text-align: center; /* 如果文本是单行的话，确保文本水平居中 */
+  height: 100%; /* 确保div的高度被设置，以便可以垂直居中内容 */
+  word-break: normal; 
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  font-size:18px;
+  line-height: 1.1;
+  font-family: "LXGWWenKaiScreen";
+}

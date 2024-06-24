@@ -1,0 +1,34 @@
+created: 20240122115752803
+modified: 20240203063047829
+se-type: 
+tags: AI问答存档
+title: 使用正则查找替换条目内容
+
+!!!! ''在tiddlywiki中怎么运行这个代码，把结果输出到一个新建条目的body中''
+"""
+
+<<code src:"""\define quote() “([^”]*)”
+[[条目标题]get[text]search-replace:g:regexp<quote>,[<span class="quote">“$1”</span>]]
+""" language:"tw">>
+在TiddlyWiki中，你可以创建一个新的条目，然后使用以下步骤来执行你的代码：
+1、创建一个新的条目，例如叫做"新条目"。
+2、在这个新条目中，粘贴你的宏定义，即：
+<<code src:"""\define quote() “([^”]*)”
+""" language:"tw">>
+3、然后在同一条目中添加以下代码：
+<<code src:"""<$set name="result" value={{{[[条目标题]get[text]search-replace:g:regexp<quote>,[<span class="quote">“$1”</span>]]}}}>
+{{$:/core/templates/text}}<$text text=<<result>>/>
+</$set>
+""" language:"tw">>
+这段代码将你的替换结果存储在名为"result"的变量中，并输出到新条目的正文部分。
+4. 最后记得保存这个条目。
+现在，每次你查看"新条目"时，你都会看到根据你的筛选器表达式和替换模式进行替换后的结果。
+请记住，包含【条目标题】的筛选器应该引用你想要操作的特定条目的标题。该标题应该存在于你的TiddlyWiki中。
+"""
+
+
+
+!!!! ''如何创建一个动作按钮，并将结果插入到已存在的条目中？''
+"""
+
+"""

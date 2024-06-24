@@ -1,0 +1,32 @@
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: linkcolor
+title: $:/table-dynamic/templates/body/linkcolor
+
+\define showCell()
+<style>
+.tc-colour-chooser a:hover {
+	background: none;
+	border: none;
+}
+</style>
+<span class="tc-colour-chooser">
+<$button tag="a" tooltip=<<linkcolor>>>
+<$action-sendmessage $message="tm-copy-to-clipboard" $param=<<linkcolor>>/>
+<span style="display:inline-block; background-color: $(linkcolor)$; width: 100%; height: 100%; border-radius: 50%;"/>
+</$button>
+</span>
+\end
+
+\define edit_linkcolor() <$edit-text tag=input type=color tiddler=<<currentRecord>> field=<<currentColumn>>/>
+
+<$vars linkcolor={{{ [<currentRecord>get<currentColumn>] }}}>
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<edit_linkcolor>> >
+ <<showCell_Locked>>
+</$list>
+</$reveal>
+</$vars>

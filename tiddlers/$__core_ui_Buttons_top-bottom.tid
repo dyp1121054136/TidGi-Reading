@@ -1,0 +1,10 @@
+caption: {{$:/core/images/top-bottom}} 开启/关闭上下滚动按钮
+created: 20240303084456934
+modified: 20240417013120058
+tags: 上下滚动 $:/tags/ViewToolbar 按钮 开启/关闭上下滚动按钮
+title: $:/core/ui/Buttons/top-bottom
+
+<$button class="tc-btn-invisible" tooltip="开启/关闭上下滚动">
+<$action-listops $tiddler="上下滚动按钮" $tags="+[toggle[$:/tags/PageTemplate]]"/>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/top-bottom|23px}}</$list><$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">开启/关闭上下滚动</span></$list>
+</$button>

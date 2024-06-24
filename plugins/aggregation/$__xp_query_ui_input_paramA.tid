@@ -1,0 +1,22 @@
+tags: $:/tags/Query/Input
+title: $:/xp/query/ui/input/paramA
+
+\define cancel-input-actions() <$action-deletetiddler $filter='$:/temp/query/paramA' />
+
+<div class="xp-query-param">
+''A:''
+  <div class="xp-query-param-input">
+    <$keyboard key="escape" actions=<<cancel-input-actions>>>
+<$edit-text
+  tiddler="$:/temp/query/paramA"
+  type="search"
+  tag="input"
+  focus="no"
+  inputCancelActions=<<cancel-input-actions>>
+  class="xp-query-param-textbox"
+  tabindex="1"
+  default=""
+/>
+    </$keyboard>
+  </div>
+</div>

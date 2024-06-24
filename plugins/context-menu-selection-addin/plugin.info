@@ -1,0 +1,18 @@
+{
+    "created": "20220924225513417",
+    "title": "$:/plugins/phiv/context-menu-selection-addin",
+    "author": "Fred D",
+    "description": "New context menu options modifying or using text selection",
+    "name": "Context menu selection add-in",
+    "list": "readme changelog license config",
+    "plugin-type": "plugin",
+    "version": "0.3.1",
+    "core-version": ">=5.2.3",
+    "modified": "20230908000725738",
+    "dependents": "$:/plugins/ahanniga/context-menu-plugin",
+    "source": "https://fastfreddy.gitlab.io/context-menu-selection-add-in/",
+    "title-case": "false",
+    "case-ctrl-override": "true",
+    "shift-override": "false",
+    "ctrl-override": "true"
+}

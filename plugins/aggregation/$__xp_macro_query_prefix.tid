@@ -1,0 +1,16 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Query
+title: $:/xp/macro/query/prefix
+
+<!-- QUERY PREFIX -->
+\define qp(A)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[prefix[$A$]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query prefix: `$A$`</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query prefix: `$A$`</b><<query-empty>>"""
+/>
+\end

@@ -1,0 +1,5 @@
+caption: title caption
+description: Search title caption
+filter: [tag<aggregationTag>sort[]search:title,caption<userInput>]
+tags: $:/tags/Filter/Aggregation
+title: $:/aggregation/Filter/SearchTitleCaption

@@ -1,0 +1,21 @@
+caption: Listops Operators
+tags: $:/tags/FilterBuilder/Operators
+title: $:/config/FilterOperators/ListopsOperators
+
+allafter
+allbefore
+append
+cycle
+insertafter
+insertbefore
+move
+prepend
+putafter
+putbefore
+putfirst
+putlast
+remove
+replace
+sortby
+toggle
+unique

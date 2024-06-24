@@ -1,0 +1,18 @@
+created: 20240502155119912
+modified: 20240503035514675
+tags: 滚动到故事河顶部 按钮 上下滚动
+title: 滚动到故事河顶部按钮
+
+\define clickactions()
+<$action-log $$message=<<dom-href>> event=<<event-type>>/>
+\end
+
+<$button actions=<<clickactions>> tag="div">
+<a href="#" style="position: relative; left: -1px; top: 3px; " title="滚动到故事河顶部">{{$:/core/images/river-top|20px}}</a>
+</$button>
+
+<!-- 
+style="display: inline-block;"
+/* 相对当前位置向左向下偏移 */
+style="position: relative; left: -2px; top: 5px; "
+ -->

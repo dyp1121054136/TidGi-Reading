@@ -1,0 +1,10 @@
+caption: 以选中文字新建条目
+created: 20220922110535415
+icon: $:/core/images/new-here-button
+modified: 20240109021051729
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/new-from-selection
+tm-message: tm-new-tiddler
+value: 
+
+hide

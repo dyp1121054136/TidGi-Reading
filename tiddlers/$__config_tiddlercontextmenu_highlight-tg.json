@@ -1,0 +1,15 @@
+[
+    {
+        "created": "20220924131855650",
+        "text": "show",
+        "title": "$:/config/tiddlercontextmenu/highlight-tg",
+        "tags": "$:/tags/tiddlercontextmenu 右键高亮",
+        "caption": "高亮tg",
+        "icon": "$:/core/images/highlight",
+        "tm-message": "tm-markup",
+        "modified": "20240608020538172",
+        "markup-prefix": "@@.tg ",
+        "markup-suffix": "@@",
+        "list-after": "$:/config/tiddlercontextmenu/quick-editfix"
+    }
+]

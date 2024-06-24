@@ -1,0 +1,36 @@
+/* 快速标记 WikiText 中「标题」和「列表」的颜色
+** Red Green Blue Brown Gray Orange Pink Purple Turquoise Violet Yellow
+*/
+
+.red,
+.r { color: red; fill: red; }
+
+.green,
+.g { color: green; fill: green; }
+
+.blue,
+.b { color: blue; fill: blue; }
+
+.brown,
+.bn { color: brown; fill: brown; }
+
+.gray,
+.gy { color: gray; fill: gray; }
+
+.orange,
+.o { color: orange; fill: orange; }
+
+.pink,
+.pk { color: pink; fill: pink; }
+
+.purple,
+.p { color: purple; fill: purple; }
+
+.turquoise,
+.t { color: turquoise; fill: turquoise; }
+
+.violet,
+.v { color: violet; fill: violet; }
+
+.yellow,
+.y { color: yellow; fill: yellow; }

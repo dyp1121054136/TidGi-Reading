@@ -1,0 +1,5 @@
+tags: $:/tags/Image
+title: $:/xp/images/status-dot
+
+\parameters (size:"22pt")
+<svg width=<<size>> height=<<size>> class="tc-image-button" viewBox="0 0 1024 1024"><path fill-rule="evenodd" d="M512 512m-320 0a320 320 0 1 0 640 0 320 320 0 1 0-640 0Z"/></svg>

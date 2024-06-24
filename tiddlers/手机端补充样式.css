@@ -1,0 +1,28 @@
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+/* 侧边栏按钮位置 */
+.tc-topbar-right {
+	top: 35px;
+	right: 5px;
+}
+
+/* 标题栏位置 */
+/* .tc-titlebar {
+	padding-top: 30px; 
+} */
+}

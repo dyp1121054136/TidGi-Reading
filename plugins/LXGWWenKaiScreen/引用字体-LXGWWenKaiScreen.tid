@@ -1,0 +1,12 @@
+code-body: yes
+created: 20240127182434631
+modified: 20240624070301070
+tags: 字体 $:/tags/Stylesheet
+title: 引用字体-LXGWWenKaiScreen
+
+@font-face {
+	font-family: "LXGWWenKaiScreen";
+	font-style: normal;
+	font-weight: 400;
+	src: local("LXGWWenKaiScreen"), url(<<datauri "LXGWWenKaiScreen.woff2">>) format("woff2");
+}

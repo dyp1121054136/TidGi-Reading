@@ -1,0 +1,18 @@
+caption: {{$:/core/images/bookmark}} 添加一个时间戳书签
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20211125180034479
+description: 添加一个时间戳书签
+icon: $:/core/images/bookmark
+modified: 20240410184329455
+shortcuts: ((bookmark))
+tags: $:/tags/EditorToolbar 书签 按钮
+title: $:/core/ui/EditorToolbar/bookmark
+
+<$vars timestamp=<<now "YYYY0MM0DD0hh0mm0ss">>>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{ [[<<bookmark "]addsuffix<timestamp>addsuffix[">>]] }}}
+	suffix=""
+/>
+</$vars>

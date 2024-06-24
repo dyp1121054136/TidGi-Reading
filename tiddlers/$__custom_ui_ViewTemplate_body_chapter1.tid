@@ -1,0 +1,13 @@
+caption: 小说前言级联模板
+code-body: yes
+created: 20240114072242861
+modified: 20240329174125094
+tags: 小说古剑奇谭1排版 级联
+title: $:/custom/ui/ViewTemplate/body/chapter1
+标题: 
+
+<div class="chapter-part-title">{{!!标题}}</div>
+
+<div class="chapter-head-img">{{chapter-head.png}}</div>
+
+<$transclude mode="block"/>

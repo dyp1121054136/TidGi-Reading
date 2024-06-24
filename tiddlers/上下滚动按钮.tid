@@ -1,0 +1,18 @@
+created: 20240227041313485
+modified: 20240507162924139
+tags: 上下滚动
+title: 上下滚动按钮
+
+<$button class="tc-btn-invisible position-common to-top" tooltip="向上滚动">{{$:/core/images/scroll-top|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".scroll-top" animationDuration="0"/>
+</$button>
+
+<$button class="tc-btn-invisible position-common to-bottom" tooltip="向下滚动">{{$:/core/images/scroll-bottom|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".scroll-bottom" animationDuration="0"/>
+</$button>
+
+<div class="tiddler-pc">
+<span class="tc-btn-invisible position-common river-top-pc">{{||滚动到故事河顶部按钮}}</span>
+<span class="tc-btn-invisible position-common tiddler-top-pc">{{||$:/core/ui/Buttons/tiddler-top}}</span>
+<span class="tc-btn-invisible position-common tiddler-bottom-pc">{{||$:/core/ui/Buttons/tiddler-bottom}}</span>
+</div>

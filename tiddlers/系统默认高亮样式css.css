@@ -1,0 +1,26 @@
+.tc-inline-style {
+  padding: 0 0.25em 0.1em; /* 缩进 */
+  color: #845973; /* 文字颜色 */
+  background-image: linear-gradient(to bottom, #e6e6fa, #fff0f5); /* 从上到下的渐变背景 */
+  background-clip: padding-box; /* 背景仅应用于padding区域 */
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.1), /* 添加一个柔和的阴影效果 */
+    inset 0 -1px 1px rgba(255, 255, 255, 0.5); /* 添加一个内阴影，使背景边缘更加明亮 */
+  line-height: 1.5; /* 调整行高，确保文本垂直居中 */
+  border-radius: 4px; /* 圆角 */
+}
+
+/* 添加一个伪元素增强渐变效果 */
+.tc-inline-style::before p {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -0.25em; /* 负边距，使伪元素的尺寸比父元素大 */
+  background-image: linear-gradient(to bottom, #e6e6fa, #fff0f5);
+  background-clip: padding-box;
+  border-radius: 4px; /* 圆角 */
+}

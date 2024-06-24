@@ -1,0 +1,71 @@
+created: 20240410121217213
+modified: 20240410121409731
+tags: 书签
+title: 右键插件JavaScript代码注释
+
+<<code src:"""// 以下是一个TiddlyWiki插件，用于实现上下文菜单功能。
+// 它是一个小型的JavaScript模块，主要包含以下功能：
+
+// 1. 在页面中插入一个隐藏的菜单元素
+// 2. 绑定右键点击事件，当用户在页面中右键点击时，显示上下文菜单
+// 3. 绑定点击事件，当用户点击菜单项时，执行相应的动作
+// 4. 支持自定义菜单项，通过添加特定的标签可以扩展菜单项
+
+// 插件定义了一个ContextListener类，它继承自Widget类
+var ContextListener = function(parseTreeNode, options) {
+    this.initialise(parseTreeNode, options);
+};
+
+ContextListener.prototype = new Widget();
+
+// 渲染方法，用于创建菜单并绑定事件
+ContextListener.prototype.render = function(parent, nextSibling) {
+    // 在父元素上绑定右键点击事件，显示菜单
+    parent.addEventListener("contextmenu", function(event) { self.contextmenu.call(self, event) });
+    // 在document上绑定点击事件，用于隐藏菜单
+    document.onclick = this.hideMenu;
+};
+
+// 右键点击事件的处理函数，用于显示菜单
+ContextListener.prototype.contextmenu = function(event) {
+    // 获取当前选中的文本
+    const selection = document.getSelection().toString();
+    // 获取当前点击的tiddler的标题
+    const targ = ...;
+    // 根据当前选中的文本和tiddler，构建菜单HTML
+    const menuHtml = ...;
+    // 将菜单HTML插入到页面中
+    ...;
+};
+
+// 菜单项点击事件的处理函数
+ContextListener.prototype.menuClicked = function(event) {
+    // 获取当前点击的菜单项的动作类型和目标tiddler
+    const action = ...;
+    const targ = ...;
+    // 根据动作类型，执行相应的操作
+    switch (action) {
+        case "tm-fold-tiddler":
+            ...;
+            break;
+        case "tm-copy-to-clipboard":
+            ...;
+            break;
+        // 其他动作类型
+        ...
+    }
+};
+
+// 隐藏菜单的方法
+ContextListener.prototype.hideMenu = function() {
+    ...;
+};
+
+// 刷新方法，当tiddler改变时调用
+ContextListener.prototype.refresh = function(changedTiddlers) {
+    return false;
+};
+
+// 导出ContextListener类
+exports.contextMenu = ContextListener;
+""" language:"JavaScript">>

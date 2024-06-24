@@ -1,0 +1,5 @@
+title: $:/xp/ui/EditTemplate/fieldEditor/importance
+
+<$select tiddler=<<currentTiddler>> field=<<currentField>> default="">
+<<aggregation-select-importance-inner>>
+</$select><$edit-text tiddler=<<currentTiddler>> field=<<currentField>> default="" class="tc-edit-texteditor" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}} tabindex={{$:/config/EditTabIndex}} cancelPopups="yes"/>

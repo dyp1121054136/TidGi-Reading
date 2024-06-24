@@ -1,0 +1,18 @@
+caption: {{$:/core/images/clear-bookmark}} 清除当前条目所有书签
+created: 20240405023057720
+description: 清除当前条目所有书签
+modified: 20240405041319219
+tags: 按钮 清除书签 测试 书签
+title: $:/core/ui/Buttons/clear-bookmarks
+
+\define bk1() <<bookmark ([^\s]*)>>
+\define bk0() 
+
+<$button class="tc-btn-invisible " tooltip="清除当前条目所有书签">{{$:/core/images/clear-bookmark|23px}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<bk1>,<bk0>] }}}
+/>
+</$button>
+
+<!--
+([^\s]*)
+-->

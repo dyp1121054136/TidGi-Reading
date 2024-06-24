@@ -1,0 +1,11 @@
+br: 0
+created: 20240111142520379
+modified: 20240323051009726
+tags: 教程
+title: 视图模板-无动画单条目浏览
+
+插件
+[[$:/plugins/yaisog/single-tiddler-view]]
+
+设置
+[[$:/ControlPanel]] 视图模式选 `minimal` ，布局选 `SingleTiddlerView - shows a single tiddler at a time`

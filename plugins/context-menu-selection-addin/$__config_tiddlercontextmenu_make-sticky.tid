@@ -1,0 +1,12 @@
+caption: Make sticky from selection
+condition: [all[shadows]prefix[$:/plugins/stobot/sticky]]
+created: 20220923003727003
+icon: $:/plugins/stobot/sticky/icon
+markup-prefix: <<sticky "
+markup-suffix: ">>
+modified: 20221007012937077
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/make-sticky
+tm-message: tm-markup
+
+show

@@ -1,0 +1,84 @@
+tags: 
+title: $:/plugins/yaisog/single-tiddler-view/readme
+type: text/vnd.tiddlywiki
+
+\define .value(_) <code class="doc-value">$_$</code>
+\define .tip(_) <div class="doc-icon-block"><div class="doc-block-icon">{{$:/core/images/tip}}</div> $_$</div>
+\define .warning(_) <div class="doc-icon-block"><div class="doc-block-icon">{{$:/core/images/warning}}</div> $_$</div>
+\define control-panel(target)
+<$action-setfield $tiddler="$:/state/tab-1749438307" $value="$:/core/ui/ControlPanel/Appearance" />
+<$action-setfield $tiddler="$:/state/tab--1963855381" $value=<<__target__>> />
+<$action-navigate $to="$:/ControlPanel" />
+\end
+\define sidebar(target)
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" $value=<<__target__>> />
+\end
+
+<style>
+.doc-button,
+.doc-tab,
+.doc-tag,
+.doc-tiddler,
+.doc-field,
+.doc-value,
+.doc-operator,
+.doc-var,
+.doc-widget,
+.doc-attr,
+.doc-param {
+	background-color: <<color background>>;
+	border: none;
+	color: <<color very-muted-foreground>>;
+	font-weight: bold;
+	padding: 0;
+}
+.doc-icon-block {
+	border-left: 2px solid <<colour code-border>>;
+	margin-left: 3em;
+	padding-left: 0.6em;
+	position: relative;
+}
+.doc-block-icon {
+	position: absolute;
+	left: -3em;
+	top: 0.2em;
+}
+.doc-block-icon .tc-image-tip {
+	fill: <<colour primary>>;
+}
+.doc-block-icon .tc-image-warning {
+	fill: <<colour alert-highlight>>;
+}
+</style>
+
+
+This plugin adds the Page Template <<.value ~SingleTiddlerView>> and the Story View <<.value minimal>> to a ~TiddlyWiki.
+
+!! Page Template <<.value ~SingleTiddlerView>>
+This page template displays only a single tiddler at a time.
+
+The tiddler shown is the tiddler set in the field <<.field current-tiddler>> of [[$:/HistoryList]], i.e. the last tiddler that has been navigated to, if that tiddler is also in [[$:/StoryList]].
+
+Upon closing or deleting a tiddler, the previously shown tiddler is navigated to. If there is no previous tiddler, the neighboring tiddler in the ~StoryList is displayed (this is mostly relevant when a wiki is opened with multiple tiddlers in the ~StoryList, but no ~HistoryList).
+
+The extensible mechanism that is used to flexibly insert the necessary ~MessageCatchers for <<.value tm-close-tiddler>> and <<.value tm-delete-tiddler>> is only available in TiddlyWiki 5.3.0 or later.
+
+<<.tip """The single tiddler view will only be enabled when the Story View is set to <<.value minimal>>, see below.""">>
+
+<<.tip """You can change the page template / layout, by pressing `Ctrl-Shift-L` or in the [[$:/ControlPanel]] by going to <<.value Appearance>> and then <<.value "Layout">> or by clicking <$button class="tc-btn-invisible tc-tiddlylink" actions="<<control-panel $:/snippets/LayoutSwitcher>>" >here</$button>.""">>
+
+<<.tip """It is useful to have list of open tiddlers, such as the <$button class="tc-btn-invisible tc-tiddlylink" actions="<<sidebar $:/core/ui/SideBar/Open>>">Open sidebar tab</$button> or a browser-tab-like interface at the top of the page, to be able to quickly switch between open tiddlers.""">>
+<p/>
+
+!! Story View <<.value minimal>>
+This story view is basically the same as <<.value classic>> without any animations.
+
+When used to display the main story, navigation is sped up by not animating the transition between tiddlers. The value of [[$:/config/AnimationDuration]] can be left as is to retain the other animations, e.g. when adding or removing tags.
+
+<<.tip """You can change the story view in the [[$:/ControlPanel]] by going to <<.value Appearance>> and then <<.value "Story View">> or by clicking <$button class="tc-btn-invisible tc-tiddlylink" actions="<<control-panel $:/core/ui/ControlPanel/StoryView>>" >here</$button>.""">>
+
+<<.tip """You can also use the <<.value minimal>> story view with other page templates.""">>
+<p/>
+
+!! ~EmptyMessage
+You can define the content to be shown when the ~StoryList is empty in the tiddler [[$:/config/EmptyStoryMessage]]. It is not set by default.

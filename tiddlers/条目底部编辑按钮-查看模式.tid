@@ -1,0 +1,15 @@
+created: 20220525024127474
+modified: 20240502162922669
+tags: $:/tags/ViewTemplate 条目底部编辑按钮 上下滚动 模板
+title: 条目底部编辑按钮-查看模式
+
+<!-- 已设置仅移动端生效 -->
+<span class="positionButton">
+
+<span class="unique-button">{{||$:/core/ui/Buttons/edit}}</span>
+<span class="unique-button">{{||$:/core/ui/Buttons/close}}</span>
+<span class="unique-button">{{||$:/core/ui/Buttons/save-wiki}}</span>
+<span class="unique-button">{{||$:/core/ui/Buttons/tiddler-bottom}}</span>
+<span class="unique-button">{{||$:/core/ui/Buttons/tiddler-top}}</span>
+<span class="unique-button">{{||滚动到故事河顶部按钮}}</span>
+</span>

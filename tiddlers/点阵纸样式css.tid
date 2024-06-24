@@ -1,0 +1,46 @@
+created: 20240101060831691
+modified: 20240128174004705
+tags: $:/tags/Stylesheet 点阵纸样式
+title: 点阵纸样式css
+
+        .dianzhen {
+            background-image: radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0),
+                          radial-gradient(circle, rgba(0, 0, 0, 0.01) 1px, transparent 0);
+            background-size: 20px 20px;
+font-family: "BallpointPen-Bold";
+font-size: 18px;
+line-height: 1.8;
+word-break: normal; 
+word-wrap: break-word;
+white-space: pre-wrap;
+        }
+
+.dianzhen blockquote{
+	border: none;
+	margin-left: 1em;
+    margin-top: -3em;
+    margin-bottom: -1em;
+	padding: 0;
+
+/* 文本过长滚动 */
+width: 100%; 
+top: 0px;
+max-height: 500px;
+overflow-x: hidden;
+overflow-y: auto;
+    }

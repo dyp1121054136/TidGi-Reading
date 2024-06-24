@@ -1,0 +1,115 @@
+caption: 侧边栏选项卡管理
+created: 20220904213056817
+creator: bradspinner
+modified: 20240403091715034
+modifier: bradspinner
+tags: $:/tags/ControlPanel/Appearance 宏
+title: $:/.br/tabsLedger
+
+\define configTid() $:/config/tabsLedger
+
+\define checkMain() <$action-listops $field="tags" $subfilter="$:/tags/SideBar"/>
+\define uncheckMain() <$action-listops $field="tags" $subfilter="-$:/tags/SideBar"/>
+\define checkMore() <$action-listops $field="tags" $subfilter="$:/tags/MoreSideBar"/>
+\define uncheckMore() <$action-listops $field="tags" $subfilter="-$:/tags/MoreSideBar"/>
+\define addToList()
+   <$action-listops $tiddler=<<configTid>> $field="list" $filter="[list<configTid>] [<configTid>get[text]]" />
+<$action-setfield $tiddler=<<configTid>> $field=text $value=" " />
+\end
+\define removeFromList()
+   <$action-listops $tiddler=<<configTid>> $field="list" $filter="[list<configTid>] -[<currentTiddler>]" />
+\end
+
+\define defaults() 
+[[$:/core/ui/MoreSideBar/All]]   [[$:/core/ui/MoreSideBar/Drafts]]   [[$:/core/ui/MoreSideBar/Explorer]]   [[$:/core/ui/MoreSideBar/Missing]]   [[$:/core/ui/MoreSideBar/Orphans]]   [[$:/core/ui/MoreSideBar/Plugins]] 
+[[$:/core/ui/MoreSideBar/Recent]]   [[$:/core/ui/MoreSideBar/Shadows]]   [[$:/core/ui/MoreSideBar/System]]   [[$:/core/ui/MoreSideBar/Tags]]   [[$:/core/ui/MoreSideBar/Types]]   [[$:/core/ui/SideBar/Open]]   [[$:/core/ui/SideBar/Recent]]   [[$:/core/ui/SideBar/Tools]]   [tag[$:/tags/MoreSideBar]]  [tag[$:/tags/SideBar]]
+\end
+
+
+<!-- ===============
+        List of tiddlers that can
+        be shown in the Sidebar
+        =============== -->
+
+<p>Check/uncheck the boxes in the Main and More columns to show/hide tiddlers in the Main (horizontal) and/or More (vertical) tabs lists in the Sidebar.</p>
+
+<ol class="tabsLedger">
+<li>
+<strong>Sidebar Tabs</strong>
+<strong>Main</strong>
+<strong>More</strong>
+</li>
+<$list filter="[subfilter<defaults>] [list<configTid>] :sort[get[title]]">
+<li>
+   <$link/>
+   <$checkbox filter="[list[!!tags]]" checked="$:/tags/SideBar" unchecked="" default="" checkactions=<<checkMain>> uncheckactions=<<uncheckMain>> ></$checkbox>
+   <$checkbox filter="[list[!!tags]]" checked="$:/tags/MoreSideBar" unchecked="" default="" checkactions=<<checkMore>> uncheckactions=<<uncheckMore>> ></$checkbox>
+</li>
+</$list>
+</ol>
+
+
+<!-- ===============
+        Add your own tiddlers
+        to the Sidebar as tabs
+        ============== -->
+
+<p>Type a tiddler name and add it to the list of available tabs.</p>
+
+<$edit-text
+    field="text"  tiddler=<<configTid>>
+    tag="input"  type="text"
+    placeholder=""  default=""
+/>
+<$button actions=<<addToList>> >Add to list</$button>
+
+
+
+<!-- ================
+        User-specified tiddlers
+        added to Sidebar tabs list
+        ================ -->
+
+<$list variable="." filter="[<configTid>get[list]!match[ ]]">
+
+!!! Custom Tabs
+<p>Remove a user-added tiddler from the list of available tiddlers above. This //will not// delete the tiddler itself.</p>
+<ol class="tabsLedger">
+<$list filter="[list<configTid>] :sort[get[title]]">
+<li>
+   <$link/>
+   <$button actions=<<removeFromList>> >remove</$button>
+</li>
+</$list>
+</ol>
+</$list>
+
+
+<!-- ============
+        Styling for the lists
+        of tiddlers above
+        ============ -->
+
+<style>
+.tabsLedger {
+   display: flex; flex-direction: column;
+   width: 90%;
+}
+
+.tabsLedger li {
+   display: flex; flex-direction: row; justify-content: flex-start;
+   margin: 0.25em;
+   width: 100%;
+}
+
+.tabsLedger li :nth-child(1) {
+   flex: 1 1 100%;
+   margin-right: auto;
+}
+
+.tabsLedger li :nth-child(2),
+.tabsLedger li :nth-child(3) {
+   flex: 0 0 4em;
+    text-align: center;
+}
+</style>

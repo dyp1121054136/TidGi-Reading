@@ -1,0 +1,15 @@
+{
+    "title": "$:/plugins/xp/tiddlertail",
+    "name": "Tiddler Tail",
+    "description": "Show information about tiddler at the bottom",
+    "list": "readme settings",
+    "version": "0.0.7",
+    "core-version": ">=5.3.0",
+    "plugin-type": "plugin",
+    "dependents": "$:/plugins/felixhayashi/tiddlymap $:/plugins/felixhayashi/vis $:/plugins/felixhayashi/hotzone $:/plugins/ihm/tidgraph $:/plugins/kookma/refnotes $:/plugins/kookma/shiraz $:/plugins/nico/projectify $:/plugins/nico/projectify-zh-Hans $:/plugins/tobibeer/inc $:/plugins/xp/aggregation $:/plugins/xp/aggregation-gtd $:/plugins/xp/aggregation-people $:/xp",
+    "author": "kl",
+    "created": "20220724121721079",
+    "modified": "20231001012620286",
+    "revision": "0",
+    "bag": "default"
+}

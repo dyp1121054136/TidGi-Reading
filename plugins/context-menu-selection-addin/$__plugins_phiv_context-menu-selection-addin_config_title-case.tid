@@ -1,0 +1,10 @@
+caption: Convert selection to Title Case when ''creating new tiddler from selection''
+created: 20221218211222986
+description: Convert selection to Title Case when ''creating new tiddler from selection''
+list-ordering: 4
+modified: 20221219002047060
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/title-case
+
+no

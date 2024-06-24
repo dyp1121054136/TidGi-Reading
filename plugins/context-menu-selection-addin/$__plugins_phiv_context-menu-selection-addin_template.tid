@@ -1,0 +1,14 @@
+created: 20220930192102762
+modified: 20221001130950369
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/template
+
+\define checkSeparator() <$action-setfield $field="separate-after" $value=""/>
+\define uncheckSeparator() <$action-deletefield separate-after/>
+<$set name="pluginPresent" filter={{!!condition}} value=" " emptyValue=" (requires additional plugin)">
+<$set name="pluginPresentStyle" filter={{!!condition}} value="tc-tiddlylink tc-tiddlylink-shadow" emptyValue="tc-tiddlylink tc-tiddlylink-resolves missing-plugin">
+<$set name="hasSeparator" filter="[<currentTiddler>has:field[separate-after]]" value="cb-separator" emptyValue=" ">
+<li class=<<hasSeparator>>><$link overrideClass=<<pluginPresentStyle>>><span class="config-element"><$transclude tiddler={{!!icon}}/>&nbsp;&nbsp;{{!!caption}}<$text text=<<pluginPresent>>/></span></$link><span><$checkbox field="text" checked="show" unchecked="hide"></$checkbox></span><span><$checkbox tiddler=<<currentTiddler>> field="separate-after" filter="[<currentTiddler>has:field[separate-after]]" checkactions=<<checkSeparator>> uncheckactions=<<uncheckSeparator>> ></$checkbox></span></li>
+</$set>
+</$set>
+</$set>

@@ -1,0 +1,15 @@
+{
+    "title": "$:/plugins/xp/link-to-tabs",
+    "name": "Link to Tabs",
+    "description": "Internal links are added to tabs if selected",
+    "author": "Mario Pietsch",
+    "modifier": "kl",
+    "core-version": ">=5.1.15",
+    "version": "0.0.2",
+    "icon": "$:/plugins/xp/link-to-tabs/icon",
+    "list": "readme license history",
+    "plugin-type": "plugin",
+    "dependents": "",
+    "revision": "0",
+    "bag": "default"
+}

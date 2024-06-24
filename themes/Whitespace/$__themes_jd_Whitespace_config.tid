@@ -1,0 +1,118 @@
+caption: Whitespace tweaks
+created: 20171203134043686
+creator: JD
+modified: 20200727063111886
+modifier: jd
+tags: $:/tags/ControlPanel/Appearance
+title: $:/themes/jd/Whitespace/config
+
+\define wsconfig(name) $:/config/Whitespace/$name$
+\define config-base() $:/config/SideBar/Visibility/
+\define config-title-sidebar()
+$(config-base)$$(currentTiddler)$
+\end
+\define drop-actions()
+<$action-listops $tiddler="$:/tags/SideBar" $subfilter="+[insertbefore:currentTiddler<actionTiddler>]"/>
+\end
+
+<style>
+.tc-control-panel table input[type="radio"] { width: auto; }
+.ws-select-button {
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    border: 1px solid <<colour primary>>;
+}
+.ws-disabled-btn {
+    background: <<colour muted-background>>;
+}
+.ws-enabled-btn {
+    background: <<colour primary>>;
+}
+</style>
+
+<table width="99%">
+<tr>
+<td>
+Sidebar width:
+</td>
+<td>
+<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth" tag="input" placeholder="350px" default=""/>
+</td>
+</tr>
+<tr>
+<td>
+Tiddler width:
+</td>
+<td>
+<$edit-text tiddler="$:/themes/tiddlywiki/vanilla/metrics/tiddlerwidth" tag="input" placeholder="100%" default=""/>
+</td>
+</tr>
+<tr>
+<td>
+Sidebar top buttons area height:
+</td>
+<td>
+<$edit-text tiddler="$:/w/config/jd-sidebar-top-buttons-height" tag="input" placeholder="42px" default=""/>
+</td>
+</tr>
+<tr>
+<td>
+Sidebar top padding:
+</td>
+<td>
+<$edit-text tiddler="$:/w/config/jd-sidebar-top-padding" tag="input" placeholder="39px" default=""/>
+</td>
+</tr>
+<tr>
+<td>
+Limit sidebar card height:
+</td>
+<td>
+<$checkbox tiddler=<<wsconfig SidebarHeight>> field="text" checked="limit" unchecked="full" default="limit"/>
+<$list filter="[[$:/config/Whitespace/SidebarHeight]text[limit]]"><$edit-text tiddler=<<wsconfig SidebarHeight>> field="height" tag="input" placeholder="300px"/></$list>
+</td>
+</tr>
+<tr>
+<td>
+Visible scrollbars:
+</td>
+<td>
+<$checkbox tiddler=<<wsconfig scrollbar-style>> field="text" checked="visible" unchecked="invisible" default="visible"/>
+</td>
+</tr>
+<tr>
+<td>
+Show Sitetitle and Subtitle:
+</td>
+<td>
+<$checkbox tiddler=<<wsconfig show-sitetitle>> field="text" checked="yes" unchecked="no" default="yes"/>
+</td>
+</tr>
+<tr>
+<td>
+Show buttons on hover:
+</td>
+<td>
+<$checkbox tiddler=<<wsconfig Spacious>> field="text" checked="yes" unchecked="no" default="yes"/>
+</td>
+</tr>
+<tr>
+<td>
+Theme the tiddler edit mode:
+</td>
+<td>
+<$checkbox tiddler=<<wsconfig ThemeEditFrame>> field="text" checked="yes" unchecked="no" default="yes"/>
+</td>
+</tr>
+<tr>
+<td>
+Sidebar position:
+</td>
+<td>
+<$radio tiddler=<<wsconfig "sidebar">> value="left"> left</$radio><br>
+<$radio tiddler=<<wsconfig "sidebar">> value="right"> right</$radio>
+</td>
+</tr>
+</table>

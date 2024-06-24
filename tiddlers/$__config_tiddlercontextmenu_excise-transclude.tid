@@ -1,0 +1,11 @@
+caption: Excise and transclude
+condition: [all[shadows]prefix[$:/config/flibbles/relink/]]
+created: 20221001194358653
+icon: $:/core/images/excise
+mode: transclude
+modified: 20240109015647056
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/excise-transclude
+tm-message: tm-excise
+
+hide

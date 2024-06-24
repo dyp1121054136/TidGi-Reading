@@ -1,0 +1,5 @@
+title: $:/BatchExport/Help
+
+批量导出条目为 .tid 文件或者 .json 文件。
+
+> ''特别说明：''[[高级搜索|$:/AdvancedSearch]] 中通过筛选表达式导出的是一个文件，而这里导出的压缩包中含有所有文件。

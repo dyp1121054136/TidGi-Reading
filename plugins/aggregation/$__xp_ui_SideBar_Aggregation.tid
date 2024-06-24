@@ -1,0 +1,25 @@
+caption: Aggregation
+color: #bbb
+description: Content aggregation
+icon: $:/xp/images/aggregation
+title: $:/xp/ui/SideBar/Aggregation
+
+\whitespace trim
+\define aggregationButtons()
+<$list filter="[all[shadows+tiddlers]prefix[$:/config/xp/aggregation/ui/]get[text]has[title]sort[]]" variable="listItem" emptyMessage="<p>None</p>">
+<div>
+<$button to=<<listItem>> class="tc-btn-invisible" style="margin-top:3px;">
+<$let tv-wikilinks="no">
+  <$transclude tiddler=<<listItem>> field="caption">
+    <$view tiddler=<<listItem>> field="title"/>
+  </$transclude>
+</$let>
+<$list filter="[all[shadows+tiddlers]prefix[$:/config/xp/aggregation/ui/]get[text]!has[title]]" variable="missingItem">
+<$action-deletetiddler $tiddler={{{ [<missingItem>lowercase[]addprefix[$:/config/xp/aggregation/ui/]] }}}/>
+</$list>
+</$button>
+</div>
+</$list>
+\end
+
+<<aggregationButtons>>

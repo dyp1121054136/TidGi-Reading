@@ -1,0 +1,57 @@
+title: $:/FilterBuilder/Search/HasFields
+
+\whitespace trim
+\define lingo-base() $:/language/EditTemplate/
+
+\define pt() has[
+\define st() ]
+
+\define search-results-list()
+\whitespace trim
+<div class="tc-dropdown-item">
+<<lingo Fields/Add/Dropdown/User>>
+</div>
+<$vars newFieldName={{$(searchTiddler)$}}>
+<$list filter="[!is[shadow]!is[system]fields[]search:title<newFieldName>sort[]]" variable="currentField">
+<$list filter="[<currentField>addsuffix[-primaryList]] -[<searchListState>get[text]]" emptyMessage="""<$link to=<<currentField>> class="tc-list-item-selected"><$text text=<<currentField>>/></$link>""">
+<$link to={{{ [<currentField>addprefix<pt>addsuffix<st>] }}}>
+<$text text=<<currentField>>/>
+</$link>
+</$list>
+</$list>
+<div class="tc-dropdown-item">
+<<lingo Fields/Add/Dropdown/System>>
+</div>
+<$list filter="[fields[]search:title<newFieldName>sort[]] -[!is[shadow]!is[system]fields[]]" variable="currentField">
+<$list filter="[<currentField>addsuffix[-secondaryList]] -[<searchListState>get[text]]" emptyMessage="""<$link to=<<currentField>> class="tc-list-item-selected"><$text text=<<currentField>>/></$link>""">
+<$link to={{{ [<currentField>addprefix<pt>addsuffix<st>] }}}>
+<$text text=<<currentField>>/>
+</$link>
+</$list>
+</$list>
+</$vars>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[[$:/temp/filterbuilder/search/hasfield]] [<searchTiddler>]"/>
+\define input-accept-actions() <$action-setfield $tiddler=<<editTid>> filter={{{ [<searchTiddler>get[text]addprefix<pt>addsuffix<st>] }}}/>
+
+<div class="tc-edit-field-add">
+<$vars editTiddler="$:/temp/filterbuilder/search/hasfield" searchTiddler="$:/temp/filterbuilder/search/hasfield/input">
+<div class="tc-edit-field-add-name-wrapper fb-search-fields">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTiddler>> storeTitle=<<searchTiddler>> 
+    tag="input" default="" focus="no" placeholder="field"
+    focusPopup=<<qualify "$:/state/popup/search-dropdown">> class="tc-edit-texteditor tc-popup-handle"
+    inputCancelActions=<<cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+<$button popup=<<qualify "$:/state/popup/search-dropdown">> class="tc-btn-invisible tc-btn-dropdown tc-small-gap">{{$:/core/images/down-arrow}}</$button>
+</div>
+<$reveal state=<<qualify "$:/state/popup/search-dropdown">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler=<<editTid>> filter=<<navigateTo>>/>">
+<<search-results-list>>
+</$linkcatcher>
+</$set>
+</div>
+</$reveal>
+</$vars>
+</div>

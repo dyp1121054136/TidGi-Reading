@@ -1,0 +1,14 @@
+caption: {{$:/core/images/clear-highlight}} 清除所有高亮
+created: 20240412083725786
+description: 清除所有高亮
+modified: 20240412102432842
+tags: 按钮 右键高亮
+title: $:/core/ui/Buttons/clear-highlight
+
+\define highlights() @@([^@@]*)@@
+\define highlight1() @@\.[\w\s-]+ (.+?)@@
+\define highlight01() $1
+<$button class="tc-btn-invisible " tooltip="清除当前条目所有高亮">{{$:/core/images/clear-highlight}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<highlight1>,<highlight01>search-replace:g:regexp<highlights>,<highlight01>] }}}
+/>
+</$button>

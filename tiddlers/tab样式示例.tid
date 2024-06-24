@@ -1,0 +1,20 @@
+created: 20170416111128542
+creator: Mat von TWaddle
+modified: 20240416020008955
+modifier: Mat von TWaddle
+tags: tab样式 筛选器下拉菜单
+title: tab样式示例
+
+!!!Demo
+<<tabs "one two three four" "two" "$:/state/tab2">>
+<<tabs "one two three " "two" "$:/state/tab3" "tc-vertical">>
+
+<div style="position:absolute; margin:-5em 10em; text-align:center;">
+''note also the tabs in the //sidebar//''<br> incl. the vertical tabs under //More//
+</div>
+
+!!!Install
+Drag these into your TW:
+
+*$:/plugins/TWaddle/PlainTabs/Stylesheet<br>This is a common stylesheet tiddler 
+*[[PlainTabs/settings]]<br>This has a quick button to set some //palette// colour values.<br>You can delete this tiddler after use.

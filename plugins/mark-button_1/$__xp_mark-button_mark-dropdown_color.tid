@@ -1,0 +1,11 @@
+caption: Color
+title: $:/xp/mark-button/mark-dropdown/color
+
+<$macrocall $name='colour-picker' actions="""
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{ [[<c style.color=]addsuffix<colour-picker-value>addsuffix[>]] }}}
+	suffix="</c>"
+/>
+"""/>

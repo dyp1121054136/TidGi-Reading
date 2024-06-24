@@ -1,0 +1,13 @@
+created: 20240508094152704
+modified: 20240508094522424
+tags: 正则表达式查找替换 按钮 锚点 行号
+title: 每行添加定位锚点按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="每行添加定位锚点">
+行号
+
+<$action-sendmessage $message="tm-add-line-anchors" title=<<currentTiddler>>/>
+</$button>
+</span>

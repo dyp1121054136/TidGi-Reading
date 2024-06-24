@@ -1,0 +1,23 @@
+caption: {{$:/xp/images/filterbuilder}} filter builder
+description: Build a filter expression
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/filter-builder
+
+\whitespace trim
+\define filter-builder-button(class)
+\whitespace trim
+<$button to="$:/FilterBuilder" tooltip="Filter builder" aria-label="filter builder" class="""$(tv-config-toolbar-class)$ $class$""">
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/filterbuilder}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+filter builder
+</span>
+</$list>
+</$button>
+\end
+
+<$list filter="[list[$:/StoryList]] +[field:title[$:/FilterBuilder]]" emptyMessage=<<filter-builder-button>>>
+<<filter-builder-button "tc-selected">>
+</$list>

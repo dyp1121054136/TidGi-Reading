@@ -1,0 +1,8 @@
+created: 20240518065523323
+modified: 20240518131921528
+tags: 滚动翻页
+title: 滚动到css类名按钮
+
+<$button class="tc-btn-invisible" tooltip="滚动到css类名">{{$:/core/images/css-anchor|23px}}
+<$action-sendmessage $message="tm-scrollpage" targetElement="css类名" scrollTime="0"/>
+</$button>

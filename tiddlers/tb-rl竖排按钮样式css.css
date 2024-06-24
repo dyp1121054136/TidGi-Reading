@@ -1,0 +1,20 @@
+.scrollpage-button-tb-rl-all {
+  display: flex; 
+  flex-direction: row; /* 水平排列 */
+  gap: 25px; 
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.unique-scrollpage-button-tb-rl {
+  opacity: 0.5; /* 设置按钮为半透明0.5 */
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.unique-scrollpage-button-tb-rl:hover {
+  opacity: 1; /* 悬停时取消透明度 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}

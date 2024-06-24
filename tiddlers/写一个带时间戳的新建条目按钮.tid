@@ -1,0 +1,31 @@
+created: 20240118132236434
+modified: 20240203084412621
+se-type: 
+tags: AI问答存档
+title: 写一个带时间戳的新建条目按钮
+
+!!!! ''写一个带时间戳的新建条目按钮''
+"""
+
+请学习tiddlywiki笔记的用法，网址http://tw5-zh-hans.tiddlyspot.com/，帮我写一个新建条目的按钮，条目名称为当前日期加时间戳
+
+当然可以，我会先学习http://tw5-zh-hans.tiddlyspot.com/ 网站上的信息，然后指导你创建一个新建条目的按钮，并且条目名称将为当前日期加时间戳，如您所愿。
+步骤如下：
+1、打开你的TiddlyWiki，然后点击页面右上角的"+"按钮以创建一个新的tiddler。
+2、在"标题"栏中输入"$:/新建日期时间条目"（或者任何你喜欢的标题）。
+3、在"文本"区域中，粘贴以下代码：
+<<code src:"""<$button>
+创建新条目
+<$action-sendmessage $message="tm-new-tiddler" $param=<<now "YYYY0MM0DD0hh0mm0ss">>>
+</$button>
+""" language:"tw">>
+4、点击"添加"标签，并在弹出的输入框中输入标签名，例如，"按钮"。
+5、保存这个tiddler。
+
+现在，当你点击这个"创建新条目"按钮时，它会创建一个新的条目，其名称为当前的日期和时间戳。
+
+请注意，`now` 标记的使用。`<<now "YYYY0MM0DD0hh0mm0ss">>` 会返回格式为'YYYYMMDDhhmmss'的当前日期和时间。同时，`$param=` 设定了新条目的标题。
+
+希望这个信息能帮到你。如果你有其他问题，随时向我询问。
+"""
+

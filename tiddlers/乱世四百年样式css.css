@@ -1,0 +1,22 @@
+.wr .h1, .wr .h2 {
+writing-mode: tb-rl; /* 从上往下，从右向左排列 */
+  margin: auto;
+  font-family: "LXGWWenKaiScreen";
+  height: 300px;
+  text-align: center;
+}
+
+.wr .h1 {
+font-size: 150%;
+}
+
+.wr .h2 {
+font-size: 90%;
+border-right: 2px ridge;
+}
+
+.fengmian {
+  display: block;
+  margin: auto; 
+  width: 450px;
+}

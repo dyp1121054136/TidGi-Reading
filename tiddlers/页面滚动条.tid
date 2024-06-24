@@ -1,0 +1,11 @@
+created: 20240417041908839
+modified: 20240417071024292
+tags: 导出
+title: 页面滚动条
+
+<<filter-pill "[tag[页面滚动条]][[页面滚动条]]" 页面滚动条>>
+
+css样式中引用图片
+<<code src:"""background-image: url(<<datauri "条目名称">>);
+""" language:"tw">>
+经测试，引用png成功，引用svg无效

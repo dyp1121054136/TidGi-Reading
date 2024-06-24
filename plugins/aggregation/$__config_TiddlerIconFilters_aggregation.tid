@@ -1,0 +1,12 @@
+tags: $:/tags/TiddlerIconFilter
+title: $:/config/TiddlerIconFilters/aggregation
+
+[tag[Book]then[$:/xp/images/book]]
+[tag[Consumer]then[$:/xp/images/consumer-rights]]
+[tag[Course]then[$:/xp/images/course]]
+[tag[Enterprise]then[$:/xp/images/enterprises]]
+[tag[Howto]then[$:/xp/images/guide]]
+[tag[People]then[$:/xp/images/people]]
+[tag[Plugin Card]then[$:/core/images/plugin-generic-plugin]]
+[tag[Software]then[$:/xp/images/programs]]
+[tag[Why]then[$:/xp/images/why]]

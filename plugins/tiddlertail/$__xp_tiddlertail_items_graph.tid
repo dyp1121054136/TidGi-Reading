@@ -1,0 +1,12 @@
+caption: Graph
+description: Tidgraph
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/graph
+
+<h3>Linking</h3>
+
+<$tidgraph start=<<currentTiddler>> mode="linking" maxdepth="2" nocollapse="true"/>
+
+<h3>Tagging</h3>
+
+<$tidgraph start=<<currentTiddler>> mode="tagging" maxdepth="2" nocollapse="true"/>

@@ -1,0 +1,7 @@
+count: yes
+created: 20240430190414159
+modified: 20240509114327979
+tags: 正则表达式查找替换
+title: 查找匹配到的结果数量
+
+匹配到的结果数量：<span class="countnumber"><$text text={{$:/state/searchNreplace/count}}/></span>

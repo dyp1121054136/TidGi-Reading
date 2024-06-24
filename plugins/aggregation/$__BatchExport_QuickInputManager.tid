@@ -1,0 +1,50 @@
+title: $:/BatchExport/QuickInputManager
+
+\define config-base() $:/config/xp/batchexport/Items/Visibility/
+
+\define delete-filter-button()
+\whitespace trim
+<$button popup=<<qualify "$:/state/batchexport/filterDeleteDropdown">> class="tc-btn-invisible tc-btn-mini tc-tiny-gap" tooltip="Delete this filter">
+{{$:/core/images/delete-button}}
+<$action-setfield $tiddler="$:/temp/filter/batchexport/target" text=<<currentTiddler>>/>
+</$button>
+
+<$reveal state=<<qualify "$:/state/batchexport/filterDeleteDropdown">> type="popup" position="belowleft" animate="yes">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<div class="tc-dropdown-item-plain">
+Are you sure you wish to delete this filter?
+</div>
+<div class="tc-dropdown-item-plain">
+<$button class="tc-btn">
+Delete
+<$action-sendmessage $message="tm-close-tiddler" param={{$:/temp/filter/batchexport/target}}/>
+<$action-deletetiddler $tiddler={{$:/temp/filter/batchexport/target}}/>
+</$button>
+</div>
+</div>
+</div>
+</$reveal>
+\end
+
+\define copy-filter-button()
+<$button message="tm-copy-to-clipboard" param={{!!filter}} class="tc-btn-invisible tc-btn-mini tc-small-gap-right" tooltip="Copy this filter">
+{{$:/core/images/copy-clipboard}}
+</$button>
+\end
+
+\whitespace trim
+
+Drag and drop to change the ordering
+
+<i><$count filter="[all[shadows+tiddlers]tag[$:/tags/Filter/BatchExport]!has[draft.of]]"/>&nbsp;filters:</i>
+
+<div class="tc-sidebar-tab-open" style="padding:0 16px;">
+<div class="tc-sidebar-tab-open-item">
+<$macrocall
+	$name="list-tagged-draggable"
+	tag="$:/tags/Filter/BatchExport"
+	itemTemplate="$:/templates/filter-batchexport-item"
+/>
+</div>
+</div>

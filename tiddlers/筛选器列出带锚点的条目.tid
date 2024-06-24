@@ -1,0 +1,17 @@
+created: 20240505043459163
+modified: 20240505071546826
+tags: 延时动作 书签
+title: 筛选器列出带锚点的条目
+
+"""
+示例：
+<$list filter={{{[tag[延时动作]field:anchor[yes]]}}}>
+  {{||导航到当前条目锚点按钮}} <$link/><br> 
+</$list>
+
+进阶示例：
+<$list filter={{{[tag[书签]field:anchor[yes]]}}}>
+  <$link/><br>
+{{||导航到当前条目书签锚点按钮}}
+</$list>
+"""

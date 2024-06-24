@@ -1,0 +1,18 @@
+caption: HTML注释
+condition: [<targetTiddler>type[]] [<targetTiddler>get[type]prefix[text/]] +[first[]]
+created: 20240313041604280
+description: 添加一个HTML注释
+modified: 20240318165914307
+shortcuts: ((HTML))
+tags: $:/tags/EditorToolbar 按钮 代码注释
+title: $:/core/ui/EditorToolbar/HTML
+
+<$button class="tc-btn-invisible" style="font-size: 0.6em;">
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{[[<!-- ]] }}}
+	suffix={{{[[ -->]] }}}
+/>
+<$text text="<!--  -->"/>
+</$button>

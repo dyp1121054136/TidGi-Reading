@@ -1,0 +1,11 @@
+caption: 换行
+created: 20240113052906218
+icon: $:/core/images/text-wrap
+markup-prefix: \n
+markup-suffix: 
+modified: 20240408134857842
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/text-wrap
+tm-message: tm-markup
+
+hide

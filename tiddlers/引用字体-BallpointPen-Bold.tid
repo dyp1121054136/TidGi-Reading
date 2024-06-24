@@ -1,0 +1,11 @@
+created: 20240127181110247
+modified: 20240127181905761
+tags: 字体 $:/tags/Stylesheet
+title: 引用字体-BallpointPen-Bold
+
+@font-face {
+	font-family: "BallpointPen-Bold";
+	font-style: normal;
+	font-weight: 400;
+	src: local("BallpointPen-Bold"), url(<<datauri "BallpointPen-Bold.woff">>) format("woff");
+}

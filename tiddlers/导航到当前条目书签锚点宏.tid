@@ -1,0 +1,8 @@
+created: 20240505045438835
+modified: 20240505051652862
+tags: 延时动作 书签 $:/tags/Macro
+title: 导航到当前条目书签锚点宏
+
+\define tidabookmark(number)
+<$transclude $variable="toanchor" tid=<<currentTiddler>> anchor="bookmark-$number$"/><span class="tidbks-color">$number$</span>
+\end

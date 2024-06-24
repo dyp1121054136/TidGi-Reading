@@ -1,0 +1,8 @@
+created: 20240129081820479
+modified: 20240129081923315
+tags: 
+title: $:/plugins/dyp/FiraCode-Regular/usage
+type: text/vnd.tiddlywiki
+
+!!!! ''字体用法：''
+对整个wiki生效：打开 [[$:/ControlPanel]] ，在外观-主题调整-设置-代码字型文本框内，最前面添加 `"FiraCode-Regular",`。

@@ -1,0 +1,11 @@
+caption: Keyboard
+created: 20240228011528063
+icon: $:/core/images/keyboard
+markup-prefix: <kbd>
+markup-suffix: </kbd>
+modified: 20240228012048137
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/keyboard
+tm-message: tm-markup
+
+show

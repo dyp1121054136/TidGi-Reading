@@ -1,0 +1,34 @@
+.se-section {
+  font-family: "LXGWWenKaiScreen"; /* 备选"LXGWNeoXiHeiScreenFull"; */
+  padding:.25em 1em;
+  border: none; /* 去除边框 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  background-color: transparent; /* 护眼背景颜色 备选transparent; #f0f0f0; #F4F4F4; */
+  border-radius: 8px; /* 圆角设置 */
+  margin-bottom: 10px; /* 两个部分编辑框的间距 备选10px */
+  line-height: 1.5; /* 行高 */
+}
+
+.se-sectionheader button {
+  padding-bottom: 10px; /* 折叠按钮的高度 备选0 */
+  flex-direction: row;
+  justify-content: flex-start;
+  border: none; /* 去除边框 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.se-sectionheader button svg {
+  display: none
+}
+
+.se-sectionbody {
+  margin-left: 0;
+  margin-top:-50px; /* 编辑框向上移动 备选-35px */
+}
+
+.se-section-toolbar button{
+  opacity: 0;  /* 备选0.5 */
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+}

@@ -1,0 +1,207 @@
+br: 0
+created: 20231231180301303
+modified: 20240323050951018
+tags: 点阵纸样式
+title: 色卡字体测试
+
+色卡1
+@@color:#8E3D3D;background-color:#EDB2AD;冬日红酒 Red Wine@@
+@@color:#8E3D3D;酒红色#8E3D3D@@ @@color:#EDB2AD;樱花粉#EDB2AD@@
+@@color:#1A4975;background-color:#B1D3E9;雪地精灵 Snow Angel@@
+@@color:#1A4975;藏蓝#1A4975@@ @@color:#B1D3E9;冰蓝色#B1D3E9@@
+@@color:#6F4B82;background-color:#D3BDE8;紫米奶酪Rice Cheese@@
+@@color:#6F4B82;葡萄紫#6F4B82@@ @@color:#D3BDE8;香芋紫#D3BDE8@@
+@@color:#546830;background-color:#CAC981;挪威森林Norwegian Forest@@
+@@color:#546830;森林绿#546830@@ @@color:#CAC981;豆蔻绿#CAC981@@
+@@color:#F4B162;background-color:#FFDA9A;脆脆蛋挞Egg Tart@@
+@@color:#F4B162;香橙色#F4B162@@ @@color:#FFDA9A;奶黄色#FFDA9A@@
+@@color:#7F523E;background-color:#E2C3A5;卡布奇诺 Cappuccino@@
+@@color:#7F523E;苦咖#7F523E@@ @@color:#E2C3A5;奶咖#E2C3A5@@
+
+色卡2
+@@color:#775360;background-color:#ECCFCF;红运满杯车厘子 Pop Cherry@@
+@@color:#775360;倚梅#775360@@ @@color:#ECCFCF;落红#ECCFCF@@
+@@color:#2D384E;background-color:#E8B9C5;流心蓝莓酱Blueberry Source@@
+@@color:2D384E;蓝莓#2D384E@@ @@color:#E8B9C5;珊瑚#E8B9C5@@
+@@color:#577149;background-color:#ECDFA6;爆打柠檬茶Lemon Tea@@
+@@color:#577149;森林绿#577149@@ @@color:#ECDFA6;柠檬黄#ECDFA6@@
+@@color:#4C637A;background-color:#BFD3E1;海盐芝士奶盖 Salty Cheese@@
+@@color:#4C637A;海盐#4C637A@@ @@color:#BFD3E1;奶盖#BFD3E1@@
+@@color:#8080A3;background-color:#F8D6D5;缤纷双莓Double Berry@@
+@@color:#8080A3;树莓#8080A3@@ @@color:#F8D6D5;草莓#F8D6D5@@
+@@color:#CF6862;background-color:#DFEBF4;冰镇西瓜汁 Icy Watermelon@@
+@@color:#CF6862;西瓜#CF6862@@ @@color:#DFEBF4;冰块#DFEBF4@@
+
+色卡3
+@@color:#701515;background-color:#CBBB9D;焦糖红茶 Caramel Tea@@
+@@color:#701515;湘妃红#701515@@ @@color:#CBBB9D;暖黄#CBBB9D@@
+@@color:#26436B;background-color:#C79E76;太妃榛仁巧克力 Toffee  Chocolate@@
+@@color:#26436B;牛仔蓝#26436B@@ @@color:#C79E76;太妃糖#C79E76@@
+@@color:#7A5347;background-color:#E0ADA8;樱花拿铁 Sakura Latte@@
+@@color:#7A5347;咖啡棕#7A5347@@ @@color:#E0ADA8;灰樱花#E0ADA8@@
+@@color:#74749B;background-color:#C6CFE4;诀诀苍兰 Freesia@@
+@@color:#74749B;绝决紫#74749B@@ @@color:#C6CFE4;渣渣灰#C6CFE4@@
+@@color:#845973;background-color:#CFACC0;干枯玫瑰 Dry Rose@@
+@@color:#845973;紫棠#845973@@ @@color:#CFACC0;褪红#CFACC0@@
+@@color:#7C8B66;background-color:#C6D9CD;荷塘月色 Lotus  Moonlight@@
+@@color:#7C8B66;绿灰色#7C8B66@@ @@color:#C6D9CD;月白#C6D9CD@@
+
+色卡1-shiraz版
+<<thl "冬日红酒 Red Wine" #8E3D3D #EDB2AD>>
+<<thlp "冬日红酒 Red Wine" #8E3D3D #EDB2AD>>
+<<tc "酒红色#8E3D3D" #8E3D3D>> <<tc "樱花粉#EDB2AD" #EDB2AD>>
+<<thl "雪地精灵 Snow Angel" #1A4975 #B1D3E9>>
+<<thlp "雪地精灵 Snow Angel" #1A4975 #B1D3E9>>
+<<tc "藏蓝#1A4975" #1A4975>> <<tc " 冰蓝色#B1D3E9" #B1D3E9>>
+<<thl "紫米奶酪Rice Cheese" #6F4B82 #D3BDE8>>
+<<thlp "紫米奶酪Rice Cheese" #6F4B82 #D3BDE8>>
+<<tc "葡萄紫#6F4B82" #6F4B82>> <<tc "香芋紫#D3BDE8" #D3BDE8>>
+<<thl "挪威森林Norwegian Forest" #546830 #CAC981>>
+<<thlp "挪威森林Norwegian Forest" #546830 #CAC981>>
+<<tc "森林绿#546830" #546830>> <<tc "豆蔻绿#CAC981" #CAC981>>
+<<thl "脆脆蛋挞Egg Tart" #F4B162 #FFDA9A>>
+<<thlp "脆脆蛋挞Egg Tart" #F4B162 #FFDA9A>>
+<<tc "香橙色#F4B162" #F4B162>> <<tc "奶黄色#FFDA9A" #FFDA9A>>
+<<thl "卡布奇诺 Cappuccino" #7F523E #E2C3A5>>
+<<thlp "卡布奇诺 Cappuccino" #7F523E #E2C3A5>>
+<<tc "苦咖#7F523E" #7F523E>> <<tc " 奶咖#E2C3A5" #E2C3A5>>
+
+色卡2-shiraz版
+<<thl "红运满杯车厘子 Pop Cherry" #775360 #ECCFCF>>
+<<thlp "红运满杯车厘子 Pop Cherry" #775360 #ECCFCF>>
+<<tc "倚梅#775360" #775360>> <<tc "落红#ECCFCF" #ECCFCF>>
+<<thl "流心蓝莓酱Blueberry Source" #2D384E #E8B9C5>>
+<<thlp "流心蓝莓酱Blueberry Source" #2D384E #E8B9C5>>
+<<tc "蓝莓#2D384E" #2D384E>> <<tc "珊瑚#E8B9C5" #E8B9C5>>
+<<thl "爆打柠檬茶Lemon Tea" #577149 #ECDFA6>>
+<<thlp "爆打柠檬茶Lemon Tea" #577149 #ECDFA6>>
+<<tc "森林绿#577149" #577149>> <<tc "柠檬黄#ECDFA6" #ECDFA6>>
+<<thl "海盐芝士奶盖 Salty Cheese" #4C637A #BFD3E1>>
+<<thlp "海盐芝士奶盖 Salty Cheese" #4C637A #BFD3E1>>
+<<tc "海盐#4C637A" #4C637A>> <<tc "奶盖#BFD3E1" #BFD3E1>>
+<<thl "缤纷双莓Double Berry" #8080A3 #F8D6D5>>
+<<thlp "缤纷双莓Double Berry" #8080A3 #F8D6D5>>
+<<tc "树莓#8080A3" #8080A3>> <<tc "草莓#F8D6D5" #F8D6D5>>
+<<thl "冰镇西瓜汁 Icy Watermelon" #CF6862 #DFEBF4>>
+<<thlp "冰镇西瓜汁 Icy Watermelon" #CF6862 #DFEBF4>>
+<<tc "西瓜#CF6862" #CF6862>> <<tc "冰块#DFEBF4" #DFEBF4>>
+
+色卡3-shiraz版
+<<thl "焦糖红茶 Caramel Tea" #701515 #CBBB9D>>
+<<thlp "焦糖红茶 Caramel Tea" #701515 #CBBB9D>>
+<<tc "湘妃红#701515" #701515>> <<tc "暖黄#CBBB9D" #CBBB9D>>
+<<thl "太妃榛仁巧克力 Toffee Chocolate" #26436B #C79E76>>
+<<thlp "太妃榛仁巧克力 Toffee Chocolate" #26436B #C79E76>>
+<<tc "牛仔蓝#26436B" #26436B>> <<tc "太妃糖#C79E76" #C79E76>>
+<<thl "樱花拿铁 Sakura Latte" #7A5347 #E0ADA8>>
+<<thlp "樱花拿铁 Sakura Latte" #7A5347 #E0ADA8>>
+<<tc "咖啡棕#7A5347" #7A5347>> <<tc "灰樱花#E0ADA8" #E0ADA8>>
+<<thl "诀诀苍兰 Freesia" #74749B #C6CFE4>>
+<<thlp "诀诀苍兰 Freesia" #74749B #C6CFE4>>
+<<tc "绝决紫#74749B" #74749B>> <<tc "渣渣灰#C6CFE4" #C6CFE4>>
+<<thl "干枯玫瑰 Dry Rose" #845973 #CFACC0>>
+<<thlp "干枯玫瑰 Dry Rose" #845973 #CFACC0>>
+<<tc "紫棠#845973" #845973>> <<tc "褪红#CFACC0" #CFACC0>>
+ <<thl "荷塘月色 Lotus Moonlight" #7C8B66 #C6D9CD>>
+<<thlp "荷塘月色 Lotus Moonlight" #7C8B66 #C6D9CD>>
+<<tc "绿灰色#7C8B66" #7C8B66>> <<tc "月白#C6D9CD" #C6D9CD>>
+
+色卡4--shiraz版
+<<thl "螺甸紫-芡食白" #74759B #E2E1E4>>
+<<thlp "螺甸紫-芡食白" #74759B #E2E1E4>>
+<<tc "螺甸紫#74759B" #74759B>> <<tc "芡食白#E2E1E4" #E2E1E4>>
+<<thl "崎红蜜-暖白" #66363C #F2EBD9>>
+<<thlp "崎红蜜-暖白" #66363C #F2EBD9>>
+<<tc "崎红蜜#66363C" #66363C>> <<tc "暖白#F2EBD9" #F2EBD9>>
+<<thl "海鸥灰-雅白" #9A8878 #FCF0D7>>
+<<thlp "海鸥灰-雅白" #9A8878 #FCF0D7>>
+<<tc "海鸥灰#9A8878" #9A8878>> <<tc "雅白#FCF0D7" #FCF0D7>>
+<<thl "瓦松绿-荔肉白" #6E8B74 #F2E6CE>>
+<<thlp "瓦松绿-荔肉白" #6E8B74 #F2E6CE>>
+<<tc "瓦松绿#6E8B74" #6E8B74>> <<tc "荔肉白#F2E6CE" #F2E6CE>>
+
+色卡5--shiraz版
+<<thl "集物社国韵色·染幺红" #B95760 #FFC9D5>>
+<<thlp "集物社国韵色·染幺红" #B95760 #FFC9D5>>
+<<tc "深绯#B95760" #B95760>> <<tc "桃天#FFC9D5" #FFC9D5>>
+<<thl "集物社国韵色·春烟柳" #2F6761 #B3D53E>>
+<<thlp "集物社国韵色·春烟柳" #2F6761 #B3D53E>>
+<<tc "石绿#2F6761" #2F6761>> <<tc "井天#B3D53E" #B3D53E>>
+<<thl "集物社国韵色·锦熏笼" #7F3B5D #ABA2C9>>
+<<thlp "集物社国韵色·锦熏笼" #7F3B5D #ABA2C9>>
+<<tc "芥拾#7F3B5D" #7F3B5D>> <<tc "堇木#ABA2C9" #ABA2C9>>
+<<thl "集物社国韵色·舞晴空" #46537E #A9C3E8>>
+<<thlp "集物社国韵色·舞晴空" #46537E #A9C3E8>>
+<<tc "青黛#46537E" #46537E>> <<tc "海盐#A9C3E8" #A9C3E8>>
+<<thl "集物社国韵色·春烟柳" #639683 #D4DBB0>>
+<<thlp "集物社国韵色·春烟柳" #639683 #D4DBB0>>
+<<tc "缥碧#639683" #639683>> <<tc "春辰#D4DBB0" #D4DBB0>>
+<<thl "集物社国韵色·锦熏笼" #BE876E #E0B256>>
+<<thlp "集物社国韵色·锦熏笼" #BE876E #E0B256>>
+<<tc "檀唇#BE876E" #BE876E>> <<tc "姜黄#E0B256" #E0B256>>
+
+色卡6--shiraz版
+<<thl "黑糖丝绒拿铁 Velet Latte" #8F3941 #DAC6A9>>
+<<thlp "黑糖丝绒拿铁 Velet Latte" #8F3941 #DAC6A9>>
+<<tc "红丝绒#8F3941" #8F3941>> <<tc "奶泡#DAC6A9" #DAC6A9>>
+<<thl "海盐芝士厚乳拿铁 Salty Latte" #4F557F #B7BAD8>>
+<<thlp "海盐芝士厚乳拿铁 Salty Latte" #4F557F #B7BAD8>>
+<<tc "瓦伦湖#4F557F" #4F557F>> <<tc "海盐#B7BAD8" #B7BAD8>>
+<<thl "生椰拿铁 Coconut Latte" #66402B #D3A57B>>
+<<thlp "生椰拿铁 Coconut Latte" #66402B #D3A57B>>
+<<tc "枣褐#66402B" #66402B>> <<tc "丁香褐#D3A57B" #D3A57B>>
+<<thl "珞珈樱花拿铁 Sakura Latte" #854050 #DBADA1>>
+<<thlp "珞珈樱花拿铁 Sakura Latte" #854050 #DBADA1>>
+<<tc "霁红#854050" #854050>> <<tc "咸池#DBADA1" #DBADA1>>
+<<thl "瓦尔登瑞纳冰 Walden Rina Ice" #464F8F #B6AADD>>
+<<thlp "瓦尔登瑞纳冰 Walden Rina Ice" #464F8F #B6AADD>>
+<<tc "瓦尔登#464F8F" #464F8F>> <<tc "糖浆#B6AADD" #B6AADD>>
+<<thl "樱花小铁 Sakura Coffee" #EF908F #FCCBCB>>
+<<thlp "樱花小铁 Sakura Coffee" #EF908F #FCCBCB>>
+<<tc "樱花#EF908F" #EF908F>> <<tc "奶油粉#FCCBCB" #FCCBCB>>
+
+双色文字色卡1–shiraz版
+<<tcs "草莓可丽露-嫩粉&酒红" #E8A0AF #7D3C4C>>
+<<tc "酒红#7D3C4C" #7D3C4C>>
+<<tc "珊瑚橙#B66454" #B66454>>
+<<tc "嫩粉#E8A0AF" #E8A0AF>>
+<<tc "烟粉#B26576" #B26576>>
+<<tc "灰粉#B38F94" #B38F94>>
+<<tcs "芋泥啵啵挞-马卡龙紫&紫黑" #BD9FDC #53445D>>
+<<tc "烟紫#AC99C2" #AC99C2>>
+<<tc "紫黑#53445D" #53445D>>
+<<tc "马卡龙紫#BD9FDC" #BD9FDC>>
+<<tc "浅橙#E2AD9B" #E2AD9B>>
+<<tc "姜黄#DEC26E" #DEC26E>>
+<<tcs "抹茶派派-草绿&森绿" #ABC255 #4A5E27>>
+<<tc "草绿#ABC255" #ABC255>>
+<<tc "蜜桃粉#D18C9B" #D18C9B>>
+<<tc "森绿#4A5E27" #4A5E27>>
+<<tc "抹茶#788413" #788413>>
+<<tc "豆沙绿#949A6D" #949A6D>>
+<<tcs "香蕉可丽饼-枯叶&棕叶" #C7A056 #7D4410>>
+<<tc "棕叶#7D4410" #7D4410>>
+<<tc "枯叶#C7A056" #C7A056>>
+<<tc "枫红#963523" #963523>>
+<<tc "玫瑰#BD7170" #BD7170>>
+<<tc "玫瑰棕#6A4F4F" #6A4F4F>>
+
+双色渐变文字色卡1–shiraz版
+<<tcj "草莓可丽露-嫩粉&酒红" #E8A0AF #7D3C4C>>
+<<tcj "芋泥啵啵挞-马卡龙紫&紫黑" #BD9FDC #53445D>>
+<<tcj "抹茶派派-草绿&森绿" #ABC255 #4A5E27>>
+<<tcj "香蕉可丽饼-枯叶&棕叶" #C7A056 #7D4410>>
+
+双色渐变文字色卡2–shiraz版
+<<tcj "去年今日此门中，人面桃花相映红。" #D59A98 #EACCC9>>
+<<tc "蜜桃红#D59A98" #D59A98>> <<tc "胭脂粉#EACCC9" #EACCC9>>
+<<tcj "烟雨入江南，山水如墨染。" #B3C198 #EFCBB9>>
+<<tc "螺黛青 #B3C198" #B3C198>> <<tc "膏米粉#EFCBB9" #EFCBB9>>
+<<tcj "水落鱼梁浅，天寒梦泽深。" #F2D499 #EDCDD7>>
+<<tc "玉露橙#F2D499" #F2D499>> <<tc "蟠桃粉#EDCDD7" #EDCDD7>>
+<<tcj "明月皎皎照我床，星汉西流夜未央。" #8A9DC0 #CABACE>>
+<<tc "清幽紫#8A9DC0" #8A9DC0>> <<tc "烟雾粉#CABACE" #CABACE>>
+<<tcj "羡青山有思，白鹤忘机。" #A5BEB0 #F0DDBB>>
+<<tc "山栀茶 #A5BEB0" #A5BEB0>> <<tc "晚香玉#F0DDBB" #F0DDBB>>
+<<tcj "借问落梅凡几曲，从风一夜满关山。" #7F8CB0 #CD94A7>>
+<<tc "幽兰青#7F8CB0" #7F8CB0>> <<tc "梅紫 #CD94A7" #CD94A7>>

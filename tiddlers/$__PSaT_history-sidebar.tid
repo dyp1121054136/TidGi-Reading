@@ -1,0 +1,16 @@
+caption: 历史
+created: 20220407035756845
+description: Lists most recent tiddler first in the history, clears on reload
+filename: history-sidebar
+modified: 20240505115716052
+package-filter: $:/PSaT/history-sidebar
+psat-project: history-sidebar
+tags: 宏 $:/tags/SideBar 历史记录 编辑记录和历史记录 筛选器下拉菜单
+title: $:/PSaT/history-sidebar
+
+\define title-string() "title": "
+\define end-title() "
+
+<$list filter="[{$:/HistoryList}split<title-string>splitbefore<end-title>removesuffix<end-title>reverse[]is[tiddler]]">
+
+</$list>

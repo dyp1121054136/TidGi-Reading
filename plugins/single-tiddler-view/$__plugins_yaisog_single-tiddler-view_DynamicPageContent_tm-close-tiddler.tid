@@ -1,0 +1,19 @@
+created: 20230213133858739
+modified: 20230519114409228
+tags: $:/tags/DynamicPageTemplate
+title: $:/plugins/yaisog/single-tiddler-view/DynamicPageContent/tm-close-tiddler
+
+\define tm-close-tiddler-actions()
+<$let targetTiddler={{{ [<event-param>!is[blank]else<event-tiddlerTitle>] }}} history={{{ [<tv-history-list>get[text]] }}}>
+	<$list filter="[<tv-history-list>get[current-tiddler]match<targetTiddler>]" variable="void">
+		<$let previousItem={{{ [<history>jsonindexes[]] :map[<history>jsonget<currentTiddler>,[title]] :intersection[list<tv-story-list>] +[!match<targetTiddler>reverse[]first[]] :else[list<tv-story-list>before<targetTiddler>] :else[list<tv-story-list>after<targetTiddler>] :else[{$:/mwi/DefaultTiddler}] }}}>
+			<$action-navigate $to=<<previousItem>> />
+		</$let>
+	</$list>
+	<$action-sendmessage $message=<<event-type>> $param=<<targetTiddler>> />
+</$let>
+\end
+
+<$messagecatcher $tm-close-tiddler=<<tm-close-tiddler-actions>> >
+	<$slot $name=ts-raw />
+</$messagecatcher>

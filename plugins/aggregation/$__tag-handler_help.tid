@@ -1,0 +1,42 @@
+title: $:/tag-handler/help
+
+[[Tag Handler|$:/core/ui/ViewTemplate/tags]] 可以在浏览视图下快速管理标签。点击标签栏上的圆点按钮 <<.icon $:/xp/images/status-dot>> 进入操作界面（含有状态标签 Planning、 Ongoing、 Completed 时图标会变为对应的指示颜色）。点击页面工具按钮 {{$:/xp/ui/Buttons/tag-handler}} tag handler 进入多任务处理模式。在[[设置|$:/plugins/xp/aggregation/settings]]中选择自己喜欢的关闭方式，以及设置显示位置。
+
+如果当前条目为聚合条目，操作界面下方会显示该聚合主题的预设标签。你不用记忆标签或者搜索标签，通过勾选就可以进行标签管理。So easy!
+
+> 所谓预设标签，就是提前规划好的一个聚合主题所需要使用的标签。
+
+
+!! 添加预设标签
+
+预设标签以 [[Title List|https://tiddlywiki.com/static/Title%2520List.html]] 的形式存储于配置文件中。添加新的预设标签，需要修改这些配置文件或者新建一个配置文件。
+
+修改配置文件：
+
+# 在聚合条目上，打开 Tag Handler，点击「预设标签表格」中带链接的分类标题，打开该类别的配置文件。根据需要增删标签。
+
+新建配置文件：
+
+# 拷贝已有类别的配置文件进行修改。<div class="gray-box">举例，对于聚合主题 [[PEOPLE]]，根据标题前缀为 `$:/config/xp/aggregation-people/category/` 的配置文件来生成「预设标签表格」。所以，可以通过新建标题格式为 `$:/config/xp/aggregation-people/category/<你的新分类>` 的配置文件来添加新类别。</div>
+# 删除配置文件或者删除 `text` 中的内容，则删除该类别。
+
+
+!! 隐藏按钮
+
+通过添加一个字段 `.taghandler` 来隐藏某个条目标签栏上的按钮 <<.icon $:/xp/images/status-dot>>。
+
+> 全局隐藏：在[[设置|$:/plugins/xp/aggregation/settings]]中「按钮位置」处选择 Hide。
+
+
+!! 项目文件
+
+每个聚合主题有一个 Tag Handler 的项目文件：<<tag $:/tags/TagHandler>>。
+
+<div class="gray-box">
+
+比如 [[PEOPLE]] 的项目文件为 $:/xp/tag-handler/items/people：
+
+# text 中为聚合主题的宏文件：`$:/people-macros`。宏文件中定义了两个宏：聚合标签为 `People`，预设分类标签的配置文件的前缀为 `$:/config/xp/aggregation-people/category/`。
+# 字段 `filter` 的值为 `[all[current]tag[People]]`。用来控制在聚合条目上显示对应的「预设标签表格」。
+
+</div>

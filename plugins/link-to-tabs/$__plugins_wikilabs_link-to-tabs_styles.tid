@@ -1,0 +1,77 @@
+created: 20190712133348541
+modified: 20190714104306483
+tags: $:/tags/Stylesheet
+title: $:/plugins/wikilabs/link-to-tabs/styles
+type: text/vnd.tiddlywiki
+
+.wltc-link-to-tab {
+  display: {{$:/plugins/wikilabs/link-to-tabs/config!!show-all-links}};
+  position: relative;
+  top: -1em;
+  left: -1.3em;
+  font-size: 0.7em;
+  opacity: {{$:/plugins/wikilabs/link-to-tabs/config!!initial-opacity}};
+  margin-right: -1em;
+}
+
+.wltc-link-to-tab svg{
+  width: 1.4em;
+  height: 1.4em;
+}
+
+.wltc-link-to-tab:hover {
+  opacity: 1;
+  transition:opacity {{$:/plugins/wikilabs/link-to-tabs/config!!transition}}s;
+  transition-timing-function: cubic-bezier(1,-0.06,.39,.89);
+}
+
+.tc-tab-selected + .wltc-link-to-tab {
+  display: {{$:/plugins/wikilabs/link-to-tabs/config!!show-single-link}};
+}
+
+.tc-vertical > .wltc-link-to-tab {
+  top: -1.9em;
+  left: 0;
+  height: 0;
+  float: right;
+}
+
+.tc-search-results .wltc-link-to-tab a {
+  display: contents;
+  padding: 0;
+}
+
+/*
+* $:/plugins/xp/link-to-tabs
+* 修复了水平标签页选中时出现下划线的问题
+* 修复了显示图标时标签页之间的间距异常的问题
+*/
+
+.wltc-link-to-tab {
+  top: -1em;
+  left: -1.26em;
+  margin-right: -1.4em;
+  margin-bottom: -0.9em;
+}
+
+.tc-vertical > .wltc-link-to-tab {
+  top: -3.1em;
+  left: -0.01em;
+}
+
+.tc-search-drop-down .wltc-link-to-tab a:hover {
+  background: none !important;
+}
+
+.tc-search-drop-down .wltc-link-to-tab {
+  left: -2.26em;
+  margin-right: -3.8em;
+}
+
+.xp-popup .wltc-link-to-tab {
+  margin-right: -1em;
+}
+
+.xp-block-dropup .wltc-link-to-tab {
+  margin-right: -3.4em;
+}

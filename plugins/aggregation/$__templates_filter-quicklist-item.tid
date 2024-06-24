@@ -1,0 +1,5 @@
+title: $:/templates/filter-quicklist-item
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<currentTiddler>> tag="hide"/>&nbsp;<<quicklistDeleteButton>><$link to={{!!title}} tooltip={{!!description}}><$view field="filter"/></$link><i class="tc-small-gap"/><small><i class="tc-muted">--&nbsp;<$view field="description"/></i></small>
+</$draggable>

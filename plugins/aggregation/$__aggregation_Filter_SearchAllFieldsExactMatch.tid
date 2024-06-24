@@ -1,0 +1,5 @@
+caption: all exact match
+description: Search all fields and exact match
+filter: [tag<aggregationTag>sort[]search:*:literal,casesensitive<userInput>]
+tags: $:/tags/Filter/Aggregation
+title: $:/aggregation/Filter/SearchAllFieldsExactMatch

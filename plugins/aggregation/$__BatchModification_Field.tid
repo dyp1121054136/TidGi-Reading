@@ -1,0 +1,207 @@
+caption: Field
+color: #bbb
+icon: $:/xp/images/batch-modification
+tags: $:/tags/BatchModification
+title: $:/BatchModification/Field
+
+\import [all[shadows+tiddlers]tag[$:/tags/Commander/Macro]] $:/BatchOperation/macros
+\whitespace trim
+\define lingo-base() $:/language/EditTemplate/
+
+\define searchfilter() [subfilter{$:/temp/batch-modification/filter}]
+
+\define bmFieldSelectType()
+<$select tiddler='$:/config/BatchModification/Field' default='add'>
+<option value='add'>Add fields</option>
+<option value='remove'>Remove fields</option>
+<option value='rename'>Rename fields</option>
+<option value='value'>Set field value</option>
+</$select>
+\end
+
+\define input-accept-actions() <$action-deletetiddler $filter="[<storeTitle>] [<searchListState>]"/>
+\define field-name-cancel-search-actions() <$action-setfield $tiddler=<<datafieldsTid>> $index=<<id_fldName>>/><<input-accept-actions>>
+\define field-value-cancel-search-actions() <$action-setfield $tiddler=<<datafieldsTid>> $index=<<id_fldValue>>/><<input-accept-actions>>
+
+\define field-name-searchbox()
+\whitespace trim
+<div class="tc-edit-field-add">
+<$vars refreshTitle=<<qualify "$:/temp/fieldname/refresh">> storeTitle="$:/temp/batch-modification/input/field-name" searchListState=<<qualify "$:/temp/NewFieldName/selected-item">>>
+<span class="tc-edit-field-add-name-wrapper fb-search-fields">
+<$macrocall $name="keyboard-driven-input" tiddler=<<datafieldsTid>> index=<<id_fldName>>
+    storeTitle=<<storeTitle>> refreshTitle=<<refreshTitle>> selectionStateTitle=<<searchListState>>
+    tag="input" default="" focus="no" placeholder={{$:/language/EditTemplate/Fields/Add/Name/Placeholder}}
+    focusPopup=<<qualify "$:/state/popup/$(id_fldName)$">> class="tc-edit-texteditor tc-edit-fieldeditor tc-popup-handle"
+    inputCancelActions=<<field-name-cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+<$button popup=<<qualify "$:/state/popup/$(id_fldName)$">> class="tc-btn-invisible tc-btn-dropdown tc-small-gap">{{$:/core/images/down-arrow}}</$button>
+</span>
+<$reveal state=<<qualify "$:/state/popup/$(id_fldName)$">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler=<<datafieldsTid>> $index=<<id_fldName>> $value=<<navigateTo>>/><<input-accept-actions>>">
+<<field-name-search-results-list>>
+</$linkcatcher>
+</$set>
+</div>
+</$reveal>
+</$vars>
+</div>
+\end
+
+\define field-value-searchbox()
+\whitespace trim
+<div class="tc-edit-field-add">
+<$vars storeTitle="$:/temp/batch-modification/input/field-value">
+<span class="tc-edit-field-add-name-wrapper fb-search-fields">
+<$macrocall $name="keyboard-driven-input" tiddler=<<datafieldsTid>> storeTitle=<<storeTitle>> index=<<id_fldValue>> 
+    tag="input" default="" focus="no" placeholder={{$:/language/EditTemplate/Fields/Add/Value/Placeholder}}
+    focusPopup=<<qualify "$:/state/popup/$(id_fldValue)$">> class="tc-edit-texteditor tc-edit-fieldeditor tc-popup-handle"
+    inputCancelActions=<<field-value-cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+<$reveal stateTitle=<<datafieldsTid>> stateIndex=<<id_fldName>> type="nomatch" text="" default=""><$button popup=<<qualify "$:/state/popup/$(id_fldValue)$">> class="tc-btn-invisible tc-btn-dropdown tc-small-gap">{{$:/core/images/down-arrow}}</$button></$reveal>
+</span>
+<$reveal stateTitle=<<datafieldsTid>> stateIndex=<<id_fldName>> type="nomatch" text="" default="">
+<$reveal state=<<qualify "$:/state/popup/$(id_fldValue)$">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler=<<datafieldsTid>> $index=<<id_fldValue>> $value=<<navigateTo>>/><<input-accept-actions>>">
+<<field-value-search-results-list>>
+</$linkcatcher>
+</$set>
+</div>
+</$reveal></$reveal>
+</$vars>
+</div>
+\end
+
+\define field-name-search-results-list()
+\whitespace trim
+<div class="tc-dropdown-item">
+<<lingo Fields/Add/Dropdown/User>>
+</div>
+<$vars userInput={{{ [<storeTitle>get[text]] }}}>
+<$list filter="[subfilter{$:/temp/batch-modification/filter}fields[]sort[]search:title<userInput>] -[enlist{$:/config/BatchModification/excluded-fields}]" variable="currentField">
+<$list filter="[<currentField>addsuffix[-primaryList]] -[<searchListState>get[text]]" emptyMessage="""<$link to=<<currentField>> class="tc-list-item-selected"><$text text=<<currentField>>/></$link>""">
+<$link to=<<currentField>>/>
+</$list></$list>
+<$list filter="[subfilter{$:/temp/batch-modification/filter}fields[]] -[!is[shadow]!is[system]fields[]] +[limit[1]]" variable="ignore">
+<div class="tc-dropdown-item">
+<<lingo Fields/Add/Dropdown/System>>
+</div>
+<$list filter="[fields[]sort[]search:title<userInput>] -[!is[shadow]!is[system]fields[]]" variable="currentField">
+<$list filter="[<currentField>addsuffix[-secondaryList]] -[<searchListState>get[text]]" emptyMessage="""<$link to=<<currentField>> class="tc-list-item-selected"><$text text=<<currentField>>/></$link>""">
+<$link to=<<currentField>>/>
+</$list></$list>
+</$list>
+</$vars>
+\end
+
+\define field-value-search-results-list()
+\whitespace trim
+<$vars fieldName={{{ [<datafieldsTid>getindex<id_fldName>] }}} userInput={{{ [<storeTitle>get[text]] }}}>
+<$list filter="[subfilter{$:/temp/batch-modification/filter}has<fieldName>each<fieldName>get<fieldName>!is[blank]sort[]search:title<userInput>]" variable="currentValue">
+<$link to=<<currentValue>>/>
+</$list>
+</$vars>
+\end
+
+\define getInputs()
+<<field-name-searchbox>><<field-value-searchbox>>
+\end
+
+
+''Operation type:'' &#32; <<bmFieldSelectType>>
+
+<!-- Add fields -->
+<$reveal type="match" state="$:/config/BatchModification/Field" text="add" default="add">
+
+<$macrocall $name="add-more-fields-ui" datafieldsTid="$:/temp/commander/tiddler/datafields/addfield"/>
+
+<$button class="cmd-btn cmd-btn-wd"> Add new fields
+<$macrocall $name="add-new-field-bulk" datafieldsTid="$:/temp/commander/tiddler/datafields/addfield"/>
+</$button>
+
+,,Note: This will overwrite the existing fileds!,,
+
+</$reveal>
+
+<!-- Remove fields -->
+<$reveal type="match" state="$:/config/BatchModification/Field" text="remove" default="add">
+
+Old field:
+<div>
+<$select class="cmd-select-wd" tiddler="$:/temp/commander/field-remove" default="">
+<$list filter="[subfilter<searchfilter>fields[]sort[]] -title -tags" >
+<option><$view field="title"/></option>
+</$list>
+</$select>
+</div>
+
+<$button class="cmd-btn cmd-btn-wd"> Remove old field
+<$macrocall $name="remove-old-field-bulk" oldField={{$:/temp/commander/field-remove}} />
+</$button>
+
+</$reveal>
+
+<!-- Rename fields -->
+<$reveal type="match" state="$:/config/BatchModification/Field" text="rename" default="add">
+
+Old field:
+<div>
+<$select class="cmd-select-wd" 
+ tiddler="$:/temp/commander/rename-field/old" default="" >
+<$list filter="[subfilter<searchfilter>fields[]sort[]] -[<systemFieldsTid>get[text]split[ ]]" > 
+<option><$view field="title"/></option>
+</$list>
+</$select>
+</div>
+
+New field:
+<div>
+<$edit-text
+tiddler="$:/temp/commander/rename-field/new"
+tag="input"
+default=""
+class="cmd-txt-area"
+placeholder=" field name"
+/>
+</div>
+
+<$button class="cmd-btn cmd-btn-wd"> Rename field
+<$macrocall $name="rename-field-bulk" 
+oldField={{$:/temp/commander/rename-field/old}} 
+newField={{{ [[$:/temp/commander/rename-field/new]get[text]lowercase[]trim[]split[ ]join[_]] }}} />
+</$button>
+
+</$reveal>
+
+<!-- Set field value -->
+<$reveal type="match" state="$:/config/BatchModification/Field" text="value" default="add">
+
+Field name:
+<div>
+<$select tiddler="$:/temp/commander/field-name" class="cmd-select-wd" default="" >
+<$list filter="[subfilter<searchfilter>fields[]sort[]] -[<systemFieldsTid>get[text]split[ ]]" >
+<option><$view field="title"/></option>
+</$list>
+</$select>
+</div>
+
+Field value:
+<div>
+<$edit-text
+tiddler="$:/temp/commander/field-value"
+tag="input" default=""
+class="cmd-txt-area"
+/>
+</div>
+
+<$button class="cmd-btn cmd-btn-wd"> Set field value
+<$macrocall 
+ $name="set-field-value-bulk" 
+ fieldName={{$:/temp/commander/field-name}} 
+ fieldValue={{$:/temp/commander/field-value}} 
+/>
+</$button>
+
+</$reveal>
+<<boLogButton>>

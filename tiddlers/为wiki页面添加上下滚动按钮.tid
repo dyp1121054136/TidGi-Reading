@@ -1,0 +1,34 @@
+created: 20240227074652811
+font: X
+modified: 20240326085937804
+tags: 教程 上下滚动
+title: 为wiki页面添加上下滚动按钮
+
+"""
+测试条目：
+[[上下滚动测试]]
+
+条目：[[滚动到条目顶部|$:/core/ui/Buttons/tiddler-top]] [[滚动到条目底部|$:/core/ui/Buttons/tiddler-bottom]]
+
+条目：[[上下滚动按钮]]
+标签：`$:/tags/PageTemplate`
+`animationDuration="0"` 表示取消动画
+<<code src:"""<$button class="tc-btn-invisible position-common to-top" tooltip="向上滚动">{{$:/core/images/scroll-top|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".scroll-top" animationDuration="0"/>
+</$button>
+
+<$button class="tc-btn-invisible position-common to-bottom" tooltip="向下滚动">{{$:/core/images/scroll-bottom|23px}}
+<$action-sendmessage $message="tm-scroll" selector=".scroll-bottom" animationDuration="0"/>
+</$button>
+
+<div class="tiddler-pc">
+<span class="tc-btn-invisible position-common tiddler-top-pc">{{||$:/core/ui/Buttons/tiddler-top}}</span>
+<span class="tc-btn-invisible position-common tiddler-bottom-pc">{{||$:/core/ui/Buttons/tiddler-bottom}}</span>
+</div>
+""" language:"tw">>
+条目：[[上下滚动锚点]] [[条目顶部锚点]]
+标签：`$:/tags/ViewTemplate`
+
+条目：[[上下滚动css]]
+标签：`$:/tags/Stylesheet`
+"""

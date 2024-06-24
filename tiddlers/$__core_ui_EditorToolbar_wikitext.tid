@@ -1,0 +1,17 @@
+caption: {{$:/core/images/wikitext}} 添加一个wikitext复制块
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240313085134593
+description: 添加一个wikitext复制块
+icon: $:/core/images/wikitext
+modified: 20240315114029776
+shortcuts: ((wikitext))
+tags: $:/tags/EditorToolbar 按钮 复制块
+title: $:/core/ui/EditorToolbar/wikitext
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{[[<<code src:"""]]}}}
+	suffix={{{[[
+""" language:"tw">>]]}}}
+/>

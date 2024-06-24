@@ -1,0 +1,98 @@
+created: 20231229031230137
+modified: 20240502162943293
+scroll-top-bottom-mobile: 27.5
+scroll-top-bottom-pc: 51.5
+tags: $:/tags/Stylesheet 上下滚动
+title: 上下滚动css
+type: text/vnd.tiddlywiki
+
+.scroll-top, .scroll-bottom {
+   position: fixed;
+   z-index: 999; 
+}
+
+.to-top, .to-bottom, .tiddler-top-pc, .tiddler-bottom-pc, .river-top-pc {
+  position: fixed;
+  z-index: 999;
+  opacity: 0.5;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  transition: opacity 0.3s ease;
+} 
+
+.to-top:hover, .to-bottom:hover, .tiddler-top-pc:hover, .tiddler-bottom-pc:hover, river-top-pc:hover {
+  opacity: 1; 
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.scroll-top {
+   top: -{{!!scroll-top-bottom-pc}}em; /* 向上滚动 */
+}
+
+.scroll-bottom {
+   top: {{!!scroll-top-bottom-pc}}em; /* 向下滚动 */
+}
+
+.position-common {
+  right: 400px; /* 备选400px;*/
+}
+
+.to-top {
+  top: 50%;
+}
+
+.to-bottom {
+  top: 55%;
+}
+
+.tiddler-top-pc {
+  top: 45%;
+}
+
+.tiddler-bottom-pc {
+  top: 60%;
+}
+
+.river-top-pc {
+  top: 40%;
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.scroll-top {
+   top: -{{!!scroll-top-bottom-mobile}}em; /* 向上滚动 */
+}
+
+.scroll-bottom {
+   top: {{!!scroll-top-bottom-mobile}}em; /* 向下滚动 */
+}
+
+.position-common {
+  right: 5px; /* 备选5px;*/
+}
+
+.to-top {
+  top: 70%;
+} 
+
+.to-bottom {
+  top: 80%;
+} 
+
+.tiddler-pc {
+display: none;
+}
+}

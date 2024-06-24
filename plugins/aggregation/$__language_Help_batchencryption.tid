@@ -1,0 +1,6 @@
+caption: Batch Encryption
+title: $:/language/Help/batchencryption
+
+在搜索框中输入「过滤表达式」筛选出一组 tiddlers，然后使用下方的控件对其进行加密或解密。tiddler 标题旁边的小挂锁（<<.icon $:/core/images/locked-padlock>>）表示该 tiddler 已经加密。
+
+{{$:/plugins/danielo515/encryptTiddler/language/batch}}

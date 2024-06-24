@@ -1,0 +1,8 @@
+created: 20240115071423625
+modified: 20240115073717561
+tags: 修改
+title: 修改fnote注释的样式
+
+[[$:/plugins/kookma/refnotes/styles/tooltip]]
+
+不改变内容，重新排版，每个类空一行

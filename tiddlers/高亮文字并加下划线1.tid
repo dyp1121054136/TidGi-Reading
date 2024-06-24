@@ -1,0 +1,12 @@
+caption: 文字标红并加下划线
+condition: [all[shadows]prefix[$:/plugins/tg/mark-button]]
+created: 20240109015411644
+icon: $:/core/images/mark
+markup-prefix: <<tu "
+markup-suffix: " #DB587F>>
+modified: 20240408134858321
+tags: $:/tags/tiddlercontextmenu
+title: 高亮文字并加下划线1
+tm-message: tm-markup
+
+hide

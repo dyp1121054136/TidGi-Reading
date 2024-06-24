@@ -1,0 +1,15 @@
+title: $:/FilterBuilder/ItemTemplate
+
+<$draggable tiddler=<<currentTiddler>>>
+<$button class="fb-btn btn-step">
+<$text text={{!!filter}}/>
+<$list filter="[enlist{$:/config/FilterOperators/NegatableOperators}match<currentItem>limit[1]]" variable="ignore">
+<$list filter="[{!!filter}regexp[^!]]" variable="ignore">
+<$action-setfield filter={{{ [{!!filter}removeprefix[!]] }}}/>
+</$list>
+<$list filter="[{!!filter}!regexp[^!]]" variable="ignore">
+<$action-setfield filter={{{ [{!!filter}addprefix[!]] }}}/>
+</$list>
+</$list>
+</$button>
+</$draggable>

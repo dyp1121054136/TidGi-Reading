@@ -1,0 +1,30 @@
+code-body: yes
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: captiontitle
+title: $:/table-dynamic/templates/body/captiontitle
+
+\define showCell()
+<$list filter="[<fieldOrIndex>]-index">
+<$link to=<<currentRecord>>><$let tv-wikilinks=no><$list filter="[<currentRecord>has[caption]]" emptyMessage="<$view tiddler=<<currentRecord>> field=title/>"><$transclude field=caption mode=inline></$list></$let></$link>
+</$list>
+<$list filter="[<fieldOrIndex>]-field">
+<$link to=<<currentRecord>>><$let tv-wikilinks=no currentTiddler=<<currentRecord>>><$transclude index=caption mode=inline><$view field=title/></$transclude></$let></$link>
+</$list>
+\end
+\define editCell()
+<$list filter="[<fieldOrIndex>]-index">
+<$edit-text tiddler=<<currentRecord>> field=caption tag="input" class="shiraz-dtable-textbox"/>
+</$list>
+<$list filter="[<fieldOrIndex>]-field">
+<$edit-text tiddler=<<currentRecord>> index=caption tag="input" class="shiraz-dtable-textbox"/>
+</$list>
+\end
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<editCell>> >
+ <<showCell_Locked>>
+</$list>
+</$reveal>

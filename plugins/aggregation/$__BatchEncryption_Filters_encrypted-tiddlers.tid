@@ -1,0 +1,4 @@
+description: All encrypted tiddlers
+filter: [has[encrypted]]
+tags: $:/tags/EncryptFilter
+title: $:/BatchEncryption/Filters/encrypted-tiddlers

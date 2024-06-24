@@ -1,0 +1,14 @@
+created: 20200605070045221
+creator: Designer
+modified: 20240407154633387
+modifier: Designer
+source: 
+tags: 标签下拉菜单
+title: $:/PSaT/tagging-here/ListItemTemplate 1
+
+<div class="tc-menu-list-item">
+<!-- currentTag -->
+<$link to={{!!title}}>
+<$view field="title"/>
+</$link>
+</div>

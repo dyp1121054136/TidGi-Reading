@@ -1,0 +1,12 @@
+created: 20200603044631721
+creator: dev
+filename: ViewToolbar2
+modified: 20240407154633390
+modifier: dev
+package-filter: [prefix[$:/PSaT/ViewToolbar2]]
+psat-project: ViewToolbar2
+tags: 标签下拉菜单
+title: $:/PSaT/ViewToolbar2
+
+;Provides an additional location below the current View Toolbar to add buttons or other content
+:Simply tag a tiddler with <<tag $:/tags/ViewToolbar2>>

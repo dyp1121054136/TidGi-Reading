@@ -1,0 +1,23 @@
+code-body: yes
+created: 20240330132844027
+modified: 20240511131047084
+tags: 样式 首行缩进和小标题居中 $:/tags/Stylesheet
+title: 首行缩进和小标题居中样式css
+type: text/vnd.tiddlywiki
+
+<$list filter="[center[2]]"> 
+[data-tiddler-title^="<$view field=title/>"] .tc-tiddler-body {
+  font-family: "LXGWWenKaiScreen";
+  text-align: justify; /* 两端对齐 */
+  text-indent: 2em;  /* 段首缩进 */
+}
+</$list>
+
+<$list filter="[center[2]]"> 
+[data-tiddler-title^="<$view field=title/>"] h3, h4, h5, h6, .se-sectionheader {
+text-align: center; /* 块级元素水平居中对齐 */
+vertical-align: middle; /* 行内元素垂直居中对齐 */
+text-indent: 0em;  /* 取消缩进 */
+font-weight: bold; /* 加粗 */
+}
+</$list>

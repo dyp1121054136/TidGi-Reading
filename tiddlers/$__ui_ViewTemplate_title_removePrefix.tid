@@ -1,0 +1,15 @@
+created: 20240423004929496
+modified: 20240424141317947
+revision: 0
+tags: 级联 目录工具
+title: $:/ui/ViewTemplate/title/removePrefix
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu-kong()  ^\s+
+\define mulu0()
+<h2 class="tc-title">
+<$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>search-replace:g:regexp<mulu-kong>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify>
+</h2>

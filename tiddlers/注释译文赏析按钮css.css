@@ -1,0 +1,12 @@
+.zhuyi
+{
+  border: none; /* 去除边框 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px; /* 添加10px的间距 */
+  transform: translateY(-0px); /* 向上移动 */
+  margin-bottom: -85px; /* 向上移动 */
+}

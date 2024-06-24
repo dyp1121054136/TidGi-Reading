@@ -1,0 +1,10 @@
+caption: 关闭其他条目
+created: 20220729201154064
+icon: $:/core/images/close-others-button
+modified: 20240109020647654
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/close-other-tiddlers
+tm-message: tm-close-other-tiddlers
+type: text/vnd.tiddlywiki
+
+hide

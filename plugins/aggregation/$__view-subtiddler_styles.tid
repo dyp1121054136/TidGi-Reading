@@ -1,0 +1,43 @@
+tags: $:/tags/Stylesheet
+title: $:/view-subtiddler/styles
+
+.xp-vst-box svg {
+    width: 1em;
+    height: 1em;
+}
+
+.xp-vst-titlebar {
+    padding-bottom: 6px;
+    font-size: 0.97em;
+}
+
+.xp-vst-toc {
+    margin-left: 0.5em;
+}
+
+.xp-vst-toc li {
+    font-size: 0.97em !important;
+    font-weight: normal !important;
+}
+
+.xp-vst-toc li a {
+    font-weight: normal !important;
+}
+
+.xp-vst-toc-item {
+    margin-top: -0.5em !important;
+    margin-bottom: -0.5em !important;
+}
+
+.xp-vst-notification {
+    color: #b10000;
+}
+
+.xp-vst-river-toc {
+    margin-left: 0.5em;
+}
+
+.xp-vst-river-toc li,
+.xp-vst-river-toc li a {
+    font-weight: normal !important;
+}

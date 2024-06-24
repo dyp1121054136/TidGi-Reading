@@ -1,0 +1,8 @@
+created: 20240516153648075
+modified: 20240518050227002
+tags: 滚动翻页
+title: 向左滚动按钮
+
+<$button class="tc-btn-invisible" tooltip="向左滚动">{{$:/core/images/scroll-left|23px}}
+<$action-sendmessage $message="tm-scrollpage" direction="left" scrollTime="0" scrollContainerSelector=".scrollpage-tb-rl" scrollDistance="90vw" extraChars="-1"/>
+</$button>

@@ -1,0 +1,10 @@
+created: 20240423004519499
+list-before: $:/config/ViewTemplateTitleFilters/default
+modified: 20240423025839362
+revision: 0
+tags: $:/tags/ViewTemplateTitleFilter 级联 目录工具
+title: $:/ui/ViewTemplate/title/removePrefixFilter
+type: text/vnd.tiddlywiki
+
+[prefix[0]then[$:/ui/ViewTemplate/title/removePrefix]]
+[has[caption]then[$:/ui/ViewTemplate/title/removePrefix]]

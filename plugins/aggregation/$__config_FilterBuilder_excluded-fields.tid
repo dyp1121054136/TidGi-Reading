@@ -1,0 +1,25 @@
+title: $:/config/FilterBuilder/excluded-fields
+
+title
+caption
+description
+tags
+text
+list
+created
+modified
+
+background
+background-color
+color
+bag
+config.neighbourhood_scope
+config.physics_mode
+config.raster
+config.refresh-triggers
+config.vis
+draft.of
+draft.title
+fa-version
+tmap.edges
+tmap.id

@@ -1,0 +1,25 @@
+.copy-code
+{
+  border: none; /* 去除边框 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 10px; /* 添加10px的间距 */
+  transform: translateY(-15px); /* 向上移动 */
+}
+
+.copy-code:hover {
+  opacity: 1;
+}
+
+.hover
+{
+  opacity: 0.2;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hover:hover {
+  opacity: 1;
+}

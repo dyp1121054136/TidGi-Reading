@@ -1,0 +1,29 @@
+created: 20240119174744725
+modified: 20240119181013282
+tags: 技巧
+title: 给文本添加隐形的html标签
+
+"""
+宏：
+[[$:/editions/tw5.com/wikitext-macros]]
+<hr/>
+
+<$genesis $type="div" class="tc-thing" label="Squeak">文本</$genesis>
+
+<$macrocall $name="wikitext-example"
+src="""<$genesis $type="div" class="tc-thing" label="Squeak">文本</$genesis>"""/>
+
+<$macrocall $name="wikitext-example" 
+src="""\define my-banner(mode:"inline",caption)
+<$genesis $type={{{ [<__mode__>match[inline]then[span]else[div]] }}} class="tc-mybanner">
+<<__caption__>>
+</$genesis>
+\end
+
+<<my-banner caption:"这是第一段话，被span包裹。">>
+
+<<my-banner mode:"block" caption:"这是第二段话，被div包裹。">>
+"""/>
+
+<<wikitext-example '<$genesis $type="my-element" $names="one two" $values="1 2">Test Genesis Widget</$genesis>'>>
+"""

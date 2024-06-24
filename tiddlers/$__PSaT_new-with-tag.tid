@@ -1,0 +1,18 @@
+created: 20200715020458744
+creator: Designer
+description: 以该标签新建子条目
+modified: 20240416093228049
+modifier: designer
+psat-version: 0.0.2
+tags: $:/tags/TagDropdown 标签下拉菜单
+tiddlywiki-version: 5.2.0+
+title: $:/PSaT/new-with-tag
+
+\define sqr-open() [[
+\define sqr-close() ]]
+<$button tooltip="以该标签新建子条目" class="tc-btn-invisible">
+   <$action-createtiddler $basetitle={{$:/language/DefaultNewTiddlerTitle}} $savetitle="$:/temp/tiddlername"/>
+   <$action-setfield $tiddler={{$:/temp/tiddlername}} $field="tags" $value={{{ [<currentTiddler>format:titlelist[]] }}} />
+   <$action-sendmessage $message="tm-edit-tiddler" $param={{$:/temp/tiddlername}}/>
+   {{$:/core/images/new-here-button}} 新建子条目
+</$button>

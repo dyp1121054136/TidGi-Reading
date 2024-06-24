@@ -1,0 +1,24 @@
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: education
+title: $:/table-dynamic/templates/body/education
+
+\define showCell() <$transclude tiddler=<<currentRecord>> field=<<currentColumn>> mode="inline" />
+\define showCell_Locked() <span style="font-style:oblique;"><<showCell>></span>
+\define select_education()
+<$select tiddler=<<currentRecord>> field=<<currentColumn>> default="">
+<$list filter="博士 硕士 本科 专科 高中 初中 小学">
+<option value={{!!title}}><$view field="title"/></option>
+</$list>
+<option value=''>empty</option>
+</$select>
+\end
+
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<select_education>> >
+ <<showCell_Locked>>
+</$list>
+</$reveal>

@@ -1,0 +1,59 @@
+.tc-tiddler-preview {
+  overflow: visible;
+}
+
+.tc-editor-toolbar {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -o-sticky;
+	position: -ms-sticky;
+	position: sticky;
+	background: #f3f3f3;
+	z-index: 500;
+}
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.tc-editor-toolbar {
+	top: 40px;
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.tc-editor-toolbar {
+	top: 35px;
+}
+}
+
+.sticky-footer{
+   position: sticky;
+   bottom: 0;
+   padding: 0 5px 5px 0;
+   background: transparent;
+	z-index: 500;
+}
+
+/* 因已使用了标题吸顶不需要再设置 */
+/*
+.tc-tiddler-title {
+	position: -webkit-sticky;
+	position: -moz-sticky;
+	position: -o-sticky;
+	position: -ms-sticky;
+	position: sticky;
+	top: 30px;
+	background: <<colour tiddler-background>>;
+	z-index: 500;
+}
+*/

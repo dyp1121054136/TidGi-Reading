@@ -1,0 +1,7 @@
+caption: PageControls
+description: 所有页面工具按钮
+filter: [all[shadows+tiddlers]tag[$:/tags/PageControls]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/PageControls
+
+{{!!filter}}

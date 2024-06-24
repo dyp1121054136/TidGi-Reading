@@ -1,0 +1,40 @@
+title: $:/FilterBuilder/Search/Start
+
+\whitespace trim
+
+\define search-results-list()
+\whitespace trim
+<$vars userInput={{$(searchTiddler)$}}>
+<$list filter="[enlist{$:/config/FilterBuilder/Start}search:title<userInput>]"  variable="currentSteps">
+<$list filter="[<currentSteps>addsuffix[-primaryList]] -[<searchListState>get[text]]" emptyMessage="""<$link to=<<currentSteps>> class="tc-list-item-selected"><$text text=<<currentSteps>>/></$link>""">
+<$link to=<<currentSteps>>>
+<$text text=<<currentSteps>>/>
+</$link>
+</$list>
+</$list>
+</$vars>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[[$:/temp/filterbuilder/search/start]] [<searchTiddler>]"/>
+\define input-accept-actions() <$action-deletefield $tiddler="$:/temp/filterbuilder/all" filter/><$action-setfield $tiddler=<<editTid>> filter={{$(searchTiddler)$}}/>
+
+<div class="tc-edit-field-add">
+<$vars editTiddler="$:/temp/filterbuilder/search/start" searchTiddler="$:/temp/filterbuilder/search/start/input">
+<div class="tc-edit-field-add-name-wrapper fb-search-fields">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTiddler>> storeTitle=<<searchTiddler>> 
+    tag="input" default="" focus="no" placeholder="steps"
+    focusPopup=<<qualify "$:/state/popup/search-dropdown">> class="tc-edit-texteditor tc-popup-handle"
+    inputCancelActions=<<cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+<$button popup=<<qualify "$:/state/popup/search-dropdown">> class="tc-btn-invisible tc-btn-dropdown tc-small-gap">{{$:/core/images/down-arrow}}</$button>
+</div>
+<$reveal state=<<qualify "$:/state/popup/search-dropdown">> type="nomatch" text="" default="">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-deletefield $tiddler='$:/temp/filterbuilder/all' filter/><$action-setfield $tiddler=<<editTid>> filter=<<navigateTo>>/><$action-setfield $tiddler=<<calloutState>> text='run'/>">
+<<search-results-list>>
+</$linkcatcher>
+</$set>
+</div>
+</$reveal>
+</$vars>
+</div>

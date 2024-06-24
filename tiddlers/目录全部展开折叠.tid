@@ -1,0 +1,49 @@
+created: 20240421082219905
+modified: 20240430041926034
+tags: 目录工具
+title: 目录全部展开折叠
+
+\widget $reveal(state,type,text,stateTitle)
+<$genesis $type="$reveal" $remappable="no" state =<<state>> stateTitle=<<stateTitle>> type=<<type>>  text=<<text>> default=`$(defaultsTo)$`><$slot $name="ts-raw" /></$genesis>
+\end
+
+\whitespace trim
+\define mulu-open-close-btn()
+<div class="mulu-open-btn">
+<$button set=<<qualify "$:/state/openmenu">> setTo="open" class="tc-btn-invisible" tooltip="全部展开">
+
+{{$:/core/images/mulu-open|22px}}
+
+<$list filter="[prefix[$:/state/toc/]suffix<qualify>]"><$action-setfield text="open"/></$list></$button>
+</div>
+\end
+
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[open]]}}} emptyMessage=<<mulu-open-close-btn>>>
+<div class="mulu-open-btn">
+<$button set=<<qualify"$:/state/openmenu">> setTo="close" class="tc-btn-invisible" tooltip="全部折叠">
+
+<!-- 全部折叠时图标 -->
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[close]]}}}>
+{{$:/core/images/mulu-open|22px}}
+</$list>
+
+<!-- 全部展开时图标 -->
+<$list filter={{{[<qualify "$:/state/openmenu">get[text]]+[match[open]]}}}>
+{{$:/core/images/mulu-close|22px}}
+</$list>
+
+<$list filter="[prefix[$:/state/toc/]suffix<qualify>]"><$action-setfield text="close"/></$list></$button>
+</div>
+</$list>
+
+<$vars defaultsTo={{{[<qualify "$:/state/openmenu">get[text]]}}}>
+<div class="tc-table-of-contents lian">
+
+<$transclude $variable="toc-mulu-selective-expandable" tag={{!!title}}>>
+
+<!--
+<$transclude $variable="toc-mulu" tag={{!!title}}>>
+<$transclude $variable="toc-selective-expandable" tag={{!!title}}>>
+-->
+</div>
+</$vars>

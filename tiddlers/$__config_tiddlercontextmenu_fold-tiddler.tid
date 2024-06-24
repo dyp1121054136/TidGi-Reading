@@ -1,0 +1,10 @@
+caption: 折叠当前条目
+created: 20220729215839423
+icon: $:/core/images/fold-button
+modified: 20240109020704188
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/fold-tiddler
+tm-message: tm-fold-tiddler
+type: text/vnd.tiddlywiki
+
+hide

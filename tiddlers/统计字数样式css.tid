@@ -1,0 +1,9 @@
+created: 20240505134727627
+modified: 20240505135410466
+tags: 字数统计 样式 $:/tags/Stylesheet
+title: 统计字数样式css
+
+.countnumber {
+  font-size: 0.9em;
+  color: #4a90e2; /* <<colour code-foreground>>; */
+}

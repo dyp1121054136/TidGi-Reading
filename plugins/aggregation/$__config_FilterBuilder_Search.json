@@ -1,0 +1,7 @@
+{
+    "all fields": "+[search:*{$:/temp/filterbuilder/Search}]",
+    "all exact match": "+[search:*:literal,casesensitive{$:/temp/filterbuilder/Search}]",
+    "all except text": "+[search:-text{$:/temp/filterbuilder/Search}]",
+    "title text tags": "+[search{$:/temp/filterbuilder/Search}]",
+    "title caption": "+[search:title,caption{$:/temp/filterbuilder/Search}]"
+}

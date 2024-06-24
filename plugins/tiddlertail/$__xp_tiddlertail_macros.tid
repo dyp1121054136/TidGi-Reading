@@ -1,0 +1,38 @@
+tags: $:/tags/Macro
+title: $:/xp/tiddlertail/macros
+
+\define fnoteDelimiter() <<fnote 
+\define abbrDelimiter() <<abbr 
+\define incDelimiter() <<{ 
+
+\define show-tiddlertail-filter()
+[all[current]!is[shadow]!is[system]!is[draft]!has[plugin-type]] -[enlist{$:/config/TiddlerTail/ExcludedTiddler}] -[prefix[$:/config/xp/aggregation/ui/]get[text]]
+\end
+
+\define showinc(filter:"[<currentTiddler>]", title:"Empty" class:"fnote-list", emptyMessage:"")
+<!-- copy from $:/plugins/kookma/refnotes/macros/showfnotes -->
+<$vars leftDelimiter="<<{ ">
+<$list filter="[subfilter<__filter__>search:text:literal,casesensitive<leftDelimiter>limit[1]]" variable=null emptyMessage=<<__emptyMessage__>> ><!-- check to see if there is any inc -->
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h2>$title$</h2>
+</$reveal>
+<ol class="$class$">
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" 
+   text={{!!text}}
+   begin="<<{ "
+   end=">>"
+   output="output-inc"
+/>
+</$list>
+</ol>
+</$list>
+</$vars>
+\end
+
+\define output-inc(p)
+<li>$p$</li>
+\end
+
+
+<pre><$view field="text"/></pre>

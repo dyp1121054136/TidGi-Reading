@@ -1,0 +1,69 @@
+title: $:/plugins/xp/tiddlertail/readme
+
+\define check(item)
+<$checkbox tiddler="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/$item$" field="text" checked="show" unchecked="hide" default="hide"/>
+\end
+
+; Tiddler Tail
+: TiddlerTail（鱼尾）让您在 Tiddler 底部查看条目信息。至于查看什么信息？理论上完全取决于您。
+
+为何不将自定义项目放到 <<.icon $:/core/images/info-button>> TiddlerInfo（<<tag $:/tags/TiddlerInfo>>）里面？
+
+* 首先，TiddlerTail 的目标是快速查看常用的条目信息。所以，它的项目按钮直接显示在条目上（置于底部只是出于美观性）。
+* 其次，TiddlerTail 动态地显示项目按钮。也就是说，结果为空时不会显示项目。
+*> 如果不需要「动态显示」，那么可到设置中关闭 TiddlerTail。将自己需要的项目打上系统标签 `$:/tags/TiddlerInfo` 即可。
+
+如何改变 TiddlerTail 的显示位置？
+
+* 方法一：在 <<tag $:/tags/ViewTemplate>> 里面，将浏览模板 $:/xp/ui/ViewTemplate/tiddlertail 拖到自己喜欢的位置，比如拖到 $:/core/ui/ViewTemplate/subtitle 后面。
+* 方法二：将 `{{||$:/xp/ui/ViewTemplate/tiddlertail}}` 放到 $:/core/ui/ViewTemplate/subtitle 中的 `</div>` 前，或者其他浏览模板里面。（记得取消 $:/xp/ui/ViewTemplate/tiddlertail 的系统标签 `$:/tags/ViewTemplate`）
+
+
+!! 项目
+
+TiddlerTail 是一个资源整合插件，一些项目的显示依赖于社区插件。它的项目标签为 <<tag $:/tags/TiddlerTail>>。
+
+|项目 |功能 |显示条件 |依赖 |h
+|!<<check things>> Things |添加当日任务。 |日志条目/任务条目。 |$:/plugins/xp/aggregation-gtd<br>$:/plugins/nico/projectify<br>$:/plugins/nico/projectify-zh-Hans |
+|!<<check activities>> Activities |显示当天修改过的条目。 |当天有条目被修改。 | |
+|!<<check annotation>> Annotation |显示批注。 |含有「批注」。 |$:/xp |
+|!<<check refnotes>> Refnotes |显示脚注。 |存在「脚注」。 |$:/plugins/kookma/refnotes |
+|!<<check backlinks>> Backlinks |显示反向链接。 |存在「反向链接」。 | |
+|!<<check links>> Links |显示内容中的链接。 |含有「[[硬链接|https://tiddlywiki.com/static/Hard%2520and%2520Soft%2520Links.html]]」。 | |
+|!<<check transclusion>> Transclusion |显示嵌入的条目。 |含有 inc transclusion。<br>`<<{ [[transcluded tiddler]]>>` |$:/plugins/tobibeer/inc<br>$:/plugins/kookma/refnotes |
+|!<<check graph>> Graph |递归显示链接和子条目。 |存在「[[硬链接|https://tiddlywiki.com/static/Hard%2520and%2520Soft%2520Links.html]]」或子条目。 |$:/plugins/ihm/tidgraph |
+|!<<check map>> Map |TiddlyMap Live View|条目在 TiddlyMap 中存在子节点。<br><small>- TiddlyMap 0.17.8+10010 可按住 <kbd>ctrl</kbd> 键使用鼠标滚轮缩放视图。<br>- 显示控制按钮前，务必先取消[[固定标题栏|$:/themes/tiddlywiki/vanilla/themetweaks]]，<br/>- 然后将代码中 `show-buttons="false"` 删掉。</small> |$:/plugins/felixhayashi/tiddlymap<br>$:/plugins/felixhayashi/vis<br>$:/plugins/felixhayashi/hotzone |
+|!<<check subtiddlers>> Subtiddlers |查阅或者编辑子条目。 |存在「子条目」。 |$:/plugins/xp/aggregation<br>$:/plugins/kookma/shiraz |
+|!<<check people>> People |编辑人物条目。 |含有标签 `People`。 |$:/plugins/xp/aggregation-people |
+
+能 get 到所有项目含义的一定是老司机。如果你没有驾驶证，不了解某个项目的含义，你可能需要去学习插件的使用方法。
+
+项目的配置文件为 $:/config/TiddlerTail/Tabs。相关说明：
+
+# 第一级 list 部件控制哪些条目上显示 TiddlerTail：
+#* [[默认条目|https://tiddlywiki.com/static/ShadowTiddlers.html]]和定义在 $:/config/TiddlerTail/ExcludedTiddler 里面的条目，将不显示。
+# 第一级 list 部件内罗列显示项目：
+#* 项目的显示顺序：我的原则是按显示标题进行升序排序，但是将类似的放到一起。比如默认将 Backlinks 与 Links 项目放到一起，将 Graph 和 Map 这种以图形进行展示且依赖社区插件的放到一起。可以按照自己喜好调整顺序；
+#* 添加自定义项目：参照已有项目进行模仿。比如，人物条目可以搞一个 Relationship 的项目，查看人物关系。
+#* 禁用项目：可以到设置中取消勾选，或者直接删掉配置文件中对应的项目块。
+# 打开的每个 Tiddler 都需要渲染，因此推荐只开启自己需要的项目。
+
+
+!! 其他说明
+
+TiddlerTail 最初的灵感来自：
+
+* [[Zettelkasten - The public musings of Soren Bjornstad|https://zettelkasten.sorenbjornstad.com/]]
+* [[TWE-Mehregan|https://github.com/kookma/TWE-Mehregan]]
+* [[The Memory Keeper|http://craigsturgeon.com/mk/example/Churchill-Example.html]]
+* [[TiddlyWiki for Scholars|http://tw5.scholars.tiddlyspot.com/]]
+
+> 四个站点有一个共同点，那就是都在条目底部显示了自定义项目。
+
+最后，我想吟诗一首：
+
+: 社区插件多，温暖我心窝；
+: 懒惰的我，只想拿过来就凑活；
+: 然而水土不服，用起来有些不舒服；
+: 啊~
+: 开始魔改吧，一个插件诞生啦！

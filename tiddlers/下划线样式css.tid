@@ -1,0 +1,10 @@
+created: 20240108152749105
+modified: 20240119111657674
+tags: $:/tags/Stylesheet 样式
+title: 下划线样式css
+
+u{
+text-underline-offset: 0.2em; /* 下划线与文字间距 */
+text-decoration: underline wavy; /* 下划线，double双下划线，dotted虚线，wavy波浪线 */
+text-decoration-color: #DB587F/* 下划线颜色 */
+}

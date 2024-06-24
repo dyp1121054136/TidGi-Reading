@@ -1,0 +1,26 @@
+caption: {{$:/xp/images/vst-right}} view subtiddler
+description: Show subtiddler in the sidebar
+tags: $:/tags/ViewToolbar
+title: $:/xp/ui/Buttons/view-subtiddler
+
+\import $:/view-subtiddler/macros
+\whitespace trim
+
+<$button tooltip="See tiddlers tagged with this one" aria-label="view subtiddler" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/xp/images/vst-right}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="subtiddler"/>
+</span>
+</$list>
+<$list filter="[all[current]!is[tag]]">
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/noSubtiddler"/>
+</$list>
+<$list filter="[all[current]is[tag]]">
+<$action-setfield $tiddler=<<storeTiddler>> $value=<<currentTiddler>>/>
+<$action-setfield $tiddler=<<configTiddler>> tags="$:/tags/SideBar"/>
+<$action-setfield $tiddler="$:/state/tab/sidebar--595412856" text=<<configTiddler>>/>
+</$list>
+</$button>

@@ -1,0 +1,51 @@
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.mulu-nav {
+  padding: 0 0.5%;
+}
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.mulu-nav {
+  padding: 0 1%;
+}
+}
+
+.mulu-nav {
+  width: 100%;
+  margin-top: 1em;
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  text-underline-offset: 0.2em;
+  display: table;
+  table-layout: fixed;
+}
+
+.mulu-nav > div {
+  display: table-cell;
+  vertical-align: top; /* middle; */
+}
+
+.mulu-nav-left {
+  text-align: left;
+}
+
+.mulu-nav-center {
+  text-align: center;
+}
+
+.mulu-nav-right {
+  text-align: right;
+}

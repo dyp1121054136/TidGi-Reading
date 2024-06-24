@@ -1,0 +1,50 @@
+created: 20240120143224486
+modified: 20240122113356278
+se-type: 
+tags: AI问答存档
+title: 中文双引号-小说对话自动高亮
+
+!!!! 不加 `p` 和 `span` 标签可以做到吗，用一个 `div` 包裹几个中文段落，中文双引号和双引号里的内容高亮
+"""
+
+如果你想要为双引号和双引号中的内容添加高亮，你可以使用JavaScript来获取和处理文本。你可以寻找所有的双引号，并且给它们添加特定的CSS样式。然后再将处理后的文本返回显示。这是一个示例：
+<<code src:"""<html>
+<head>
+    <style>
+        .quote {
+            color: red;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var div = document.getElementById('text');
+            var text = div.innerHTML;
+            var newtext = text.replace(/“([^”]*)”/g, '<span class="quote">“$1”</span>');
+            div.innerHTML = newtext;
+        };
+    </script>
+</head>
+<body>
+    <div id="text">
+        这是一个"引用的文本"的例子。"另一个引用的文本"。
+    </div>
+  </body>
+</html>
+""">>
+这个JavaScript代码用到了正则表达式来搜索双引号及其内部的文本，并且用带有`quote` CSS类的span标签替换它们。这将使得所有双引号及其内部的文本变为红色并有黄色背景。如果你想改变颜色，你可以修改CSS部分的代码。
+此外，这段代码在页面加载完成以后执行。`window.onload` 确保所有HTML元素都已经完全加载后再运行JavaScript。
+"""
+
+!!!! 引用外部css、js
+"""
+<<code src:"""<head>
+	<link rel="stylesheet" href="css/0001.css" />
+	<link rel="stylesheet" href="css/0002.css" />
+	<link rel="stylesheet" href="css/LXGWZhenKai-embed.css" />
+    <style>
+    </style>
+<script src="js/0001.js"></script>
+</head>
+""">>
+"""

@@ -1,0 +1,25 @@
+caption: Order Operators
+tags: $:/tags/FilterBuilder/Operators
+title: $:/config/FilterOperators/OrderOperators
+
+after
+before
+bf
+butfirst
+butlast
+first
+last
+limit
+next
+nsort
+nsortcs
+nth
+order
+previous
+rest
+reverse
+sort
+sortan
+sortcs
+sortsub
+zth

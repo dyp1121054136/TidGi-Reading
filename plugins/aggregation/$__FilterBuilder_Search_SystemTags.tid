@@ -1,0 +1,50 @@
+title: $:/FilterBuilder/Search/SystemTags
+
+\whitespace trim
+
+\define searchFilter() [all[shadows+tiddlers]tags[]is[system]sort[]search:title<userInput>]
+
+\define search-results-list()
+\whitespace trim
+<$vars userInput={{$(searchTiddler)$}} pt="tag[" st="]">
+<$list filter="[<userInput>limit[1]]" variable="listItem">
+<$list filter="[<userInput>minlength[1]]" variable="ignore">
+<div class="tc-search-results">
+<$set name="resultCount" value="<$count filter=<<searchFilter>>/>">
+<span class="tc-muted">{{$:/language/Search/Matches}}</span>
+</$set>
+
+<$list filter=<<searchFilter>>>
+<div class="tc-menu-list-item">
+<$link to={{{ [{!!title}addprefix<pt>addsuffix<st>] }}}><$text text={{!!title}}/></$link>
+</div>
+</$list>
+
+</div>
+</$list>
+</$list>
+</$vars>
+\end
+
+\define cancel-search-actions() <$action-deletetiddler $filter="[[$:/temp/filterbuilder/search/systemtags]] [<searchTiddler>]"/>
+\define input-accept-actions() <$vars pt="tag[" st="]"><$action-setfield $tiddler=<<editTid>> filter={{{ [<searchTiddler>get[text]addprefix<pt>addsuffix<st>] }}}/></$vars>
+
+<div class="tc-edit-field-add">
+<$vars editTiddler="$:/temp/filterbuilder/search/systemtags" searchTiddler="$:/temp/filterbuilder/search/systemtags/input">
+<div class="tc-edit-field-add-name-wrapper fb-search-systemtags">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTiddler>> storeTitle=<<searchTiddler>> 
+    type="search" tag="input" focus="no" placeholder="search system tags"
+    focusPopup=<<qualify "$:/state/popup/search-dropdown">> class="tc-edit-texteditor tc-popup-handle"
+    inputCancelActions=<<cancel-search-actions>> inputAcceptActions=<<input-accept-actions>> cancelPopups="yes"/>
+</div>
+<$reveal tag="div" class="tc-block-dropdown-wrapper" state=<<editTiddler>> type="nomatch" text="">
+<$reveal tag="div" class="tc-block-dropdown tc-search-drop-down fb-search-drop-down" state=<<qualify "$:/state/popup/search-dropdown">> type="nomatch" text="" default="">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<editTid>> filter=<<navigateTo>>/>""">
+<<search-results-list>>
+</$linkcatcher>
+</$set>
+</$reveal>
+</$reveal>
+</$vars>
+</div>

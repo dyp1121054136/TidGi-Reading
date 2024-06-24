@@ -1,0 +1,31 @@
+created: 20240403061135516
+modified: 20240410124553165
+tags: 书签 $:/tags/Macro 书签汇总
+title: showbookmarks书签汇总宏
+
+\define showbookmarks(filter:"[<currentTiddler>]", title:"Empty" class:"", emptyMessage:"")
+<$vars bookmarkDelimiter="<<bookmark ">
+<$list filter="[subfilter<__filter__>search:text:literal<bookmarkDelimiter>limit[1]]" variable=null emptyMessage="" >
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h4>$title$</h4>
+</$reveal>
+<ol class="$class$">
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" 
+   text={{!!text}}
+   begin="<<bookmark "
+   end=">>"
+   output="output-bookmark"
+/>
+</$list>
+</ol>
+</$list>
+</$vars>
+\end
+
+\define output-bookmark(p)
+<span class="bookmark-item">
+<span class="abookmark"><<abookmark $p$>></span>
+<span class="cbookmark"><<cbookmark $p$>></span>
+</span>
+\end

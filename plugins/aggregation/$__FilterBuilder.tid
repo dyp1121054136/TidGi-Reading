@@ -1,0 +1,229 @@
+color: #bbb
+icon: $:/xp/images/filterbuilder
+title: $:/FilterBuilder
+
+\import $:/FilterBuilder/macros
+\whitespace trim
+
+\define FilterBuilder()
+<div class="xp-filterbuilder">
+<$list filter=<<fb-has-step>>>
+<$button class="fb-btn btn-bracket left-bracket">
+<$text text="["/>
+</$button>
+</$list>
+<$macrocall
+  $name="fb-draggable"
+  tiddler=<<fbTiddler>>
+  subFilter="!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]"
+  itemTemplate="$:/FilterBuilder/ItemTemplate"
+/>
+<$list filter=<<fb-has-step>>>
+<$button class="fb-btn btn-bracket right-bracket">
+<$text text="]"/>
+</$button>
+</$list>
+<i class="tc-tiny-gap-left"/>
+<$macrocall
+  $name="fb-draggable"
+  tiddler=<<fbTiddler>>
+  subFilter="prefix[$:/temp/filterbuilder/Run]"
+  itemTemplate="$:/FilterBuilder/ItemTemplate"
+/>
+<$macrocall
+  $name="fb-draggable"
+  tiddler=<<fbTiddler>>
+  subFilter="prefix[$:/temp/filterbuilder/Search]"
+  itemTemplate="$:/FilterBuilder/ItemTemplate/Search"
+/>
+</div>
+\end
+
+\define FilterBuilderItems()
+\define config-base() $:/config/FilterBuilder/Items/Visibility/
+<span class="fb-input-panel">
+<table class="fb-input-panel">
+<tbody>
+<$list filter="[[$:/tags/FilterBuilder]tagging[]!is[draft]] :filter[lookup<config-base>!match[hide]]" variable="listItem">
+<$vars getCaption={{{ [<listItem>get[caption]] }}}
+  editTid={{{ [<listItem>get[caption]addprefix[$:/temp/filterbuilder/]] }}}
+  configTid={{{ [<listItem>get[caption]addprefix[$:/config/FilterBuilder/]] }}}>
+<tr class="fb-item">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</tr>
+</$vars>
+</$list>
+</tbody>
+</table>
+</span>
+\end
+
+\define FilterBuilderButtons()
+\whitespace trim
+\define config-base() $:/config/FilterBuilder/Buttons/Visibility/
+<$wikify text=<<currentFilter>> name="builtFilter">
+<$wikify text=<<listFilter>> name="resultsFilter">
+<$list filter="[[$:/tags/FilterBuilder/Buttons]tagging[]remove[$:/FilterBuilder/Buttons/show-settings]!is[draft]] :filter[lookup<config-base>!match[hide]]" variable="listItem">
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</$set>
+</$list>
+</$wikify>
+</$wikify>
+\end
+
+\define FilterBuilderInputPanel()
+\whitespace trim
+<div class="fb-wrapper">
+<div class="fb-panel">
+<$droppable actions=<<drop-actions-delete>>>
+<header class="fb-droppable-area">
+<<initializationButton>>
+</header>
+</$droppable>
+<<FilterBuilderItems>>
+<footer>
+<span class="fb-fun-btns">
+{{$:/FilterBuilder/Buttons/show-settings}} <$reveal state=<<calloutState>> type="nomatch" text="settings"><<FilterBuilderButtons>></$reveal>
+</span>
+<span class="fb-settings">
+<$reveal state=<<calloutState>> type="match" text="settings">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/FilterBuilder/Settings]!has[draft.of]]" variable="listItem">
+<$transclude tiddler=<<listItem>> mode="inline"/>
+</$list>
+<p>[[Filter Builder Help|$:/FilterBuilder/Help]]</p>
+</$reveal>
+</span>
+</footer>
+</div>
+</div>
+\end
+
+\define FilterBuilderUse()
+\import $:/FilterBuilder/macros/use-filter
+<$wikify text=<<currentFilter>> name="builtFilter">
+<$macrocall $name="fb-use-filter" filter=<<builtFilter>>/>
+</$wikify>
+\end
+
+\define FilterBuilderHistory()
+\whitespace trim
+<$list filter="[<historyTiddler>indexes[]limit[1]]" emptyMessage="""<p style="text-align:center;">No history</p>""" variable="ignore">
+<table>
+<tbody>
+<tr>
+<th>
+<$button tooltip="Delete all" class="tc-btn-invisible fb-btn-invisible">
+<b>Delete</b>
+<$action-confirm $message="Are you sure you wish to delete all history?">
+<$action-deletetiddler $tiddler=<<historyTiddler>>/>
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$action-confirm>
+</$button>
+</th>
+<th>Filter</th>
+<th></th>
+</tr>
+<$list filter="[<historyTiddler>indexes[]!nsort[]]" variable="index">
+<$set name="currentFilter" value={{{ [<historyTiddler>getindex<index>] }}}>
+<tr>
+<th>
+<$button tooltip="Delete" class="tc-btn-invisible fb-btn-invisible">
+<$view tiddler=<<index>> field=title format=date template="YYYY0MM0DD"/>
+<$action-setfield $tiddler=<<historyTiddler>> $index=<<index>>/>
+</$button>
+</th>
+<td class="tc-word-break">
+<$text text=<<currentFilter>>/>
+</td>
+<td>
+<$button tooltip="Send to advanced search" class="tc-btn-invisible fb-btn-invisible">
+{{$:/core/images/advanced-search-button}}
+<$action-setfield $tiddler="$:/temp/advancedsearch" text=<<currentFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/input" text=<<currentFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/refresh" text="yes"/>
+<$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/core/ui/AdvancedSearch/Filter"/>
+<$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/core/ui/AdvancedSearch/Filter"/>
+<$list filter="[<tv-story-list>contains[$:/AdvancedSearch]]">
+<$action-sendmessage $message="tm-close-tiddler" $param="$:/AdvancedSearch"/>
+</$list>
+<$action-navigate $to="$:/AdvancedSearch" $scroll="yes"/>
+</$button>
+<$button message="tm-copy-to-clipboard" param=<<currentFilter>> tooltip="Copy filter" class="tc-btn-invisible fb-btn-invisible tc-tiny-gap-left">
+{{$:/core/images/copy-clipboard}}
+</$button>
+</td>
+</tr>
+</$set>
+</$list>
+</tbody>
+</table>
+</$list>
+\end
+
+\define FilterBuilderResults()
+<$reveal state=<<calloutState>> type="nomatch" text="settings">
+<$reveal state=<<calloutState>> type="match" text="history" animate="yes">
+<p style="text-align:center;">History:</p>
+<<FilterBuilderHistory>>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="query" animate="yes">
+<p style="text-align:center;">Query:</p>
+{{$:/QUERY}}
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="advsearch" animate="yes">
+<p style="text-align:center;">Advanced Search:</p>
+{{$:/core/ui/AdvancedSearch/Filter}}
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="commander" animate="yes">
+<p style="text-align:center;">Commander:</p>
+{{$:/Commander}}
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="batchmodification" animate="yes">
+<p style="text-align:center;">Batch Modification:</p>
+{{$:/BatchModification}}
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="filtersearch" animate="yes">
+<p style="text-align:center;">Filter Search:</p>
+{{$:/FilterSearch}}
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="use" animate="yes">
+<p style="text-align:center;">Use filter:</p>
+<<FilterBuilderUse>>
+</$reveal>
+<!-- Run results -->
+<$list filter="[list<fbTiddler>has[filter]limit[1]]" variable="ignore">
+<$wikify text=<<currentFilter>> name="builtFilter">
+<$wikify text=<<listFilter>> name="resultsFilter">
+<$vars resultCount="<$count filter=<<resultsFilter>>/>">
+<$reveal state=<<calloutState>> type="match" text="run" animate="yes" retain="yes">
+<div style="text-align:center;">
+<p>Output:</p>
+<code><$text text=<<builtFilter>>/></code>
+<p>Result List:</p>
+</div>
+<div class="tc-search-results">
+{{$:/language/Search/Filter/Matches}}
+</div>
+<$list filter=<<resultsFilter>>>
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</$list>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="">
+<div style="text-align:center;">
+<p>Output:</p>
+<code><$text text=<<builtFilter>>/></code>
+</div>
+</$reveal>
+</$vars>
+</$wikify>
+</$wikify>
+</$list>
+</$reveal>
+\end
+
+<<FilterBuilder>>
+
+<<FilterBuilderInputPanel>>
+
+<<FilterBuilderResults>>

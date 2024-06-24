@@ -1,0 +1,148 @@
+created: 20240201045713937
+modified: 20240201053057839
+tags: wiki语言高亮
+title: wiki语言高亮示例
+
+!!!''基本格式''
+
+```tw
+''粗体''
+//斜体//
+__下划线__
+^^上标^^
+,,下标,,
+~~删除线~~
+`代码`
+@@高亮@@
+```
+
+!!!''标题''
+
+```tw
+! 这是一级标题
+!!.class 这是二级标题
+!!! 这是三级标题
+```
+!!!''列表和引用块''
+
+```tw
+!列表
+* 列表项
+
+!数字列表
+# 数字列表项
+
+!混合列表
+*# 混合列表项1
+#* 混合列表项2
+
+!引用块
+<<<
+这是一个块引用的段落
+<<<
+
+!单行引用块
+> 引用块
+>> 子引用块
+
+!混合引用块
+* 列表项1
+*> 一个引用块
+*> 另一个引用块
+* 列表项2
+```
+
+!!!''链接''
+
+```tw
+[[Tiddler Title]]
+[[Displayed Link Title|Tiddler Title]]
+https://tiddlywiki.com/
+*[[TW5|https://tiddlywiki.com/]]
+#[[Mail me|mailto:me@where.net]]
+>[[Open file|file:///c:/users/me/index.html]]
+```
+
+!!!''图片''
+
+```tw
+[img[Motovun Jack.jpg]]
+[img[https://tiddlywiki.com/favicon.ico]]
+[img[An explanatory tooltip|Motovun Jack.jpg]]
+[img width=32 [Motovun Jack.jpg]]
+```
+!!!''表格''
+
+```tw
+|!Heading1 | !Heading2 | !Heading3|
+|data | data | data|
+|data | data | data|
+| footer | footer| footer|f
+| caption |c
+
+|heading |heading | heading|h
+|data |data |data |
+|data |data |data |
+|class1 class2|k
+```
+
+!!!''HTML''
+
+```tw
+<div class="hello"></div>
+<div></div>
+<style>
+body {color: blue;}
+img {left: 10px;}
+.red {color: red;}
+</style>
+<img>
+<a href="https://tiddlywiki.com/">link</a>
+<div style="position:relative;" class={{{ [<listItem>encodeuricomponent[]addprefix[tc-btn-]] }}}>
+```
+
+!!!''Transclusion''
+
+```tw
+{{MyTiddler}} transcludes a single tiddler
+{{MyTiddler||TemplateTitle}} displays the tiddler through a specified TemplateTiddler
+{{||TemplateTitle}} displays the specified template tiddler without altering the current tiddler
+
+!Transcluding Text References
+{{MyTiddler!!field}} transcludes a specified field of a tiddler
+{{!!field}} transcludes a specified field of the current tiddler
+{{MyTiddler##index}} transcludes a specified indexed property of a DataTiddler
+{{##index}} transcludes a specified indexed property of the current DataTiddler
+
+!Filtered Transclusion
+{{{ [tag[mechanism]] }}}
+{{{ [tag[mechanism]] ||TemplateTitle}}}
+```
+
+!!!''Widgets''
+
+```tw
+<$button message="tm-navigate" to="HelloThere">Open ~HelloThere</$button>
+<$view field='goodbye'>
+<$text text={{something}}>
+
+<$let target="MyTiddler" currentTiddler={{{ [<target>prefix[$:/settings/for/]] }}} settings={{!!text}} currentTiddler=<<target>> >
+  The settings for <<currentTiddler>> are: <<settings>>
+</$let>
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/PageControls]!has[draft.of]]" variable="listItem">
+```
+
+!!!''Macros''
+
+```tw
+\define sayhi(name:"Bugs Bunny" address:"Rabbit Hole Hill")
+Hi, I'm $name$ and I live in $address$.
+\end
+
+<<.tip "The latest and most useful links are now being gathered in the [[Community Links Aggregator]].">>
+
+<<tabs "Forums Latest Tutorials [[Community Editions]] [[Community Plugins]] [[Community Themes]] [[Community Palettes]] [[Other Resources]] Examples Articles Meetups" "Latest">>
+
+<<tabs {{Transclusion}}>>
+```

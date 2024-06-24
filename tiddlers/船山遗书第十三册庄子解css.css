@@ -1,0 +1,243 @@
+@page {
+    margin-bottom: 5pt;
+    margin-top: 5pt
+    }
+
+.bodypic {
+    display: block;
+    text-align: center;
+    margin: 1em auto
+    }
+
+.bold {
+    font-weight: 500; /* bold 600 */
+    font-family: "LXGWWenKaiScreen";
+color: #1A4975;
+    }
+
+.calibre {
+    display: block;
+    font-family: stsong, "song s", song;
+    font-size: 1em;
+    line-height: 1.618;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: justify;
+    text-indent: 2em;
+    margin: 0 5pt
+    }
+
+.calibre1 {
+    display: block;
+    margin: 1em 0;
+    font-family: "LXGWWenKaiScreen";
+    }
+
+.calibre2 {
+    display: block
+    }
+
+.content {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    text-indent: 0;
+    margin: 1em 0
+    }
+
+.content_ {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    text-indent: 2em;
+    margin: 1em 0
+    }
+
+.content_1 {
+    display: block;
+    font-size: 1em;
+    /* font-weight: bold; */
+    text-indent: 2em;
+    margin: 1em 0;
+/* 补充样式 */
+    font-family: "LXGWWenKaiScreen";
+    color: #C79C00; 
+    }
+
+.content_2 {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    text-align: right;
+    text-indent: 0;
+    margin: 1em 0
+    }
+
+.content_3 {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    text-align: center;
+    text-indent: 0;
+    margin: 1em 0
+    }
+
+.content_100a {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 1em;
+    text-indent: 2em;
+    margin: 1em 0
+    }
+
+.content1 {
+    color: #666;
+    display: block;
+    font-size: 1.125em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-indent: 2em;
+    margin: 1em 0
+    }
+
+.content1_ {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    text-indent: 2em;
+    margin: 1em 0 1em 2em
+    }
+
+.content2_ {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    text-indent: 2em;
+    margin: 1em 0 1em 4em
+    }
+
+.firsttitle {
+    display: block;
+    font-size: 1.375em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 0.67em 0
+    }
+
+.h-pic {
+    height: 1.3em;
+    vertical-align: middle;
+    width: auto
+    }
+
+.imgdescript {
+    display: block;
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 0.25em auto
+    }
+
+.kt_ {
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.875em;
+    font-weight: normal;
+/* 补充样式 */
+   color: #DC143C; /* Crimson	深红(猩红)	#DC143C	(220,20,60) */
+    }
+
+.kt_1 {
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.88889em;
+    font-weight: normal;
+    line-height: 1.2;
+/* 补充样式 */
+   color: #DC143C; /* Crimson	深红(猩红)	#DC143C	(220,20,60) */
+    }
+
+.kt_2 {
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.9em;
+    font-weight: normal;
+    line-height: 1.2
+    }
+
+.name {
+    font-family: "汉仪楷体", "ETrump KaiTi", "方正仿宋", "FZFSJW--GB1-0", "DK-KAITI";
+    font-size: 0.90909em;
+    font-weight: normal;
+    line-height: 1.2
+    }
+
+.s-pic {
+    height: auto;
+    vertical-align: text-top;
+    width: 1em
+    }
+
+.secondtitle {
+    display: block;
+    font-size: 1.25em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 0.83em 0
+    }
+
+.sgc-toc-level {
+    display: block;
+    margin-left: 0
+    }
+
+.sgc-toc-level1 {
+    display: block
+    }
+
+.sgc-toc-title {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 1.2;
+    margin-bottom: 1em;
+    text-align: center
+    }
+
+.super {
+    font-size: 0.7em;
+    vertical-align: super
+    }
+
+.thirdtitle {
+    display: block;
+    font-size: 1.125em;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    text-indent: 0;
+    margin: 1em 0
+    }
+
+.width {
+    height: auto;
+    width: 50%
+    }
+
+.width1 {
+    height: auto;
+    width: 70%
+    }
+
+.width2 {
+    height: auto;
+    width: 30%
+    }
+
+.width3 {
+    height: auto;
+    width: 20%
+    }

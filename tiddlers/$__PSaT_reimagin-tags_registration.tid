@@ -1,0 +1,16 @@
+caption: reimagin-tags
+created: 20201012012456756
+creator: Tony
+filename: reimagin-tags
+modified: 20240407154633376
+modifier: Tony
+package-filter: [prefix[$:/PSaT/reimagin-tags]] [prefix[$:/PSaT/tag-indicator]] $:/tags/ViewToolbar2 [prefix[$:/PSaT/tagging-here]] [prefix[$:/PSaT/tagging-here/images/tag] [prefix[$:/PSaT/tagging-here/ListItemTemplate] [prefix[$:/PSaT/tagging-here/pill]] [prefix[$:/PSaT/tagging-here/TagTemplate]] [prefix[$:/PSaT/ViewToolbar2]] [prefix[$:/PSaT/ViewToolbar2/viewTemplate]] [prefix[$:/PSaT/copy-tag]] [prefix[$:/PSaT/close-all-tagged]] [prefix[$:/PSaT/open-all-tagged]] [perfix[$:/PSaT/new-with-tag]]
+project-modified-date: 20201012012456756
+project-registered-date: 20201012012456756
+psat-project: reimagin-tags
+psat-version: 0.1.0
+tags: registered-project 标签下拉菜单
+title: $:/PSaT/reimagin-tags/registration
+wiki-name: BlogToSelf
+
+<dl><dt>Package of macros relating to tags</dt></dl>

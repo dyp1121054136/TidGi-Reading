@@ -1,0 +1,15 @@
+{
+    "title": "$:/plugins/tg/mark-button",
+    "author": "TonGerner",
+    "core-version": ">=5.1.15",
+    "created": "20180203173037874",
+    "creator": "TonGerner",
+    "description": "Mark selected text",
+    "list": "readme license",
+    "modified": "20210104200049426",
+    "modifier": "TonGerner",
+    "name": "Mark selected text",
+    "plugin-type": "plugin",
+    "source": "http://www.tongerner.nl/TW5/TW5_index.html",
+    "version": "0.0.16"
+}

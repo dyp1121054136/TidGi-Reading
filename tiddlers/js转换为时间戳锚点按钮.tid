@@ -1,0 +1,13 @@
+created: 20240505174502477
+modified: 20240505174758790
+tags: 正则表达式查找替换 按钮 锚点
+title: js转换为时间戳锚点按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="查找书签转换为时间戳锚点">
+时间
+
+<$action-sendmessage $message="tm-replace-bookmarks" title=<<currentTiddler>>/>
+</$button>
+</span>

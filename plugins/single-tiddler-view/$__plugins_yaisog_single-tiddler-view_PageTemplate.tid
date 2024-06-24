@@ -1,0 +1,41 @@
+created: 20220226095218264
+description: shows a single tiddler at a time
+icon: $:/core/images/layout-button
+modified: 20230519114353226
+name: ~SingleTiddlerView
+tags: $:/tags/Layout
+title: $:/plugins/yaisog/single-tiddler-view/PageTemplate
+
+\whitespace trim
+\import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+
+<$vars
+	tv-config-toolbar-icons={{$:/config/Toolbar/Icons}}
+	tv-config-toolbar-text={{$:/config/Toolbar/Text}}
+	tv-config-toolbar-class={{$:/config/Toolbar/ButtonClass}}
+	tv-enable-drag-and-drop={{$:/config/DragAndDrop/Enable}}
+	tv-show-missing-links={{$:/config/MissingLinks}}
+	storyviewTitle={{$:/view}}
+	languageTitle={{{ [{$:/language}get[name]] }}}>
+    
+<div class={{{ [all[shadows+tiddlers]tag[$:/tags/ClassFilters/PageTemplate]!is[draft]] :map:flat[subfilter{!!text}] tc-page-container [[tc-page-view-]addsuffix<storyviewTitle>] [[tc-language-]addsuffix<languageTitle>] :and[unique[]join[ ]] }}} >
+
+	<$navigator story="$:/StoryList" history="$:/HistoryList" openLinkFromInsideRiver={{$:/config/Navigation/openLinkFromInsideRiver}} openLinkFromOutsideRiver={{$:/config/Navigation/openLinkFromOutsideRiver}} relinkOnRename={{$:/config/RelinkOnRename}}>
+
+        <$dropzone enable=<<tv-enable-drag-and-drop>>>
+
+            <$transclude $tiddler="$:/plugins/yaisog/single-tiddler-view/DynamicPageContent" filter="[all[shadows+tiddlers]tag[$:/tags/DynamicPageTemplate]!has[draft.of]]">
+
+                <$list filter="[all[shadows+tiddlers]tag[$:/tags/PageTemplate]!has[draft.of]] :and[append[$:/plugins/yaisog/single-tiddler-view/PageTemplate/story]remove[$:/core/ui/PageTemplate/story]]" variable="listItem">
+                    <$transclude tiddler=<<listItem>>/>
+                </$list>
+
+						</$transclude> <!-- see https://github.com/Jermolene/TiddlyWiki5/pull/7340 -->
+
+				</$dropzone>
+
+    </$navigator>
+
+</div>
+
+</$vars>

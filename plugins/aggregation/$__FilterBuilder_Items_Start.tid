@@ -1,0 +1,15 @@
+caption: Start
+description: start with predefined steps
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/Start
+
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+  {{$:/FilterBuilder/Search/Start}}
+  <span class="fb-item-input-textbox">
+  <$macrocall $name="keyboard-driven-input" tiddler=<<editTid>> field="filter"
+      type="search" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"
+      inputCancelActions=<<fb-cancel-input-actions>> inputAcceptActions=<<start-input-accept-actions>>/>
+  </span>
+</td>
+<td class="fb-item-add"></td>

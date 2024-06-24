@@ -1,0 +1,33 @@
+caption: doc
+tags: 
+title: $:/BatchCreation/Templates/Doc
+
+!! Introduction
+<<<
+short introduction
+<<<
+
+!! Content and parameters
+<<<
+The content, attributes and parameters
+
+|!Parameter |!Description |
+|par1 |description |
+|par2 |description |
+<<<
+
+!! Example i
+<<<
+example here
+<<<
+
+!! Example ii
+<<<
+another example here
+<<<
+
+!! References
+<<<
+# one
+# Two
+<<<

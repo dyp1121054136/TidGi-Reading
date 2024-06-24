@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 精准匹配……
+filter: [all[shadows+tiddlers]search:*:literal,casesensitive[…]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/search
+
+{{!!filter}}

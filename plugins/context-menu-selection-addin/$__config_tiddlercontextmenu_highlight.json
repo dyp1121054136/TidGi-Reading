@@ -1,0 +1,15 @@
+[
+    {
+        "created": "20220924131855650",
+        "text": "show",
+        "title": "$:/config/tiddlercontextmenu/highlight",
+        "tags": "$:/tags/tiddlercontextmenu",
+        "caption": "Highlight",
+        "icon": "$:/core/images/mark",
+        "tm-message": "tm-markup",
+        "modified": "20220925152744286",
+        "condition": "[all[shadows]prefix[$:/plugins/tg/mark-button]]",
+        "markup-prefix": "@@.tgr ",
+        "markup-suffix": "@@"
+    }
+]

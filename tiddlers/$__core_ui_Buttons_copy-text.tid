@@ -1,0 +1,11 @@
+caption: {{$:/core/images/copy-text}} 复制当前条目内容
+created: 20240415063101707
+description: 复制当前条目内容
+icon: $:/core/images/copy-text
+modified: 20240417013225162
+tags: 按钮 $:/tags/ViewToolbar 复制内容
+title: $:/core/ui/Buttons/copy-text
+
+<$button class="tc-btn-invisible " tooltip="复制当前条目内容" message="tm-copy-to-clipboard" param={{!!text}}>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/copy-text}}</$list><$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">复制当前条目内容</span></$list>
+</$button>

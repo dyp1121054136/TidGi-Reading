@@ -1,0 +1,20 @@
+caption: 目录
+created: 20240419085021233
+modified: 20240420011833214
+tags: 筛选器下拉菜单
+title: 筛选器下拉菜单折叠目录列表
+
+\whitespace trim
+
+<div class="my-filter-pill-btn1">
+{{||筛选器下拉菜单关闭其他条目}}
+</div>
+<div class="tc-table-of-contents">
+<$transclude $variable="toc-selective-expandable" tag=<<currentTiddler>> />
+</div>
+
+<!--写法2
+<div class="tc-table-of-contents">
+<$transclude $variable="toc-selective-expandable" tag={{!!title}}>>
+</div>
+-->

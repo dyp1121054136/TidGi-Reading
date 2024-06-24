@@ -1,0 +1,10 @@
+caption: 折叠其他条目
+created: 20220729215431456
+icon: $:/core/images/fold-others-button
+modified: 20240109021214200
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/fold-other-tiddlers
+tm-message: tm-fold-other-tiddlers
+type: text/vnd.tiddlywiki
+
+hide

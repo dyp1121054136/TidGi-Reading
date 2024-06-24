@@ -1,0 +1,32 @@
+color: #bbb
+icon: $:/core/images/help
+title: $:/aggregation-template-help
+
+!! 默认条目列表
+
+<<list-links filter:"[enlist{$:/english/default-tiddlers}]" type:"ol">>
+
+!! 删除聚合主题
+
+<$button style="padding:1px 20px;" aria-label="delete aggregation view">
+DELETE
+<$action-confirm $message="Are you sure you wish to delete this aggregation view?">
+<$list filter={{$:/english/default-tiddlers}}>
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+</$button>
+<$button style="padding:1px 20px;" aria-label="delete aggregation topic">
+DELETE ALL
+<$action-confirm $message="Are you sure you wish to completely delete this aggregation topic?">
+<$list filter="[enlist{$:/english/default-tiddlers}] [tag[English]]">
+<$action-sendmessage $message="tm-close-tiddler" param=<<currentTiddler>>/>
+<$action-deletetiddler $tiddler=<<currentTiddler>>/>
+</$list>
+</$action-confirm>
+</$button>
+
+<small class="tc-muted">
+DELETE 只删除聚合视图。DELETE ALL 会删除聚合条目：<<tag """English""">>。
+</small>

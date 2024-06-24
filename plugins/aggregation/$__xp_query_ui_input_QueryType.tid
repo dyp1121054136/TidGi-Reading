@@ -1,0 +1,86 @@
+tags: $:/tags/Query/Input
+title: $:/xp/query/ui/input/QueryType
+
+\define set-next-input-tab(beforeafter:"after")
+<$macrocall $name="change-input-tab"
+	stateTitle="$:/state/tab--1498284803"
+	tag="$:/tags/AdvancedSearch"
+	beforeafter="$beforeafter$"
+	defaultState="$:/core/ui/AdvancedSearch/System"
+	actions="<$action-setfield $tiddler='$:/state/advancedsearch/currentTab' text=<<nextTab>>/>"/>
+\end
+
+\define cancel-input-actions()
+\whitespace trim
+<$list
+	filter="[{$:/temp/query/input}!match{$:/temp/query}]"
+	emptyMessage="<$action-deletetiddler $filter='[[$:/temp/query]] [[$:/temp/query/input]] [[$:/temp/query/selected-item]]' />">
+	<$action-setfield $tiddler="$:/temp/query/input" text={{$:/temp/query}}/>
+	<$action-setfield $tiddler="$:/temp/query/refresh" text="yes"/>
+</$list>
+\end
+
+\define input-accept-actions()
+\whitespace trim
+<$list
+	filter="[{$:/config/Search/NavigateOnEnter/enable}match[yes]]"
+	emptyMessage="<$list filter='[<__tiddler__>get[text]!is[missing]] ~[<__tiddler__>get[text]is[shadow]]'><$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/></$list>">
+	<$action-navigate $to={{{ [<__tiddler__>get[text]] }}}/>
+</$list>
+\end
+
+<div class="xp-query">
+<div class="xp-query-type">
+		<$keyboard key="((input-tab-right))" actions=<<set-next-input-tab>>>
+		<$keyboard key="((input-tab-left))" actions=<<set-next-input-tab "before">>>
+	<$keyboard key="escape" actions=<<cancel-input-actions>>>
+	<$keyboard key="enter" actions=<<input-accept-actions>>>
+	<$keyboard key="ctrl+1" actions="<$action-setfield $tiddler='$:/temp/query' text='ql'/>">
+	<$keyboard key="ctrl+2" actions="<$action-setfield $tiddler='$:/temp/query' text='qm'/>">
+	<$keyboard key="ctrl+3" actions="<$action-setfield $tiddler='$:/temp/query' text='qp'/>">
+	<$keyboard key="ctrl+4" actions="<$action-setfield $tiddler='$:/temp/query' text='qt'/>">
+<$macrocall
+	$name="keyboard-driven-input"
+	tiddler="$:/temp/query/input"
+	storeTitle="$:/temp/query"
+	refreshTitle="$:/temp/query/refresh"
+	selectionStateTitle="$:/temp/query/selected-item"
+	type="search"
+	tag="input"
+	focus="yes"
+	firstSearchFilterField="text"
+	inputAcceptActions=<<input-accept-actions>>
+	inputCancelActions=<<cancel-input-actions>>
+	placeholder="query type"
+	class="xp-query-type-textbox"
+	tabindex="1"
+/>
+	</$keyboard></$keyboard></$keyboard></$keyboard>
+		</$keyboard></$keyboard>
+		</$keyboard></$keyboard>
+</div>
+<span class="tc-popup-keep">
+	<$button
+		popup=<<qualify "$:/state/popup/query-dropdown">>
+		class="tc-btn-invisible tc-tiny-gap-left"
+		tooltip="All query types"
+		aria-label="all query types"
+		>
+		{{$:/core/images/down-arrow}}
+	</$button>
+</span>
+</div>
+
+<$reveal state=<<qualify "$:/state/popup/query-dropdown">> type="popup" position="belowleft" animate="yes">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="<$action-setfield $tiddler='$:/temp/query' text=<<navigateTo>>/><$action-setfield $tiddler='$:/temp/query/input' text=<<navigateTo>>/><$action-setfield $tiddler='$:/temp/query/refresh' text='yes'/">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[[$:/xp/query/types-description]indexes[]]" variable="type">
+<$link to=<<type>>><$let tv-wikilinks="no"><b class="tc-small-gap-right"><<type>></b><span class="tc-muted"><$text text={{{ [[$:/xp/query/types-description]getindex<type>] }}}/></span></$let></$link>
+</$list>
+</div>
+</div>
+</$linkcatcher>
+</$set>
+</$reveal>

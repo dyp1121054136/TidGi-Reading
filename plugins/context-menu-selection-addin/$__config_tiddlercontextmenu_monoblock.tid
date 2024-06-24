@@ -1,0 +1,11 @@
+caption: Monoblock
+created: 20220924164827893
+icon: $:/core/images/mono-block
+markup-prefix: \n\n```\n
+markup-suffix: \n```\n\n
+modified: 20221001000200131
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/monoblock
+tm-message: tm-markup
+
+hide

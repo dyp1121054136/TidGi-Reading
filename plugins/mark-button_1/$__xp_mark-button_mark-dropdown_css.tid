@@ -1,0 +1,15 @@
+caption: CSS
+title: $:/xp/mark-button/mark-dropdown/css
+
+<$macrocall $name='cssmark-colour-picker' actions="""
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-selection"
+	text={{{ [[.]addsuffix<colour-picker-value>lowercase[]] }}}
+/>
+"""/>
+
+<div class="tc-sidebar-lists">
+[[See styles|$:/xp/mark-button/color.css]]
+[[See examples|$:/xp/mark-button/color.css/Examples]]
+</div>

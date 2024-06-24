@@ -1,0 +1,8 @@
+revision: 0
+title: $:/ui/ViewTemplate/title/displayCaption
+type: text/vnd.tiddlywiki
+
+\whitespace trim
+<h2 class="tc-title">
+<$view field="caption" />
+</h2>

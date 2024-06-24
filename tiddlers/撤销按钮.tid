@@ -1,0 +1,14 @@
+created: 20240501031831294
+modified: 20240501033236367
+tags: 正则表达式查找替换
+title: 撤销按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="撤销">
+撤销
+
+<$action-sendmessage $message="tm-undo" source=<<currentTiddler>>/>
+
+</$button>
+</span>

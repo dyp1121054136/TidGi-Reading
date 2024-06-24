@@ -1,0 +1,3 @@
+title: $:/plugins/Gk0Wk/CPL-Repo/config/update-filter
+
+[has[plugin-type]] -[prefix[$:/plugins/tiddlywiki/]] -[prefix[$:/themes/tiddlywiki/]] -[prefix[$:/languages/]] -[prefix[$:/temp/]] -[[$:/core]]

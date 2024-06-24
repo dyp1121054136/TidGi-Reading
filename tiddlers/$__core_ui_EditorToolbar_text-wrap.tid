@@ -1,0 +1,18 @@
+caption: {{$:/core/images/text-wrap}} 硬式换行
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240113052621278
+description: 添加一个硬式换行
+icon: $:/core/images/text-wrap
+modified: 20240313025148327
+shortcuts: ((text-wrap))
+tags: $:/tags/EditorToolbar 按钮 首行缩进和空行 硬式换行
+title: $:/core/ui/EditorToolbar/text-wrap
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{[["""
+]] }}}
+	suffix={{{[[
+"""]] }}}
+/>

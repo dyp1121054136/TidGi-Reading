@@ -1,0 +1,22 @@
+caption: TiddlyWiki CPL
+list-after: $:/config/OfficialPluginLibrary
+tags: $:/tags/PluginLibrary
+title: $:/config/TiddlyWiki-CPL
+url: https://github.com/tiddly-gittly/TiddlyWiki-CPL
+
+<% if [[$:/language]get[text]!prefix[$:/languages/zh]] %>
+
+@@color:red;''Please backup your wiki before installing the plugin, the plugin source cannot be held responsible for any personal losses caused by the plugin!''@@
+
+<% else %>
+
+@@color:red;''请在安装插件之前备份您的 Wiki，此插件源无法为插件造成的个人损失负责！''@@
+
+<% endif %>
+
+<$macrocall
+	$name="tabs"
+	state="$:/temp/CPL-Repo/panel-tab-state"
+	tabsList="plugin-database uninstall-manager settings +[addprefix[$:/plugins/Gk0Wk/CPL-Repo/]]"
+	default="$:/plugins/Gk0Wk/CPL-Repo/plugin-database"
+/>

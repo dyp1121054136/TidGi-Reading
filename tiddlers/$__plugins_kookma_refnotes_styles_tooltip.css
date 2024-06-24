@@ -1,0 +1,77 @@
+.refnotes-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+/* 清除移动端半透明阴影边框 */
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: none;
+/* 注标字体 */
+    font-family: "LXGWWenKaiGBScreen";
+}
+
+.refnotes-tooltip .refnotes-tooltiptext {
+    font-size: .90em;
+    visibility: hidden;
+    background-color: #fff;
+    color: #222;
+    text-align: left;
+    border-radius: 2px;
+    padding: 5px 10px;
+    max-width: 30vw;
+    max-height: 20em;
+    overflow-y: auto;
+    cursor: auto;
+    width: max-content;
+    width: -moz-max-content;
+    width: -webkit-max-content;
+    width: -o-max-content;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -40px;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+   /* 弹注字体 */
+    font-family: "LXGWWenKaiGBScreen";
+   /* 硬式换行 */
+word-break: normal; 
+word-wrap: break-word;
+white-space: pre-wrap;
+line-height: 1.5;
+}
+
+.refnotes-tooltip:hover .refnotes-tooltiptext {
+    visibility: visible;
+}
+
+/* 移动端弹注样式 */
+@media screen and (max-width: 960px) {
+    .refnotes-tooltip .refnotes-tooltiptext {
+        font-size: .90em;
+        visibility: hidden;
+        background-color: #fff;
+        color: #222;
+        text-align: left;
+        border-radius: 2px;
+        padding: 5px 10px;
+        overflow-y: auto;
+        cursor: auto;
+        width: max-content;
+        width: -moz-max-content;
+        width: -webkit-max-content;
+        width: -o-max-content;
+        box-shadow: 0 0.5px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.19);
+        position:  fixed; 
+        top: 330px;
+        left: 10px;
+        margin-left: 0;
+        bottom: unset;
+        max-width: 80%;
+        max-height: 80vw;
+        z-index: 9999;
+    }
+
+    .refnotes-tooltip:hover .refnotes-tooltiptext {
+        opacity: 1;
+    }
+}

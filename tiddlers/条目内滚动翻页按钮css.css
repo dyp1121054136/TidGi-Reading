@@ -1,0 +1,43 @@
+.tc-scrollpage {
+  text-indent: 0em;
+  position: relative;
+  overflow-y: auto; /* 允许垂直滚动 */
+}
+
+.tc-scrollpage::-webkit-scrollbar {
+  display: none; /* 隐藏滚动条 */
+}
+
+.unique-scrollpage-button {
+  opacity: 0.1; /* 设置按钮为半透明0.5 */
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.unique-scrollpage-button:hover {
+  opacity: 1; /* 悬停时取消透明度 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.scrollpage-button-tb, .scrollpage-button-pc, .scrollpage-button-mobile  {
+  position: absolute;
+  top: 60%; 
+  transform: translateY(-50%); /* 垂直居中 */
+  display: flex;
+  flex-direction: column; /* 垂直排列 */
+  gap: 30px; /* 间距 */
+  word-break: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  text-indent: 0em;
+}
+
+.scrollpage-button-tb {
+  left: 5px;
+}
+
+.scrollpage-button-pc, .scrollpage-button-mobile {
+  right: 5px;
+}

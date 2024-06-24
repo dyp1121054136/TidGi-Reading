@@ -1,0 +1,10 @@
+caption: 折叠所有条目
+created: 20220729215240119
+icon: $:/core/images/fold-all-button
+modified: 20240109020608325
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/fold-all-tiddlers
+tm-message: tm-fold-all-tiddlers
+type: text/vnd.tiddlywiki
+
+hide

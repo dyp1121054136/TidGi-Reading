@@ -1,0 +1,15 @@
+created: 20240101154435260
+modified: 20240329124713441
+tags: 正则表达式 根据字段应用对话高亮
+title: 正则表达式模板
+
+\define zh1()  “([^”]*)”
+\define zh2() <span class="zhquote">“$1”</span>
+
+<span class="tc-tiddler-body"><$list filter="[<currentTiddler>!match[正则表达式模板]has:field[zhquote]]"><$wikify name="zhquote" text={{{ [{!!text}search-replace:g:regexp<zh1>,<zh2>] }}} mode="inline" output="html"><<zhquote>></$wikify></$list></span>
+
+<!-- 
+该方案已弃用，仅供参考
+标签$:/tags/ViewTemplate
+字段list-before=$:/core/ui/ViewTemplate/body
+ -->

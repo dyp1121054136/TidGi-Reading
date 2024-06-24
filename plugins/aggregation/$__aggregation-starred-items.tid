@@ -1,0 +1,30 @@
+title: $:/aggregation-starred-items
+
+<$set name="stateCode" filter="[tag<aggregationTag>tag[Star]!has[draft.of]limit[1]]" value="1" emptyValue="0">
+<$reveal default=<<stateCode>> type="match" text="0">
+<div class="tc-muted" style="text-align:center;margin:50px 0 25px;">
+<div class="xp-image-big-muted">{{$:/core/images/star-filled}}</div>
+Starred tiddler will appear here
+</div>
+</$reveal>
+
+<$reveal default=<<stateCode>> type="match" text="1">
+<div class="box-list-tags">
+{{Star||$:/xp/ui/TagTemplate/aggregation}}
+<$list filter="[tag<aggregationTag>tag[Star]tags[]remove[Star]] -[<aggregationTag>] +[limit[1]]">
+<span class="xp-tag-divider"></span>
+</$list>
+<$list filter="[tag<aggregationTag>tag[Star]tags[]remove[Star]sort[]] -[<aggregationTag>]">
+<$transclude tiddler="$:/xp/ui/TagTemplate/aggregation"/>
+</$list>
+</div>
+
+<div style="padding:15px 0 15px 40px;">
+<$list filter="[tag<aggregationTag>tag[Star]!has[draft.of]sort[]]">
+<div>
+<$checkbox tiddler=<<currentTiddler>> tag="Star"/> <$link><$view field='caption'><$view field='title'/></$view></$link>
+</div>
+</$list>
+</div>
+</$reveal>
+</$set>

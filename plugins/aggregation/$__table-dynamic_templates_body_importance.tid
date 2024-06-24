@@ -1,0 +1,21 @@
+tags: $:/tags/Table/BodyTemplate
+tbl-column-list: importance
+title: $:/table-dynamic/templates/body/importance
+
+\define showCell() <$transclude tiddler=<<currentRecord>> field=<<currentColumn>> mode="inline" />
+\define showCell_Locked() <span style="font-style:oblique;"><<showCell>></span>
+\define select_importance()
+<$select tiddler=<<currentRecord>> field=<<currentColumn>> default="">
+<<aggregation-select-importance-inner>>
+</$select>
+\end
+
+<$reveal type="nomatch" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<<showCell>>
+</$reveal>
+<$reveal type="match" stateTitle=<<tempTableEdit>> stateIndex="mode" text="edit" tag="td">
+<$list filter="[<tempTableSort>getindex[sortIndex]match<currentColumn>]" variable=ignore
+emptyMessage=<<select_importance>>   >
+ <<showCell_Locked>>
+</$list>
+</$reveal>

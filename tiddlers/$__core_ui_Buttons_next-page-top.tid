@@ -1,0 +1,13 @@
+caption: 顶部目录-下一页
+code-body: yes
+created: 20240401123155449
+modified: 20240420083809349
+tags: 按钮 目录工具
+title: $:/core/ui/Buttons/next-page-top
+
+<span class="lian caption-title">
+<$list filter="[enlist{!!list}] :else[tag{!!title}sort{目录排序字段}] +[after<currentNavStep>]">
+<$link to=<<currentTiddler>> tooltip={{!!title}}>下一页  »
+</$link>
+</$list>
+</span>

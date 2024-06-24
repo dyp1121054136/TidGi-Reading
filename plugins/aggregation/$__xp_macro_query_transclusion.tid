@@ -1,0 +1,54 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Query
+title: $:/xp/macro/query/transclusion
+
+<!-- QUERY TRANSCLUSION -->
+\define qt(A)
+<$let transclusion="""{{$A$}}""" incTransclusion="""<<{ [[$A$]]>>""">
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text:literal,casesensitive<transclusion>] [!is[system]search:text:literal,casesensitive<incTransclusion>]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query transclusion: [[$A$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query transclusion: [[$A$]]</b><<query-empty>>"""
+/>
+</$let>
+\end
+
+\define qt.(A B)
+<$let
+  transclusion="""{{$A$}}"""
+  transclusionB="""{{$B$}}"""
+  incTransclusion="""<<{ [[$A$]]>>"""
+  incTransclusionB="""<<{ [[$B$]]>>""">
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text:literal,casesensitive<transclusion>] [!is[system]search:text:literal,casesensitive<transclusionB>] [!is[system]search:text:literal,casesensitive<incTransclusion>] [!is[system]search:text:literal,casesensitive<incTransclusionB>]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query transclusion: [[$A$]] or [[$B$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query transclusion: [[$A$]] or [[$B$]]</b><<query-empty>>"""
+/>
+</$let>
+\end
+
+\define qt-(A X)
+<$let
+  transclusion="""{{$A$}}"""
+  transclusionX="""{{$X$}}"""
+  incTransclusion="""<<{ [[$A$]]>>"""
+  incTransclusionX="""<<{ [[$X$]]>>""">
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text:literal,casesensitive<transclusion>] -[!is[system]search:text:literal,casesensitive<transclusionX>] [!is[system]search:text:literal,casesensitive<incTransclusion>] -[!is[system]search:text:literal,casesensitive<incTransclusionX>]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query transclusion: [[$A$]] not [[$X$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query transclusion: [[$A$]] not [[$X$]]</b><<query-empty>>"""
+/>
+</$let>
+\end

@@ -1,0 +1,26 @@
+caption: callout-advsearch
+description: Callout advanced search
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/callout-advsearch
+
+\whitespace trim
+<$list filter="[subfilter<resultsFilter>] +[limit[1]]" variable="ignore">
+<$reveal state=<<calloutState>> type="nomatch" text="advsearch">
+<$button tooltip="Callout AdvancedSearch" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/core/images/advanced-search-button}}
+<$action-setfield $tiddler="$:/temp/advancedsearch" text=<<resultsFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/input" text=<<resultsFilter>>/>
+<$action-setfield $tiddler="$:/temp/advancedsearch/refresh" text="yes"/>
+<$action-setfield $tiddler="$:/state/tab--1498284803" text="$:/core/ui/AdvancedSearch/Filter"/>
+<$action-setfield $tiddler="$:/state/advancedsearch/currentTab" text="$:/core/ui/AdvancedSearch/Filter"/>
+<$action-setfield $tiddler=<<calloutState>> text="advsearch"/>
+<<history-actions>>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="advsearch">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+{{$:/core/images/advanced-search-button}}
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

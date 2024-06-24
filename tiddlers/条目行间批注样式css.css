@@ -1,0 +1,116 @@
+/* 内容部分blockquote缩进块样式 */
+.zhedie {
+  margin: 0.8em; 
+  padding-left: 0; /* 清除默认缩进 */
+  text-align: justify; /* 两端对齐 */
+  max-height: 100px; /* 最大高度 */
+  overflow-y: auto; /* 超出最大高度时滚动 */
+  border: none; /* 清除默认左边框 */
+  word-break: normal; 
+  word-wrap: break-word; 
+  white-space: pre-line;
+}
+
+.zhedie::-webkit-scrollbar {
+  display: none; /* 隐藏滚动条 */
+}
+
+/* details折叠块整体样式 */
+.details-ji {
+  position: relative;
+  display: inline;
+  top: -1.2em; /* 向上移动 */
+  width: auto; /* 宽度自适应 */
+  text-indent: 0 !important; /* 避免折叠按钮缩进 */
+}
+
+/* 小标题summary样式 */
+.details-ji summary {
+  position: absolute; 
+  display: inline; 
+  padding-top: 4em; /* 增加计数器和小标题间距 */
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1); /* 动画效果 */
+  counter-increment: sidenote;
+  font-size: 0.8em;
+  max-height: 1.5em; /* 限制最大高度，只显示计数器，隐藏小标题 */
+  min-width: 30px;
+  overflow-y: hidden; /* 隐藏超出高度的内容 */
+}
+
+/* 鼠标悬停时的样式 */
+.details-ji summary:hover {
+  transform: translateY(3px); /* 按钮悬停时的位置变化 */
+}
+
+/* 计数器样式 */
+.details-ji summary::before {
+  content: counter(sidenote);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1.2em; 
+  height: 1.2em; 
+  line-height: 1.2em; 
+  text-align: center;
+  color: #1A4975;
+  background-color: #B1D3E9; 
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* 初始化计数器 */
+body {
+    counter-reset: sidenote;
+}
+
+/* details内容展开时的样式 */
+.details-ji[open] {
+  position: fixed; 
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* 屏幕中心 */
+  width: auto;
+  height: auto;
+  max-width: 300px; /* 最大宽度 */
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.16), 0 2px 4px rgba(0,0,0,0.23); /* 阴影 */
+  border-radius: 0.5em; /* 圆角 */
+}
+
+.details-ji[open] summary {
+  position: relative;
+  display: inline;
+  margin-left: 0.8em; 
+  padding-top: 0.5em;
+  padding-right: 2em; /* 展开后即使内容为空也预留一定宽度*/
+  font-size: 1em;
+  font-weight: bold;
+  max-height: none; /* 不限制高度 */
+  overflow: visible; /* 显示内容 */
+  opacity: 1; /* 显示元素本身 */
+}
+
+/* 展开后计数器展示在小标题之后 */
+.details-ji[open] summary::after {
+  content: counter(sidenote);
+  position: absolute;
+  margin-left: 0.5em; /* 增加小标题和计数器间距 */
+  margin-top: 0.2em;
+  font-size: 0.9em;
+  font-weight: bold; 
+  width: 1.3em; 
+  height: 1.3em; 
+  line-height: 1.3em; 
+  text-align: center;
+  color: #1A4975;
+  background-color: #B1D3E9; 
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* 展开后计数器展示在小标题之前 */
+.details-ji[open] summary::before {
+  display: none; /* 隐藏 */
+}

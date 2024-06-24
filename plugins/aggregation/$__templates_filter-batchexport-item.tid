@@ -1,0 +1,10 @@
+title: $:/templates/filter-batchexport-item
+
+\define config-title()
+$(config-base)$$(currentTiddler)$
+\end
+<div class="tc-muted tc-tab-divider" style="line-height:24px;">
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<config-title>> field="text" checked="show" unchecked="hide" default="show"/><<delete-filter-button>><<copy-filter-button>><$link to={{!!title}} tooltip={{!!description}}><$view field="filter"/></$link><small class="tc-big-gap-left"><i>-- <$view field="description"/></i></small>
+</$draggable>
+</div>

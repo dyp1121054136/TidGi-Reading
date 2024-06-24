@@ -1,0 +1,11 @@
+caption: 删除线
+created: 20220923155027164
+icon: $:/core/images/strikethrough
+markup-prefix: ~~
+markup-suffix: ~~
+modified: 20240109020538845
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/strikethrough
+tm-message: tm-markup
+
+hide

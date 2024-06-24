@@ -1,0 +1,12 @@
+created: 20150409175313556
+list-after: $:/core/ui/EditTemplate/tags
+modified: 20240501031523552
+tags: $:/tags/EditTemplate 正则表达式查找替换
+title: $:/searchNreplace/ui/controls
+type: text/vnd.tiddlywiki
+
+<div class="tc-edit-controls">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/EditControls]]" variable="control">
+<$transclude tiddler=<<control>>>
+</$list>
+</div>

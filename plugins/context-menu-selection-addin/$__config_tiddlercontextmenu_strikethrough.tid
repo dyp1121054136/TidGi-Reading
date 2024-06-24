@@ -1,0 +1,11 @@
+caption: Strikethrough
+created: 20220923155027164
+icon: $:/core/images/strikethrough
+markup-prefix: ~~
+markup-suffix: ~~
+modified: 20220925152855296
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/strikethrough
+tm-message: tm-markup
+
+show

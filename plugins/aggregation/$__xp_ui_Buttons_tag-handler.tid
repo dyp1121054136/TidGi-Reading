@@ -1,0 +1,30 @@
+caption: {{$:/xp/images/tag}} tag handler
+description: Manage tags in view mode
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/tag-handler
+
+\whitespace trim
+<$let stateTiddler="$:/state/tag-handler/multitasking" multitaskingState={{{ [<stateTiddler>!is[missing]get[text]] ~off }}}>
+<$list filter="[<multitaskingState>!match[on]]">
+<$button set=<<stateTiddler>> setTo="on" tooltip="Manage tags" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/tag}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">tag handler</span>
+</$list>
+</$button>
+</$list>
+<$list filter="[<multitaskingState>match[on]]">
+<$wikify text="""<<tv-config-toolbar-class>> tc-selected""" name="selectedClass">
+<$button set=<<stateTiddler>> setTo="off" tooltip="Exit tag handler" class=<<selectedClass>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">
+{{$:/xp/images/tag}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">tag handler</span>
+</$list>
+</$button>
+</$wikify>
+</$list>
+</$let>

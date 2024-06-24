@@ -1,0 +1,13 @@
+code-body: yes
+created: 20231219065149777
+modified: 20240420041533969
+tags: $:/tags/TiddlerIconFilter 样式 级联 目录工具
+title: 目录图标级联代码
+type: text/vnd.tiddlywiki
+
+[tag[目录]then[$:/core/images/list-number]]
+[tag[册]then[$:/core/images/list-number]]
+[tag[卷]then[$:/core/images/list-number]]
+[tag[章]then[$:/core/images/list-number]]
+[tag[节]then[$:/core/images/list-number]]
+[field:mulu[yes]then[$:/core/images/list-number]]

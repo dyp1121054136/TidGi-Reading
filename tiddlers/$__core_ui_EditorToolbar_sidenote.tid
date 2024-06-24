@@ -1,0 +1,16 @@
+caption: 添加sidenote批注
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20220706005949612
+description: 添加sidenote批注
+icon: $:/core/images/sidenote
+modified: 20240327061331434
+shortcuts: ((sidenote))
+tags: 条目行间批注 按钮 $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/sidenote
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix='<<sidenote "小标题" "'
+	suffix='">>'
+/>

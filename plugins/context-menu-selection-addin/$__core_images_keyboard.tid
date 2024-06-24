@@ -1,0 +1,8 @@
+created: 20240228011607735
+modified: 20240228012408593
+source: https://thenounproject.com/icon/keyboard-key-47814/
+tags: $:/tags/Image
+title: $:/core/images/keyboard
+
+\parameters (size:"40")
+<svg width=<<size>> height=<<size>> xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><path d="M80.845,5H19.155C12.1,5,6.359,10.74,6.359,17.795v64.409C6.359,89.26,12.1,95,19.155,95h61.689   c7.056,0,12.796-5.74,12.796-12.796V17.795C93.641,10.74,87.9,5,80.845,5z M68.146,10.631c4.952,0,8.98,4.027,8.98,8.976v48.083   c0,4.952-4.028,8.98-8.98,8.98H30.947c-4.949,0-8.976-4.028-8.976-8.98V19.607c0-4.949,4.027-8.976,8.976-8.976H68.146z    M8.359,17.795C8.359,11.843,13.203,7,19.155,7h54.554l-5.703,1.631H30.947c-6.052,0-10.976,4.924-10.976,10.976v47.687   L8.359,79.676V17.795z"/></g></svg>

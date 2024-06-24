@@ -1,0 +1,14 @@
+[
+    {
+        "created": "20240113045657244",
+        "text": "hide",
+        "title": "$:/config/tiddlercontextmenu/text-indent",
+        "tags": "$:/tags/tiddlercontextmenu",
+        "caption": "换行并段首缩进两字符",
+        "icon": "$:/core/images/text-indent",
+        "tm-message": "tm-markup",
+        "modified": "20240408134856970",
+        "markup-prefix": "\\n　　",
+        "markup-suffix": ""
+    }
+]

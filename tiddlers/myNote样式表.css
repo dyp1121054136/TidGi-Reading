@@ -1,0 +1,41 @@
+/* 应用于class为myNote的条目 */
+.myNote .tc-tiddler-body {
+word-break: normal; 
+word-wrap: break-word;
+white-space: pre-wrap;
+line-height: 1.5;
+font-family: "LXGWWenKaiScreen";
+}
+
+.myNote .tc-tiddler-title {
+font-family: "LXGWWenKaiScreen";
+}
+
+/* 减小标题与正文间距 */
+/* .myNote .tc-tiddler-body h3,h4,h5,h6{
+margin-bottom: -20px; */
+}
+
+.myNote blockquote{
+	border: none;
+	margin-left: 1em;
+	margin-top: -35px;
+	padding: 0;
+
+/* 文本过长滚动 */
+width: 100%; 
+top: 0px;
+max-height: 500px;
+overflow-x: hidden;
+overflow-y: auto;
+    }
+
+/* 隐藏details summary的小箭头 */
+.myNote details, .myNote summary {
+  display: block; /* 或其他适当的显示方式 */
+  cursor: pointer; /* 可以根据需要修改 */
+  background: rgba(0, 0, 0, 0); /*设置背景色*/
+  border: none; /* 去除边框 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}

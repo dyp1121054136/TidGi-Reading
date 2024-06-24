@@ -1,0 +1,6 @@
+caption: FAQ style
+marker-closed: $:/plugins/kookma/section/images/plus-square
+marker-open: $:/plugins/kookma/section/images/minus-square
+tags: $:/tags/Section/Theme
+title: $:/plugins/kookma/section/styles/themes/faq
+type: text/css

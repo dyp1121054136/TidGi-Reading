@@ -1,0 +1,11 @@
+caption: Print River
+condition: [all[shadows]prefix[$:/plugins/BTC/PrintRiver/]]
+created: 20220731212634314
+icon: $:/core/images/print-button
+modified: 20221007013019989
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/print-river
+tm-message: sp-print-river
+type: text/vnd.tiddlywiki
+
+hide

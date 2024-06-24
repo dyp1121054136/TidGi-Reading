@@ -1,0 +1,106 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/query/styles
+
+.xp-query-wrapper {
+	display: block;
+	border-radius: 1em;
+}
+
+.xp-query {
+	display: flex;
+	width: 100%;
+	border: 1px solid <<colour tiddler-editor-border>>;
+	border-radius: 1em;
+	line-height: 24px;
+	padding-right: .5em;
+	align-items: center;
+}
+
+.xp-query:focus-within {
+	border: 1px solid <<colour primary>>;
+}
+
+.xp-query>div {
+	margin: 1px;
+	flex-grow: 0;
+}
+
+.xp-query .xp-query-type {
+	flex-grow: 1;
+}
+
+.xp-query button svg {
+	height: 0.9em;
+	width: 0.9em;
+	fill: <<colour tiddler-controls-foreground>>;
+	opacity: 0.8;
+}
+
+.xp-query button:hover svg {
+	fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.xp-query button svg {
+	height: 0.9em;
+	width: 0.9em;
+	fill: <<colour tiddler-controls-foreground>>;
+}
+
+.xp-query-type-textbox {
+	width: 100% !important;
+	padding-left: .7em;
+	line-height: 24px;
+	border-radius: 1em !important;
+}
+
+.xp-query-type-textbox,
+.xp-query-type-textbox:focus {
+	border: none !important;
+	outline: none !important;
+}
+
+.xp-query-param {
+	display: flex;
+	width: 100%;
+	padding: 0 .5em;
+	align-items: center;
+}
+
+.xp-query-param > div {
+	flex-grow: 0;
+}
+
+.xp-query-param .xp-query-param-input {
+	flex-grow: 1;
+}
+
+.xp-query-param-textbox {
+	width: 100% !important;
+	padding-left: .5em;
+	border: none !important;
+	border-bottom: 1px dotted <<colour tiddler-controls-foreground>> !important;
+	background-color: transparent !important;
+}
+
+.xp-query-param-textbox:focus {
+	border-bottom: 1px solid <<colour primary>> !important;
+	outline: none !important;
+	background-color: transparent;
+}
+
+.xp-query-param-list {
+	display: block;
+	padding: 10px 16px;
+	margin: 5px 0 1px;
+	border-radius: 1em;
+	font-size: .9em;
+	background-color: rgba(255, 255, 255, .5);
+	-webkit-backdrop-filter: saturate(150%) contrast(85%) blur(8px);
+	backdrop-filter: saturate(150%) contrast(85%) blur(8px);
+
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+	background-color: rgba(0, 0, 0, .3);
+	-webkit-backdrop-filter: saturate(150%) contrast(87%) blur(8px);
+	backdrop-filter: saturate(150%) contrast(87%) blur(8px);
+</$list>
+}

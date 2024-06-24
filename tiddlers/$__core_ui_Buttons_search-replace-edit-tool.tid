@@ -1,0 +1,16 @@
+caption: {{$:/core/images/search-replace}} 开启/关闭编辑器工具栏查找替换
+created: 20240430191553224
+description: 开启/关闭编辑器工具栏查找替换
+modified: 20240506034215663
+tags: 按钮 正则表达式查找替换 $:/tags/PageControls
+title: $:/core/ui/Buttons/search-replace-edit-tool
+
+<$button class="tc-btn-invisible" tooltip="开启/关闭编辑器工具栏查找替换">
+<$action-listops $tiddler="$:/searchNreplace/ui/controls/replace" $tags="+[toggle[$:/tags/EditControls]]"/>
+
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/search-replace|22px}}</$list><$list filter="[<tv-config-toolbar-text>match[yes]]">
+<span class="tc-btn-text">
+开启/关闭正则表达式查找替换
+</span></$list>
+
+</$button>

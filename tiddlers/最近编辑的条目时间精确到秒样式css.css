@@ -1,0 +1,41 @@
+/* 使用flexbox来创建一个灵活的表格布局 */
+.flex-table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* padding-right: 10%; */
+}
+
+/* flexbox的行样式 */
+.flex-table-row {
+  display: flex;
+  width: 100%;
+}
+
+/* 设置“条目名称”列样式 */
+.title-column {
+  flex-grow: 1; /* 动态增长以填充可用空间 */
+  text-align: left; /* 靠左对齐 */
+}
+
+/* 设置“编辑时间”列样式 */
+.date-column {
+  text-align: right; /* 靠右对齐 */
+  font-size: 0.8em; /* 字号大小 */
+  opacity: 0.6;
+  width: 150px; /* 可以设置一个最大宽度，或者根据需要调整 */
+}
+
+/* 标题行的样式 */
+.flex-table-header {
+  opacity: 1;
+  margin-bottom: 0.5em;
+}
+
+/* 保持标题项本身的样式不变 */
+.title-column.header,
+.date-column.header {
+  font-size: 0.9em; 
+  opacity: 1;
+  background-color: transparent !important;
+}

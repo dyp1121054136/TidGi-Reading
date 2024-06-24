@@ -1,0 +1,22 @@
+caption: {{$:/core/images/open-history}} 历史记录
+created: 20240415084804645
+description: 历史记录
+modified: 20240505074247504
+tags: 按钮 $:/tags/ViewToolbar 历史记录 筛选器下拉菜单
+title: $:/core/ui/Buttons/open-history
+
+\whitespace trim
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/open-history]] }}} name="open-historyTiddler">
+<$button popup=<<open-historyTiddler>> tooltip="打开过的条目历史记录" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/open-history}}</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">打开过的条目历史记录</span></$list>
+</$button>
+<$reveal type="popup" state=<<open-historyTiddler>> position="belowleft" tag="div" class="tc-popup-keep">
+
+<div class="open-history-body">
+<$transclude tiddler="编辑记录和历史记录"/>
+</div>
+
+</$reveal>
+</$set>

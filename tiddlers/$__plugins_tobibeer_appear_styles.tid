@@ -1,0 +1,23 @@
+created: 20231228134618029
+modified: 20231230144259622
+tags: $:/tags/Stylesheet
+title: $:/plugins/tobibeer/appear/styles
+
+\rules only filteredtranscludeinline transcludeinline macrodef macrocallinline html
+
+<pre>.tc-reveal.appear-block,
+.tc-popup.appear {
+	border-radius: 0px;
+	padding: 0px 0em;
+	<<box-shadow "2px 2px 4px rgba(0,0,0,0.3)">>;
+}
+.tc-popup.appear {
+	padding: 0 0em;
+	background: <<colour background>>;
+}
+.appear-reveal.appear-inline{
+margin-left: 0px;
+}
+.appear-reveal.appear-inline.appear-once{
+margin-left:0;
+}</pre>

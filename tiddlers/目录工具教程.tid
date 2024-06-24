@@ -1,0 +1,63 @@
+created: 20240420021856018
+modified: 20240430062211166
+se-type: 
+tags: 目录工具 教程
+title: 目录工具教程
+
+!!!! ''目录使用方法''
+"""
+
+添加标签 `目录` 或 `册` `卷` `章` `节`
+或添加字段 `mulu` 字段内容 `yes`
+
+注：
+1、以0开头的标题，在查看模式下前缀数值才会自动隐藏；
+2、和 `$:/plugins/oeyoews/title-caption` 插件冲突。
+"""
+
+!!!! else判断语句
+"""
+
+如果有caption则显示caption，否则显示原标题
+<<code src:"""<$text text={{{ [<currentTiddler>get[caption]else{!!title}] }}}/>
+""" language:"tw">>
+注：使用$text会显示纯文本
+"""
+
+!!!! 多个筛选条件
+"""
+
+列出满足筛选公式1或筛选公式2的内容
+<<code src:"""<$list filter="
+[[筛选公式1]]
+[[筛选公式2]]
+">
+<$/list>
+""" language:"tw">>
+"""
+
+!!!! ''去除标题前缀编号数字''
+"""
+
+如果有caption则显示caption，否则显示原标题，同时去除前缀编号数字；
+如果原标题前缀带数字，请在编号-符号后加一个空格隔开，避免正则表达式把带有重要信息的数字给删除了
+<<code src:"""\whitespace trim
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu-kong()  ^\s+
+\define mulu0()
+
+<$wikify name="muluth" text={{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>search-replace:g:regexp<mulu-kong>,<mulu0>]}}} mode="inline" output="html"><<muluth>></$wikify>
+
+\end
+""" language:"tw">>
+"""
+
+!!!! 修改系统标签丸模板
+"""
+
+系统标签丸模板 [[$:/core/ui/TagTemplate]] （未改）
+系统标签丸弹出标题模板 [[$:/core/ui/ListItemTemplate]] （已改）
+系统标签丸弹出下拉列表模板 [[$:/core/macros/list]] （已改）
+系统标签丸模板 [[$:/core/macros/tag]] （已改）
+"""

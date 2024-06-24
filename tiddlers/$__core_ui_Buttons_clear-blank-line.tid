@@ -1,0 +1,24 @@
+caption: {{$:/core/images/clear-blank-line}} 清除空行
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[application/x-tiddler-dictionary]]
+created: 20240311232118077
+description: 清除空行
+icon: $:/core/images/clear-blank-line
+modified: 20240316103505690
+shortcuts: ((clear-blank-line))
+tags: $:/tags/EditorToolbar 按钮 首行缩进和空行 清除空行
+title: $:/core/ui/Buttons/clear-blank-line
+
+\define temp() $:/temp/clear-blank-line
+
+<$let>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-all"
+	tiddler=<<temp>>
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text={{{ [<temp>get[text]search-replace:g:regexp[(\n)(\n+)],[$1]search-replace:g:regexp[\ +],[ ]] }}}
+/>
+</$let>

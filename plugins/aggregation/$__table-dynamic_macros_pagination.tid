@@ -1,0 +1,14 @@
+tags: $:/tags/Table/Macro
+title: $:/table-dynamic/macros/pagination
+
+\define toggle-pagination()
+\whitespace trim
+<span class="tc-search" style="font-size:.6em;vertical-align:middle;padding:0 4px 0 1px;">
+<$reveal type="nomatch" state=<<pageTiddler>> text="yes">
+<$button tooltip="Show pagination" class="tc-btn-invisible tc-tiddlylink" set=<<pageTiddler>> setTo="yes">{{$:/core/images/chevron-down}}</$button>
+</$reveal>
+<$reveal type="match" state=<<pageTiddler>> text="yes">
+<$button tooltip="Hide pagination" class="tc-btn-invisible tc-tiddlylink" set=<<pageTiddler>> setTo="no">{{$:/core/images/chevron-up}}</$button>
+</$reveal>
+</span>
+\end

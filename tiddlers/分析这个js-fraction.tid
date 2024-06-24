@@ -1,0 +1,78 @@
+created: 20240129033842473
+modified: 20240203062946045
+se-type: 
+tags: AI问答存档
+title: 分析这个js-fraction
+
+!!!! ''分析这个js-fraction''
+"""
+
+（经测试，这个js无效，仅供参考）
+<<code src:"""/*\
+title: wikiparser/rules/fraction.js
+type: application/javascript
+module-type: wikirule
+
+Wiki text inline rule for prettifying simple fractions.
+
+Turns, say, "3/4" into <sup>3</sup>⁄<sub>4</sub>
+
+\*/
+(function(){
+
+/*jslint node: true, browser: true */
+/*global $tw: false */
+"use strict";
+
+exports.name = "fraction";
+exports.types = {inline: true};
+
+exports.init = function(parser) {
+	this.parser = parser;
+    var regexText = "\\b(\\d+)\\/(\\d+)\\b"
+	// Regexp for parser to match
+	this.matchRegExp = new RegExp(regexText, "mg");
+    // Regexp to collect numerator and denominator
+    this.execRegExp = new RegExp(regexText);
+};
+
+exports.parse = function() {
+	// Extract the numerator and denominator
+    var matches = this.parser.source.slice(this.parser.pos).match(this.execRegExp);
+	// Move past the match
+	this.parser.pos = this.matchRegExp.lastIndex;
+
+
+	// Return the sup-slash-sub elements
+	return [{
+		type: "element",
+		tag: "sup",
+		children: [{type: 'text', text: matches[1]}]
+	}, {
+		type: "text",
+		text: "⁄"
+	}, {
+		type: "element",
+		tag: "sub",
+		children: [{type: 'text', text: matches[2]}]
+	}];
+};
+
+})();
+""" language:"js">>
+这是一段JavaScript代码，它定义了一个名为“fraction”的wiki文本内嵌规则，用于美化简单的分数。例如，它可以将"3/4"转换为以上标3和下标4呈现的分数形式。
+
+代码的关键部分如下：
+
+1. `exports.name = "fraction";`：定义规则名称为"fraction"。
+
+2. `exports.types = {inline: true};`：规定这是一个内嵌规则。
+
+3. `exports.init = function(parser) {...}`：初始化函数，接受解析器作为参数。
+
+4. `this.matchRegExp = new RegExp(regexText, "mg");`: 这行代码定义了一个匹配简单分数的正则表达式。
+
+5. `exports.parse = function() {...}`:定义了解析方法，该方法用来解析匹配到的简单分数，并将其格式化为上标和下标的形式。
+
+在这段代码的最后，它返回一个由元素和文本组成的数组，包括分子的上标，斜线，和分母的下标。每个元素都有类型、标签和子项（子项中包含具体的文本）。这就构成了最终的美化分数形式。
+"""

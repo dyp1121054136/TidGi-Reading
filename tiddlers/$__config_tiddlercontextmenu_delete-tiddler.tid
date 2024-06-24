@@ -1,0 +1,10 @@
+caption: 彻底删除
+created: 20220729214620520
+icon: $:/core/images/delete-button
+modified: 20240109031711186
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/delete-tiddler
+tm-message: tm-delete-tiddler
+type: text/vnd.tiddlywiki
+
+hide

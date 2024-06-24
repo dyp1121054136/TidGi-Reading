@@ -1,0 +1,36 @@
+code-body: yes
+tags: $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/definitions
+
+\define lingo-base() $:/language/Search/
+
+\define target-filter-code(filter)
+<$vars L="tag[" R="]" lb=" +[">
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addprefix<__filter__>addsuffix<R>addsuffix<searchRun>addsuffix<timeRun>addsuffix<fieldRun>addsuffix<valueRun>addsuffix<sortRun>]" name="target" select=0>
+<$text text=<<target>>/>
+</$set>
+</$vars>
+\end
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<qualify """$:/temp/$item$""">> field="status" checked="selected" checkactions=<<checkactions """$item$""">> uncheckactions=<<uncheckactions """$item$""">> default="closed"> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define checkactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="[[$item$]]"/>
+<$action-listops $tiddler=<<filterState>> $field="checktiddler" $subfilter={{{ [<qualify """$:/temp/$item$""">format:titlelist[]] }}}/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define uncheckactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="-[[$item$]]"/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define input-accept-actions-date() <$action-setfield $tiddler=<<filterState>> filter={{{ [<dateTiddler>get[text]addprefix<pt>addsuffix<st>] }}}/>
+
+\define input-cancel-actions-date() <$action-deletefield $tiddler=<<dateTiddler>> text/>

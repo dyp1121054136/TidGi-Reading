@@ -1,0 +1,25 @@
+caption: callout-commander
+description: Callout Tiddler Commander
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/callout-commander
+
+\import $:/plugins/kookma/commander/macros/definition
+\whitespace trim
+<$list filter="[[$:/plugins/kookma/commander]plugin-type[plugin]] :filter[{$:/config/Plugins/Disabled/$:/plugins/kookma/commander}!match[yes]]" variable="ignore">
+<$list filter="[subfilter<resultsFilter>] +[limit[1]]" variable="ignore">
+<$reveal state=<<calloutState>> type="nomatch" text="commander">
+<$button tooltip="Callout Commander" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/plugins/kookma/commander/images/commander.svg}}
+<$action-setfield $tiddler=<<searchboxTid>> text=<<resultsFilter>>/>
+<$action-setfield $tiddler=<<calloutState>> text="commander"/>
+<<history-actions>>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="commander">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+{{$:/plugins/kookma/commander/images/commander.svg}}
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>
+</$list>

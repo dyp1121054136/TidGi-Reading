@@ -1,0 +1,13 @@
+{
+    "title": "$:/plugins/kookma/refnotes",
+    "name": "Refnotes",
+    "description": "References, citations, footnotes and abbreviations in Tiddlywiki",
+    "author": "Mohammad Rahmani",
+    "version": "1.9.0",
+    "core-version": ">=5.2.1",
+    "source": "https://github.com/kookma/TW-Refnotes",
+    "list": "",
+    "plugin-type": "plugin",
+    "parent-plugin": "",
+    "dependents": ""
+}

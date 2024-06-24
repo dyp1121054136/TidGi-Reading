@@ -1,0 +1,31 @@
+created: 20170124212349630
+creator: twMat
+modified: 20170126133536331
+modifier: twMat
+tags: 
+title: $:/plugins/TWaddle/ListTree/readme
+
+<table style="border:0; margin-left:1em;">
+<tr>
+<td style="border:0;" >color</td>
+<td style="border:0; padding-right:1em;"><$edit-text tiddler="$:/plugins/TWaddle/ListTree/Stylesheet" field="list-tree-color" /></td>
+</tr>
+<tr>
+<td style="border:0;">thickness</td>
+<td style="border:0; padding-right:1em;"><$edit-text tiddler="$:/plugins/TWaddle/ListTree/Stylesheet" field="list-tree-thickness" />
+</td>
+</tr>
+</table>
+
+!!!Use
+Apply the style `list-tree` by use of the standard WikiText [[@@ technique|http://tiddlywiki.com/#Styles%20and%20Classes%20in%20WikiText]].
+
+```
+<preceding empty line, like always for bullet lists>
+@@.list-tree
+*your
+*bullet
+*list
+@@
+```
+

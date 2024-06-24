@@ -1,0 +1,138 @@
+created: 20220725150446044
+modified: 20230906025606382
+tags: $:/tags/Stylesheet
+title: $:/plugins/ahanniga/context-menu/styles.css
+type: text/vnd.tiddlywiki
+
+
+.context-menu {
+    position: absolute;
+		min-width: 180px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    background-color: <<colour dropdown-background>>;
+    border-radius: 6px;
+    box-shadow: 0 10px 20px rgb(64 64 64 / 5%);
+    padding: 0;
+    border: 1px solid <<colour dropdown-border>>;
+}
+
+.context-menu > form > ul {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0;
+}
+
+.context-menu > form > ul > li > a {
+  font: inherit;
+  border: 0;
+  padding: 2px 12px 2px 8px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  text-decoration: unset;
+  font-weight: 500;
+  transition: 0.3s linear;
+  -webkit-transition: 0.3s linear;
+  -moz-transition: 0.3s linear;
+  -ms-transition: 0.3s linear;
+  -o-transition: 0.3s linear;
+}
+
+.context-menu > form > ul > li > a:hover {
+    background: <<colour tiddler-link-foreground>>;
+    color: <<colour tiddler-link-background>>; 
+    fill: <<colour tiddler-link-background>>; 
+}
+
+.context-menu > form > ul > li > a:hover > svg {
+    color: <<colour tiddler-link-background>>; 
+    fill: <<colour tiddler-link-background>>; 
+}
+
+.context-menu > form >  ul > li > a > i {
+  padding-right: 10px;
+}
+
+.context-menu > form >  ul > li > a > svg {
+    color: <<colour foreground>>;
+    fill: <<colour foreground>>;
+    width: 13px;
+    margin-right: 9px;
+    height: 13px;
+}
+
+ul .menu-separator {
+    border-bottom: 1px solid <<colour dropdown-border>>;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.context-menu > form > ul > li.item-disabled, .context-menu > form > ul > li.item-disabled> label, .context-menu > form > ul > li.item-disabled> input  {
+  pointer-events: none;
+}
+.context-menu > form > ul > li.item-disabled > a, .context-menu > form > ul > li.item-disabled > label, .context-menu > form > ul > li.item-disabled> input {
+  color: <<colour very-muted-foreground>>;
+  text-decoration: line-through;
+<$text text={{{ [{$:/plugins/phiv/context-menu-selection-addin/config/hide-disabled}match[yes]then[display:none;]] }}} />
+}
+
+.context-menu > form > ul > li.green> a, .context-menu > form > ul > li.green > label {
+  color: <<colour foreground>>;
+}
+
+.context-menu > form > ul > li.red> a, .context-menu > form > ul > li.red > label {
+  color: red;
+}
+
+.context-menu > form > ul > li> label {
+  margin-right: 4px;
+  margin-left: 6px;
+  font-weight: 500;
+}
+.context-menu > form > ul > li> input {
+  margin-right: 4px;
+}
+
+.context-menu > form > ul > li.hideme > a, .context-menu > form > ul > li.hideme > label,  .context-menu > form > ul > li.hideme > input{
+    display:none;
+}
+
+.tabsLedger {
+   display: flex; flex-direction: column;
+   width: 70%;
+}
+
+.tabsLedger li {
+   display: flex; flex-direction: row; justify-content: flex-start;
+   margin: 0.25em;
+   width: 100%;
+}
+
+.tabsLedger li :nth-child(1) {
+   flex: 1 1 100%;
+   margin-right: auto;
+}
+
+.tabsLedger li :nth-child(2),
+.tabsLedger li :nth-child(3) {
+   flex: 0 0 4em;
+    text-align: center;
+}
+
+.cb-separator {
+    border-bottom: 1px solid #bbb;
+}
+
+.config-element > svg {
+    color: #333333;
+    fill: #333333;
+    width: 15px;
+    height: 15px;
+}
+
+.missing-plugin {
+    font-style: italic;
+}

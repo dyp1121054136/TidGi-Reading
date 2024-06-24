@@ -1,0 +1,48 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Query
+title: $:/xp/macro/query
+
+\define query-types()
+ql ql+ ql++ ql. ql.. ql-
+qm qm+ qm. qm- qm-link
+qp
+qt qt. qt-
+\end
+
+\define query-types-paramB()
+ql+ ql++ ql. ql..
+qm+ qm.
+qt.
+\end
+
+\define query-types-paramC()
+ql++ ql..
+\end
+
+\define query-types-paramX()
+ql-
+qm- qm-link
+qt-
+\end
+
+\define query-types-paramY()
+ql--
+qm--
+qp--
+qt--
+\end
+
+\define query-types-paramZ()
+ql---
+qm---
+qp---
+qt---
+\end
+
+\define query-empty()
+<div class="tc-search-results">//<small>0 matches</small>//</div>
+\end
+
+\define query-dtable-fields()     tbl-expand title created
+\define query-dtable-class()      w-100
+\define query-dtable-editButton() no

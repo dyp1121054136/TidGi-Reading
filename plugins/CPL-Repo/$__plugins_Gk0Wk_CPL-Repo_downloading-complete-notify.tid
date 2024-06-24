@@ -1,0 +1,6 @@
+code-body: yes
+tags: 
+title: $:/plugins/Gk0Wk/CPL-Repo/downloading-complete-notify
+type: text/vnd.tiddlywiki
+
+!! <$text text={{{ [[$:/language]get[text]removeprefix[$:/languages/]else[en-GB]search[zh]then[安装完成]else[Installation completed]] }}} />

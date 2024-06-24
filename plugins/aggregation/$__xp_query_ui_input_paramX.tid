@@ -1,0 +1,23 @@
+tags: $:/tags/Query/Input
+title: $:/xp/query/ui/input/paramX
+
+\define cancel-input-actions() <$action-deletetiddler $filter='$:/temp/query/paramX' />
+
+<div class="xp-query-param">
+''X:''
+  <div class="xp-query-param-input">
+    <$keyboard key="escape" actions=<<cancel-input-actions>>>
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler="$:/temp/query/paramX"
+  type="search"
+  tag="input"
+  focus="no"
+  inputCancelActions=<<cancel-input-actions>>
+  class="xp-query-param-textbox"
+  tabindex="1"
+  default=""
+/>
+    </$keyboard>
+  </div>
+</div>

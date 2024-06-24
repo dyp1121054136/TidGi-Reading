@@ -1,0 +1,33 @@
+/* 高亮文字和背景颜色 */
+.tg {
+  color: #577149; /* 文字颜色 */
+  background-color: #ECDFA6; /* 背景颜色 */
+  border-radius:0.4em; /* 圆角 */
+  padding:0 0.25em 0.1em; /* 缩进 */
+}
+
+/* 下划线样式 */
+/* 猩红色#DC143C; */
+.xhx {
+  text-decoration: underline wavy #DC143C; /* 下划线，double双下划线，dotted虚线，wavy波浪线; */  
+  text-underline-offset: 0.2em;  /*下划线与文字间距 */
+}
+
+/* 仿真马克笔样式 */
+.marker {
+  position:relative;
+  z-index:1;
+  color: #6B8E23;
+}
+
+.marker:before{
+  content: "";
+  width: 110%;
+  height: 1.2em;
+  position: absolute;
+  left: -0.25em;
+  top: 0.1em;
+  z-index: -1;
+  filter: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"><defs><filter id="marker"><feTurbulence type="fractalNoise" baseFrequency="0 0.15" numOctaves="1" result="warp" /><feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="30" in="SourceGraphic" in2="warp" /></filter></defs></svg>#marker');
+  background-color: #FFD70099; 
+}

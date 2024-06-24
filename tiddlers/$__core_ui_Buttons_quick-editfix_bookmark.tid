@@ -1,0 +1,12 @@
+caption: {{$:/core/images/bookmark}} 开启/关闭右键添加时间戳书签
+created: 20240410161535752
+description: 时间戳书签
+modified: 20240411042141948
+tags: 书签 按钮
+title: $:/core/ui/Buttons/quick-editfix/bookmark
+
+<$button class="tc-btn-invisible" tooltip="开启/关闭右键添加时间戳书签">{{$:/core/images/bookmark|23px}}
+
+<$action-listops $tiddler="$:/quick-editfix/bookmark" $field="text" $subfilter="+[toggle[yes]]" />
+
+</$button>

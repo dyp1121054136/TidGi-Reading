@@ -1,0 +1,8 @@
+code-body: yes
+tags: 
+title: $:/plugins/kookma/section/templates/tiddler-footer
+type: text/vnd.tiddlywiki
+
+<footer class="se-tiddler-footer"><$list filter="[all[current]backlinks[]]" emptyMessage="">
+<span><$link/></span></$list>
+</footer>

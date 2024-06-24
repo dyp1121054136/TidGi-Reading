@@ -1,0 +1,29 @@
+caption: − + 字号
+created: 20180930054903341
+creator: jd
+description: 调整页面整体字号大小
+icon: 
+list: 20px 19.5px 19px 18.5px 18px 17.5px 17px 16.5px 16px 15.5px 15px 14.5px 14px
+modified: 20240117014139355
+modifier: jd
+tags: $:/tags/PageControls 按钮
+title: $:/jd/Buttons/font-size
+
+<$wikify name="fontUp" text="""
+<$list filter="[{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}previous[$:/jd/Buttons/font-size]]" emptyMessage="40px"/>
+""">
+<$wikify name="fontDown" text="""
+<$list filter="[{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}next[$:/jd/Buttons/font-size]]" emptyMessage="10px"/>
+""">
+<$button class="tc-btn-invisible" tooltip="减少字体大小">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize" text=<<fontDown>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodylineheight" text="1.2"/>
+&#8722;
+</$button>
+<$button class="tc-btn-invisible" tooltip="增加字体大小">
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize" text=<<fontUp>>/>
+<$action-setfield $tiddler="$:/themes/tiddlywiki/vanilla/metrics/bodylineheight" text="1.2"/>
+&#43;
+</$button>
+</$wikify>
+</$wikify>

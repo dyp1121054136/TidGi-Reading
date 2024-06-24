@@ -1,0 +1,12 @@
+created: 20230316233115190
+creator: !build
+modified: 20240322015816990
+modifier: !build
+tags: 筛选器下拉菜单
+title: $:/PSaT/filter-pills/ListItem
+
+<div class="atc-menu-list-item">
+   <$link to=<<currentTiddler>>>
+      <$transclude field=caption><$text text={{!!title}}/></$transclude>
+    </$link>
+</div>

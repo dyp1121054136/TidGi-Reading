@@ -1,0 +1,26 @@
+code-body: yes
+created: 20240516170217682
+modified: 20240518134010040
+tags: 级联 滚动翻页
+title: $:/custom/ui/ViewTemplate/body/scrollpage
+
+\whitespace trim
+<div class="tc-scrollpage"><$transclude><$transclude tiddler="$:/language/MissingTiddler/Hint"/></$transclude></div>
+
+<!-- 条目内到顶按钮 -->
+<span class="scrollpage-button-tb">
+<span class="unique-scrollpage-button">{{||scrollpage回到顶部按钮}}</span>
+<span class="unique-scrollpage-button">{{||scrollpage去底部按钮}}</span>
+</span>
+
+<!-- 条目内上下滚动按钮-pc -->
+<span class="scrollpage-button-pc">
+<span class="unique-scrollpage-button">{{||向上滚动按钮-pc}}</span>
+<span class="unique-scrollpage-button">{{||向下滚动按钮-pc}}</span>
+</span>
+
+<!-- 条目内上下滚动按钮-mobile -->
+<span class="scrollpage-button-mobile">
+<span class="unique-scrollpage-button">{{||向上滚动按钮-mobile}}</span>
+<span class="unique-scrollpage-button">{{||向下滚动按钮-mobile}}</span>
+</span>

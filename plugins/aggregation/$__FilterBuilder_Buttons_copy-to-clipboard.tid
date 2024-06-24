@@ -1,0 +1,12 @@
+caption: copy-to-clipboard
+description: Copy to clipboard
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/copy-to-clipboard
+
+\whitespace trim
+<$list filter="[list<fbTiddler>prefix[$:/temp/filterbuilder/]!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]has[filter]limit[1]]">
+<$button message="tm-copy-to-clipboard" param=<<builtFilter>> tooltip="Copy filter" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/core/images/copy-clipboard}}
+<<history-actions>>
+</$button>
+</$list>

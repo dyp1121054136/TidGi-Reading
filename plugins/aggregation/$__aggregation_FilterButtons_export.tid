@@ -1,0 +1,4 @@
+title: $:/aggregation/FilterButtons/export
+
+\whitespace trim
+<$macrocall $name="exportButton" exportFilter=<<searchFilter>> dragFilter=<<searchFilter>> lingoBase="$:/language/Buttons/ExportTiddlers/"/>

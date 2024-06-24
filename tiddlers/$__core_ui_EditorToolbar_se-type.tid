@@ -1,0 +1,20 @@
+caption: {{$:/core/images/se-type}} 添加一个标题内容
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240313080934680
+description: 添加一个标题内容
+icon: $:/core/images/se-type
+modified: 20240313081519321
+shortcuts: ((se-type))
+tags: $:/tags/EditorToolbar 按钮 部分编辑
+title: $:/core/ui/EditorToolbar/se-type
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix={{{[[!!!! ''标题''
+"""
+
+]] }}}
+	suffix={{{[[
+"""]] }}}
+/>

@@ -1,0 +1,25 @@
+mark.kk-sh-highlight {
+	background-color: unset;
+	border-radius:0.4em;
+	padding:0 0.25em 0.1em;
+	text-decoration: underline; /* 下划线，double双下划线，dotted虚线，wavy波浪线 */
+	text-underline-offset: 0.2em; /* 下划线与文字间距 */
+}
+
+mark.kk-sh-highlight-pen {
+	background-color: unset;
+	background-position: top left;
+	background-repeat: no-repeat;
+	background-size: 100% auto;
+
+	text-decoration: underline; /* 下划线，double双下划线，dotted虚线，wavy波浪线 */
+	text-underline-offset: 0.2em; /* 下划线与文字间距 */
+
+	border-radius:0.4em;
+	padding:0 0.25em 0.1em; /* 使划线标注背景颜色开头和结尾变圆滑 */
+}
+
+mark.kk-sh-highlight-underline {
+	text-decoration: underline; /* 下划线，double双下划线，dotted虚线，wavy波浪线 */
+	text-underline-offset: 0.2em; /* 下划线与文字间距 */
+}

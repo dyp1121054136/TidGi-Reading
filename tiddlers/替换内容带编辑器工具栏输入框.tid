@@ -1,0 +1,6 @@
+created: 20240430151705118
+modified: 20240501030509690
+tags: 正则表达式查找替换
+title: 替换内容带编辑器工具栏输入框
+
+<$list filter="[[$:/state/searchNreplace/replace]]" class="" template="$:/core/ui/EditTemplate/body"/>

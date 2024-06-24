@@ -1,0 +1,22 @@
+caption: callout-batchmodification
+description: Callout Batch Modification
+tags: $:/tags/FilterBuilder/Buttons
+title: $:/FilterBuilder/Buttons/callout-batchmodification
+
+\whitespace trim
+<$list filter="[subfilter<resultsFilter>limit[1]]" variable="ignore">
+<$reveal state=<<calloutState>> type="nomatch" text="batchmodification">
+<$button tooltip="Callout BatchModification" class="fb-btn btn-small tc-tiny-gap-left">
+{{$:/xp/images/batch-modification}}
+<$action-setfield $tiddler="$:/temp/batch-modification/filter" text=<<resultsFilter>>/>
+<$action-setfield $tiddler=<<calloutState>> text="batchmodification"/>
+<<history-actions>>
+</$button>
+</$reveal>
+<$reveal state=<<calloutState>> type="match" text="batchmodification">
+<$button tooltip="Close" class="fb-btn btn-small btn-selected tc-tiny-gap-left">
+{{$:/xp/images/batch-modification}}
+<$action-setfield $tiddler=<<calloutState>> text=""/>
+</$button>
+</$reveal>
+</$list>

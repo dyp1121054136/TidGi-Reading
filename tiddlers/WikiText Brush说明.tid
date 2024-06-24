@@ -1,0 +1,35 @@
+created: 20240201050104161
+modified: 20240322191453129
+tags: wiki语言高亮
+title: WikiText Brush说明
+
+"""
+需要安装
+[[$:/plugins/tiddlywiki/highlight]]
+[[WikiText Brush]]
+[[Brush Loader]]
+"""
+
+使用 `tw`，`tid`，`tiddlywiki` 或者 `wikitext` 作为代码块限定符，例如：
+
+```tw
+ ```tw
+ wikitext内容
+ ```
+```
+
+或者
+
+```tw
+ ```tid
+ wikitext内容
+ ```
+```
+
+修改 [[$:/plugins/kookma/utility]] 中的 [[$:/plugins/kookma/utility/macros/reveal-code]]
+
+`language=tw`
+<<code src:"""<summary>$title$</summary>
+<$macrocall $name="code" language=tw src={{!!text}} />
+</details>
+""" language:"tw">>

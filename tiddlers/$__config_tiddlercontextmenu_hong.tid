@@ -1,0 +1,11 @@
+caption: 文字标红
+created: 20240111021744302
+icon: $:/plugins/xp/mark-button/icon
+markup-prefix: <c style.color=Crimson>
+markup-suffix: </c>
+modified: 20240322192939544
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/hong
+tm-message: tm-markup
+
+hide

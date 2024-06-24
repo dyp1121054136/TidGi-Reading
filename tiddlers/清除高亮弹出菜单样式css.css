@@ -1,0 +1,25 @@
+.highlight-body {
+  padding: 10px;
+  background: white;
+  min-width: 180px; /* 默认宽度 */
+  border-radius: 8px;  /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+  font-size: 15px;
+  overflow-y: auto;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.no-bullets {
+  list-style-type: none;
+  margin: 0; /* 清除外部边距 */
+  padding: 0; /* 清除内部边距 */
+}
+  
+.no-bullets li {
+  margin: 0; /* 清除列表项的外部边距 */
+  padding: 0; /* 清除列表项的内部边距 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}

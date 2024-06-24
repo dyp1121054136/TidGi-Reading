@@ -1,0 +1,547 @@
+color: #bbb
+icon: $:/xp/images/filtersearch
+title: $:/FilterSearch
+
+\whitespace trim
+
+\define lingo-base() $:/language/Search/
+
+\define toFilterSearch()
+<$list filter="[<tv-story-list>contains[$:/FilterSearch]]">
+<$action-sendmessage $message="tm-close-tiddler" $param="$:/FilterSearch"/>
+</$list>
+<$action-navigate $to="$:/FilterSearch" $scroll="yes"/>
+\end
+
+\define filterTiddler() $:/config/xp/aggregation/MainFilter
+\define searchTiddler() $:/config/xp/aggregation-view/SearchScope
+\define storeTitle() $:/temp/search/aggregation-view
+\define fieldlistTiddler() $:/temp/FilterSearch/searchOperator/field-list
+
+\define defaultView() $:/config/xp/aggregation-view/DefaultView
+\define readingMode() $:/config/xp/aggregation-view/ReadingMode
+\define sourceMode() $:/config/xp/aggregation-view/SourceMode
+\define tocState() $:/state/xp/aggregation-view/toc
+\define selectedTiddler() $:/temp/toc/selectedTiddler/aggregation-view
+
+\define filterState() $:/state/filter/aggregation-view
+\define dateTiddler() $:/temp/filter/aggregation-view/Date
+\define fieldTiddler() $:/temp/xp/aggregation-view/Field
+\define valueTiddler() $:/temp/xp/aggregation-view/FieldValue
+\define sortTiddler() $:/temp/xp/aggregation-view/Sorting
+
+\define presetTiddler() $:/config/xp/aggregation-view/TableFields
+\define fieldsTiddler() $:/temp/xp/aggregation-view/TableFields
+\define fieldsState() $:/state/xp/aggregation-view/ModifyTableFields
+\define pageTiddler() $:/temp/xp/aggregation-view/Pagination
+\define rowsTiddler() $:/temp/xp/aggregation-view/FooterRows
+\define rowsState() $:/state/xp/aggregation-view/FooterRows
+\define tempTableSort() $:/state/dynamictables/aggregation-view/sortby
+\define config-base() $:/temp/xp/aggregation-view/TableFields/Visibility/
+
+\define aggrFilterDropdown()
+\whitespace trim
+<span class="tc-popup-keep">
+<$button popup=<<qualify "$:/state/dropdown/aggregation-view">> class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+</span>
+
+<$reveal state=<<qualify "$:/state/dropdown/aggregation-view">> type="popup" position="below" animate="yes">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<filterTiddler>> text=<<navigateTo>>/>
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]] [prefix[$:/temp/xp/aggregation-view/TableFields/Visibility/]]"/>
+<$list filter="[<presetTiddler>get[text]enlist-input[]]">
+<$action-setfield $tiddler=<<b-c-title>> text="show"/>
+</$list>
+<!-- Reset fields -->
+<$action-setfield $tiddler=<<fieldsTiddler>> list={{{ [<presetTiddler>get[text]] }}} order={{{ [<presetTiddler>get[text]] }}}/>
+<$list filter="[subfilter<navigateTo>] +[fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[format:titlelist[]]" variable="listField">
+<$action-listops $tiddler=<<fieldsTiddler>> $subfilter="+[append<listField>]"/>
+</$list>
+<$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<fieldTiddler>] [<valueTiddler>]"/>""">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter/AggregationView]!tag[hide]!has[draft.of]]">
+<$link to={{!!filter}} tooltip={{!!description}}><$view field="caption" format="plainwikified"/></$link>
+</$list>
+</div>
+</div>
+</$linkcatcher>
+</$reveal>
+\end
+
+\define input-accept-actions()
+\whitespace trim
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]] [prefix[$:/temp/xp/aggregation-view/TableFields/Visibility/]]"/>
+<$list filter="[<presetTiddler>get[text]enlist-input[]]">
+<$action-setfield $tiddler=<<b-c-title>> text="show"/>
+</$list>
+<!-- Reset fields -->
+<$action-setfield $tiddler=<<fieldsTiddler>> list={{{ [<presetTiddler>get[text]] }}} order={{{ [<presetTiddler>get[text]] }}}/>
+<$list filter="[subfilter{$:/config/xp/aggregation/MainFilter}] +[fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/dtable}] +[format:titlelist[]]" variable="listField">
+<$action-listops $tiddler=<<fieldsTiddler>> $subfilter="+[append<listField>]"/>
+</$list>
+<$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<fieldTiddler>] [<dateTiddler>] [<valueTiddler>]"/>
+\end
+
+\define cancel-search-actions()
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/>
+<$action-deletetiddler $filter="[<storeTitle>] [<filterState>] [<fieldTiddler>] [<dateTiddler>] [<valueTiddler>]"/>
+\end
+
+\define target-filter-code()
+<$vars mainFilter={{{ [<filterTiddler>get[text]] }}} L="tag[" R="]" lb=" +[">
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addprefix<mainFilter>addsuffix<R>addsuffix<searchRun>addsuffix<timeRun>addsuffix<fieldRun>addsuffix<valueRun>addsuffix<sortRun>]" name="target" select=0>
+<$text text=<<target>>/>
+</$set>
+</$vars>
+\end
+
+\define aggrfilteritem(item:"")
+<$checkbox tiddler=<<qualify """$:/temp/$item$""">> field="status" checked="selected" checkactions=<<checkactions """$item$""">> uncheckactions=<<uncheckactions """$item$""">> default="closed"> <$text text=<<__item__>>/></$checkbox>
+\end
+
+\define checkactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="[[$item$]]"/>
+<$action-listops $tiddler=<<filterState>> $field="checktiddler" $subfilter={{{ [<qualify """$:/temp/$item$""">format:titlelist[]] }}}/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define uncheckactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="-[[$item$]]"/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define input-accept-actions-date() <$action-setfield $tiddler=<<filterState>> filter={{{ [<dateTiddler>get[text]addprefix<pt>addsuffix<st>] }}}/>
+
+\define input-cancel-actions-date() <$action-deletefield $tiddler=<<dateTiddler>> text/>
+
+\define fs-dtable(baseFilter, filter, fields:"tbl-expand title tags", indexes:"", sortOp:"sort", caption:"", class:"w-100", stateTiddler:"aggregation-view", editButton:"yes", paginationButton:"yes", rowsButton:"no", emptyMessage)
+\import [all[shadows+tiddlers]tag[$:/tags/Table/Macro]]
+<!--above commands import utility macros-->
+<$vars
+  inputFilter="[subfilter<__filter__>!has[draft.of]]"
+  sortType=<<__sortOp__>>
+  pagination={{{ [<pageTiddler>is[tiddler]get[text]] ~no }}}
+  footerRows={{{ [<rowsTiddler>is[tiddler]get[text]] ~0 }}}
+  >
+<$set name=currentTable value=<<__stateTiddler__>> emptyValue=<<currentTiddler>> >
+<$reveal state=<<fieldsState>> type="match" text="yes" animate="yes">
+<$macrocall
+  $name="aggregation-fields-panel"
+  title="<$link to=<<presetTiddler>> overrideClass='tc-muted'>Dynamic table Fields:</$link>"
+/>
+</$reveal>
+<!-- check what type of columns are sent, fields or indexes (data tiddlers as records) -->
+<$set name=fieldOrIndex filter="[<__fields__>!is[blank]]" value="field" emptyValue="index">
+<<check_tiddlers_type_for_table_from_indexes isEditable:"$editButton$">>
+<$set name=columns filter="[<fieldOrIndex>]-index" value=<<__fields__>> emptyValue=<<__indexes__>> >
+<!--check input filter parameter-->
+<$list filter="[subfilter<inputFilter>limit[1]]" emptyMessage=<<__emptyMessage__>> variable=ignore>
+<$set name=sortneg tiddler=<<tempTableSort>> index="negate">
+<!--calculate the number of columns in edit and view mode -->
+<$set name=ncols filter="[<tempTableEdit>getindex[mode]match[edit]]" value={{{ [subfilter<columnFilter>count[]] }}} emptyValue={{{ [subfilter<columnFilter>count[]subtract[1]] }}}>
+<div class="tbl-container" style="max-width:100%;">
+<table class=<<__class__>> style="caption-side:top">
+<!-- reveal caption and edit button -------------------->
+<caption style="text-align:left;">
+<<aggregation-dtable-controls>>
+</caption>
+
+<!-- create header -------------------->
+<thead>
+<<confirm-delete>>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="headerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/HeaderTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<headerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/header/default">
+ <$transclude tiddler=<<headerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</thead>
+
+<!-- create footer -------------------->
+<$reveal type="gt" default=<<footerRows>> text="0" tag="tfoot" class="shiraz-dtable-footer">
+<tr><td colspan=<<ncols>> style="font-weight:bold;background-color:transparent;">Numerical summary</td></tr>
+<$list filter="[range<footerRows>addprefix[footer-]]" variable=footerRow>
+<tr>
+<$list filter=<<columnFilter>> variable=currentColumn>
+<$set name="footerLookup" filter="[all[tiddlers+shadows]tag[$:/tags/Table/FooterTemplate]contains:tbl-column-list<currentColumn>limit[1]get[title]]" value=<<footerLookup>> emptyValue="$:/plugins/kookma/shiraz/templates/footer/default">
+<$transclude tiddler=<<footerLookup>> field="text" mode="inline"/>
+</$set>
+</$list>
+</tr>
+</$list>
+</$reveal>
+
+<!-- reveal main body of table (generate records) -------------------->
+<tbody>
+<$set name=tableBody filter="[<fieldOrIndex>]-index" value="display_body_fields" emptyValue="display_body_indexes" >
+<!-- setup pagination variables -->
+<$vars total-entries={{{[subfilter<inputFilter>count[]] }}}
+			 page-number={{{[<pageStateTiddler>get[text]] ~[[1]]}}} 
+			 entries-per-page={{{ [<entryPerPageStateTiddler>get[text]] ~[[25]]   }}}  >
+<$vars low={{{ [<page-number>subtract[1]multiply<entries-per-page>] }}}  
+       high={{{[<page-number>multiply<entries-per-page>]            }}} >	 
+<$macrocall $name=<<tableBody>> />
+<!--on demand display the pagination row-->
+<$reveal type="match" default=<<pagination>> text="yes" tag="tr" class="shiraz-dtable-page-footer">
+<td colspan=<<ncols>> >
+<<prev-button>>
+Displaying <$text text={{{[<low>add[1]]}}}/> through <$text text={{{ [<high>compare:number:lt<total-entries>then<high>else<total-entries>] }}}/> of <<total-entries>> Results | <<limit-entries>>
+<<next-button>>
+</td>
+</$reveal><!-- end of pagination ui -->
+</$vars>
+</$vars>
+</$set>
+</tbody>
+</table>
+</div><!-- container-->
+</$set>
+</$set>
+</$list><!--check input filter parameter-->
+</$set>
+</$set>
+</$set>
+</$vars>
+\end
+
+\define list-item-content-item()
+<div class="tc-manager-list-item-content-item">
+  <$vars state-title="""$:/state/popup/manager/item/$(listItem)$""">
+    <$reveal state=<<state-title>> type="match" text="show" default="show" tag="div">
+      <$button set=<<state-title>> setTo="hide" class="tc-btn-invisible tc-manager-list-item-content-item-heading">
+        {{$:/core/images/down-arrow}} <$transclude tiddler=<<listItem>> field="caption"/>
+      </$button>
+    </$reveal>
+    <$reveal state=<<state-title>> type="nomatch" text="show" default="show" tag="div">
+      <$button set=<<state-title>> setTo="show" class="tc-btn-invisible tc-manager-list-item-content-item-heading">
+        {{$:/core/images/right-arrow}} <$transclude tiddler=<<listItem>> field="caption"/>
+      </$button>
+    </$reveal>
+    <$reveal state=<<state-title>> type="match" text="show" default="show" tag="div" class="tc-manager-list-item-content-item-body">
+      <$transclude tiddler=<<listItem>>/>
+    </$reveal>
+  </$vars>
+</div>
+\end
+
+
+<!-- 筛选表达式 开始 -->
+<div class="tc-advanced-search" style="line-height:1.75;margin-bottom:1rem;padding:10px 40px;border-radius:5px;box-shadow:0.5px 1px 17px -8px #A3A5AE;">
+
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler=<<filterTiddler>>
+  type="search"
+  tag="input"
+  inputAcceptActions=<<input-accept-actions>>
+  filterMinLength={{$:/config/Search/MinLength}}
+/>
+<i class='tc-tiny-gap-right'/>
+<span class="tc-search">
+<<aggrFilterDropdown>>
+<$reveal state=<<filterTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible tc-small-gap-right">
+<$action-deletetiddler $tiddler=<<filterTiddler>>/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</span>
+<$reveal state=<<filterTiddler>> type="nomatch" text="">
+<$vars resultCount="<$count filter='[subfilter{$:/config/xp/aggregation/MainFilter}] +[has[title]]'/>">
+<span class="tc-search-results"><<lingo System/Matches>></span>
+</$vars>
+</$reveal>
+
+</div>
+<!-- 筛选表达式 结束 -->
+
+<!-- 聚合视图 开始 -->
+<$list filter="[subfilter{$:/config/xp/aggregation/MainFilter}] +[has[title]limit[1]]" variable="ignore">
+
+<span class="xp-search xp-search-aggregation-view">
+<$button message="tm-modal" param="$:/FilterSearch/searchOperatorCustomization" tooltip="search Operator Customization" class="tc-btn-invisible tc-tiny-gap-right">
+<$list filter="[<fieldlistTiddler>has[checktiddler]get[checktiddler]enlist-input[]status[selected]]" variable="checktiddler">
+<$let field={{{ [<checktiddler>split[--]first[]removeprefix[$:/temp/]] }}} validity={{{ [subfilter{$:/config/xp/aggregation/MainFilter}fields[]match<field>then[yes]] }}}>
+<$list filter="[<validity>!match[yes]]" variable="ignore">
+<$action-listops $tiddler=<<fieldlistTiddler>> $subfilter="-[<field>]"/>
+<$action-deletetiddler $tiddler=<<checktiddler>>/>
+</$list>
+</$let>
+</$list>
+<span class="tc-btn-text">
+<$text text=Search/>
+</span>
+</$button>
+<$select tiddler=<<searchTiddler>> tooltip="Choosing the Search Scope" class="xp-aggregation-select">
+  <option value="+[search:*<userInput>]"> all fields</option>
+  <option value="+[search:*:literal,casesensitive<userInput>]"> all exact match</option>
+  <option value="+[search:-text<userInput>]"> all except text</option>
+  <option value="+[search<userInput>]"> title text tags</option>
+  <option value="+[search:title,caption<userInput>]"> title caption</option>
+	<$list filter="[[$:/config/FilterSearch/searchOperatorCustomization]has[filter]]" variable="ignore">
+  <option value={{$:/config/FilterSearch/searchOperatorCustomization!!filter}}> {{$:/config/FilterSearch/searchOperatorCustomization}}</option>
+  </$list>
+</$select>
+<i class='tc-small-gap-right'/>
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler=<<storeTitle>>
+  type="search"
+  tag="input"
+  focus={{$:/config/xp/aggregation/SearchAutoFocus}}
+  inputCancelActions=<<cancel-search-actions>>
+/>
+</span>
+<i class='tc-tiny-gap-right'/>
+<$let
+  mainFilter={{{ [<filterTiddler>get[text]] }}}
+  userInput={{{ [<storeTitle>get[text]] }}}
+  searchRun={{{ [<searchTiddler>get[text]] }}}
+  timeRun={{{ [<filterState>get[filter]] }}}
+  sortRun={{{ [<sortTiddler>is[tiddler]get[text]] }}}
+  fieldRun={{{ [<fieldTiddler>has[filter]get[filter]] }}}
+  valueRun={{{ [<valueTiddler>has[filter]get[filter]] }}}
+  resultCount="<$count filter=<<searchFilter>>/>"
+  sortState={{{ [<tempTableSort>is[tiddler]] ~[<sortTiddler>] }}}
+  sortIndex={{{ [<tempTableSort>getindex[sortIndex]] }}}
+  defaultFields={{{ [<presetTiddler>get[text]] }}}
+  >
+<$wikify text=<<target-filter-code>> name="targetFilter">
+<$set name="searchFilter" filter="[<filterState>has[list]]" value=<<targetFilter>> emptyValue={{{ [<filterTiddler>get[text]addsuffix[ ]addsuffix<searchRun>addsuffix<timeRun>addsuffix<fieldRun>addsuffix<valueRun>addsuffix<sortRun>] }}}>
+<span class="xp-search">
+<<aggrbtn-filter>>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]has[text]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<<cancel-search-actions>>
+<$action-sendmessage $message="tm-focus-selector" $param=".xp-search-aggregation-view input"/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</$set>
+<$reveal state=<<readingMode>> type="nomatch" text="on">
+<<aggrbtn-view "table" "manager" "Switching to manager view">>
+</$reveal>
+<$macrocall $name="aggrbtn-sorting" filter={{{ [<filterTiddler>get[text]] }}}/>
+<<aggrbtn-reading-mode>>
+<<aggrbtn-source>>
+<$macrocall $name="aggrbtn-toc" filter=<<searchFilter>>/>
+<span class="aggrbtn-mini">
+{{$:/aggregation/FilterButtons/export}}
+{{$:/aggregation/FilterButtons/delete}}
+</span>
+</span>
+<$set name="stateTiddler" filter="[<storeTitle>!is[missing]get[text]!is[blank]]" value=<<storeTitle>> emptyValue=<<filterState>>>
+<$reveal state=<<stateTiddler>> type="nomatch" text="">
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<span class="xp-search-results"><<lingo System/Matches>></span>
+</$reveal>
+</$reveal>
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<<aggrbtn-unsort>>
+</$reveal>
+</$set>
+<$reveal state=<<filterState>> type="match" text="yes" animate="yes">
+<div class="xp-wrapper-aggrfilter">
+
+Filtered by Tag: <<aggrbtn-filter-deselect>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<$list filter="[subfilter<mainFilter>] +[tags[]!is[system]limit[1]]" variable="ignore">
+<tr>
+<td><span class="xp-aggrfilter-category-title tc-muted">Tags</span></td>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[subfilter<mainFilter>] +[tags[]!is[system]sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+<$list filter="[subfilter<mainFilter>] +[tags[]is[system]limit[1]]" variable="ignore">
+<tr>
+<td><span class="xp-aggrfilter-category-title tc-muted">$Tags</span></td>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[subfilter<mainFilter>] +[tags[]is[system]sort[]]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+
+Filtered by Time / Field: <<aggrbtn-filter-reset>>
+
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<tr>
+<td>
+<span class="xp-aggrfilter-category-title tc-muted">Time</span>&#32;
+<$select
+  tiddler=<<filterState>>
+  field="filter"
+  class="xp-aggregation-select"
+  actions="<$list filter='[<filterState>search:filter[regexp:created]]'><$action-setfield $tiddler=<<dateTiddler>> status='show'/></$list>">
+  <option value=""> All</option>
+  <option value="+[days:created[-1]]"> Past 24 hours</option>
+  <option value="+[days:created[-7]]"> Past week</option>
+  <option value="+[days:created[-30]]"> Past month</option>
+  <option value="+[days:created[-365]]"> Past year</option>
+  <option value="+[regexp:created[]]"> Enter a date</option>
+</$select>
+</td>
+<$list filter="[<dateTiddler>is[tiddler]]">
+<td>
+<span class="xp-aggrfilter-category-title tc-muted">Date</span>&#32;
+<$vars pt=" +[regexp:created[^" st="]]">
+<$macrocall
+  $name="keyboard-driven-input" 
+  tiddler=<<dateTiddler>>
+  type="search"
+  tag="input"
+  size=7
+  focus="no"
+  inputCancelActions=<<input-cancel-actions-date>>
+  inputAcceptActions=<<input-accept-actions-date>>
+/>
+&#32;
+<$button> Enter
+<<input-accept-actions-date>>
+</$button>
+</$vars>
+</td>
+</$list>
+<$vars
+  getField={{{ [<fieldTiddler>is[tiddler]get[text]] }}}
+  getValue={{{ [<valueTiddler>is[tiddler]get[text]] }}}
+  pt1="+[has:field["
+  pt2="+["
+  st="]]"
+  st2="["
+  >
+<td>
+<span class="xp-aggrfilter-category-title tc-muted">Field</span>&#32;
+<$select
+  tiddler=<<fieldTiddler>>
+  tooltip="Choosing the Field"
+  class="xp-aggregation-select"
+  actions="<$action-setfield $tiddler=<<fieldTiddler>> filter={{{ [<fieldTiddler>get[text]addprefix<pt1>addsuffix<st>] }}}/><$action-deletetiddler $tiddler=<<valueTiddler>>/>">
+  <$list filter="[subfilter<mainFilter>] +[fields:exclude{$:/config/xp/aggregation/excluded-fields/filtering-button}]">
+  <option><$view field="title"/></option>
+  </$list>
+</$select>
+</td>
+<$list
+  filter="[subfilter<mainFilter>] +[has<getField>limit[1]]"
+  emptyMessage="<$list filter='[<fieldTiddler>has[text]]'><td><span class='xp-aggrfilter-category-title tc-muted'> No value for this field </span></td></$list>"
+  variable="ignore">
+<td>
+<span class="xp-aggrfilter-category-title tc-muted">Value</span>&#32;
+<$select
+  tiddler=<<valueTiddler>>
+  tooltip="Choosing the Value"
+  class="xp-aggregation-select"
+  actions="<$action-setfield $tiddler=<<valueTiddler>> filter={{{ [<getField>addprefix<pt2>addsuffix<st2>addsuffix{$:/temp/xp/aggregation-view/FieldValue}addsuffix<st>] }}}/>">
+  <$list filter="[subfilter<mainFilter>] +[has<getField>each<getField>get<getField>!is[blank]]">
+  <option><$view field="title"/></option>
+  </$list>
+</$select>
+</td>
+</$list>
+</$vars>
+</tr>
+</tbody>
+</table>
+</div>
+
+</div>
+</$reveal>
+<$reveal state=<<filterState>> type="match" text="yes">
+<<lingo System/Matches>>
+<<aggrbtn-unsort>>
+</$reveal>
+
+<$reveal state=<<readingMode>> type="nomatch" text="on">
+
+<!-- Show table -->
+<$reveal state=<<defaultView>> default="table" type="match" text="table">
+<$wikify name="dtableFields" text="""<$list filter="[list<fieldsTiddler>]"><$reveal type="match" state=<<b-c-title>> text="show"> <$text text={{{ [<currentTiddler>format:titlelist[]] }}}/> </$reveal></$list>""">
+<$set name="fields" value=<<dtableFields>> emptyValue=<<defaultFields>>>
+<$macrocall 
+  $name="fs-dtable"
+  baseFilter=<<mainFilter>>
+  filter=<<searchFilter>>
+  fields=<<fields>>
+/>
+</$set>
+</$wikify>
+</$reveal>
+
+<!-- Show manager -->
+<$reveal state=<<defaultView>> default="table" type="nomatch" text="table">
+<div style="padding-top:5px;">
+<div class="tc-manager-list">
+  <$list filter=<<searchFilter>>>
+    <$vars transclusion=<<currentTiddler>>>
+      <div style="tc-manager-list-item">
+        <$button popup=<<qualify "$:/state/manager/popup">> class="tc-btn-invisible tc-manager-list-item-heading" selectedClass="tc-manager-list-item-heading-selected">
+          <$text text=<<currentTiddler>>/>
+        </$button>
+        <$reveal state=<<qualify "$:/state/manager/popup">> type="nomatch" text="" default="" tag="div" class="tc-manager-list-item-content tc-popup-handle">
+          <div class="tc-manager-list-item-content-tiddler">
+            <$list filter="[all[shadows+tiddlers]tag[$:/tags/Manager/ItemMain]!has[draft.of]]" variable="listItem">
+              <<list-item-content-item>>
+            </$list>
+          </div>
+          <div class="tc-manager-list-item-content-sidebar">
+            <$list filter="[all[shadows+tiddlers]tag[$:/tags/Manager/ItemSidebar]!has[draft.of]]" variable="listItem">
+              <<list-item-content-item>>
+            </$list>
+          </div>
+        </$reveal>
+      </div>
+    </$vars>
+  </$list>
+</div>
+</div>
+</$reveal>
+
+</$reveal>
+
+<!-- Reading Mode -->
+<$reveal state=<<readingMode>> type="match" text="on">
+<$list filter="[subfilter<searchFilter>] +[limit[1]]" variable="ignore">
+
+<$macrocall
+  $name="aggregation-toc"
+  filter=<<searchFilter>>
+  selectedTiddler=<<selectedTiddler>>
+  sourceMode=<<sourceMode>>
+  tocState=<<tocState>>
+  navTiddler="$:/FilterSearch"
+/>
+
+</$list>
+</$reveal>
+
+</$set>
+</$wikify>
+</$let>
+
+</$list>
+<!-- 聚合视图 结束 -->

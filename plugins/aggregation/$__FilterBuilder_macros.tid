@@ -1,0 +1,192 @@
+title: $:/FilterBuilder/macros
+
+\define fbTiddler() $:/FilterBuilder/Listops
+\define historyTiddler() $:/FilterBuilder/History
+\define calloutState() $:/state/filterbuilder/callout
+
+\define fb-has-step()
+[list<fbTiddler>prefix[$:/temp/filterbuilder/]!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]has[filter]limit[1]]
+\end
+
+\define mainFilter()
+\whitespace trim
+<$list filter=<<fb-has-step>>>[</$list>
+<$list filter="[list<fbTiddler>!prefix[$:/temp/filterbuilder/Run]!prefix[$:/temp/filterbuilder/Search]has[filter]]">
+<$text text={{!!filter}}/>
+</$list>
+<$list filter=<<fb-has-step>>>]</$list>
+<$list filter="[prefix[$:/temp/filterbuilder/Run]has[filter]sortby{$:/FilterBuilder/Listops!!list}]">
+&nbsp;<$text text={{!!filter}}/>
+</$list>
+\end
+
+\define currentFilter()
+\whitespace trim
+<<mainFilter>>
+<$list filter="[prefix[$:/temp/filterbuilder/Search]has[filter]sortby{$:/FilterBuilder/Listops!!list}]">
+<$vars lb="[" rb="]]">
+&nbsp;<$text text={{{ [{!!filter}split[{]first[]addsuffix<lb>addsuffix{!!text}addsuffix<rb>] }}}/>
+</$vars>
+</$list>
+\end
+
+\define listFilter()
+\whitespace trim
+<<mainFilter>>
+<$list filter="[prefix[$:/temp/filterbuilder/Search]has[filter]sortby{$:/FilterBuilder/Listops!!list}]">
+&nbsp;<$text text={{!!filter}}/>
+</$list>
+\end
+
+\define fb-draggable(tiddler,field:"list",subFilter,exclude,emptyMessage,itemTemplate,elementTag:"div",storyview:"")
+\whitespace trim
+<$vars targetTiddler="""$tiddler$""" targetField="""$field$""" lb="[" rb="]">
+<$list filter="[list[$tiddler$!!$field$]$subFilter$has[filter]] -[enlist<__exclude__>]" emptyMessage=<<__emptyMessage__>> storyview=<<__storyview__>>>
+<$set name="currentItem" filter="[{!!filter}regexp[^!]]" value={{{ [{!!filter}removeprefix[!]split<lb>first[1]] }}} emptyValue={{{ [{!!filter}split<lb>first[1]] }}}>
+<$droppable actions=<<list-links-draggable-drop-actions>> enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$>
+<$transclude tiddler="""$itemTemplate$""">
+<$link to={{!!title}}>
+<$view field="title"/>
+</$link>
+</$transclude>
+</$elementTag$>
+</$droppable>
+</$set>
+</$list>
+<$tiddler tiddler="">
+<$droppable actions=<<list-links-draggable-drop-actions>> tag="div" enable=<<tv-enable-drag-and-drop>>>
+<$elementTag$ class="tc-droppable-placeholder"/>
+<$elementTag$ style="height:0.5em;">
+</$elementTag$>
+</$droppable>
+</$tiddler>
+</$vars>
+\end
+
+\define fb-input-accept-actions()
+<$action-createtiddler $basetitle=<<editTid>> filter={{{ [<editTid>get[filter]] }}}>
+<$action-listops $tiddler=<<fbTiddler>> $subfilter="+[insertbefore<createTiddler-title>,<editTid>]"/>
+</$action-createtiddler>
+<$action-deletefield $tiddler=<<editTid>> filter text />
+\end
+
+\define fb-cancel-input-actions() <$action-deletefield $tiddler=<<editTid>> filter text />
+
+\define start-input-accept-actions()
+<$reveal state=<<calloutState>> type="nomatch" text="run">
+<$action-setfield $tiddler=<<calloutState>> text="run"/>
+</$reveal>
+<$list filter="[[$:/temp/filterbuilder/all]has[filter]]">
+<$action-deletefield $tiddler='$:/temp/filterbuilder/all' filter />
+</$list>
+\end
+
+\define search-input-accept-actions()
+<$list filter="[<editTid>!has[filter]]">
+<$action-setfield $tiddler=<<editTid>> filter={{{ [<configTid>getindex[all exact match]] }}}/>
+</$list>
+<$reveal state=<<calloutState>> type="nomatch" text="run">
+<$action-setfield $tiddler=<<calloutState>> text="run"/>
+</$reveal>
+<$list filter="[[$:/temp/filterbuilder/Start]!has[filter]] [[$:/temp/filterbuilder/all]!has[filter]] +[count[]match[2]]">
+<$action-setfield $tiddler="$:/temp/filterbuilder/all" filter="all[shadows+tiddlers]"/>
+</$list>
+\end
+
+\define oneMoreButton(actions:"")
+<$button tooltip="one more" class="tc-btn-invisible fb-btn-invisible"> {{$:/core/images/new-button}}
+<<fb-input-accept-actions>>
+$actions$
+</$button>
+\end
+
+\define startDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/start $:/temp/filterbuilder/search/start/input"/>
+\define startOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<startDeleteActions>>/>
+
+\define tagDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/tags $:/temp/filterbuilder/search/tags/input $:/temp/filterbuilder/search/systemtags $:/temp/filterbuilder/search/systemtags/input"/>
+\define tagOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<tagDeleteActions>>/>
+
+\define hasDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/hasfield $:/temp/filterbuilder/search/hasfield/input"/>
+\define hasOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<hasDeleteActions>>/>
+
+\define fieldDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/fields $:/temp/filterbuilder/search/fields/input"/>
+\define fieldOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<fieldDeleteActions>>/>
+
+\define getDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/getfield $:/temp/filterbuilder/search/getfield/input"/>
+\define getOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<getDeleteActions>>/>
+
+\define operatorsDeleteActions() <$action-deletetiddler $filter="$:/temp/filterbuilder/search/operators $:/temp/filterbuilder/search/operators/input"/>
+\define operatorsOneMoreButton() <$macrocall $name="oneMoreButton" actions=<<operatorsDeleteActions>>/>
+
+\define searchOneMoreButton()
+<$button tooltip="one more" class="tc-btn-invisible fb-btn-invisible"> {{$:/core/images/new-button}}
+<$action-createtiddler $basetitle=<<editTid>> $template=<<editTid>>>
+<$action-setfield $tiddler=<<createTiddler-title>> filter={{{ [<createTiddler-title>get[filter]search-replace:g[$:/temp/filterbuilder/Search],<createTiddler-title>] }}}/>
+<$action-listops $tiddler=<<fbTiddler>> $subfilter="+[insertbefore<createTiddler-title>,<editTid>]"/>
+</$action-createtiddler>
+<$action-deletefield $tiddler=<<editTid>> filter text />
+</$button>
+\end
+
+\define select-input-template()
+<td class="fb-item-name"><$link to=<<configTid>>><<getCaption>></$link></td>
+<td class="fb-item-input">
+<$tiddler tiddler=<<editTid>>>
+  <$select field="filter" class="fb-select">
+    <$list filter="[<configTid>get[text]enlist-input[]]" variable="listItem">
+    <option value=<<listItem>>> <$text text=<<listItem>>/> </option>
+    </$list>
+  </$select>
+</$tiddler>
+<span class="fb-item-input-textbox">
+<$macrocall
+  $name="keyboard-driven-input"
+  tiddler=<<editTid>>
+  field="filter"
+  type="search"
+  tag="input"
+  focus="no"
+  placeholder="input"
+  class="tc-edit-texteditor"
+  inputCancelActions=<<fb-cancel-input-actions>>
+  inputAcceptActions=<<fb-input-accept-actions>>
+/>
+</span>
+</td>
+<td class="fb-item-add"><<oneMoreButton>></td>
+\end
+
+\define drop-actions-delete()
+<$action-deletefield $tiddler=<<actionTiddler>> filter/>
+<$action-sendmessage $message="tm-notify" $param="$:/language/Notifications/RemoveTiddler"/>
+\end
+
+\define initializationButton()
+\whitespace trim
+<$droppable actions=<<drop-actions-delete>>>
+<$button class="fb-btn btn-small tc-big-gap-left"> Initialize
+<$action-deletetiddler $filter="[list<fbTiddler>] [prefix[$:/temp/filterbuilder/Run]] [prefix[$:/temp/filterbuilder/Search]]"/>
+<$action-deletetiddler $filter=<<fbTiddler>>/>
+<<tagDeleteActions>><<hasDeleteActions>><<fieldDeleteActions>><<getDeleteActions>><<operatorsDeleteActions>>
+<$list filter="[enlist{$:/config/FilterBuilder/Items}addprefix[$:/temp/filterbuilder/]]" variable="listItem">
+<$action-listops $tiddler=<<fbTiddler>> $subfilter=<<listItem>>/>
+</$list>
+<$action-setfield $tiddler=<<calloutState>> text="run"/>
+<$action-setfield $tiddler="$:/temp/filterbuilder/all" filter="all[tiddlers]"/>
+</$button>
+</$droppable>
+\end
+
+\define history-actions()
+<$list filter="[<historyTiddler>indexes[]]" variable="index">
+<$reveal default=<<builtFilter>> type="match" text={{{ [<historyTiddler>getindex<index>] }}}>
+<$action-setfield $tiddler=<<historyTiddler>> $index=<<index>> />
+</$reveal>
+</$list>
+<$action-setfield $tiddler=<<historyTiddler>> $index=<<now "[UTC]YYYY0MM0DD0hh0mm0ssXXX">> $value=<<builtFilter>> />
+\end
+
+
+<pre><$view field="text"/></pre>

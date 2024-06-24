@@ -1,0 +1,10 @@
+created: 20240504030633452
+modified: 20240504031511867
+tags: 条目行间批注
+title: 复制sidenote内容按钮
+
+\whitespace trim
+<span class="sidenote-edit-btn">
+<$button class="tc-btn-invisible" tooltip="复制sidenote内容" message="tm-copy-to-clipboard" param=<<__content__>>>{{$:/core/images/copy-text|20px}}
+</$button>
+</span>

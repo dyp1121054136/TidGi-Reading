@@ -1,0 +1,2 @@
+list: $:/aggregation/Filter/SearchAllFields $:/aggregation/Filter/SearchAllFieldsExactMatch $:/aggregation/Filter/SearchAllFieldsExceptText $:/aggregation/Filter/Search $:/aggregation/Filter/SearchTitleCaption
+title: $:/tags/Filter/Aggregation

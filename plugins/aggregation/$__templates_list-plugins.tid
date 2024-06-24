@@ -1,0 +1,5 @@
+title: $:/templates/list-plugins
+
+<li>
+<$link><$view field='title'/></$link><$reveal state=<<versionTid>> default="show" type="match" text="show" tag="span">&emsp;<i><$view field='version'/></i></$reveal>
+</li>

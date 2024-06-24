@@ -1,0 +1,14 @@
+caption: Subtiddlers
+description: See tiddlers tagged with this one
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/subtiddlers
+
+\whitespace trim
+<$vars aggregationTag=<<currentTiddler>>>
+<$macrocall
+  $name="aggregation-with-tag"
+  state="tiddlertail"
+  promptTiddler="$:/language/Notifications/noSubtiddler"
+  viewButton="no"
+/>
+</$vars>

@@ -1,0 +1,12 @@
+created: 20231226031809388
+modified: 20240327083127551
+tags: $:/tags/ViewTemplate 上下滚动
+title: 上下滚动锚点
+
+<!-- 上下滚动动态锚点 -->
+<!-- 上下滚动按钮滚动距离 -->
+<p class="scroll-top"></p>
+<p class="scroll-bottom"></p>
+
+<!-- 条目底部锚点 -->
+<p class="tiddler-bottom"></p>

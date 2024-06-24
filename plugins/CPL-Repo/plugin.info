@@ -1,0 +1,9 @@
+{
+    "version": "2023.12.9",
+    "title": "$:/plugins/Gk0Wk/CPL-Repo",
+    "plugin-type": "plugin",
+    "name": "CPL Repo",
+    "description": "Essential and powerful plugin manager and library",
+    "author": "Gk0Wk",
+    "list": "readme"
+}

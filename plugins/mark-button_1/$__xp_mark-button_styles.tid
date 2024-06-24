@@ -1,0 +1,99 @@
+tags: $:/tags/Stylesheet
+title: $:/xp/mark-button/styles
+
+.mark-red,
+.mark-orange,
+.mark-yellow,
+.mark-greenyellow,
+.mark-springgreen,
+.mark-blue,
+.mark-purple,
+.mark-black {
+	border-radius: 1px;
+	backdrop-filter: blur(6px);
+}
+
+.mark-red {
+	background-color: Red;
+	background: rgba(255,0,0,0.25);
+	box-shadow: 0 0 5px rgba(255,0,0,0.4);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #300000;
+	color: rgba(255,0,0,0.8);
+	box-shadow: none;
+</$list>
+}
+
+.mark-orange {
+	background-color: Orange;
+	background: rgba(255,165,0,0.5);
+	box-shadow: 0 0 5px rgba(255,165,0,0.5);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #301e00;
+	color: rgba(255,165,0,0.9);
+	box-shadow: none;
+</$list>
+}
+
+.mark-yellow {
+	background-color: Yellow;
+	background: rgba(255,255,0,1);
+	box-shadow: 0 0 5px rgba(255,255,0,0.5);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #2f3100;
+	color: rgba(255,255,0,0.9);
+	box-shadow: none;
+</$list>
+}
+
+.mark-greenyellow {
+	background-color: GreenYellow;
+	background: rgba(173,255,47,0.5);
+	box-shadow: 0 0 5px rgba(173,255,47,0.5);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #213009;
+	color: rgba(173,255,47,0.9);
+	box-shadow: none;
+</$list>
+}
+
+.mark-springgreen {
+	background-color: SpringGreen;
+	background: rgba(0,255,127,0.45);
+	box-shadow: 0 0 5px rgba(0,255,127,0.5);
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #083019;
+	color: rgba(0,255,127,0.9);
+	box-shadow: none;
+</$list>
+}
+
+.mark-blue {
+	background-color: Blue;
+	background: rgba(0,0,255,0.55);
+	color: White;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: rgba(0,0,255,0.6);
+	color: #e5e5ff;
+</$list>
+}
+
+.mark-purple {
+	background-color: Purple;
+	background: rgba(128,0,128,0.65);
+	color: White;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: rgba(128,0,128,0.75);
+	color: #e5e5ff;
+</$list>
+}
+
+.mark-black {
+	background-color: Black;
+	background: rgba(0,0,0,0.65);
+	color: White;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]">
+	background-color: #cfcfcf;
+	color: Black;
+</$list>
+}

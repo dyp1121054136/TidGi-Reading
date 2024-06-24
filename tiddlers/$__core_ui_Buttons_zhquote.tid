@@ -1,0 +1,15 @@
+caption: {{$:/core/images/zhquote}} 开启/关闭对话高亮按钮
+created: 20240303084456934
+modified: 20240415100006085
+tags: $:/tags/ViewToolbar 按钮 正则表达式 开启/关闭对话高亮按钮 根据字段应用对话高亮
+title: $:/core/ui/Buttons/zhquote
+
+<$button class="tc-btn-invisible" tooltip="开启/关闭对话高亮">
+<$list filter="[<currentTiddler>has:field[zhquote]]">
+<$action-deletefield $field="zhquote"/>
+</$list>
+<$list filter="[<currentTiddler>!has:field[zhquote]]">
+<$action-setfield $field="zhquote" $value="2"/>
+</$list>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/zhquote|30px}}</$list><$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text">开启/关闭对话高亮</span></$list>
+</$button>

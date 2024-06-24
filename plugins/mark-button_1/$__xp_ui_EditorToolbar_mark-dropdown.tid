@@ -1,0 +1,27 @@
+title: $:/xp/ui/EditorToolbar/mark-dropdown
+
+\define statusTid() $:/config/mark-button/status
+
+<$tiddler tiddler=<<statusTid>>>
+<$radio field="text" value="color" default="color"> Color </$radio>&ensp;
+<$radio field="text" value="highlight"> Highlight </$radio>&ensp;
+<$radio field="text" value="css"> CSS </$radio>
+</$tiddler>
+
+<$reveal state=<<statusTid>> type="match" text="color" default="color" animate="yes">
+
+{{$:/xp/mark-button/mark-dropdown/color}}
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="highlight" animate="yes">
+
+{{$:/xp/mark-button/mark-dropdown/highlight}}
+
+</$reveal>
+
+<$reveal state=<<statusTid>> type="match" text="css" animate="yes">
+
+{{$:/xp/mark-button/mark-dropdown/css}}
+
+</$reveal>

@@ -1,0 +1,102 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Query
+title: $:/xp/macro/query/links
+
+<!-- QUERY LINKS AND OPERATION -->
+\define ql(A)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[[$A$]backlinks[]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]]</b><<query-empty>>"""
+/>
+\end
+
+\define wikitext-list-ql+(A B)
+<$list filter="[<__A__>backlinks[]]" variable="target">
+<$list filter="[<__B__>backlinks[]match<target>]" variable="ignore">
+<$text text={{{ [<target>format:titlelist[]] }}}/>
+</$list></$list>
+\end
+
+\define ql+(A B)
+<$wikify text=<<wikitext-list-ql+>> name="list-ql+">
+<$macrocall 
+  $name="table-dynamic"
+  filter=<<list-ql+>>
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]] and [[$B$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]] and [[$B$]]</b><<query-empty>>"""
+/>
+</$wikify>
+\end
+
+\define wikitext-list-ql++(A B C)
+<$list filter="[<__A__>backlinks[]]" variable="target">
+<$list filter="[<__B__>backlinks[]match<target>]" variable="ignore">
+<$list filter="[<__C__>backlinks[]match<target>]" variable="ignore">
+<$text text={{{ [<target>format:titlelist[]] }}}/>
+</$list></$list></$list>
+\end
+
+\define ql++(A B C)
+<$wikify text=<<wikitext-list-ql++>> name="list-ql++">
+<$macrocall 
+  $name="table-dynamic"
+  filter=<<list-ql++>>
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]] and [[$B$]] and [[$C$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]] and [[$B$]] and [[$C$]]</b><<query-empty>>"""
+/>
+</$wikify>
+\end
+
+
+<!-- QUERY LINKS OR OPERATION
+# Here use `.` instead of `/` because `//` is the wikitext formatting syntax
+# The principle is to use only the characters available on the Numeric Keypad
+-->
+\define ql.(A B)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[[$A$]backlinks[]] [[$B$]backlinks[]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]] or [[$B$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]] or [[$B$]]</b><<query-empty>>"""
+/>
+\end
+
+\define ql..(A B C)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[[$A$]backlinks[]] [[$B$]backlinks[]] [[$C$]backlinks[]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]] or [[$B$]] or [[$C$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]] or [[$B$]] or [[$C$]]</b><<query-empty>>"""
+/>
+\end
+
+
+<!-- QUERY LINKS NOT OPERATION -->
+\define ql-(A X)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[<__A__>backlinks[]] -[<__X__>backlinks[]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query links: [[$A$]] not [[$X$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query links: [[$A$]] not [[$X$]]</b><<query-empty>>"""
+/>
+\end

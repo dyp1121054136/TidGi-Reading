@@ -1,0 +1,16 @@
+caption: {{$:/core/images/text-indent}} 首行缩进两字符
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240113042031437
+description: 首行缩进两字符
+icon: $:/core/images/text-indent
+modified: 20240313014010368
+shortcuts: ((text-indent))
+tags: $:/tags/EditorToolbar 按钮 首行缩进和空行 首行缩进两字符
+title: $:/core/ui/EditorToolbar/text-indent
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="text-indent"
+	character="　　"
+	count="1"
+/>

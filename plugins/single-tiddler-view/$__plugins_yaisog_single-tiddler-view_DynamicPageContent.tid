@@ -1,0 +1,11 @@
+created: 20230505184127451
+modified: 20230519113543976
+tags: 
+title: $:/plugins/yaisog/single-tiddler-view/DynamicPageContent
+
+\parameters(filter,depth:1)
+<$list filter="[subfilter<filter>nth<depth>]" emptyMessage="""<$slot $name="ts-raw" $depth={{{ [<depth>multiply[2]subtract[1]] }}} />""">
+	<$transclude $tiddler=<<currentTiddler>> $mode="block">
+		<$transclude $tiddler="$:/plugins/yaisog/single-tiddler-view/DynamicPageContent" filter=<<filter>> depth={{{ [<depth>add[1]] }}} $mode="block"/>
+	</$transclude>
+</$list>

@@ -1,0 +1,53 @@
+created: 20240403065511886
+modified: 20240412061236866
+se-type: 
+tags: 书签 教程
+title: 条目内书签教程
+
+!!!! ''1、书签汇总需要依赖插件''
+
+"""
+[[$:/plugins/kookma/utility]] 或
+[[$:/plugins/kookma/refnotes]] 的 `find` 宏
+[[fnote脚注插件find宏独立版]]
+"""
+
+!!!! ''2、右键插入默认书签0或带时间戳的书签''
+
+"""
+需要安装
+右键增强插件
+[[$:/plugins/ahanniga/context-menu-plugin]]
+右键增强补充包插件
+[[$:/plugins/phiv/context-menu-selection-addin]]
+配置
+[[$:/plugins/phiv/context-menu-selection-addin/config]]
+[[$:/config/tiddlercontextmenu/bookmark]]
+[[$:/config/tiddlercontextmenu/quick-editfix]]
+[[$:/quick-editfix/bookmark]]
+[[$:/core/ui/Buttons/quick-editfix/bookmark]]
+
+JavaScript修改版
+[[$:/plugins/ahanniga/context-menu/ContextListener.js]]
+修改代码 `tm-quick-edit` 为 `tm-quick-editfix`
+[[右键插入带时间戳的书签锚点]]
+右键选中条目文本后，光标移动到输入框内，并按回车键确认输入后缀。
+
+css修改版
+[[$:/plugins/phiv/context-menu-selection-addin/ui-styles]]
+"""
+
+!!!! ''3、写法：''
+
+"""
+书签锚点 `<<bookmark 1>>`
+书签跳转按钮 `<<abookmark 1>>`
+书签汇总 `<<showbookmarks>>`
+"""
+
+!!!! ''4、注：''
+
+"""
+同一个条目中number变量不可以重复，可以用中英文纯文本；
+不能有空格或特殊符号，不然无法跳转。
+"""

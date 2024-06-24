@@ -1,0 +1,19 @@
+title: $:/xp/mark-button/color.css/Examples
+
+\define exText()
+!!.r Heading level 2
+
+*.red First item
+*.green Second item
+*.blue Third item
+** Indented item
+** Indented item
+** Indented item
+*.o Fourth item
+\end
+
+<$codeblock code=<<exText>> />
+
+That renders as:
+
+<<exText>>

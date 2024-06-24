@@ -1,0 +1,78 @@
+created: 20770802224205071
+creator: 
+modified: 20240416015808041
+tags: tab样式 筛选器下拉菜单
+title: PlainTabs/settings
+
+\define plaintabspalette()
+tab-background:transparent
+tab-background-selected:inherit
+tab-border:transparent
+tab-border-selected:#a8a8a8
+tab-divider:#d8d8d8
+sidebar-tab-background:inherit
+sidebar-tab-background-selected:inherit
+\end
+
+\define describePaletteColour(colour)
+<$transclude tiddler="$:/language/Docs/PaletteColours/$colour$"><$text text="$colour$"/></$transclude>
+\end
+
+<br>
+<$set name="currentTiddler" value={{$:/palette}}>
+
+<$list filter="[all[current]is[shadow]!is[tiddler]]" variable="listItem">
+  <$set name="currentTiddler" value={{$:/palette}}>
+  <$button>
+    <$list variable="item" filter=<<plaintabspalette>> variable="item">
+      <$set name=pos filter="[<item>splitbefore[:]removesuffix[:]]">
+      <$set name=val filter="[<item>removeprefix<pos>removeprefix[:]]">
+      <$action-setfield  $index=<<pos>> $value=<<val>>/>
+      </$set>
+      </$set>
+    </$list>
+    <$action-setfield  $tiddler="$:/plugins/TWaddle/PlainTabs/Stylesheet" 
+                $field="tags" $value="$:/tags/Stylesheet"/>
+    ACTIVATE
+</$button> Plain Tabs.<br><br>
+● Activation sets some color values in the active palette <$link to={{$:/palette}}><$macrocall $name="currentTiddler" $output="text/plain"/></$link> <br>
+● and, if not already, applies a `$:/tags/Stylesheet` tag to the Plain Tabs [[stylesheet|$:/plugins/TWaddle/PlainTabs/Stylesheet]] 
+</$set>
+</$list>
+<$list filter="[all[current]is[shadow]is[tiddler]]" variable="listItem">
+  <$button>
+    <$action-deletetiddler $tiddler={{$:/palette}}/>
+    <$action-setfield  $tiddler="$:/plugins/TWaddle/PlainTabs/Stylesheet" 
+                   $field="tags" $value=""/>
+    DEACTIVATE
+  </$button> Plain Tabs.<br><br>
+● Deactivation //restores// the active palette <$link to={{$:/palette}}><$macrocall $name="currentTiddler" $output="text/plain"/></$link> to its default shadow state <br>
+● and it removes the `$:/tags/Stylesheet` tag from the Plain Tabs [[stylesheet|$:/plugins/TWaddle/PlainTabs/Stylesheet]] 
+</$list>
+
+When happy, delete this particular tiddler as it serves no further purpose <$button><$action-deletetiddler $tiddler="PlainTabs/settings"/>Delete</$button>
+
+</$set>
+
+Current values in {{$:/palette}} for colors concerning tabs:
+<$set name="currentTiddler" value={{$:/palette}}>
+<table>
+<tbody>
+<$list filter=<<plaintabspalette>> variable="item">
+<$set name=colourName filter="[<item>splitbefore[:]removesuffix[:]]">
+<tr>
+<td>
+''<$macrocall $name="describePaletteColour" colour=<<colourName>>/>''<br/>
+<$macrocall $name="colourName" $output="text/plain"/>
+</td>
+<td>
+<$edit-text index=<<colourName>> tag="input"/>
+<br>
+<$edit-text index=<<colourName>> type="color" tag="input" />
+</td>
+</tr>
+</$set>
+</$list>
+</tbody>
+</table>
+</$set>

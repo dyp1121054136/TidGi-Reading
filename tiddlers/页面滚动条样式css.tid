@@ -1,0 +1,48 @@
+created: 20240417032858491
+modified: 20240423031835547
+tags: 样式 页面滚动条 $:/tags/Stylesheet 目录工具
+title: 页面滚动条样式css
+type: text/vnd.tiddlywiki
+
+/* 基本滚动条样式 */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* 滚动轨迹样式 */
+::-webkit-scrollbar-track {
+  background: <<colour page-background>>;
+}
+
+/* 滚动滑块样式 */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  transition: background-color 0.3s ease; /* 平滑过渡动画 */
+  border: 1px solid <<colour primary>>;
+  border-radius: 3px; 
+}
+
+/* 鼠标悬停在滚动滑块上时的样式 */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(270deg, <<colour primary>> 20%, white 20%, <<colour primary>> 20%, white 100%);
+}
+
+/* 滚动箭头按钮样式 */
+::-webkit-scrollbar-button {
+  background-color: <<colour page-background>>; 
+  height: 10px;
+  border: 1px solid <<colour primary>>;
+  border-radius: 3px; 
+  background-image: radial-gradient(circle at 50% 50%, <<colour primary>> 0%, transparent 70%);
+  background-size: 20px 20px;
+}
+
+/* 添加一些空间分隔滚动箭头按钮和滚动轨迹 */
+::-webkit-scrollbar-button:horizontal {
+  margin: 2px;
+}
+
+::-webkit-scrollbar-button:vertical {
+  margin: 2px;
+}

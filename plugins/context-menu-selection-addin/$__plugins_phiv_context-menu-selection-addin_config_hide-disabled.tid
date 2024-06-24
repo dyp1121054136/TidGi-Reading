@@ -1,0 +1,10 @@
+caption: Hide disabled context menu items (easier with small screens)
+created: 20230906014347173
+description: Hide disabled context menu items (easier with small screens)
+list-ordering: 6
+modified: 20230906025749685
+settings-template: $:/plugins/phiv/context-menu-selection-addin/ui/templates/settings/input-switch
+tags: 
+title: $:/plugins/phiv/context-menu-selection-addin/config/hide-disabled
+
+no

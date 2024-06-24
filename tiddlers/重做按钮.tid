@@ -1,0 +1,14 @@
+created: 20240501032152974
+modified: 20240501033837344
+tags: 正则表达式查找替换
+title: 重做按钮
+
+\whitespace trim
+<span class="search-replace-btn">
+<$button class="tc-btn-invisible" tooltip="重做">
+重做
+
+<$action-sendmessage $message="tm-redo" source=<<currentTiddler>>/>
+
+</$button>
+</span>

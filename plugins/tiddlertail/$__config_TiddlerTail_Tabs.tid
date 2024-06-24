@@ -1,0 +1,71 @@
+title: $:/config/TiddlerTail/Tabs
+
+<$list filter=<<show-tiddlertail-filter>> variable="ignore">
+
+<!-- Things -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/things" type="match" text="show">
+<$vars journalTag={{{ [enlist{$:/config/NewJournal/Tags}first[]] }}} today=<<now YYYY0MM0DD>>>
+<$wikify name="createdDate" text="<$view field='created' format='date' template='YYYY0MM0DD'/>">
+<$reveal default=<<createdDate>> type="match" text=<<today>>>
+<$list filter="[all[current]tag<journalTag>] [all[current]tag[GTD]] [all[current]tag[todo]] [all[current]tag[task]] +[limit[1]then[$:/xp/tiddlertail/items/things]]" />
+</$reveal>
+<$reveal default=<<createdDate>> type="nomatch" text=<<today>>>
+<$list filter="[tag[GTD]tag[done]sameday{!!created}limit[1]]" variable="ignore">
+<$list filter="[all[current]tag<journalTag>] [all[current]tag[GTD]] [all[current]tag[todo]] [all[current]tag[task]] +[limit[1]then[$:/xp/tiddlertail/items/things]]" />
+</$list>
+</$reveal>
+</$wikify>
+</$vars>
+</$reveal>
+
+<!-- Activities -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/activities" type="match" text="show">
+<$list filter="[sameday{!!created}] -[<currentTiddler>] +[limit[1]then[$:/xp/tiddlertail/items/activities]]" />
+</$reveal>
+
+<!-- Annotation -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/annotation" type="match" text="show">
+<$list filter="[prefix[$:/annotation/]annotate-tiddler<currentTiddler>limit[1]then[$:/xp/tiddlertail/items/annotation]]" />
+</$reveal>
+
+<!-- Refnotes -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/refnotes" type="match" text="show">
+<$list filter="[all[current]search:text:literal,casesensitive<fnoteDelimiter>] [all[current]search:text:literal,casesensitive<abbrDelimiter>] +[limit[1]then[$:/xp/tiddlertail/items/refnotes]]" />
+</$reveal>
+
+<!-- Backlinks -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/backlinks" type="match" text="show">
+<$list filter="[all[current]backlinks[]!prefix[$:/temp/]!prefix[$:/state/]limit[1]then[$:/xp/tiddlertail/items/backlinks]]" />
+</$reveal>
+
+<!-- Links -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/links" type="match" text="show">
+<$list filter="[all[current]links[]limit[1]then[$:/xp/tiddlertail/items/links]]" />
+</$reveal>
+
+<!-- Transclusion -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/transclusion" type="match" text="show">
+<$list filter="[all[current]search:text:literal,casesensitive<incDelimiter>limit[1]then[$:/xp/tiddlertail/items/transclusion]]" />
+</$reveal>
+
+<!-- Graph -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/graph" type="match" text="show">
+<$list filter="[all[current]links[]limit[1]then[$:/xp/tiddlertail/items/graph]]" />
+</$reveal>
+
+<!-- Map -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/map" type="match" text="show">
+<$list filter="[all[current]has[tmap.id]backlinks[]] [all[current]has[tmap.id]links[]]  [all[current]has[tmap.id]tagging[]] [all[current]has[tmap.edges]] +[limit[1]then[$:/xp/tiddlertail/items/map]]" />
+</$reveal>
+
+<!-- Subtiddlers -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/subtiddlers" type="match" text="show">
+<$list filter="[tag<currentTiddler>limit[1]then[$:/xp/tiddlertail/items/subtiddlers]]" />
+</$reveal>
+
+<!-- People -->
+<$reveal state="$:/config/xp/tiddlertail/Items/Visibility/$:/xp/tiddlertail/items/people" type="match" text="show">
+<$list filter="[all[current]tag[People]then[$:/xp/tiddlertail/items/people]]" />
+</$reveal>
+
+</$list>

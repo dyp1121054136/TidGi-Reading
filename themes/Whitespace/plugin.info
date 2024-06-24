@@ -1,0 +1,11 @@
+{
+    "version": "0.0.23",
+    "title": "$:/themes/jd/Whitespace",
+    "plugin-type": "theme",
+    "name": "Whitespace",
+    "list": "readme config",
+    "description": "Lots of unused, negative space; an experiment on TW5 design",
+    "dependents": "$:/themes/tiddlywiki/vanilla",
+    "core-version": ">=5.1.17",
+    "author": "jd"
+}

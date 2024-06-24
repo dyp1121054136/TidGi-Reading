@@ -1,0 +1,323 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/global
+
+\define b-c-title()
+$(config-base)$$(currentTiddler)$
+\end
+
+\define aggregationCount()
+<small class="tc-sidebar-header">(<i><$count filter='[tag<aggregationTag>!has[draft.of]]'/> tiddlers</i>)</small>
+\end
+
+
+\define aggrbtn-filter()
+\whitespace trim
+<$reveal state=<<filterState>> type="nomatch" text="yes">
+<$button set=<<filterState>> setTo="yes" class="tc-btn-invisible">
+{{$:/xp/images/filter}}
+</$button>
+</$reveal>
+\end
+
+\define aggrbtn-filter-deselect()
+\whitespace trim
+<$reveal default={{{ [list<filterState>count[]] }}} type="gt" text="1">
+<$button class="xp-aggrfilter-dynamic-btn tc-big-gap-left">
+<$action-deletetiddler $filter="[<filterState>get[checktiddler]enlist-input[]]"/>
+<$action-deletefield $tiddler=<<filterState>> list/>
+deselect all
+</$button>
+</$reveal>
+\end
+
+\define aggrbtn-filter-reset()
+\whitespace trim
+<$list filter="[<fieldTiddler>has[text]] [<dateTiddler>is[tiddler]] [<filterState>has[filter]] +[limit[1]]">
+<$button class="xp-aggrfilter-dynamic-btn tc-big-gap-left">
+<$action-deletetiddler $filter="[<fieldTiddler>] [<dateTiddler>] [<valueTiddler>]"/>
+<$action-deletefield $tiddler=<<filterState>> filter/>
+reset
+</$button>
+</$list>
+\end
+
+\define aggrbtn-view(firstView:"table",secondView:"card",tooltip:"Switching to card view",revertTooltip:"Switching to table view")
+\whitespace trim
+<$reveal state=<<defaultView>> default=<<__firstView__>> type="nomatch" text=<<__secondView__>>>
+<$button tooltip=<<__tooltip__>> class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text=<<__secondView__>>/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+<$reveal state=<<defaultView>> default=<<__firstView__>> type="match" text=<<__secondView__>>>
+<$button tooltip=<<__revertTooltip__>> class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<defaultView>> text=<<__firstView__>>/>
+{{$:/xp/images/switch}}
+</$button>
+</$reveal>
+\end
+
+\define aggrbtn-sorting(filter:"[tag<aggregationTag>]")
+\whitespace trim
+<span class="tc-popup-keep">
+<$button popup=<<qualify "$:/state/xp/aggregation/sorting-button">> tooltip="Sorted by field" class="tc-btn-invisible">
+{{$:/xp/images/sorting}}
+</$button>
+</span>
+
+<$reveal state=<<qualify "$:/state/xp/aggregation/sorting-button">> type="popup" position="below" animate="yes">
+<$vars pt1="+[sort[" pt2="+[!sort[" st="]]">
+<$set name="tv-show-missing-links" value="yes">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<sortTiddler>> text=<<navigateTo>>/>
+<$list filter="[<navigateTo>prefix<pt1>]" variable="ignore">
+<$action-setfield $tiddler=<<tempTableSort>> $index="sortIndex" $value={{{ [<navigateTo>removeprefix<pt1>removesuffix<st>] }}}/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="false"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value=""/>
+</$list>
+<$list filter="[<navigateTo>prefix<pt2>]" variable="ignore">
+<$action-setfield $tiddler=<<tempTableSort>> $index="sortIndex" $value={{{ [<navigateTo>removeprefix<pt2>removesuffix<st>] }}}/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="true"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value="!"/>
+</$list>""">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown xp-sorting-dropdown">
+  <div class="tc-dropdown-item">Common</div>
+  <$list filter="title caption modified modifier created creator" variable="listField">
+    <$link to={{{ [<listField>addprefix<pt1>addsuffix<st>] }}}><$text text=<<listField>>/></$link>
+    <$link to={{{ [<listField>addprefix<pt2>addsuffix<st>] }}}><$text text={{{ [<listField>addsuffix[↑]] }}}/></$link>
+  </$list>
+  <div class="tc-dropdown-item">Other</div>
+  <$list filter="[subfilter<__filter__>fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/sorting-button}] -title -caption -modified -modifier -created -creator" variable="listField" emptyMessage="""<p class="tc-muted">&emsp;No fields</p>""">
+    <$link to={{{ [<listField>addprefix<pt1>addsuffix<st>] }}}><$text text=<<listField>>/></$link>
+    <$link to={{{ [<listField>addprefix<pt2>addsuffix<st>] }}}><$text text={{{ [<listField>addsuffix[↑]] }}}/></$link>
+  </$list>
+</div>
+</div>
+</$linkcatcher>
+</$set>
+</$vars>
+</$reveal>
+\end
+
+\define aggrbtn-unsort()
+\whitespace trim
+<$vars pt1="+[sort[" pt2="+[!sort[" st="]]" btnClass="xp-aggrfilter-dynamic-btn">
+<$reveal state=<<sortState>> type="nomatch" text="">
+&emsp;
+<$list filter="[<sortTiddler>search:text:literal<sortIndex>]" variable="ignore">
+<$list filter="[<sortTiddler>get[text]prefix<pt1>]" variable="ignore">
+<$button tooltip="Descending order" class=<<btnClass>>>
+<$text text={{{ [<sortTiddler>get[text]removeprefix<pt1>removesuffix<st>] }}}/>&nbsp;&darr;
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="true"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value="!"/>
+<$action-setfield $tiddler=<<sortTiddler>> text={{{ [<sortTiddler>get[text]search-replace[sort[],[!sort[]] }}}/>
+</$button>
+</$list>
+<$list filter="[<sortTiddler>get[text]prefix<pt2>]" variable="ignore">
+<$button tooltip="Ascending order" class=<<btnClass>>>
+<$text text={{{ [<sortTiddler>get[text]removeprefix<pt2>removesuffix<st>] }}}/>&nbsp;&uarr;
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="false"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value=""/>
+<$action-setfield $tiddler=<<sortTiddler>> text={{{ [<sortTiddler>get[text]search-replace[!sort[],[sort[]] }}}/>
+</$button>
+</$list>
+</$list>
+<$button class=<<btnClass>>>
+unsort
+<$action-deletetiddler $filter="[<sortTiddler>] [<tempTableSort>]"/>
+</$button>
+</$reveal>
+</$vars>
+\end
+
+\define aggrbtn-reading-mode()
+\whitespace trim
+<$reveal state=<<readingMode>> default="off" type="nomatch" text="on">
+<$button tooltip="Turn on reading mode" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<readingMode>> text="on"/>
+{{$:/xp/images/readingmode}}
+</$button>
+</$reveal>
+<$reveal state=<<readingMode>> default="off" type="match" text="on">
+<$button tooltip="Turn off reading mode" class="tc-btn-invisible tc-btn-mini">
+<$action-deletetiddler $tiddler=<<readingMode>>/>
+{{$:/xp/images/readingmode-on}}
+</$button>
+</$reveal>
+\end
+
+\define aggrbtn-source()
+\whitespace trim
+<$reveal state=<<readingMode>> type="match" text="on">
+<$reveal state=<<sourceMode>> default="off" type="nomatch" text="on">
+<$button tooltip="Display source code" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<sourceMode>> text="on"/>
+{{$:/xp/images/sourcemode}}
+</$button>
+</$reveal>
+<$reveal state=<<sourceMode>> default="off" type="match" text="on">
+<$button tooltip="Turn off source mode" class="tc-btn-invisible tc-btn-mini">
+<$action-deletetiddler $tiddler=<<sourceMode>>/>
+{{$:/xp/images/sourcemode-on}}
+</$button>
+</$reveal>
+</$reveal>
+\end
+
+\define aggrbtn-toc(filter)
+\whitespace trim
+<$reveal state=<<readingMode>> type="match" text="on">
+<$reveal state=<<tocState>> default="show" type="nomatch" text="hide">
+<$button tooltip="Hide toc" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<tocState>> text="hide"/>
+<$list filter="[<selectedTiddler>!is[tiddler]]">
+<$action-setfield $tiddler=<<selectedTiddler>> text={{{ [subfilter<__filter__>first[]] }}}/>
+</$list>
+{{$:/core/images/preview-open}}
+</$button>
+</$reveal>
+<$reveal state=<<tocState>> default="show" type="match" text="hide">
+<$button tooltip="Show toc" class="tc-btn-invisible tc-btn-mini">
+<$action-setfield $tiddler=<<tocState>> text="show"/>
+{{$:/core/images/preview-closed}}
+</$button>
+</$reveal>
+</$reveal>
+\end
+
+
+\define aggregation-toc-header()
+\whitespace trim
+<h1>
+<$link><$transclude field="caption"><$view field="title"/></$transclude></$link>
+&emsp;
+<span class="tc-tiddler-controls" style="font-size:0.7em !important;">
+<$list filter="$:/core/ui/Buttons/new-here $:/core/ui/Buttons/clone $:/core/ui/Buttons/delete $:/core/ui/Buttons/edit" variable="listItem">
+<$set name="tv-config-toolbar-class" filter="[<tv-config-toolbar-class>] [<listItem>encodeuricomponent[]addprefix[tc-btn-]]">
+<$transclude tiddler=<<listItem>>/>
+</$set>
+</$list>
+</span>
+</h1>
+^^<i class="tc-muted"><$view field="modified" format="date" template="DDth MMM YYYY at 0hh:0mm">TBA</$view></i>^^
+\end
+
+\define aggregation-toc-caption()
+\whitespace trim
+<span class="xp-aggregation-toc-caption">
+<$set name="tv-wikilinks" value="no">
+  <$transclude field="caption">
+    <$view field="title"/>
+  </$transclude>
+</$set>
+</span>
+\end
+
+\define aggregation-toc(filter,selectedTiddler:"$:/temp/toc/selectedTiddler/aggregation",unselectedText:"<p>Select a topic in the table of contents. Click the arrow to expand a topic.</p>",missingText:"<p>Missing tiddler.</p>",template:"",exclude,sourceMode:"$:/config/xp/aggregation/SourceMode",tocState:"$:/state/xp/aggregation-toc",navigation:"yes",navTiddler)
+<div style="padding:10px 0;">
+<$tiddler tiddler={{{ [<__selectedTiddler__>get[text]] }}}>
+  <div class="tc-tabbed-table-of-contents" style="">
+    <$list filter="[<__tocState__>!text[hide]]" variable="ignore">
+      <$linkcatcher to=<<__selectedTiddler__>>>
+        <div class="tc-table-of-contents xp-aggregation-toc">
+        <$set name="excluded" filter="[enlist<__exclude__>]">
+          <ol class="tc-toc toc-selective-expandable">
+            <$list filter="""$filter$ -[enlist<__exclude__>]""">
+      <$macrocall $name="toc-linked-selective-expandable-body" itemClassFilter="[all[current]] -[<__selectedTiddler__>get[text]]" exclude=<<excluded>>/>
+            </$list>
+          </ol>
+        </$set>
+        </div>
+      </$linkcatcher>
+    </$list>
+    <div class="tc-tabbed-table-of-contents-content">
+      <$reveal stateTitle=<<__selectedTiddler__>> type="nomatch" text="">
+        <$transclude mode="block" tiddler=<<__template__>>>
+          <$reveal state=<<__sourceMode__>> type="nomatch" text="on">
+            <<aggregation-toc-header>>
+            <$transclude tiddler={{{ [<currentTiddler>] :cascade[all[shadows+tiddlers]tag[$:/tags/ViewTemplateBodyFilter]!is[draft]get[text]] :and[!is[blank]else[$:/core/ui/ViewTemplate/body/default]] }}} mode="block">$missingText$</$transclude>
+          </$reveal>
+          <!-- Source Mode -->
+          <$reveal state=<<__sourceMode__>> type="match" text="on">
+            <<aggregation-toc-header>>
+            <div style="position:relative;">
+            <div class="tc-page-controls" style="position:absolute;bottom:0;right:0;top:0;font-size:14px;margin:0;">
+            <$button class="tc-btn-boxed" style="padding:3px;border:none;" message="tm-copy-to-clipboard" param={{!!text}} tooltip={{$:/language/Buttons/CopyToClipboard/Hint}}>
+            {{$:/core/images/copy-clipboard}}
+            </$button>
+            </div>
+            </div>
+            {{||$:/core/ui/ViewTemplate/body/code}}
+          </$reveal>
+        </$transclude>
+        <!-- Navigation -->
+        <$reveal text=<<__navigation__>> type="match" default="yes">
+        <div class="xp-aggregation-toc-navigation">
+          <$list filter="""$filter$ -[enlist<__exclude__>] +[after<currentTiddler>]""" variable="nextTiddler">
+            <$linkcatcher to=<<__selectedTiddler__>> actions="<$action-navigate $to=<<__navTiddler__>>> $scroll='yes'/>">
+              <div style="padding-top:7px;">
+              ''NEXT''
+                <div>
+              	<$tiddler tiddler=<<nextTiddler>>>
+                <$link><<aggregation-toc-caption>></$link>
+                </$tiddler>
+                </div>
+              </div>
+            </$linkcatcher>
+          </$list>
+          <$list filter="""$filter$ -[enlist<__exclude__>] +[before<currentTiddler>]""" variable="prevTiddler">
+            <$linkcatcher to=<<__selectedTiddler__>> actions="<$action-navigate $to=<<__navTiddler__>>> $scroll='yes'/>">
+              <div style="padding-top:7px;">
+              ''PREVIOUS''
+                <div>
+              	<$tiddler tiddler=<<prevTiddler>>>
+                <$link><<aggregation-toc-caption>></$link>
+                </$tiddler>
+                </div>
+              </div>
+            </$linkcatcher>
+          </$list>
+        </div>
+        </$reveal>
+      </$reveal>
+      <$reveal stateTitle=<<__selectedTiddler__>> type="match" text="">
+        $unselectedText$
+      </$reveal>
+    </div>
+  </div>
+</$tiddler>
+</div>
+\end
+
+
+\define help-button(tabsList,explicitState,state:"$:/state/ShowHelp")
+\whitespace trim
+<!-- $:/xp/ui/PageTemplate/help -->
+<$qualify title=<<__state__>> name="qualifiedState">
+  <$set name="helpState" filter="[<__explicitState__>minlength[1]] ~[<qualifiedState>]">
+    <$reveal state=<<helpState>> type="match" text="yes" default="no">
+<$button tooltip="Help" aria-label={{$:/language/Buttons/Help/Caption}} class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+  <span class="tc-btn-icon">{{$:/core/images/help}}</span>
+  <$list filter="[{$:/config/ShowHelp}match<helpState>]" emptyMessage="<$action-setfield $tiddler='$:/config/ShowHelp/tabsList' text=<<__tabsList__>>/><$action-setfield $tiddler='$:/config/ShowHelp' text=<<helpState>>/>">
+  <$action-setfield $tiddler=<<helpState>> text="no"/>
+  </$list>
+</$button>
+    </$reveal>
+    <$reveal state=<<helpState>> type="nomatch" text="yes" default="no">
+<$button set=<<helpState>> setTo="yes" tooltip="Help" aria-label={{$:/language/Buttons/Help/Caption}} class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+  <span class="tc-btn-icon">{{$:/core/images/help}}</span>
+  <$action-setfield $tiddler="$:/config/ShowHelp/tabsList" text=<<__tabsList__>>/>
+  <$action-setfield $tiddler="$:/config/ShowHelp" text=<<helpState>>/>
+</$button>
+    </$reveal>
+  </$set>
+</$qualify>
+\end
+
+\define help-button-to(tiddler,tooltip:"Help")
+\whitespace trim
+<$button to=<<__tiddler__>> tooltip=<<__tooltip__>> class="tc-btn-invisible tc-btn-mini fb-btn-invisible">
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$button>
+\end

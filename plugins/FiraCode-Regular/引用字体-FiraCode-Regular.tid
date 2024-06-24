@@ -1,0 +1,11 @@
+created: 20240129080937420
+modified: 20240129080953099
+tags: 字体 $:/tags/Stylesheet
+title: 引用字体-FiraCode-Regular
+
+@font-face {
+	font-family: "FiraCode-Regular";
+	font-style: normal;
+	font-weight: 400;
+	src: local("FiraCode-Regular"), url(<<datauri "FiraCode-Regular.woff">>) format("woff");
+}

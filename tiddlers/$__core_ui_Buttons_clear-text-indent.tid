@@ -1,0 +1,27 @@
+caption: {{$:/core/images/clear-text-indent}} 清除首行缩进
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[application/x-tiddler-dictionary]]
+created: 20240312090728096
+description: 清除首行缩进
+icon: $:/core/images/clear-text-indent
+modified: 20240316103547237
+shortcuts: ((clear-text-indent))
+tags: $:/tags/EditorToolbar 按钮 首行缩进和空行 清除首行缩进
+title: $:/core/ui/Buttons/clear-text-indent
+
+\define temp() $:/temp/clear-text-indent
+
+<$let
+	lbr="
+">
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-all"
+	tiddler=<<temp>>
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text={{{ [<temp>get[text]splitregexp[\n]] +[removeprefix[　　]]+[join<lbr>] }}}
+/>
+<$action-deletetiddler $tiddler=<<temp>> />
+</$let>

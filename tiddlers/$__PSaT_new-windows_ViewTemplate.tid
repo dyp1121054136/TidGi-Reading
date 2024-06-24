@@ -1,0 +1,28 @@
+created: 20200715041120060
+creator: Designer
+modified: 20240204051239296
+modifier: Designer
+psat-project: new-windows
+tags: 弹窗编辑器
+tiddlywiki-version: 5.1.22
+title: $:/PSaT/new-windows/ViewTemplate
+
+\define folded-state()
+$:/state/folded/$(currentTiddler)$
+\end
+\import [[$:/core/ui/PageMacros]] [all[shadows+tiddlers]tag[$:/tags/Macro]!has[draft.of]]
+<$set name="tv-config-toolbar-icons" value={{$:/config/Toolbar/Icons}}>
+<$set name="tv-config-toolbar-text" value={{$:/config/Toolbar/Text}}>
+<$set name="tv-config-toolbar-class" value={{$:/config/Toolbar/ButtonClass}}>
+<$set name="tv-enable-drag-and-drop" value={{$:/config/DragAndDrop/Enable}}>
+<$set name="tv-show-missing-links" value={{$:/config/MissingLinks}}>
+<$set name="storyviewTitle" value={{$:/view}}>
+<$set name="languageTitle" value={{{ [{$:/language}get[name]] }}}>
+<div class=<<containerClasses>>>
+
+<$vars storyTiddler=<<currentTiddler>> tiddlerInfoState=<<qualify "$:/state/popup/tiddler-info">>><div data-tiddler-title=<<currentTiddler>> data-tags={{!!tags}} class={{{ tc-tiddler-frame tc-tiddler-view-frame [<currentTiddler>is[tiddler]then[tc-tiddler-exists]] [<currentTiddler>is[missing]!is[shadow]then[tc-tiddler-missing]] [<currentTiddler>is[shadow]then[tc-tiddler-exists tc-tiddler-shadow]] [<currentTiddler>is[shadow]is[tiddler]then[tc-tiddler-overridden-shadow]] [<currentTiddler>is[system]then[tc-tiddler-system]] [{!!class}] [<currentTiddler>tags[]encodeuricomponent[]addprefix[tc-tagged-]] +[join[ ]] }}}>
+<large>''<$text text=<<currentTiddler>>/>''</large><$list filter="[all[shadows+tiddlers]tag[$:/tags/ViewTemplate]!has[draft.of]] -[[$:/core/ui/ViewTemplate/title]]" variable="listItem"><$transclude tiddler=<<listItem>>/></$list>
+</div>
+</$vars>
+</div>
+</$set></$set></$set></$set></$set></$set></$set>

@@ -1,0 +1,12 @@
+caption: {{$:/core/images/copy-clipboard}} 复制标签
+created: 20200114101105146
+creator: simplify
+description: Copy tag to clipboard from tag pill
+modified: 20240416093741445
+modifier: Designer
+tags: $:/tags/TagDropdown 标签下拉菜单
+title: $:/PSaT/copy-tag
+
+<$button tooltip="复制该标签文本内容" message="tm-copy-to-clipboard" param=<<currentTiddler>> class="tc-btn-invisible">
+  {{$:/core/images/copy-clipboard}} 复制该标签
+</$button>

@@ -1,0 +1,88 @@
+caption: Encryption
+color: #bbb
+description: Batch encryption
+icon: $:/xp/images/batch-encryption
+tags: $:/tags/BatchOperation
+title: $:/BatchEncryption
+
+\whitespace trim
+\define lingo-base() $:/language/Search/
+
+\define beDropdown()
+\whitespace trim
+
+<span class="tc-popup-keep">
+<$button popup=<<qualify "$:/state/encryptfilterDropdown">> class="tc-btn-invisible">
+{{$:/core/images/down-arrow}}
+</$button>
+</span>
+
+<$reveal state=<<qualify "$:/state/encryptfilterDropdown">> type="popup" position="belowleft" animate="yes">
+<$set name="tv-show-missing-links" value="yes">
+<div class="tc-block-dropdown-wrapper">
+<div class="tc-block-dropdown tc-edit-type-dropdown">
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/EncryptFilter]]">
+<$link to={{!!filter}}><$transclude field="description"/></$link>
+</$list>
+<$button tag="a" class="tc-btn-invisible">
+Add a filter
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	tags="$:/tags/EncryptFilter"
+	description="Test"
+	filter="[tag[test]]"
+/>
+<$action-deletetiddler $filter=<<dropdown-state>> />
+</$button>
+<$button tag="a" class="tc-btn-invisible">
+Create an encryption panel
+<$action-sendmessage
+	$message="tm-new-tiddler"
+	title="encrypt private tiddlers"
+	tags="EncryptionPanel"
+	color="#bbb"
+	icon="$:/core/images/locked-padlock"
+	text="""<<encryption "[tag[Private]!is[system]!has[draft.of]!sort[created]]">>"""
+/>
+<$action-deletetiddler $filter=<<dropdown-state>> />
+</$button>
+</div>
+</div>
+</$set>
+</$reveal>
+\end
+
+<<lingo Filter/Hint>>
+
+<$linkcatcher to="$:/temp/encrypt/filter">
+<div class="tc-search tc-advanced-search">
+<$edit-text tiddler="$:/temp/encrypt/filter" type="search" tag="input" default="" placeholder="filter tiddlers"/>
+<i class="tc-tiny-gap-right"/>
+<<beDropdown>>
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$button class="tc-btn-invisible">
+<$action-setfield $tiddler="$:/temp/encrypt/filter" $field="text" $value=""/>
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+<<help-button "$:/language/Help/batchencryption">>
+
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$edit-text tag="input" tiddler="$:/temp/password1" placeholder="password" type="password" default="" col="4"/>
+<$edit-text tag="input" tiddler="$:/temp/password2" placeholder="confirm password" type="password" default="" col="4"/>
+<$encryptTiddler passwordTiddler1="$:/temp/password1" passwordTiddler2="$:/temp/password2" filter={{$:/temp/encrypt/filter}}>
+<$button message="tw-encrypt-tiddler" class="tc-tiny-gap"> Encrypt </$button>
+<$button message="tw-decrypt-tiddler"> Decrypt </$button>
+</$encryptTiddler>
+</$reveal>
+</div>
+</$linkcatcher>
+
+<$reveal state="$:/temp/encrypt/filter" type="nomatch" text="">
+<$set name="resultCount" value="<$count filter={{$:/temp/encrypt/filter}}/>">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<$list filter={{$:/temp/encrypt/filter}} template="$:/plugins/danielo515/encryptTiddler/ui/listItemTemplate"/>
+</div>
+</$set>
+</$reveal>

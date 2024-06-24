@@ -1,0 +1,34 @@
+created: 20240309034814445
+modified: 20240415093751011
+se-type: 
+tags: 技巧 筛选器下拉菜单
+title: 紧急导出最近修改过的条目
+
+<<filter-pill "[!is[system]!sort[modified]limit[10]]" 导出最近修改过的条目>>
+
+!!!! ''紧急导出最近修改过的条目''
+"""
+
+数字可以修改，limit[10]表示最近修改过的10个条目
+<<code src:"""[!is[system]!sort[modified]limit[10]]
+""" language:"tw">>
+<<code src:"""<<filter-pill "[!is[system]!sort[modified]limit[10]]" 筛选器名称>>
+""" language:"tw">>
+带有特定标签的最近修改过的10个条目
+<<code src:"""[tag[标签]!is[system]!sort[modified]limit[10]]
+""" language:"tw">>
+<<code src:"""<<filter-pill "[tag[标签]!is[system]!sort[modified]limit[10]]" 筛选器名称>>
+""" language:"tw">>
+"""
+
+!!!! ''列出最近修改过的条目''
+"""
+
+按时间顺序列出最近修改过的10个条目，如果一天之内修改超过10个条目，会将当天修改过的条目全部列出
+<<code src:"""<<timeline limit:10 format:"YYYY年0MM月0DD日">>
+""" language:"tw">>
+可添加子筛选器，如筛选出带有特定标签的最近修改过的10个条目
+<<code src:"""<<timeline limit:10 format:"YYYY年0MM月0DD日" subfilter:"tag[标签]">>
+""" language:"tw">>
+<<timeline limit:10 format:"YYYY年0MM月0DD日">>
+"""

@@ -1,0 +1,7 @@
+caption: coreButtons
+description: 所有“官方按钮”
+filter: [all[shadows]prefix[$:/core/ui/Buttons]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/Buttons
+
+{{!!filter}}

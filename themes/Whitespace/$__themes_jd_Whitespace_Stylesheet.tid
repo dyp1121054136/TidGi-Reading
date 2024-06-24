@@ -1,0 +1,668 @@
+box-radius: 1px
+created: 20171127170053658
+creator: JD
+modified: 20200727071748669
+modifier: jd
+tags: $:/tags/Stylesheet
+title: $:/themes/jd/Whitespace/Stylesheet
+
+\define wsconfig(name) $:/config/Whitespace/$name$
+\define ws-sidebar-op() <$list filter="[[$:/config/Whitespace/sidebar]text[right]]" emptyMessage="right">left</$list>
+\define ws-sidebar-width() <$list filter="[[$:/themes/tiddlywiki/vanilla/metrics/sidebarwidth]!text[]get[text]]" emptyMessage="350px"/>
+\define ws-tiddler-width() <$list filter="[[$:/themes/tiddlywiki/vanilla/metrics/tiddlerwidth]!text[]get[text]]" emptyMessage="100%"/>
+\define ws-sidebarbreakpoint() <$list filter="[[$:/themes/tiddlywiki/vanilla/metrics/sidebarbreakpoint]!text[]get[text]]" emptyMessage="960px"/>
+
+<$wikify name="ws-sidebar-po" text="""<$list filter="[[$:/config/Whitespace/sidebar]get[text]]" emptyMessage="left"/>""">
+
+@media (min-width: <<ws-sidebarbreakpoint>>) { 
+
+<$reveal state=<<wsconfig ThemeEditFrame>> type="match" text="yes" default="yes">
+
+
+/**  NO BOX SHADOW ON INPUTS  **/
+
+.tc-tiddler-edit-frame .tc-edit-field-add input.tc-edit-texteditor, 
+.tc-tiddler-edit-frame text, 
+.tc-tiddler-edit-frame textarea, 
+.tc-tiddler-edit-frame .tc-edit-tags, 
+.tc-tiddler-edit-frame textarea.tc-edit-texteditor {
+    -moz-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.tc-tiddler-edit-frame input.tc-titlebar.tc-edit-texteditor,
+.tc-tiddler-edit-frame .tc-edit-tags, 
+.tc-tiddler-edit-frame text, 
+.tc-tiddler-edit-frame textarea, 
+.tc-tiddler-edit-frame textarea.tc-edit-texteditor { border: none !important; }
+
+
+/**  EDIT TIDDLER  **/
+
+.tc-tiddler-edit-frame input.tc-titlebar.tc-edit-texteditor {
+    -moz-box-shadow: none !important;
+    -ms-box-shadow: none !important;
+    -o-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    padding: .25em .5em !important;
+    font-size: {{$:/themes/tiddlywiki/vanilla/metrics/bodyfontsize}}; 
+    font-weight: normal;
+}
+
+.tc-tiddler-edit-frame .tc-edit-tags, 
+.tc-tiddler-edit-frame .tc-editor-toolbar,
+.tc-tiddler-edit-frame .tc-type-selector,
+.tc-tiddler-edit-frame .tc-edit-field-add {
+    background-color: <<colour tiddler-editor-background>>;
+    padding: 8px 4px;
+}
+
+.tc-tiddler-edit-frame input.tc-edit-texteditor,
+.tc-tiddler-edit-frame .tc-edit-tags, 
+.tc-tiddler-edit-frame .tc-editor-toolbar,
+.tc-tiddler-edit-frame .tc-type-selector,
+.tc-tiddler-edit-frame .tc-edit-field-add {
+    margin: 0 0 4px 0 !important;
+}
+
+.tc-tiddler-edit-frame iframe.tc-edit-texteditor,
+.tc-tiddler-edit-frame table.tc-edit-fields { margin: 0 !important; }
+
+.tc-tiddler-edit-frame .tc-editor-toolbar { background: <<colour tiddler-editor-border>>; margin-bottom: 0 !important; }
+
+.tc-tiddler-edit-frame .tc-editor-toolbar .tc-btn-invisible  { background: transparent; }
+
+.tc-tiddler-edit-frame .tc-editor-toolbar .tc-btn-invisible:hover  {
+    background: transparent;
+    fill: <<colour primary>>;
+}
+
+</$reveal>
+
+
+.borderless { border: none !important; }
+
+textarea.large-textarea { 
+    min-height: 100px;
+    width: 100%;
+    max-width: 100%;
+    border: 1px solid <<colour table-border>> !important;
+}
+
+input.scene-textarea { 
+    border: 1px solid <<colour table-border>> !important;
+}
+
+.tc-tiddler-frame {
+    width: <<ws-tiddler-width>> !important;
+    border-radius: {{!!box-radius}};
+    margin-left: auto;
+    margin-right: auto;
+    <<box-shadow "2px 2px 5px rgba(0, 0, 0, 0.09)">>
+}
+
+.tc-storyview-zoomin-tiddler {
+    position: relative !important;
+    width: calc(<<ws-tiddler-width>> - 84px) !important;
+}
+
+
+/**  CARD BUTTONS  **/
+
+.jd-sidebar-column-header > .tc-btn-invisible {
+    color: <<colour foreground>>;
+    margin-top: -3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+<$reveal state=<<wsconfig Spacious>> type="match" text="yes" default="yes">
+.tc-tiddler-view-frame .tc-tiddler-controls svg {
+    opacity: 0; 
+    <<transition "opacity 150ms ease-in-out">>
+}
+
+.tc-tiddler-view-frame .tc-tiddler-controls:hover svg { opacity: 1; }
+</$reveal>
+
+/**  FONT SIZES  **/
+
+.jd-buttons .tc-btn-invisible { font-size: 18px; }
+.jd-sidebar:hover .jd-header .tc-btn-invisible, 
+.jd-sidebar .header-buttons .tc-btn-invisible { font-size: 16px; }
+.jd-header .tc-btn-invisible,
+.jd-sidebar .jd-header .tc-btn-invisible,
+.vertical-controls .tc-btn-invisible { font-size: 20px; }
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.jd-sidebar .jd-header .tc-btn-invisible { font-size: 16px; }
+</$reveal>
+
+
+<$reveal state=<<wsconfig Spacious>> type="match" text="yes" default="yes">
+
+/**  AUTOHIDE VERTICAL BUTTONS  **/
+
+.vertical-controls {
+    opacity: 0;
+    <<transition "opacity 150ms ease-in-out">>
+}
+
+.vertical-controls:hover {
+    opacity: 1;
+}
+
+</$reveal>
+
+
+/**  STORY RIVER  **/
+
+.tc-story-river { transition: left 250ms, right 250ms; }
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.tc-story-river { padding: 42px 2em !important; }
+</$reveal>
+<$reveal state="$:/state/sidebar" type="match" text="no" default="yes">
+.tc-story-river { padding: 42px 10% !important; }
+</$reveal>
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.tc-story-river {
+    <<ws-sidebar-po>>: <<ws-sidebar-width>> !important;
+    width: calc(100% - <<ws-sidebar-width>>) !important;
+}
+.jd-sidebar { opacity: 1; }
+</$reveal>
+
+<$reveal state="$:/state/sidebar" type="match" text="no" default="yes">
+
+.tc-story-river { width: 100% !important; }
+
+</$reveal>
+
+.tc-tiddler-body {
+    margin-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+/**  VERTICAL CONTROLS  **/
+
+.jd-header {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    top: 0;
+    overflow: hidden;
+    <<ws-sidebar-po>>: 0;
+    padding: 15px;
+    z-index: 700;
+}
+
+<$reveal state=<<wsconfig Spacious>> type="match" text="yes" default="yes">
+
+.jd-header .header-buttons {
+    opacity: 0;
+    -webkit-transition: opacity {{$:/config/AnimationDuration}}ms;
+    transition: opacity {{$:/config/AnimationDuration}}ms;
+}
+
+.jd-header:hover .header-buttons { opacity: 1; }
+
+</$reveal>
+
+.jd-header .header-buttons .tc-image-button {
+    width: 0;
+    height: 0;
+}
+
+.jd-sidebar:hover .header-buttons .tc-image-button {
+    width: 1em;
+    height: 1em;
+    margin: 0 0 0 10px;
+}
+
+.jd-header .tc-btn-invisible {
+    fill: <<colour sidebar-controls-foreground>>;
+    -webkit-transition: fill {{$:/config/AnimationDuration}}ms, font-size {{$:/config/AnimationDuration}}ms;
+    transition: fill {{$:/config/AnimationDuration}}ms, font-size {{$:/config/AnimationDuration}}ms;
+}
+
+.jd-sidebar:hover .jd-header {
+<$list filter="[<ws-sidebar-po>prefix[right]]" emptyMessage="""
+    width: calc(<<ws-sidebar-width>> - 1.5em);
+""">
+    width: <<ws-sidebar-width>>;
+</$list>
+    height: <$list filter="[[$:/w/config/jd-sidebar-top-buttons-height]is[tiddler]] +[get[text]]" emptyMessage="39px"/>;
+    background: <<colour page-background>>;
+    padding: 10px 20px;
+    -webkit-transition: width {{$:/config/AnimationDuration}}ms;
+    transition: width {{$:/config/AnimationDuration}}ms;
+}
+
+<$list filter="[<ws-sidebar-po>prefix[left]]">
+.jd-sidebar:hover .jd-header {
+    box-shadow: -5px 0 5px 0 <<colour page-background>>;
+}
+</$list>
+
+<$list filter="[<ws-sidebar-po>!prefix[right]]">
+.jd-sidebar:hover .jd-header {
+    box-shadow: 5px 0 5px 0 <<colour page-background>>;
+    margin-right: calc(1.5em - 1px);
+}
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.jd-header {
+    margin-right: calc(1.5em - 1px);
+}
+</$reveal>
+</$list>
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.jd-sidebar .jd-header {
+<$list filter="[<ws-sidebar-po>prefix[right]]" emptyMessage="""
+    width: calc(<<ws-sidebar-width>> - 1.5em);
+""">
+    width: <<ws-sidebar-width>>;
+</$list>
+    height: <$list filter="[[$:/w/config/jd-sidebar-top-buttons-height]is[tiddler]] +[get[text]]" emptyMessage="39px"/>;
+    background: <<colour page-background>>;
+    padding: 10px 20px;
+}
+.jd-sidebar .header-buttons .tc-image-button {
+    width: 1em;
+    height: 1em;
+    margin: 0 0 0 10px;
+}
+</$reveal>
+
+.vertical-controls {
+    background: <<colour page-background>>;
+    position: fixed;
+    top: 50px;
+    <<ws-sidebar-po>>: 0;
+    width: 50px;
+    height: calc(100% - 50px);
+    padding: 5px 15px;
+    z-index: 600;
+}
+
+.vertical-controls button {
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.vertical-controls .tc-btn-invisible {
+    fill: <<colour sidebar-controls-foreground>>;
+    <<transition "fill 150ms ease-in-out">>
+}
+
+.jd-header .tc-droppable.tc-dragover > .tc-droppable-placeholder { display: inline; }
+
+
+/**  STYLED SIDEBAR  **/
+
+.jd-sitetitle-wrapper { text-align: center; }
+
+.jd-sitetitle { font-size: 2em; padding: 0.2em 0; }
+
+.jd-sitesubtitle { padding-bottom: 2em; }
+
+<$reveal state="$:/state/sidebar" type="match" text="no">
+
+.jd-sitetitle-wrapper { opacity: 0; }
+
+.jd-sidebar:hover .jd-sitetitle-wrapper { opacity: 1; }
+
+</$reveal>
+
+<$reveal state="$:/SiteSubtitle" type="match" text="">
+
+.jd-sitetitle { padding-bottom: 1em; }
+
+</$reveal>
+
+.jd-sidebar p {
+    margin: 5px 0;
+}
+
+.jd-sidebar {
+    background: <<colour page-background>>;
+    height: 50px;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    <<ws-sidebar-po>>: 0;
+    justify-content: center;
+    z-index: 800;
+    -webkit-transition: width {{$:/config/AnimationDuration}}ms, height {{$:/config/AnimationDuration}}ms;
+    transition: width {{$:/config/AnimationDuration}}ms, height {{$:/config/AnimationDuration}}ms;
+}
+
+.jd-sidebar:hover {
+    width: <<ws-sidebar-width>>;
+    border-<<ws-sidebar-op>>: 1px solid<<colour page-background>>;
+    padding: <$list filter="[[$:/w/config/jd-sidebar-top-padding]is[tiddler]] +[get[text]]" emptyMessage="42px"/> 20px 0 20px;
+    height: 100%;
+    overflow-y: auto !important;
+}
+
+<$list filter="[<ws-sidebar-po>prefix[left]]">
+.jd-sidebar:hover {
+    <<box-shadow "6px 0 20px 0 rgba(0, 0, 0, 0.1)">>
+}
+</$list>
+<$list filter="[<ws-sidebar-po>prefix[right]]">
+.jd-sidebar:hover {
+    <<box-shadow "-6px 0 20px 0 rgba(0, 0, 0, 0.1)">>
+}
+</$list>
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes">
+.jd-sidebar {
+    width: <<ws-sidebar-width>>;
+    padding: <$list filter="[[$:/w/config/jd-sidebar-top-padding]is[tiddler]] +[get[text]]" emptyMessage="42px"/> 20px 0 20px;
+    border-<<ws-sidebar-op>>: 1px solid<<colour page-background>>;
+    height: 100%;
+    overflow-y: auto;
+}
+.jd-sidebar-column { opacity: 1; }
+<$list filter="[<ws-sidebar-po>prefix[left]]">
+.jd-sidebar {
+    <<box-shadow "6px 0 20px 0 rgba(0, 0, 0, 0.1)">>
+}
+</$list>
+<$list filter="[<ws-sidebar-po>prefix[right]]">
+.jd-sidebar {
+    <<box-shadow "-6px 0 20px 0 rgba(0, 0, 0, 0.1)">>
+}
+</$list>
+</$reveal>
+
+<$reveal state="$:/state/sidebar" type="match" text="no" default="yes">
+.jd-sidebar {
+    width: 50px;
+    overflow: hidden !important;
+}
+.jd-sidebar-column {
+    opacity: 0;
+}
+</$reveal>
+
+.jd-sidebar-column {
+    display: block;
+    background: <<colour background>>;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid <<colour tiddler-border>>;
+    border-radius: {{!!box-radius}};
+    <<box-shadow "2px 2px 5px rgba(0, 0, 0, 0.09)">>
+    overflow: hidden;
+    -webkit-transition: opacity {{$:/config/AnimationDuration}}ms;
+    transition: opacity {{$:/config/AnimationDuration}}ms;
+}
+
+.jd-sidebar-column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 0;
+    overflow: hidden;
+}
+
+.jd-sidebar-column-header-border {
+    height: 10px;
+    width: 100%;
+    border-top: 1px solid <<colour table-border>>;
+    margin-top: 8px;
+}
+
+.jd-sidebar-column-header .jd-sidebar-column-header-buttons {
+    display: flex;
+    align-items: flex-end;
+}
+
+.jd-sidebar-column-header .jd-sidebar-column-header-buttons button {
+    margin-left: 6px;
+}
+
+<$reveal state=<<wsconfig Spacious>> type="match" text="yes" default="yes">
+.jd-sidebar-column-header .jd-sidebar-column-header-buttons {
+    opacity: 0;
+    <<transition "opacity 150ms ease-in-out">>
+}
+.jd-sidebar-column-header:hover .jd-sidebar-column-header-buttons { opacity: 1; }
+</$reveal>
+
+<$reveal type="match" state=<<wsconfig SidebarHeight>> text="limit" default="limit">
+.jd-sidebar-column-body {
+    max-height: <$list filter="[[$:/config/Whitespace/SidebarHeight]!height[]]" emptyMessage="300px">{{$:/config/Whitespace/SidebarHeight!!height}}</$list>;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+</$reveal>
+
+.jd-sidebar:hover .jd-sidebar-column {
+    opacity: 1;
+}
+
+.tc-droppable {
+    padding: 0;
+    margin: 0;
+}
+
+.tc-sidebar-scrollable,
+.jd-config,
+.tc-topbar,
+.tc-bottombar { 
+    width: 0; 
+    height: 0; 
+    margin: 0; 
+    padding: 0; 
+    display: none; 
+}
+
+
+/**  POPUPS AND DROPDOWNS  **/
+
+.jd-sidebar .tc-drop-down,
+.tc-tiddler-frame .tc-drop-down,
+.tc-tiddler-frame .tc-block-dropdown {
+    overflow: auto;
+    <<box-shadow "2px 2px 5px rgba(0, 0, 0, 0.09)">>
+}
+
+.jd-sidebar .tc-drop-down {
+    position: fixed;
+    <<ws-sidebar-po>>: 20px;
+    top: 50px;
+    min-width: calc(<<ws-sidebar-width>> - 40px) !important;
+    max-width: calc(<<ws-sidebar-width>> - 40px) !important;
+    max-height: 360px !important;
+}
+
+.tc-tiddler-frame .tc-drop-down,
+.tc-tiddler-frame .tc-block-dropdown {
+    min-width: 230px !important;
+    max-height: 230px !important;
+}
+
+.tc-menu-list-item {
+    -webkit-word-break: break-all !important;
+    -moz-word-break: break-all !important;
+    -ms-word-break: break-all !important;
+    -o-word-break: break-all !important;
+    word-break: break-all !important;
+}
+
+.tc-edit-type-dropdown { overflow: auto; }
+
+
+/**  BUTTONS  **/
+
+.jd-sidebar-column .tc-btn-invisible,
+.jd-edit-title-controls .tc-btn-invisible {
+    fill: <<colour sidebar-controls-foreground>>;
+    <<transition "fill 150ms ease-in-out">>
+}
+
+.vertical-controls .tc-btn-invisible:hover,
+.jd-edit-title-controls .tc-btn-invisible:hover,
+.jd-sidebar .tc-btn-invisible:hover,
+.jd-sidebar-column .tc-btn-invisible:hover {
+    fill: <<colour sidebar-controls-foreground-hover>>;
+}
+
+
+/**  NOTIFICATION  **/
+
+<$list filter="[<ws-sidebar-po>prefix[right]]">
+.tc-notification { left: 14px; width: initial; }
+</$list>
+
+
+/**  SCROLLBARS  **/
+
+<$reveal state=<<wsconfig scrollbar-style>> type="match" text="visible" default="visible">
+.tc-tiddler-frame .tc-drop-down::-webkit-scrollbar,
+.tc-tiddler-frame .tc-block-dropdown::-webkit-scrollbar,
+div::-webkit-scrollbar {
+    background: transparent;
+    width: 6px;
+}
+
+.tc-tiddler-frame .tc-drop-down::-webkit-scrollbar-thumb,
+.tc-tiddler-frame .tc-block-dropdown::-webkit-scrollbar-thumb,
+div::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3); 
+    -webkit-border-radius: {{!!box-radius}};
+    border-radius: {{!!box-radius}};
+}
+
+.jd-sidebar::-webkit-scrollbar-thumb {
+    background: <<colour primary>>; 
+}
+</$reveal>
+<$reveal state=<<wsconfig scrollbar-style>> type="match" text="invisible" default="visible">
+.tc-tiddler-frame .tc-drop-down::-webkit-scrollbar,
+.tc-tiddler-frame .tc-block-dropdown::-webkit-scrollbar,
+.jd-sidebar::-webkit-scrollbar,
+div::-webkit-scrollbar {
+    background: transparent;
+    width: 0;
+}
+</$reveal>
+
+
+/**  SIDEBAR SEARCH  **/
+
+.jd-search-wrapper {
+    width: 100%;
+    display: inline-block;
+}
+
+.jd-search-header {
+    background: <<colour background>>;
+    display: flex;
+    justify-content: space-between;
+}
+
+.jd-searchbar-wrapper { width: 100%; }
+
+.jd-searchbar-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 120px;
+}
+
+.jd-searchbar {
+    width: 100%;
+    outline: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+
+.jd-search-results {
+    margin-top: 10px;
+    padding-right: 15px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+<$reveal type="match" state=<<wsconfig SidebarHeight>> text="limit" default="limit">
+.jd-search-results { max-height: <$list filter="[[$:/config/Whitespace/SidebarHeight]!height[]]" emptyMessage="300px">{{$:/config/Whitespace/SidebarHeight!!height}}</$list>; }
+</$reveal>
+
+.jd-searchbar-buttons button {
+    outline: none;
+    margin-left: 10px;
+}
+
+.jd-searchbar-buttons .tc-btn-invisible {
+    fill: <<colour sidebar-controls-foreground>>;
+    <<transition "fill 150ms ease-in-out">>
+}
+
+.jd-searchbar-buttons .tc-btn-invisible:hover {
+    fill: <<colour sidebar-controls-foreground-hover>>;
+    color: <<colour sidebar-controls-foreground-hover>>;
+}
+
+.jd-search-results .tc-menu-list-item {
+    white-space: normal;
+    word-wrap: break-word;
+    padding-left: 5px;
+    text-indent: -5px;
+}
+
+
+/**  SIDEBAR CONTROLS**/
+
+.jd-buttons { 
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.jd-buttons > .tc-reveal {
+    min-width: 0 !important;
+    width: 20% !important;
+    text-align: center;
+}
+
+.jd-buttons > .tc-btn-invisible {
+    margin: 5px 0;
+    outline: none;
+    fill: <<colour sidebar-controls-foreground>>;
+    <<transition "fill 150ms ease-in-out">>
+}
+
+.jd-buttons > .tc-btn-invisible:hover {
+    fill: <<colour sidebar-controls-foreground-hover>>;
+}
+
+button, button:hover { outline: none; }
+
+input, input:focus { outline: none !important; }
+
+}
+
+@media (max-width: <<ws-sidebarbreakpoint>>) { 
+
+.jd-sidebar, .vertical-controls { display: none; }
+.tc-titlebar text, input.tc-titlebar.tc-edit-texteditor { font-size: 18px; }
+
+}
+
+</$wikify>

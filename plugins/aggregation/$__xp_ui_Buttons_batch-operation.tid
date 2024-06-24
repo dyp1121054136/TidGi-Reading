@@ -1,0 +1,16 @@
+caption: {{$:/xp/images/batch-creation}} batch operation
+description: Batch operation
+tags: $:/tags/PageControls
+title: $:/xp/ui/Buttons/batch-operation
+
+\whitespace trim
+<$button to="$:/xp/ui/SideBar/BatchOperation" tooltip="Batch operation" aria-label="batch operation" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/xp/images/batch-creation}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">
+<$text text="batch operation"/>
+</span>
+</$list>
+</$button>

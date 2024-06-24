@@ -1,0 +1,21 @@
+caption: {{$:/core/images/search-replace}} 正则表达式查找替换
+created: 20240430120025949
+description: 正则表达式查找替换
+modified: 20240502114405895
+tags: $:/tags/ViewToolbar 按钮 正则表达式查找替换
+title: $:/core/ui/Buttons/search-replace
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/search-replace]] }}} name="open-search-replace">
+<$button popup=<<open-search-replace>> tooltip="正则表达式查找替换" class=<<tv-config-toolbar-class>>>
+<$list filter="[<tv-config-toolbar-icons>match[yes]]">{{$:/core/images/search-replace}}</$list>
+<$list filter="[<tv-config-toolbar-text>match[yes]]"><span class="tc-btn-text>正则表达式查找替换</span></$list>
+</$button>
+<$reveal type="popup" state=<<open-search-replace>> position="belowleft" tag="div" class="tc-popup-keep">
+
+<div class="search-replace-body">
+
+<$transclude tiddler="$:/searchNreplace/ui/controls/replace"/>
+</div>
+
+</$reveal>
+</$set>

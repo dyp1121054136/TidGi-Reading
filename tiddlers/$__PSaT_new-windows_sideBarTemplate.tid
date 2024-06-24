@@ -1,0 +1,23 @@
+created: 20200715055426572
+creator: Designer
+modified: 20240204051239292
+modifier: Designer
+show-code: hide
+tags: 弹窗编辑器
+tiddlywiki-version: 5.1.22
+title: $:/PSaT/new-windows/sideBarTemplate
+
+<$reveal state="$:/state/sidebar" type="match" text="yes" default="yes" retain="yes" animate="yes">
+
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/SideBarSegment]!has[draft.of]]" variable="listItem">
+
+<$reveal type="nomatch" state=<<config-title>> text="hide"  tag="div">
+
+<$transclude tiddler=<<listItem>> mode="block"/>
+
+</$reveal>
+
+</$list>
+
+</$reveal>
+

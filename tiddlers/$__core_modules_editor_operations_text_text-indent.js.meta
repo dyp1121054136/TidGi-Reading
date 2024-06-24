@@ -1,0 +1,6 @@
+created: 20240313012229071
+modified: 20240322191332308
+module-type: texteditoroperation
+tags: 首行缩进两字符 首行缩进和空行
+title: $:/core/modules/editor/operations/text/text-indent.js
+type: application/javascript

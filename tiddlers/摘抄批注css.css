@@ -1,0 +1,20 @@
+  .note-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .quote {
+    font-family: "LXGWWenKaiScreen";
+    flex: 1;
+    text-align: left; /* 靠左对齐 */
+  }
+
+  .comment {
+    flex: 0 0 40%; /* 设置批注的宽度 */
+    text-align: left; /* 靠左对齐 */
+    padding-left: 30px; /* 增加摘抄和批注之间的间距 */
+    font-style: normal; /* 修改批注字体样式，斜体italic */
+    font-size: 0.9rem; /* 可以根据需要调整字体大小 */
+    color: #888; /* 可以根据需要调整字体颜色 */
+  }

@@ -1,0 +1,9 @@
+created: 20240119181519091
+modified: 20240119181615583
+tags: 技巧
+title: 引用代码条目
+
+<<code src:"""<$codeblock code={{代码条目名称}} />
+""">>
+
+<$codeblock code={{代码条目名称}} />

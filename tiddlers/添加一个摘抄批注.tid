@@ -1,0 +1,14 @@
+br: 0
+created: 20231231070747775
+modified: 20240323051026533
+tags: 预置片段 $:/tags/TextEditor/Snippet 摘抄批注模板
+title: 添加一个摘抄批注
+
+<div class="note-container">
+  <div class="quote">
+摘抄
+  </div>
+  <div class="comment">
+批注
+  </div>
+</div>

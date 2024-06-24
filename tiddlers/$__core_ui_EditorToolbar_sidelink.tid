@@ -1,0 +1,16 @@
+caption: 添加sidelink批注
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240303043431671
+description: 添加sidelink批注
+icon: $:/core/images/sidelink
+modified: 20240327061331431
+shortcuts: ((sidelink))
+tags: 条目行间批注 按钮 $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/sidelink
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix='<<sidelink "条目标题" "'
+	suffix='">>'
+/>

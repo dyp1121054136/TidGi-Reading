@@ -1,0 +1,19 @@
+created: 20230316225446638
+creator: !build
+list-after: 
+modified: 20240415071631486
+modifier: !build
+source-tiddler: $:/PSaT/filter-pills/export-button
+tags: $:/tags/FilterDropdown 筛选器下拉菜单
+title: $:/PSaT/filter-pills/copy-list
+
+<$list filter="[subfilter<filter>limit[1]] +[<item-count>!match[0]]" variable=~><!-- only allow copy list if there are any tiddlers -->
+<$set name=tiddler-list filter="[subfilter<filter>]">
+<$button class="tc-btn-invisible" tooltip="复制筛选的条目列表"> {{$:/core/images/list-bullet}} 复制筛选的条目列表
+   <$action-sendmessage $message="tm-copy-to-clipboard" $param=<<tiddler-list>> />
+   <$action-setfield $tiddler="$:/clipboard" $value=<<tiddler-list>>/>
+   <$action-setfield $tiddler="$:/clipboard/log" $index=<<now [UTC]YYYY0MM0DD0hh0MM0ss0XXX>> $value=<<tiddler-list>>/>
+   <$action-setfield $tiddler="$:/clipboard/list" $value=<<tiddler-list>>/>
+</$button>
+</$set>
+</$list>

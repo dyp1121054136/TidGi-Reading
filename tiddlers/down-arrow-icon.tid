@@ -1,0 +1,14 @@
+created: 20240417034659209
+modified: 20240417070904116
+tags: 页面滚动条 图标
+title: down-arrow-icon
+
+\parameters (size:"22pt")
+
+<svg xmlns="http://www.w3.org/2000/svg" width=<<size>> height=<<size>> fill="currentColor" class="bi bi-arrow-down-short" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 4a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5A.5.5 0 0 1 8 4z"/>
+</svg>
+
+<!--
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="%23444" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/></svg>
+-->

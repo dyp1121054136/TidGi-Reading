@@ -1,0 +1,51 @@
+.bookmarks-body {
+  background: white;
+  margin-left: 10px;
+  padding-right: 20px;
+  min-width: 180px; /* 默认宽度 */
+  border-radius: 8px;  /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+  font-size: 25px;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+
+.bookmarks-list {
+  display: flex;
+  flex-direction: column;
+  margin-left: -20px;
+}
+
+.bookmark-item {
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中对齐 */
+  justify-content: space-between; /* 平均分配剩余空间 */
+  padding: 3px 12px 6px 12px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.3s;
+  margin-bottom: 0.5em;
+}
+
+.bookmark-item:hover {
+  background-color: #e7e7e7;
+}
+
+/* 添加间距 */
+.abookmark,
+.cbookmark {
+  margin-right: 10px; /* 在右侧添加间距 */
+}
+
+/* 移除.cbookmark的右侧间距 */
+.cbookmark {
+  margin-right: 0;
+}
+
+.cbookmarks {
+  text-align: right;
+  margin-top: 0em;
+  font-size: 17px;
+}

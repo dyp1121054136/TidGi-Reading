@@ -1,0 +1,12 @@
+created: 20230316224009815
+creator: !build
+modified: 20240415072549625
+modifier: !build
+tags: $:/tags/FilterDropdown 筛选器下拉菜单
+title: $:/PSaT/filter-pills/export-button
+
+\whitespace trim
+<$transclude $variable="exportButton" exportFilter=<<filter>> lingoBase="$:/language/Buttons/ExportTiddlers/" baseFilename=<<currentTiddler>>/>
+<!--
+baseFilename=<<currentTiddler>>表示导出文件名为当前条目标题
+-->

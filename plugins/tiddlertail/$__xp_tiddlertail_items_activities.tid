@@ -1,0 +1,45 @@
+caption: Activities
+description: Tiddlers Created and Modified Today
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/activities
+
+\define tiddlers-created-today()
+[all[tiddlers]!is[system]!has[draft.of]sameday:created{!!created}]
+\end
+
+\define tiddlers-modified-today()
+[all[tiddlers]!is[system]!has[draft.of]sameday{!!created}]
+\end
+
+\define today()
+@@color:darkred;<$view field=created format=date template="YYYY-0MM-0DD DDD Day ddddd"/>@@
+\end
+
+\define today-chinese()
+@@color:darkred;<$view field=created format=date template="YYYY年0MM月0DD日 DDD 第ddddd天"/>@@
+\end
+
+
+<$list filter="[{$:/language}match[$:/languages/zh-Hans]]" emptyMessage=<<today>> variable="ignore">
+<<today-chinese>>
+</$list>
+
+<$macrocall
+  $name="table-dynamic"
+  caption="Tiddlers Created Today"
+  filter=<<tiddlers-created-today>>
+  fields="tbl-expand title tags"
+  class="w-100"
+  editButton=no
+  emptyMessage=" "
+/>
+
+<$macrocall
+  $name="table-dynamic"
+  caption="Tiddlers Modified Today"
+  filter="[subfilter<tiddlers-modified-today>] -[subfilter<tiddlers-created-today>]"
+  fields="tbl-expand title tags"
+  class="w-100"
+  editButton=no
+  emptyMessage=" "
+/>

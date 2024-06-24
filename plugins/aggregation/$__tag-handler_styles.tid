@@ -1,0 +1,94 @@
+tags: $:/tags/Stylesheet
+title: $:/tag-handler/styles
+
+.xp-tag-handler {
+    font-size: 0.9em;
+}
+
+.xp-tag-handler td {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+.xp-tag-handler-item {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+}
+
+.xp-indicator-muted svg {
+    height: 1em;
+    width: 1em;
+    color: <<colour tiddler-controls-foreground>>;
+    fill: <<colour tiddler-controls-foreground>>;
+}
+
+.xp-indicator-muted:hover svg {
+    color: <<colour tiddler-controls-foreground-hover>>;
+    fill: <<colour tiddler-controls-foreground-hover>>;
+}
+
+.xp-indicator-purple {
+    padding-right: 2px;
+    color: MediumPurple;
+    fill: MediumPurple;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+    color: #9966CC;
+    fill: #9966CC;
+</$list>
+}
+
+.xp-indicator-orange {
+    padding-right: 2px;
+    color: orange;
+    fill: orange;
+}
+
+.xp-indicator-green {
+    padding-right: 2px;
+    color: green;
+    fill: green;
+<$list filter="[{$:/palette}get[color-scheme]] +[else[light]match[dark]]" variable="ignore">
+    color: #99CC66;
+    fill: #99CC66;
+</$list>
+}
+
+.xp-indicator-star {
+    fill: <<colour primary>>;
+}
+
+
+hr.hr-table-border {
+    border: none;
+    height: 1px;
+    background-color: <<colour table-border>>;
+}
+
+.xp-taghandler-tags {
+    font-size: .9em;
+    padding-bottom: .5em;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    column-gap: .2em;
+}
+
+.xp-taghandler-tags-item {
+    flex: 1 0 100%;
+}
+
+.xp-taghandler-tags .tc-tag-label:hover {
+    outline: 1px solid <<colour primary>>;
+}
+
+
+@media print {
+  .xp-taghandler-button {
+    display: none;
+  }
+}

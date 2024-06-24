@@ -1,0 +1,22 @@
+created: 20230316234452834
+creator: !build
+modified: 20240322015816974
+modifier: !build
+tags: 筛选器下拉菜单
+title: $:/PSaT/filter-pills/design-notes
+
+* Allow edit filter
+* allow select filter?
+* Allow close icon on list
+* Allow save filter if not already?
+* [[discussion Notes here|https://talk.tiddlywiki.org/t/how-to-create-a-field-macro-similar-to-the-tag-macro/5975/16?u=tw_tones]]
+* Allow named actions macroname to be given to action each list item or all items?
+* use filter and *-filter fields 
+* option to use a filename or filepath?
+* Generate a permaview? or search filter?
+* Select from listed items
+** Add to or remove from another list?
+** draggable titles if not for reordering already but drop where?, below
+** keep popup open?
+* Search within listed?
+* Allow inclusion of tag pill items?

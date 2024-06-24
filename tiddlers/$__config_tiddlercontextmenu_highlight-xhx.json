@@ -1,0 +1,15 @@
+[
+    {
+        "created": "20240412111013987",
+        "text": "hide",
+        "title": "$:/config/tiddlercontextmenu/highlight-xhx",
+        "tags": "$:/tags/tiddlercontextmenu 右键高亮",
+        "caption": "高亮xhx",
+        "icon": "$:/core/images/highlight",
+        "tm-message": "tm-markup",
+        "modified": "20240412111555964",
+        "markup-prefix": "@@.xhx ",
+        "markup-suffix": "@@",
+        "list-after": "$:/config/tiddlercontextmenu/quick-editfix"
+    }
+]

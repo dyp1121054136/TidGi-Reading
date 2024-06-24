@@ -1,0 +1,43 @@
+created: 20231216024811900
+modified: 20240511131444404
+se-type: 
+tags: 字体
+title: 霞鹜字体
+
+!!!LXGW WenKai Screen / 霞鹜文楷屏幕阅读版v1.315
+"""
+
+https://github.com/lxgw/LxgwWenKai-Screen
+
+本字体是 霞鹜文楷 的屏幕舒适阅读版本。由于原版「霞鹜文楷」Regular 字重在 PC 和 Android 屏幕上显示较细，将原版「霞鹜文楷 Bold」的字重属性改为 Regular，调整度量数据与 Android 默认字体 Roboto 相同，更适合 PC 及 Android 手机屏幕显示。
+加粗后的「霞鹜文楷」与 Segoe UI Regular 粗细相当，PC 和 Android 手机屏幕阅读更加舒适。
+
+电脑端可以不用内置字体文件到wiki，只要电脑里安装了字体就可以引用，`font-family` 注意要写对，不然不生效。
+
+需要新建条目，标签 `$:/tags/Stylesheet`指明字体安装的位置：
+<<code src:"""@font-face 
+{font-family:"霞鹜文楷屏幕阅读版"; /* 这里是说明调用来的字体名字 */
+src: url(../Fonts/LXGWWenKaiScreen.ttf);}/* 这里是字体文件路径 */
+
+.tc-tiddler-title, .tc-tiddler-body{
+font-family:"霞鹜文楷屏幕阅读版";
+} /* 表示对条目标题、条目内容生效*/
+""" language:"css">>
+对整个wiki引用，在 [[$:/ControlPanel]] `外观-主题调整-设置-字型` 输入框内最前面加 `"霞鹜文楷屏幕阅读版",`
+"""
+
+!!!霞鹜臻楷
+"""
+
+（作者觉得效果不满意，已不再更新）
+https://github.com/lxgw/LxgwZhenKai
+https://www.maoken.com/freefonts/14773.html
+https://wwav.lanzoue.com/illfC0z1wcqh
+引用："霞鹜臻楷", font-family: "LXGWZhenKai";
+"""
+
+!!!LXGW Neo XiHei Screen / 霞鹜新晰黑屏幕阅读版v1.109
+"""
+
+https://github.com/lxgw/LxgwNeoXiHei-Screen
+"""

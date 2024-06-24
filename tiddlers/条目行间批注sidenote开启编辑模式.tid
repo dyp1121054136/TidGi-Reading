@@ -1,0 +1,39 @@
+created: 20240503160544088
+edit-text: no
+modified: 20240503201429675
+tags: 条目行间批注
+title: 条目行间批注sidenote开启编辑模式
+
+\whitespace trim
+<span class="sidenote-edit-btn">
+<$button class="tc-btn-invisible" tooltip="开启/关闭编辑模式">
+
+<!-- 默认图标 -->
+<$list filter="[[条目行间批注sidenote开启编辑模式]!has:field[edit-text]]">
+{{$:/core/images/edit-button|20px}}
+</$list>
+
+<!-- 激活时图标 -->
+<$list filter="[[条目行间批注sidenote开启编辑模式]field:edit-text[yes]]">
+{{$:/core/images/close-button|20px}}
+</$list>
+
+<!-- 取消激活时图标 -->
+<$list filter="[[条目行间批注sidenote开启编辑模式]field:edit-text[no]]">
+{{$:/core/images/edit-button|20px}}
+</$list>
+
+<$list filter="[[条目行间批注sidenote开启编辑模式]!has:field[edit-text]]">
+<$action-setfield $tiddler="条目行间批注sidenote开启编辑模式" $field="edit-text" $value="yes"/>
+</$list>
+
+<$list filter="[[条目行间批注sidenote开启编辑模式]field:edit-text[yes]]">
+<$action-setfield $tiddler="条目行间批注sidenote开启编辑模式" $field="edit-text" $value="no"/>
+</$list>
+
+<$list filter="[[条目行间批注sidenote开启编辑模式]field:edit-text[no]]">
+<$action-setfield $tiddler="条目行间批注sidenote开启编辑模式" $field="edit-text" $value="yes"/>
+</$list>
+
+</$button>
+</span>

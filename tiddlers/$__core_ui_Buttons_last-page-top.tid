@@ -1,0 +1,17 @@
+caption: 顶部目录-上一页
+code-body: yes
+created: 20240420083629352
+modified: 20240420084014874
+tags: 按钮 目录工具
+title: $:/core/ui/Buttons/last-page-top
+
+<span class="lian caption-title">
+<$list filter="[enlist{!!list}] :else[tag{!!title}sort{目录排序字段}] +[before<currentNavStep>]">
+<$link to=<<currentTiddler>> tooltip={{!!title}}>« 上一页
+</$link>
+</$list>
+</span>
+
+<!--
+search-replace:g:regexp<mulu1>,<mulu0>
+-->

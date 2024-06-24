@@ -1,0 +1,6 @@
+title: $:/aggregation/prompt
+
+<div class="tc-muted" style="text-align:center;margin:50px 0 25px;">
+<div class="xp-image-big-muted">{{$:/xp/images/fish}}</div>
+New tiddler will appear here
+</div>

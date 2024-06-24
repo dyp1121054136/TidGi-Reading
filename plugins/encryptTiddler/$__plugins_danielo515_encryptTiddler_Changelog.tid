@@ -1,0 +1,19 @@
+title: $:/plugins/danielo515/encryptTiddler/Changelog
+
+!! V2.5
+* Added settings tab under ControlPanel
+* Added the ability to customize the enctypted tiddler text body
+!! V2.4
+* Added caption and description to the encrypt button
+!! V2.3
+* No need to double type password for decrypt tiddlers
+* Fix bug with batch encryption
+* Code simplified
+!! V2.2
+* Added the need to type the password twice
+* Tested on tw 5.1.22
+!! V2.1
+* Added control panel.
+* Added ability to batch encrypt and decrypt tiddlers.
+* Added some documentation an language strings.
+

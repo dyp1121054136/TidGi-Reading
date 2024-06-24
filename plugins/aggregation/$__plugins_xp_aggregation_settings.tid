@@ -1,0 +1,93 @@
+title: $:/plugins/xp/aggregation/settings
+
+\define checkactions() <$action-deletetiddler $tiddler=<<__tiddler__>>/>
+\define uncheckactions() <$action-deletetiddler $tiddler=<<__tiddler__>>/>
+
+\define checkboxTMode(text,tiddler,tag:"$:/tags/ViewToolbar",checkactions,uncheckactions)
+<$checkbox tiddler=<<__tiddler__>> tag=<<__tag__>> checkactions=<<__checkactions__>> uncheckactions=<<__uncheckactions__>>>
+<$link to=<<__tiddler__>>><$text text=<<__text__>>/></$link>
+</$checkbox>
+\end
+
+\define checkboxFMode(text,tiddler,field:"text",checked:"yes",unchecked:"no",default,checkactions,uncheckactions)
+<$checkbox tiddler=<<__tiddler__>> field=<<__field__>> checked=<<__checked__>> unchecked=<<__unchecked__>> default=<<__default__>> checkactions=<<__checkactions__>> uncheckactions=<<__uncheckactions__>>>
+<$link to=<<__tiddler__>>><$text text=<<__text__>>/></$link>
+</$checkbox>
+\end
+
+\define helpButton()
+\whitespace trim
+&ensp;
+<$button tooltip="Show help" class="tc-btn-invisible tc-btn-mini">
+<$vars targetTid="$:/temp/view-subtiddler/help/TagDropdown">
+<$reveal state=<<targetTid>> type="match" text="">
+<$action-setfield $tiddler=<<targetTid>> text="{{$:/language/view-subtiddler/TagDropdown}}"/>
+<span class="tc-btn-icon">{{$:/core/images/help}}</span>
+</$reveal>
+<$reveal state=<<targetTid>> type="nomatch" text="">
+<$action-deletetiddler $tiddler=<<targetTid>>/>
+<span class="tc-btn-icon">{{$:/core/images/close-button}}</span>
+</$reveal>
+</$vars>
+</$button>
+\end
+
+!! Subtiddler
+
+<<checkboxTMode "Show ViewToolbar button" "$:/xp/ui/Buttons/view-subtiddler" checkactions:"<<checkactions>>">><br>
+<<checkboxFMode "Show TagDropdown button" "$:/config/view-subtiddler/TagDropdown" checkactions:"<<checkactions>>">><<helpButton>><br>
+<$list filter="[[$:/config/view-subtiddler/TagDropdown]get[text]] +[else[no]match[yes]]" variable="ignore">
+
+|<$link to="$:/config/view-subtiddler/Threshold">Threshold</$link>|^<$edit-text tiddler="$:/config/view-subtiddler/Threshold" default="10" tag="input" type="number" size=4/> |
+
+</$list>
+{{$:/temp/view-subtiddler/help/TagDropdown}}
+
+!! Tag Handler
+
+<$tiddler tiddler="$:/config/TagHandler/Mode">
+
+<$link>Control when the tag handler closes:</$link>
+
+<$radio value="popup" actions="<$action-deletetiddler $filter='[prefix[$:/state/tag-handler/]]'/>"> Tag handler closes automatically </$radio>
+
+<$radio value="sticky"> Tag handler stays open until explicitly closed </$radio>
+
+</$tiddler>
+
+<$tiddler tiddler="$:/config/TagHandler/Position">
+
+<$link>Where the button is displayed:</$link>
+
+<$radio value="right"> Right side of the tag panel </$radio>
+
+<$radio value="left"> Left side of the tag panel </$radio>
+
+<$radio value="hide"> Hide </$radio>
+
+</$tiddler>
+
+!! Cascades
+
+使用 [[Cascades|https://tiddlywiki.com/static/Cascades.html]] 定制聚合主题条目的图标与颜色：
+
+* $:/config/TiddlerColourFilters/aggregation
+* $:/config/TiddlerIconFilters/aggregation
+
+!! 聚合主题列表
+
+<$checkbox tiddler="$:/xp/ui/SideBar/Aggregation" tag="$:/tags/SideBar" uncheckactions="""<$action-deletetiddler $tiddler="$:/xp/ui/SideBar/Aggregation"/>"""> 在侧边栏显示主题列表</$checkbox>
+
+!! 搜索框自动聚焦
+
+将 $:/config/xp/aggregation/SearchAutoFocus 的值改为 `true`。默认为 `false`。
+
+!! 添加搜索范围
+
+默认可选的搜索范围为：<<tag $:/tags/Filter/Aggregation>>。如果有特殊需求，可以参考 [[search Operator|https://tiddlywiki.com/static/search%2520Operator.html]] 自行添加一个搜索范围。
+
+!! 被排除的字段
+
+* $:/config/xp/aggregation/excluded-fields/dtable &emsp;<span class="tc-muted">不在「动态表格」中显示的字段</span>
+* $:/config/xp/aggregation/excluded-fields/filtering-button &emsp;<span class="tc-muted">不在「过滤面板」的「字段下拉框」中显示的字段</span>
+* $:/config/xp/aggregation/excluded-fields/sorting-button &emsp;<span class="tc-muted">不在「排序下拉菜单」中显示的字段</span>

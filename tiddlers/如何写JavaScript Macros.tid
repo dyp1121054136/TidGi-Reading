@@ -1,0 +1,80 @@
+created: 20240129011411484
+font: X
+modified: 20240205024246987
+tags: 技巧
+title: 如何写JavaScript Macros
+
+（以下为机翻内容）
+
+创建JavaScript宏的过程被记录在 [[TiddlyWiki Dev wiki|https://tiddlywiki.com/dev/index.html#JavaScript%20Macros]] 上，尽管并不是特别详尽。假设我们想要一个将时间戳四舍五入到最近的15分钟的宏。首先，我们编写一个JavaScript函数，它接受与宏匹配的参数，并返回我们想要输出的wikitext。你可以在任何你喜欢的JavaScript开发环境中测试这个函数，包括像浏览器的开发工具这样简单的东西。你最终会得到一个像这样的单函数：
+<<code src:"""function(parameter) {
+	/* 做一些事情 */
+	return "我的返回值";
+}
+""" language:"js">>
+然后，我们创建一个类型为 `application/javascript` 的条目，并设置字段 `module-type` 为 `macro`。放入以下模板片段，然后根据需要更新文档注释和 `exports.name` 及 `exports.params` 变量，并将你的函数分配给 `exports.run`
+<<code src:"""/*\
+title: macro名称
+type: application/javascript
+module-type: macro
+
+macro的描述
+\*/
+(function(){
+"use strict";
+
+exports.name = "macro名称";
+exports.params = [
+	{name: "第一个参数"}
+	/* 有额外参数可重复写 */
+];
+exports.run = /* 在这里输入你的function*/;
+
+})();
+""" language:"js">>
+当你更改JavaScript宏时，你必须重新加载整个wiki才能使更改生效，因为TiddlyWiki不会动态重新加载JavaScript。它不会告诉你这样做——如果你不知道这是必要的，这可能会非常令人困惑！
+
+重新加载wiki后，假设你做的一切都正确，你的宏将像其他任何全局宏一样，在任何条目中都可以使用。
+
+!!! ''示例''
+创建一个名为 `roundtime` 的JavaScript宏，将TiddlyWiki格式的时间戳四舍五入到最近的15分钟。
+
+这是一个示例。我不是JavaScript开发者，所以可能有更简单的方法来实现！
+<<code src:"""/*\
+title: roundtime
+type: application/javascript
+module-type: macro
+
+Round TiddlyWiki-formatted times to the nearest 15 minutes
+\*/
+
+(function(){
+"use strict";
+
+exports.name = "roundtime";
+exports.params = [
+	{name: "timestamp"}
+];
+exports.run = function(timestamp) {
+    var hours = timestamp.substring(8, 10);
+    var minutes = timestamp.substring(10, 12);
+
+    if (minutes < 8) {
+        minutes = 0;
+    } else if (minutes < 23) {
+        minutes = 15;
+    } else if (minutes < 38) {
+        minutes = 30;
+    } else if (minutes < 53) {
+        minutes = 45;
+    } else {
+        minutes = 0;
+        hours++;
+    }
+
+    return timestamp.substring(0, 8) + hours + minutes + "00000";
+};
+
+})();
+""" language:"js">>
+（如果我们想深入研究提取秒数，我们可以更精确地四舍五入。这足够解释目的了！）

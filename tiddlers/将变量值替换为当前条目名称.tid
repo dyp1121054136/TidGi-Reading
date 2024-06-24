@@ -1,0 +1,15 @@
+created: 20240119174116546
+modified: 20240119174408394
+tags: 技巧
+title: 将变量值替换为当前条目名称
+
+"""
+<$text text=`您好，此为条目 "$(currentTiddler)$"`/>
+
+<$text text=`此条目名为 "$(currentTiddler)$" ，最后修改于 ${[{!!modified}format:date[YYYY年0MM月0DD日 ]]}$`/>
+
+连接字符串和变量以创建网址：
+<$let hash={{{ [<currentTiddler>encodeuricomponent[]] }}}>
+<a href=`http://tiddlywiki.com/#$(hash)$`>tiddlywiki.com 上的这个条目</a>
+</$let>
+"""

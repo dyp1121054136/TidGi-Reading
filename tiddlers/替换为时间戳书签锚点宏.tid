@@ -1,0 +1,23 @@
+created: 20240505160116742
+modified: 20240505173906486
+tags: $:/tags/Macro 宏 替换为时间戳 延时动作
+title: 替换为时间戳书签锚点宏
+
+\define varstobookmark()
+\define all-bk() <<bookmark ([^\s]*)>>
+\define replace-to-bookmark() <$action-setfield $field="text" $value={{{ [{!!text}search-replace<in>,<out>]}}}/>
+<$button class="tc-btn-invisible">
+{{$:/core/images/etoz}}
+  <$vars out_base="""<<bookmark " """ out_time=<<now "YYYY0MM0DD0hh0mm0ss">> out_end="""">>"""  >
+    <$vars in=<<all-bk>> out={{{ [<out_base>removesuffix[ ]addsuffix<out_time>addsuffix<out_end>] }}}>
+      <$action-timeout delay="100" actions=<<replace-to-bookmark>>/>
+    </$vars>
+  </$vars>
+</$button>
+\end
+
+<!-- 
+all[current]
+<currentTiddler>
+怎么让替换的动作延时执行多次呢？
+ -->

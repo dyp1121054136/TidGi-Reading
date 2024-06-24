@@ -1,0 +1,90 @@
+tags: $:/tags/Table/Macro
+title: $:/table-dynamic/macros/sorting
+
+\define sorting-button()
+\whitespace trim
+<$button tooltip="Sorted by field" class="tc-btn-invisible tc-btn-mini">
+{{$:/xp/images/sorting}}
+<$reveal state=<<sortPanel>> type="nomatch" text="yes">
+<$action-setfield $tiddler=<<sortPanel>> text="yes"/>
+</$reveal>
+<$reveal state=<<sortPanel>> type="match" text="yes">
+<$action-setfield $tiddler=<<sortPanel>> text="no"/>
+</$reveal>
+</$button>
+\end
+
+\define aggr-sorting-fields()
+<div class="xp-wrapper-aggrfilter">
+
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;">
+<$button set=<<sortPanel>> setTo="no" tooltip="Close" aria-label="close sorting panel" class="tc-btn-invisible">
+{{$:/core/images/close-button}}
+</$button>
+</div>
+</div>
+
+<span class="tc-muted">Sorting Fields:</span>
+
+<div class="xp-aggrfilter-category">
+<div class="xp-aggrfilter-category-item">
+<$vars pt1="+[sort[" pt2="+[!sort[" st="]]">
+<$linkcatcher actions="""<$action-setfield $tiddler=<<sortTiddler>> text=<<navigateTo>>/>
+<$list filter="[<navigateTo>prefix<pt1>]" variable="ignore">
+<$action-setfield $tiddler=<<tempTableSort>> $index="sortIndex" $value={{{ [<navigateTo>removeprefix<pt1>removesuffix<st>] }}}/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="false"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value=""/>
+</$list>
+<$list filter="[<navigateTo>prefix<pt2>]" variable="ignore">
+<$action-setfield $tiddler=<<tempTableSort>> $index="sortIndex" $value={{{ [<navigateTo>removeprefix<pt2>removesuffix<st>] }}}/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="true"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value="!"/>
+</$list>
+<$action-setfield $tiddler=<<sortPanel>> text="no"/>""">
+<$list filter="title caption modified modifier created creator" variable="listField">
+	<$link to={{{ [<listField>addprefix<pt1>addsuffix<st>] }}} overrideClass="tc-btn-invisible tc-btn-mini"><$text text=<<listField>>/></$link>
+</$list>
+<span class="tc-muted">/</span>
+<$list filter="[prefix<aggregationPrefix>fields[]sort[]] -[enlist{$:/config/xp/aggregation/excluded-fields/sorting-button}] -title -caption -modified -modifier -created -creator" variable="listField">
+	<$link to={{{ [<listField>addprefix<pt1>addsuffix<st>] }}} overrideClass="tc-btn-invisible tc-btn-mini"><$text text=<<listField>>/></$link>
+</$list>
+</$linkcatcher>
+</$vars>
+</div>
+</div>
+
+</div>
+\end
+
+\define unsort-button()
+\whitespace trim
+<$vars pt1="+[sort[" pt2="+[!sort[" st="]]" btnClass="xp-aggrfilter-dynamic-btn">
+<$reveal state=<<sortState>> type="nomatch" text="" animate="yes">
+&emsp;
+<$list filter="[<sortTiddler>search:text:literal<sortIndex>]" variable="ignore">
+<$list filter="[<sortTiddler>get[text]prefix<pt1>]" variable="ignore">
+<$button tooltip="Descending order" class=<<btnClass>>>
+<$text text={{{ [<sortTiddler>get[text]removeprefix<pt1>removesuffix<st>] }}}/>&nbsp;&darr;
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="true"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value="!"/>
+<$action-setfield $tiddler=<<sortTiddler>> text={{{ [<sortTiddler>get[text]search-replace[sort[],[!sort[]] }}}/>
+</$button>
+</$list>
+<$list filter="[<sortTiddler>get[text]prefix<pt2>]" variable="ignore">
+<$button tooltip="Ascending order" class=<<btnClass>>>
+<$text text={{{ [<sortTiddler>get[text]removeprefix<pt2>removesuffix<st>] }}}/>&nbsp;&uarr;
+<$action-setfield $tiddler=<<tempTableSort>> $index="hasnegate" $value="false"/>
+<$action-setfield $tiddler=<<tempTableSort>> $index="negate" $value=""/>
+<$action-setfield $tiddler=<<sortTiddler>> text={{{ [<sortTiddler>get[text]search-replace[!sort[],[sort[]] }}}/>
+</$button>
+</$list>
+</$list>
+<$button class=<<btnClass>>>
+unsort
+<$action-deletetiddler $filter="[<sortTiddler>] [<tempTableSort>]"/>
+</$button>
+</$reveal>
+</$vars>
+\end
+

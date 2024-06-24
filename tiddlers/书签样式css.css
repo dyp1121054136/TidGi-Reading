@@ -1,0 +1,63 @@
+.bookmark-anchor {
+  position: relative;
+  top: -15em; /* 相对于当前位置向上移动，备选-10em; */
+}
+
+.bk-color {
+  color: red;
+}
+
+.bk-color svg{
+  fill: red;
+}
+
+.bks-color, 
+.tidbks-color {
+  font-size: 0.7em;
+  padding-left: 0.5em;
+}
+
+.bks-color, 
+.tidbks-color,
+.toanchor-btn {
+  opacity: 0.5;
+  transition: opacity 0.3s ease; /* 平滑过渡 */
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+}
+
+.bks-color:hover,
+.tidbks-color:hover,
+.toanchor-btn:hover {
+  opacity: 1;
+}
+
+.toanchor-item-body {
+  display: flex; 
+  flex-direction: column; /* 子元素垂直排列，即从上到下 */
+  justify-content: flex-start; /* 子元素在容器顶部对齐 */
+  background-color: #ffffff; /* 背景颜色设置为白色 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  border-radius: 8px; /* 添加圆角，半径为8px */
+}
+
+.toanchor-item {
+  display: flex; 
+  flex-direction: row; /* 子元素水平排列，即从左到右 */
+  justify-content: flex-start; /* 子元素在容器左侧对齐 */
+  margin-left: -1em;
+  padding-right: 1em;
+  gap: 10px;
+}
+
+.toanchor-item-body::-webkit-scrollbar {
+  display: none; /* 隐藏滚动条 */
+}
+
+.anchor-date-column {
+  text-align: right; /* 靠右对齐 */
+  font-size: 0.8em; /* 字号大小 */
+  opacity: 0.6;
+  display: inline;
+  margin-left: 20px;
+}

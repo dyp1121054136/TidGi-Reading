@@ -1,0 +1,6 @@
+caption: prefix
+description: filter the input titles by how they start
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/prefix
+
+<<select-input-template>>

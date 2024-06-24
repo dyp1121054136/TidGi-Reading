@@ -1,0 +1,5 @@
+filter: [all[current]tag[Course]]
+tags: $:/tags/TagHandler
+title: $:/xp/tag-handler/items/course
+
+$:/courses-macros

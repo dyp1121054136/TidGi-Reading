@@ -1,0 +1,7 @@
+caption: {{!!filter}}
+description: 含有字段……（不管值是否为空）
+filter: [all[shadows+tiddlers]has:field[]]
+tags: $:/tags/Filter/AggregationView
+title: $:/aggregation/QuickInput/Filters/all+has:field
+
+{{!!filter}}

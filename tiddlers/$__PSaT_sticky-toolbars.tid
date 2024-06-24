@@ -1,0 +1,31 @@
+created: 20211112005347535
+creator: visitor
+filename: sticky-toolbars
+modified: 20240322190959826
+modifier: visitor
+package-filter: [prefix[$:/PSaT/sticky-toolbars]]
+psat-project: sticky-toolbars
+tags: 粘性编辑器工具栏
+title: $:/PSaT/sticky-toolbars
+
+<table>
+<tr><th>Set zero or more tool bar items on footer</th><th>Drag and drop reorder</th></tr>
+<tr><td>
+   <$set name=button-count value={{{ [all[shadows+tiddlers]tag[$:/tags/ViewToolbar]count[]] }}}>
+      <$select tiddler="$:/PSaT/sticky-toolbars/Footer" field=list multiple size=<<button-count>> >
+      <$list filter='[all[shadows+tiddlers]tag[$:/tags/ViewToolbar]sort[]]'>
+         <option value=<<currentTiddler>>>{{!!caption}}</option>
+      </$list>
+   </$select>
+   </$set>
+</td>
+<td><<list-links-draggable tiddler:"$:/PSaT/sticky-toolbars/Footer" field:"list">></td>
+</tr>
+</table>
+
+```
+
+   border: 1px solid;
+   box-shadow: 1px 2px #888888;
+```
+

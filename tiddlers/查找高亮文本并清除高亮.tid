@@ -1,0 +1,22 @@
+created: 20240506181905232
+modified: 20240506182735800
+tags: 正则表达式 正则表达式查找替换
+title: 查找高亮文本并清除高亮
+
+查找高亮文本并清除所有高亮：
+
+查找
+<<code src:"""@@\.tg (.*?)\s*@@
+""" language:"tw">>
+替换
+<<code src:"""$1
+""" language:"tw">>
+
+查找高亮文本并清除带特定id的高亮：
+
+查找
+<<code src:"""@@\.tg (.*?)\s*@@<<result 1>>
+""" language:"tw">>
+替换
+<<code src:"""$1<<result 1>>
+""" language:"tw">>

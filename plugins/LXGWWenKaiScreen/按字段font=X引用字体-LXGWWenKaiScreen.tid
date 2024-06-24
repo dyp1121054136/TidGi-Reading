@@ -1,0 +1,10 @@
+created: 20240129063846677
+modified: 20240624070157911
+tags: 字体 $:/tags/Stylesheet
+title: 按字段font=X引用字体-LXGWWenKaiScreen
+
+<$list filter="[font[X]]"> 
+[data-tiddler-title^="<$view field=title/>"] .tc-tiddler-body {
+  font-family: "LXGWWenKaiScreen";
+}
+</$list>

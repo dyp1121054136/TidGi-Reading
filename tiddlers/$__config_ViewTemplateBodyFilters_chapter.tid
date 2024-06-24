@@ -1,0 +1,8 @@
+created: 20230119131212085
+list-before: 
+modified: 20240328050721497
+tags: $:/tags/ViewTemplateBodyFilter 小说古剑奇谭1排版 级联
+title: $:/config/ViewTemplateBodyFilters/chapter
+
+[field:chapter[1]then[$:/custom/ui/ViewTemplate/body/chapter1]]
+[field:chapter[2]then[$:/custom/ui/ViewTemplate/body/chapter2]]

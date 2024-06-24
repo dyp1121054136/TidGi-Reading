@@ -1,0 +1,28 @@
+caption: {{$:/core/images/blank-line}} 每段空一行
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[application/x-tiddler-dictionary]]
+created: 20240311232118077
+description: 每段空一行
+icon: $:/core/images/blank-line
+modified: 20240316103213246
+shortcuts: ((blank-line))
+tags: $:/tags/EditorToolbar 按钮 空行 首行缩进和空行
+title: $:/core/ui/Buttons/blank-line
+
+\define temp() $:/temp/blank-line
+\define blank-line() \n
+
+<$let>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="save-all"
+	tiddler=<<temp>>
+/>
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text={{{ [<temp>get[text]search-replace:g:regexp<blank-line>,[
+
+]]}}}
+/>
+<$action-deletetiddler $tiddler=<<temp>> />
+</$let>

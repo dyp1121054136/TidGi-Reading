@@ -1,0 +1,102 @@
+created: 20180408035534116
+creator: jd
+modified: 20231231094841169
+modifier: jd
+tags: $:/tags/Macro 宏
+title: $:/jd/macros/paragraphs
+
+\define stateEditTid() $:/state/edit/$(parItem)$
+
+\define tempTid() $:/temp/edit/$(parItem)$
+
+\define createTemp() <$action-setfield $tiddler="$(tempTid)$" text={{$(parItem)$}}/>
+
+\define saveTemp() <$action-setfield $tiddler="$(parItem)$" text={{$(tempTid)$}}/>
+
+\define deleteStateTemp() 
+<$action-deletetiddler $tiddler=<<tempTid>>/>
+<$action-deletetiddler $tiddler=<<stateEditTid>>/>
+\end
+
+\define paragraphs(filter titleclass:"" buttonsetclass:"" buttonclass:"tc-btn-invisible" textareaclass:"tc-edit-texteditor") 
+
+<$list filter="$filter$" variable="parItem">
+
+<div class="paragraph-wrapper">
+
+<$reveal type="match" state=<<stateEditTid>> text="yes" tag="div" class="$buttonsetclass$">
+<$button class="$buttonclass$" tooltip="discard changes">
+<<deleteStateTemp>>
+{{$:/core/images/close-button}}
+</$button>
+<$button class="$buttonclass$" tooltip="commit changes">
+<<saveTemp>>
+<<deleteStateTemp>>
+{{$:/core/images/done-button}}
+</$button>
+</$reveal>
+<$reveal type="nomatch" state=<<stateEditTid>> text="yes" tag="div" class="$buttonsetclass$">
+<$button class="$buttonclass$" set=<<stateEditTid>> setTo="yes" tooltip="edit">
+<<createTemp>>
+{{$:/core/images/edit-button}}
+</$button>
+</$reveal>
+
+<div class="$titleclass$">
+
+<h3>
+<$transclude tiddler=<<parItem>> field="caption">
+<$view tiddler=<<parItem>> field="title"/>
+</$transclude>
+</h3>
+
+</div>
+
+<$reveal type="match" state=<<stateEditTid>> text="yes">
+
+<$edit-text tiddler=<<tempTid>> class="$textareaclass$"/>
+
+</$reveal>
+
+<$reveal type="nomatch" state=<<stateEditTid>> text="yes">
+
+<div class="paragraph-body">
+
+<$transclude tiddler=<<parItem>>/>
+
+</div>
+
+</$reveal>
+
+</div>
+
+</$list>
+<style>
+.paragraph-wrapper .notitle { display: none; }
+.paragraph-wrapper { position: relative; }
+.paragraph-wrapper .float-left {
+    position: absolute;
+    left: -24px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 400ms;
+    font-size: 20px;
+}
+.paragraph-wrapper:hover .float-left { opacity: 1; }
+
+/* 编辑按钮在右侧 */
+.paragraph-wrapper .float-right {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 400ms;
+    font-size: 20px;
+}
+.paragraph-wrapper:hover .float-right { opacity: 1; }
+</style>
+\end

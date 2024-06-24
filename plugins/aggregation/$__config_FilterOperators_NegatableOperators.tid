@@ -1,0 +1,29 @@
+caption: Negatable Operators
+title: $:/config/FilterOperators/NegatableOperators
+
+compare
+contains
+days
+enlist
+field
+filter
+has
+haschanged
+is
+limit
+list
+nsort
+nsortcs
+prefix
+range
+regexp
+search
+sort
+sortan
+sortcs
+sortsub
+subfilter
+suffix
+tag
+title
+untagged

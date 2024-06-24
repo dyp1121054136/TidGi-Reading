@@ -1,0 +1,2 @@
+list: $:/FilterBuilder/Buttons/show-settings $:/FilterBuilder/Buttons/show-history $:/FilterBuilder/Buttons/callout-query $:/FilterBuilder/Buttons/callout-advsearch $:/FilterBuilder/Buttons/send-to-sidebar-advsearch $:/FilterBuilder/Buttons/callout-commander $:/FilterBuilder/Buttons/callout-batchmodification $:/FilterBuilder/Buttons/callout-filtersearch $:/FilterBuilder/Buttons/open-all $:/FilterBuilder/Buttons/use-filter $:/FilterBuilder/Buttons/copy-to-clipboard $:/FilterBuilder/Buttons/run-filter
+title: $:/tags/FilterBuilder/Buttons

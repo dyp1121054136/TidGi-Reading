@@ -1,0 +1,110 @@
+created: 20240430121259542
+modified: 20240503034806779
+tags: 样式 $:/tags/Stylesheet 正则表达式查找替换
+title: 查找替换弹窗样式css
+type: text/vnd.tiddlywiki
+
+/* 定义大屏宽度 */
+.large-screen {
+  width: 1000px;
+}
+
+/* 定义小屏宽度 */
+.small-screen {
+  width: 350px;
+}
+
+/* 媒体查询，大屏 */
+@media (min-width: 768px) {
+.search-replace-body {
+  max-width: 350px; /* 最大宽度 */
+  max-height: 80vh; /* 最大高度 */
+  }
+}
+
+/* 媒体查询，小屏 */
+@media (max-width: 767px) {
+.search-replace-body {
+  max-width: 65vw; /* 最大宽度 */
+  max-height: 50vh; /* 最大高度 */
+  }
+}
+
+.search-replace-body {
+  padding: 10px 20px;
+  background-color: <<colour tiddler-background>>;
+  border-radius: 8px;  /* 圆角 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影 */
+  font-size: 16px; /* 字体大小 */
+  overflow-y: auto;
+  -webkit-tap-highlight-color: transparent; /* 去除移动端点击高亮 */
+}
+
+.search-replace-body::-webkit-scrollbar {
+  display: none;
+}
+
+/* 下拉菜单悬停背景颜色 */
+.search-replace-body .tc-drop-down a:hover {
+  background-color: <<colour primary>>; /* 鼠标悬停时的背景颜色 */
+}
+
+.search-replace-textarea {
+  resize: none; /* 防止用户调整大小 */
+  /* 设置边框样式 */
+  border: 1px solid #ddd; /* 细边框，颜色浅灰 */
+  border-radius: 3px; /* 小的边框圆角 */
+  margin-bottom: 5px;
+
+  /* 设置尺寸 */
+  width: 100%; 
+  min-height: 30px;
+
+  /* 设置内边距 */
+  padding: 8px;
+
+  /* 调整背景和文字颜色 */
+  background-color: #fff; /* 背景颜色为白色 */
+  color: #333; /* 文字颜色为深灰 */
+
+  /* 鼠标悬停和获取焦点时的样式 */
+  &:hover, &:focus {
+    border-color: #bcbcbc; /* 边框颜色稍微加深 */
+    outline: none; /* 去除轮廓线，保持简洁 */
+  }
+}
+
+.search-replace-btn-all {
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.search-replace-btn {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: none;
+  border: 1px solid #000;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 15px; /* 调整字体大小 */
+  padding: 3px 6px; /* 增加内边距，让按钮更舒适 */
+  height: auto; /* 根据内容自动调整高度 */
+  line-height: 1; /* 调整行高，与字体大小保持一致 */
+  display: inline-block;
+  cursor: pointer;
+}
+
+.search-replace-btn:hover {
+  opacity: 1;
+}
+
+.search-replace-checkbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}

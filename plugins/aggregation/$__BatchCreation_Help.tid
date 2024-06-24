@@ -1,0 +1,19 @@
+title: $:/BatchCreation/Help
+
+「批量创建」中使用模板一次创建出多个条目：
+
+<div style="line-height: 1.75;">
+
+|^!Basetitle |基础标题，推荐格式为 `<关键词>/<时间戳>/`。<br>新条目标题格式为「基础标题」加上「编号」。<br>点击标题链接查看配置文件。 |
+|^!Template |使用模板批量创建。<br><<.icon $:/core/images/new-button>> 新建按钮：新建一个模板条目（前缀为 `$:/BatchCreation/Templates/`），配置标签、文本、以及字段。<br><<.icon $:/core/images/edit-button>> 编辑按钮：编辑选中的模板条目。<br>点击标题链接浏览所有模板条目。 |
+|^!Number |输入需要创建的条目数量。一次最多可以创建 999 个条目。 |
+
+目前，批量创建的主要用途是制作表格。所以，「批量创建」后会将「表格的宏调用」复制到剪贴板。
+
+点击 ''<<.icon $:/xp/images/history>> 历史记录按钮'' 查看历史记录。
+
+* 此处，会记录下每次「批量创建」的信息：「ID」以及「表格的宏调用」。
+* 每条记录的「宏调用」下面，会列出使用了该「宏调用」的条目。
+* 使用 <<.icon $:/core/images/delete-button>> delete 按钮删除记录（同时删除表格，以及条目中的宏调用）。
+
+</div>

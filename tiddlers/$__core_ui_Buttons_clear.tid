@@ -1,0 +1,15 @@
+caption: {{$:/core/images/clear}} 清空
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]] [<targetTiddler>type[application/x-tiddler-dictionary]]
+created: 20240316051826854
+description: 清空当前条目内容
+icon: $:/core/images/clear
+modified: 20240316052124423
+shortcuts: ((clear))
+tags: $:/tags/EditorToolbar 清空 按钮
+title: $:/core/ui/Buttons/clear
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="replace-all"
+	text=""
+/>

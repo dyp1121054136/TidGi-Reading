@@ -1,0 +1,261 @@
+code-body: yes
+tags: $:/tags/Macro/Aggregation
+title: $:/aggregation/macros/general
+
+\define lingo-base() $:/language/Search/
+
+\define configTiddler() $:/config/xp/aggregation/SearchScope
+
+\define cancel-search-actions() <$action-deletetiddler $filter=<<__storeTitle__>>/>
+
+\define aggr-has-tids()
+[tag<aggregationTag>!has[draft.of]limit[1]]
+\end
+
+\define aggr-category()
+[all[shadows+tiddlers]prefix<categoryPrefix>!has[draft.of]has[text]sort[]]
+\end
+
+\define filter-state-exists() [<storeTitle>!is[missing]get[text]!is[blank]] [<filterState>!is[missing]has[list]] +[limit[1]]
+
+\define selectSearchScope(actions)
+<$select tiddler=<<configTiddler>> tooltip="Choosing the Search Scope" class="xp-aggregation-select" actions=<<__actions__>>>
+<$list filter="[all[shadows+tiddlers]tag[$:/tags/Filter/Aggregation]!has[draft.of]]">
+<option value={{!!filter}}><$view field="caption"/></option>
+</$list>
+</$select>
+\end
+
+\define alltagsfilter()
+<$vars L="tag[" R="]" lb="[" rb={{{ [<configTiddler>get[text]removeprefix[[]] }}}>
+<$set filter="[list<filterState>addprefix<L>addsuffix<R>]+[join[]addprefix<lb>addsuffix<rb>addsuffix<timeRun>addsuffix<fieldRun>addsuffix<valueRun>addsuffix<sortRun>]" name="alltags" select=0>
+<$text text=<<alltags>>/>
+</$set>
+</$vars>
+\end
+
+\define aggrFilterCategory(title,configTiddler)
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted"><$link to=<<__configTiddler__>> overrideClass="tc-muted">$title$</$link></span></td>
+<td><span class="xp-aggrfilter-category-item"><$macrocall $name="aggrfilteritemlist" configTiddler=<<__configTiddler__>>/></span></td>
+</tr>
+\end
+
+\define aggrfilteritemlist(configTiddler)
+<$list filter="[enlist{$configTiddler$}]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+\end
+
+\define aggrfilteritem(item:"")
+<$list filter="[<__item__>is[tag]]" variable="ignore">
+<$set name="stateCode" filter="[tag<__item__>tags[]match<aggregationTag>]" value="1" emptyValue="0">
+<$reveal default=<<stateCode>> type="match" text="1">
+<$checkbox tiddler=<<qualify """$:/temp/$item$""">> field="status" checked="selected" checkactions=<<checkactions """$item$""">> uncheckactions=<<uncheckactions """$item$""">> default="closed"> <$text text=<<__item__>>/></$checkbox>
+</$reveal>
+<$reveal default=<<stateCode>> type="match" text="0">
+<$checkbox disabled="yes"> <span class="tc-muted"><$text text=<<__item__>>/></span></$checkbox>
+</$reveal>
+</$set>
+</$list>
+<$list filter="[<__item__>!is[tag]]" variable="ignore">
+<$checkbox disabled="yes"> <span class="tc-muted"><$text text=<<__item__>>/></span></$checkbox>
+</$list>
+\end
+
+\define checkactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="[[$item$]]"/>
+<$action-listops $tiddler=<<filterState>> $field="checktiddler" $subfilter={{{ [<qualify """$:/temp/$item$""">format:titlelist[]] }}}/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define uncheckactions(item:"")
+<$action-listops $tiddler=<<filterState>> $subfilter="-[[$item$]]"/>
+<$list filter="[list<filterState>!is[tag]]" variable="missingItem">
+<$action-listops $tiddler=<<filterState>> $subfilter="-[<missingItem>]"/>
+</$list>
+\end
+
+\define listPresetCtags()
+<$list filter="[all[shadows+tiddlers]prefix<categoryPrefix>!has[draft.of]has[text]]" variable="listItem">
+<$list filter="[<listItem>get[text]]"/>
+</$list>
+\end
+
+\define listTagsInUse()
+<$list filter="[tag<aggregationTag>tags[]] -[<aggregationTag>] +[format:titlelist[]]" variable="listItem">
+<$text text=<<listItem>>/>
+</$list>
+\end
+
+\define input-accept-actions-date() <$action-setfield $tiddler=<<filterState>> filter={{{ [<dateTiddler>get[text]addprefix<pt>addsuffix<st>] }}}/>
+
+\define input-cancel-actions-date() <$action-deletefield $tiddler=<<dateTiddler>> text/>
+
+\define filtered-by-tag()
+Filtered by Tag: <<aggrbtn-filter-deselect>>
+
+<$wikify text=<<listPresetCtags>> name="presetCtags">
+<$wikify text=<<listTagsInUse>> name="tagsInUse">
+<div class="xp-aggrfilter-category">
+<table>
+<tbody>
+<$list filter=<<aggr-category>> variable="listItem">
+<$macrocall $name="aggrFilterCategory" title={{{ [<listItem>split[/]last[1]sentencecase[]] }}} configTiddler=<<listItem>>/>
+</$list>
+<$list filter="[enlist<tagsInUse>] -[enlist<presetCtags>] +[limit[1]]" variable="ignore">
+<tr align="left">
+<td><span class="xp-aggrfilter-category-title tc-muted">Others</span></td>
+<td>
+<span class="xp-aggrfilter-category-item">
+<$list filter="[enlist<tagsInUse>sort[]] -[enlist<presetCtags>]" variable="currentItem">
+<$macrocall $name="aggrfilteritem" item=<<currentItem>>/>
+</$list>
+</span>
+</td>
+</tr>
+</$list>
+</tbody>
+</table>
+</div>
+</$wikify>
+</$wikify>
+\end
+
+\define filtered-by-time()
+<td>
+<span class="xp-aggrfilter-category-title tc-muted"> Time </span>&#32;
+<$select
+  tiddler=<<filterState>>
+  field="filter"
+  class="xp-aggregation-select"
+  actions="<$list filter='[<filterState>search:filter[regexp:created]]'><$action-setfield $tiddler=<<dateTiddler>> status='show'/></$list>">
+  <option value=""> All</option>
+  <option value="+[days:created[-1]]"> Past 24 hours</option>
+  <option value="+[days:created[-7]]"> Past week</option>
+  <option value="+[days:created[-30]]"> Past month</option>
+  <option value="+[days:created[-365]]"> Past year</option>
+  <option value="+[regexp:created[]]"> Enter a date</option>
+</$select>
+</td>
+<$list filter="[<dateTiddler>is[tiddler]]">
+<td>
+<span class="xp-aggrfilter-category-title tc-muted"> Date </span>&#32;
+<$vars pt=" +[regexp:created[^" st="]]">
+<$macrocall
+  $name="keyboard-driven-input" 
+  tiddler=<<dateTiddler>>
+  type="search"
+  tag="input"
+  size=7
+  focus="no"
+  inputCancelActions=<<input-cancel-actions-date>>
+  inputAcceptActions=<<input-accept-actions-date>>
+/>
+&#32;
+<$button> Enter
+<<input-accept-actions-date>>
+</$button>
+</$vars>
+</td>
+</$list>
+\end
+
+\define aggrTagbar()
+<div class="box-list-tags">
+<$list filter="[<aggregationTag>]">
+<$transclude tiddler="$:/core/ui/TagTemplate"/>
+</$list>
+<$list filter="[tag<aggregationTag>tags[]] -[<aggregationTag>] +[limit[1]]">
+<span class="xp-tag-divider"></span>
+</$list>
+<$list filter="[tag<aggregationTag>tags[]sort[]] -[<aggregationTag>]">
+<$transclude tiddler="$:/xp/ui/TagTemplate/aggregation"/>
+</$list>
+</div>
+\end
+
+\define starTiddlerButton()
+\whitespace trim
+<$list filter="[all[current]!tag[Star]]">
+<$button tooltip="Star" class="tc-btn-invisible">
+<$action-listops $tags="Star"/>
+{{$:/xp/images/star}}
+</$button>
+</$list>
+<$list filter="[all[current]tag[Star]]">
+<$button tooltip="Unstar" class="tc-btn-invisible">
+<$action-listops $tags="-Star"/>
+{{$:/core/images/star-filled}}
+</$button>
+</$list>
+\end
+
+\define openTiddlerButton()
+\whitespace trim
+<$button tooltip="Open this tiddler" class=<<tv-config-toolbar-class>>>
+<$action-navigate/>
+<$list filter="[<tv-config-toolbar-icons>prefix[yes]]">
+{{$:/core/images/link}}
+</$list>
+<$list filter="[<tv-config-toolbar-text>prefix[yes]]">
+<span class="tc-btn-text">open</span>
+</$list>
+</$button>
+\end
+
+
+\define pagination-button() 
+\whitespace trim
+<span class="tc-tiny-gap-left" style="font-size:.8em;">
+<$reveal state=<<pageTiddler>> type="nomatch" text="yes">
+<$button set=<<pageTiddler>> setTo="yes" tooltip="Show pagination" class="tc-btn-invisible tc-btn-mini">{{$:/core/images/chevron-down}}</$button>
+</$reveal>
+<$reveal state=<<pageTiddler>> type="match" text="yes">
+<$button set=<<pageTiddler>> setTo="no" tooltip="Hide pagination" class="tc-btn-invisible tc-btn-mini">{{$:/core/images/chevron-up}}</$button>
+</$reveal>
+</span>
+\end
+
+\define prev-button()
+<!-- create previous page button --->
+<$list filter="[<page-number>compare:number:lt[2]then[yes]else[no]]" variable=state>
+<$button disabled=<<state>> class="shiraz-dtable-page-prev tc-btn-invisible">
+{{$:/core/images/chevron-left}}&nbsp;<strong>Prev</strong>
+<$action-listops $tiddler=<<pageStateTiddler>> $field=text $subfilter="+[subtract[1]] ~[[1]]"/>
+</$button>
+</$list>
+\end
+
+\define next-button()
+<!-- create next page button --->
+<$list filter="[<high>compare:number:gteq<total-entries>then[yes]else[no]]" variable=state> 
+<$button disabled=<<state>> class="shiraz-dtable-page-next tc-btn-invisible">
+<strong>Next</strong>&nbsp;{{$:/core/images/chevron-right}} 
+<$action-listops $tiddler=<<pageStateTiddler>> $field=text $subfilter="+[add[1]] ~[[2]]"/>
+</$button>
+</$list>
+\end
+
+\define limit-entries(default:"15")
+<!-- set number of entries per page -->
+<$select tiddler=<<entryPerPageStateTiddler>> default="$default$" actions="""<$action-setfield $tiddler=<<pageStateTiddler>> text=1/>""">
+<$list filter='5 10 15 20 25' variable=num>
+<option value=<<num>>>Limit <$text text=<<num>>/></option>
+</$list>
+<option value=<<total-entries>> >Show all</option>
+</$select>
+\end
+
+\define show-pagination()
+\whitespace notrim
+<!-- $:/plugins/kookma/shiraz/macros/dtables/table-dynamic -->
+<$reveal default=<<pagination>> type="match" text="yes" tag="div" class="shiraz-dtable-page-footer">
+<hr>
+<<prev-button>>
+Displaying <$text text={{{[<low>add[1]]}}}/> through <$text text={{{ [<high>compare:number:lt<total-entries>then<high>else<total-entries>] }}}/> of <<total-entries>> Results | <<limit-entries>>
+<<next-button>>
+</$reveal>
+\end

@@ -1,0 +1,27 @@
+created: 20240502033958435
+modified: 20240509133126942
+tags: 正则表达式查找替换 按钮
+title: 预置片段按钮
+
+\whitespace trim
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/stamp-btn]] }}} name="open-stamp-btn">
+<span class="search-replace-btn">
+<$button popup=<<open-stamp-btn>> class="tc-btn-invisible" tooltip="选择输入预置片段">
+预置
+</$button>
+</span>
+<$reveal type="popup" state=<<open-stamp-btn>> position="aboveright" tag="div" class="tc-popup-keep">
+
+<div class="search-replace-body">
+<$transclude tiddler="预置片段按钮弹出页面"/>
+</div>
+
+</$reveal>
+</$set>
+
+<!-- 
+弹出位置
+belowleft
+aboveright
+ -->

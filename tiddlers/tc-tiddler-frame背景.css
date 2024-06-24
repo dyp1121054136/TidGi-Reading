@@ -1,0 +1,12 @@
+.tc-tiddler-frame { 
+  border-radius: 10px;
+  background-color: white;
+}
+
+.tc-tiddler-edit-frame .tc-editor-toolbar {
+  background: #E3E7CB;
+}
+
+.tc-tiddler-title {
+  background-color: white; /* 与tc-tiddler-frame一致 */
+}

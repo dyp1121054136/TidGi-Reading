@@ -1,0 +1,173 @@
+caption: Text
+color: #bbb
+icon: $:/xp/images/batch-modification
+tags: $:/tags/BatchModification
+title: $:/BatchModification/Text
+
+\import [all[shadows+tiddlers]tag[$:/tags/Commander/Macro]] $:/BatchOperation/macros
+\whitespace trim
+
+\define bmTextSelectType()
+<$select tiddler='$:/config/BatchModification/Text' default='prefix'>
+<option value='prefix'>prefix</option>
+<option value='suffix'>suffix</option>
+<option value='replace'>replace</option>
+</$select>
+\end
+
+\define bmTextOpsPrefix()
+\whitespace trim
+<$edit-text
+  tiddler="$:/temp/batch-modification/text"
+  class="cmd-txt-area batch-textarea"
+  default=""
+  placeholder="prefix..."
+/>
+<$vars inputText={{$:/temp/batch-modification/text}}>
+<$button class="fb-btn btn-modification"> Add
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]addprefix<inputText>] }}}
+	isText={{{ [<target>get[text]prefix<inputText>then[yes]] }}}
+	isBlank={{{ [<target>get[text]trim[]] }}}>
+<$reveal type="nomatch" text=<<isText>> default="yes">
+  <$reveal type="nomatch" text=<<isBlank>> default="">
+  <$action-setfield $tiddler=<<target>> text=<<newText>>/>
+  </$reveal>
+  <$reveal type="match" text=<<isBlank>> default="">
+  <$action-setfield $tiddler=<<target>> text=<<inputText>>/>
+  </$reveal>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Prefix added"/>
+</$reveal>
+</$vars>
+</$list>
+</$list>
+</$button>
+<i class='tc-tiny-gap-left'/>
+<$button class="fb-btn btn-modification"> Remove
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]removeprefix<inputText>] }}}
+	isText={{{ [<target>get[text]prefix<inputText>then[yes]] }}}>
+<$reveal type="match" text=<<isText>> default="yes">
+<$action-setfield $tiddler=<<target>> text=<<newText>>/>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Prefix removed"/>
+</$reveal>
+</$vars>
+</$list>
+</$list>
+</$button>
+</$vars>
+\end
+
+\define bmTextOpsSuffix()
+\whitespace trim
+<$edit-text
+  tiddler="$:/temp/batch-modification/text"
+  class="cmd-txt-area batch-textarea"
+  default=""
+  placeholder="suffix..."
+/>
+<$vars inputText={{$:/temp/batch-modification/text}}>
+<$button class="fb-btn btn-modification"> Add
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]addsuffix<inputText>] }}}
+	isText={{{ [<target>get[text]suffix<inputText>then[yes]] }}}
+	isBlank={{{ [<target>get[text]trim[]] }}}>
+<$reveal type="nomatch" text=<<isText>> default="yes">
+  <$reveal type="nomatch" text=<<isBlank>> default="">
+  <$action-setfield $tiddler=<<target>> text=<<newText>>/>
+  </$reveal>
+  <$reveal type="match" text=<<textStatus>> default="">
+  <$action-setfield $tiddler=<<target>> text=<<inputText>>/>
+  </$reveal>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Suffix added"/>
+</$reveal>
+</$vars>
+</$list>
+</$list>
+</$button>
+<i class='tc-tiny-gap-left'/>
+<$button class="fb-btn btn-modification"> Remove
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]removesuffix<inputText>] }}}
+	isText={{{ [<target>get[text]suffix<inputText>then[yes]] }}}>
+<$reveal type="match" text=<<isText>> default="yes">
+<$action-setfield $tiddler=<<target>> text=<<newText>>/>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Suffix removed"/>
+</$reveal>
+</$vars>
+</$list>
+</$list>
+</$button>
+</$vars>
+\end
+
+\define bmTextOpsReplace()
+\whitespace trim
+<$edit-text
+  tiddler="$:/temp/batch-modification/text"
+  class="cmd-txt-area batch-textarea tc-edit-texteditor tc-edit-texteditor-body"
+  default=""
+  placeholder="old"
+/>
+<$edit-text
+  tiddler="$:/temp/batch-modification/text2"
+  class="cmd-txt-area batch-textarea tc-edit-texteditor tc-edit-texteditor-body"
+  default=""
+  placeholder="new"
+/>
+<$vars inputText={{$:/temp/batch-modification/text}} inputText2={{$:/temp/batch-modification/text2}}>
+<$button class="fb-btn btn-modification"> Replace-prefix
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<$list filter="[<inputText2>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]removeprefix<inputText>addprefix<inputText2>] }}}
+	isText={{{ [<target>get[text]prefix<inputText>then[yes]] }}}>
+<$reveal type="match" text=<<isText>> default="yes">
+<$action-setfield $tiddler=<<target>> text=<<newText>>/>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Prefix replaced"/>
+</$reveal>
+</$vars>
+</$list>
+</$list></$list>
+</$button>
+<i class='tc-tiny-gap-left'/>
+<$button class="fb-btn btn-modification"> Replace-suffix
+<$list filter="[<inputText>trim[]!is[blank]]" variable="ignore">
+<$list filter="[<inputText2>trim[]!is[blank]]" variable="ignore">
+<<create-log-tiddler "Text Operation">>
+<$list filter={{$:/temp/batch-modification/filter}} variable="target">
+<$vars newText={{{ [<target>get[text]removesuffix<inputText>addsuffix<inputText2>] }}}
+	isText={{{ [<target>get[text]suffix<inputText>then[yes]] }}}>
+<$reveal type="match" text=<<isText>> default="yes">
+<$action-setfield $tiddler=<<target>> text=<<newText>>/>
+<$action-setfield $tiddler={{$:/state/commander/log-tiddler}} $index=<<target>> $value="Suffix replaced"/>
+</$reveal>
+</$vars>
+</$list>
+</$list></$list>
+</$button>
+</$vars>
+\end
+
+
+''Operation type:'' &#32; <<bmTextSelectType>>
+
+<$reveal type="match" state="$:/config/BatchModification/Text" text="prefix" default="prefix">
+<<bmTextOpsPrefix>>
+</$reveal>
+<$reveal type="match" state="$:/config/BatchModification/Text" text="suffix" default="prefix">
+<<bmTextOpsSuffix>>
+</$reveal>
+<$reveal type="match" state="$:/config/BatchModification/Text" text="replace" default="prefix">
+<<bmTextOpsReplace>>
+</$reveal>
+<<boLogButton>>

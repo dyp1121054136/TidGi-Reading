@@ -1,0 +1,5 @@
+filter: [all[current]tag[Book]]
+tags: $:/tags/TagHandler
+title: $:/xp/tag-handler/items/book
+
+$:/bookshelf-macros

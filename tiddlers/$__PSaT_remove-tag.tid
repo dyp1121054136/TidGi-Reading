@@ -1,0 +1,17 @@
+caption: {{$:/core/images/close-button}} 移除标签
+created: 20220504073709620
+creator: simplify
+description: 移除当前条目该标签
+list-before: 
+modified: 20240415072807433
+modifier: Designer
+tags: $:/tags/TagDropdown 标签下拉菜单
+title: $:/PSaT/remove-tag
+
+<$list filter="[<storyTiddler>tag<currentTiddler>then<currentTiddler>]" variable=currentTag>
+<$tiddler tiddler=<<storyTiddler>> ><$fieldmangler>
+<$button tooltip="移除该标签" class="tc-btn-invisible">
+      <$action-sendmessage $message="tm-remove-tag" $param=<<currentTag>>/>
+     {{$:/core/images/close-button}} 移除该标签
+</$button>
+</$fieldmangler><$tiddler>

@@ -1,0 +1,13 @@
+{
+    "created": "20240511082014441",
+    "title": "$:/plugins/dyp/LXGWWenKaiScreen",
+    "tags": "",
+    "modified": "20240624070310637",
+    "version": "0.0.3",
+    "name": "Font",
+    "description": "LXGWWenKaiScreen",
+    "author": "dyp",
+    "list": "readme usage",
+    "packaged-by": "Gatha on 24th 六月 2024, 15:03:13",
+    "plugin-type": "plugin"
+}

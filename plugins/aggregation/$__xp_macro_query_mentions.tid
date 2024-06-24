@@ -1,0 +1,73 @@
+code-body: yes
+tags: $:/tags/Macro $:/tags/Macro/Query
+title: $:/xp/macro/query/mentions
+
+<!-- QUERY MENTIONS -->
+\define qm(A)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text[$A$]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query mentions: `$A$`</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query mentions: `$A$`</b><<query-empty>>"""
+/>
+\end
+
+\define wikitext-list-qm+(A B)
+<$list filter="[!is[system]search:text<__A__>]" variable="target">
+<$list filter="[!is[system]search:text<__B__>match<target>]" variable="ignore">
+<$text text={{{ [<target>format:titlelist[]] }}}/>
+</$list></$list>
+\end
+
+\define qm+(A B)
+<$wikify text=<<wikitext-list-qm+>> name="list-qm+">
+<$macrocall 
+  $name="table-dynamic"
+  filter=<<list-qm+>>
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query mentions: `$A$` and `$B$`</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query mentions: `$A$` and `$B$`</b><<query-empty>>"""
+/>
+</$wikify>
+\end
+
+\define qm.(A B)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text[$A$]] [!is[system]search:text[$B$]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query mentions: `$A$` or `$B$`</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query mentions: `$A$` or `$B$`</b><<query-empty>>"""
+/>
+\end
+
+\define qm-(A X)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text[$A$]] -[!is[system]search:text[$X$]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query mentions: `$A$` not `$X$`</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query mentions: `$A$` not `$X$`</b><<query-empty>>"""
+/>
+\end
+
+\define qm-link(A X)
+<$macrocall 
+  $name="table-dynamic"
+  filter="[!is[system]search:text[$A$]] -[[$X$]backlinks[]]"
+  fields=<<query-dtable-fields>>
+  class=<<query-dtable-class>>
+  caption="""<b>Query mentions: `$A$` not [[$X$]]</b>"""
+  editButton=<<query-dtable-editButton>>
+  emptyMessage="""<b>Query mentions: `$A$` not [[$X$]]</b><<query-empty>>"""
+/>
+\end

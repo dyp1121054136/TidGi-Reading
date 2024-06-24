@@ -1,0 +1,8 @@
+code-body: yes
+tags: 
+title: $:/plugins/kookma/section/templates/tiddler-header
+type: text/vnd.tiddlywiki
+
+<footer class="se-tiddler-header">
+<span><$link/></span><span>Modified on: <$view field=modified format=date template="DDth MMM YYYY"/></span>
+</footer>

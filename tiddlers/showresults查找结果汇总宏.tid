@@ -1,0 +1,32 @@
+created: 20240501130340196
+modified: 20240506131452433
+tags: $:/tags/Macro 查找结果汇总 正则表达式查找替换
+title: showresults查找结果汇总宏
+
+\define showresults(filter:"[<currentTiddler>]", title:"Empty" class:"", emptyMessage:"")
+<$vars resultDelimiter="<<result ">
+<$list filter="[subfilter<__filter__>search:text:literal<resultDelimiter>limit[1]]" variable=null emptyMessage="" >
+<$reveal tag="div" type="nomatch" default="Empty" text=<<__title__>> >
+<h4>$title$</h4>
+</$reveal>
+<ol class="$class$">
+<$list filter=<<__filter__>> >
+<$macrocall $name="find" 
+   text={{!!text}}
+   begin="<<result "
+   end=">>"
+   output="output-result"
+/>
+</$list>
+</ol>
+</$list>
+</$vars>
+\end
+
+\define output-result(p)
+<span class="result-item">
+<span class="aresult"><<aresult $p$>></span>
+<span class="aresult"><<editresult $p$>></span>
+<span class="cresult"><<cresult $p$>></span>
+</span>
+\end

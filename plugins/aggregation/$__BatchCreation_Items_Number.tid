@@ -1,0 +1,10 @@
+caption: Number
+description: Number of tiddlers created
+tags: $:/tags/BatchCreation
+title: $:/BatchCreation/Items/Number
+
+<td>''{{!!caption}}'' </td>
+<td class="tc-edit-fields batch-textbox">
+<$macrocall $name="keyboard-driven-input" tiddler=<<editTid>>
+    type="number" tag="input" focus="no" placeholder="input" class="tc-edit-texteditor"/>
+</td>

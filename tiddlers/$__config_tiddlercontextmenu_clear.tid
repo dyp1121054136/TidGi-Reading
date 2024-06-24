@@ -1,0 +1,9 @@
+caption: 清除样式
+created: 20220930122123475
+icon: $:/core/images/erase
+modified: 20240322192848120
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/clear
+tm-message: tm-clear
+
+hide

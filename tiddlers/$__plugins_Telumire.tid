@@ -1,0 +1,12 @@
+caption: PLM
+created: 20230502024038795
+modified: 20231207172027963
+tags: $:/tags/PluginLibrary
+title: $:/plugins/Telumire
+url: https://www.telumire.be/PLM/tiddlers/library.html
+
+>.$:/core/images/warning Backup before installing!
+
+{{$:/plugins/Telumire/PLM/plugins}}
+
+>.$:/core/images/tip After installation, you can compress your plugins with [[uglify|https://flibbles.github.io/tw5-uglify/uglified.html]]

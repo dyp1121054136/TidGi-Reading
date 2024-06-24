@@ -1,0 +1,21 @@
+title: $:/BatchModification/Help
+
+Batch Modification 让您批量修改字段。使用 [[Commander|$:/plugins/kookma/commander]] 也能批量修改。小小的差异在于，Batch Modification 简化了界面。
+
+在输入框中输入「[[过滤表达式|https://tiddlywiki.com/static/Filters.html]]」筛选出一组 tiddlers，以进行批量修改。或者使用 $:/FilterBuilder 构建筛选表达式，点击按钮 <$button class="fb-btn btn-small">{{$:/xp/images/batch-modification}}</$button> 调出 Batch Modification。
+
+!! Tag
+
+移除、添加、替换标签。
+
+* ''Remove''：移除 old 输入框中的标签。
+* ''Add：''添加 new 输入框中的标签。
+* ''Replace：''将 old 输入框中的标签，替换为 new 输入框中的标签。
+
+!! Field
+
+对字段进行修改。比较简单易懂。''Add fields'' 时，''insert'' 按钮可以同时添加多个字段。
+
+!! Text
+
+修改文本的前缀和后缀。比如，我想在 `[tag[People]]` 的 tiddler 的前面添加 `{{||$:/people-info}}`。

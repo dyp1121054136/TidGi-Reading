@@ -1,0 +1,12 @@
+created: 20231231091244224
+modified: 20231231091258714
+tags: 用grid网格布局实现复杂排版
+title: grid排版样式模板
+
+<div class="grid-container">
+  <div class="item1">正文</div>
+  <div class="item2">简介</div>
+  <div class="item3">注释</div>  
+  <div class="item4">译文</div>
+  <div class="item5">赏析</div>
+</div>

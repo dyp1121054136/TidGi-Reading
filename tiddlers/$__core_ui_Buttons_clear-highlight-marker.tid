@@ -1,0 +1,13 @@
+caption: {{$:/core/images/clear-highlight}} 清除样式为marker的高亮
+created: 20240412114640843
+description: 清除样式为marker的高亮
+modified: 20240412114703625
+tags: 按钮 右键高亮
+title: $:/core/ui/Buttons/clear-highlight-marker
+
+\define highlight1() @@.marker ([^@@]*)@@
+\define highlight0() $1
+<$button class="tc-btn-invisible " tooltip="清除当前条目样式为marker的高亮">{{$:/core/images/clear-highlight}}
+<$action-setfield $field="text" $value={{{ [{!!text}search-replace:g:regexp<highlight1>,<highlight0>] }}}
+/>
+</$button>

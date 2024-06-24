@@ -1,0 +1,6 @@
+caption: Run
+description: add a Filter Run
+tags: $:/tags/FilterBuilder
+title: $:/FilterBuilder/Items/Run
+
+<<select-input-template>>

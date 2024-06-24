@@ -1,0 +1,43 @@
+caption: Modification
+color: #bbb
+description: Batch Modification
+icon: $:/xp/images/batch-modification
+tags: $:/tags/BatchOperation
+title: $:/BatchModification
+
+\import [all[shadows+tiddlers]tag[$:/tags/Commander/Macro]] $:/BatchOperation/macros
+\whitespace trim
+
+\define filterTid() $:/temp/batch-modification/filter
+\define resultTid() $:/temp/batch-modification/filter-results
+
+<span class="tc-search tc-advanced-search">
+<$edit-text tiddler=<<filterTid>> type="search" tag="input" default="" placeholder="filter" focus={{$:/plugins/kookma/commander/config/AutoFocus}}/>
+<i class='tc-tiny-gap-left'/>
+<$reveal state="$:/temp/batch-modification/filter" type="nomatch" text="">
+<<bmResultButton>>
+</$reveal>
+</span>
+
+<$reveal state=<<filterTid>> type="nomatch" text="">
+<$set name="resultCount" value="<$count filter={{$:/temp/batch-modification/filter}}/>">
+<i class='tc-tiny-gap-left'/>{{$:/language/Search/Filter/Matches}}
+</$set>
+
+<$reveal state=<<resultTid>> type="match" text="show" animate="yes" retain="yes">
+<div class="tc-search-results">
+<$list filter={{$:/temp/batch-modification/filter}}>
+<span class={{{[<currentTiddler>addsuffix[-primaryList]] -[[$:/temp/batch-modification/selected-item]get[text]] +[then[]else[tc-list-item-selected]] }}}>
+<$transclude tiddler="$:/core/ui/ListItemTemplate"/>
+</span>
+</$list>
+</div>
+</$reveal>
+
+<<tabs 
+tabsList:"[all[shadows+tiddlers]tag[$:/tags/BatchModification]!has[draft.of]]"
+default:"$:/BatchModification/Tag" 
+>>
+</$reveal>
+
+<<boLogPanel>>

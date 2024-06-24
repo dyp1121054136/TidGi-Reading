@@ -1,0 +1,26 @@
+color: #bbb
+icon: $:/xp/images/vst-box
+title: $:/Subtiddler
+
+\import $:/view-subtiddler/macros
+\whitespace trim
+
+\define show-subtiddler-in-river()
+\whitespace trim
+<$vars targetTag={{{ [<storeTiddler>get[text]] }}}>
+<div class="xp-vst-titlebar tc-sidebar-lists tc-sidebar-header">
+<<vst-back-button>><span class="tc-tiny-gap">·</span><<vst-openall-button>><span class="tc-tiny-gap">·</span><<vst-delete-button>><<vst-count>>
+</div>
+
+<div class="tc-table-of-contents">
+<$macrocall $name="tag" tag=<<targetTag>>/>
+<div class="xp-vst-river-toc" style="padding-top:0.5em;">
+<div class="tc-tag-list-item" data-tag-title=<<targetTag>>>
+<$macrocall $name="list-tagged-draggable" tag=<<targetTag>>/>
+</div>
+</div>
+</div>
+</$vars>
+\end
+
+<<show-subtiddler-in-river>>

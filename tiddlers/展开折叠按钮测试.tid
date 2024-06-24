@@ -1,0 +1,29 @@
+created: 20240422074739484
+modified: 20240422081258120
+tags: 目录工具
+title: 展开折叠按钮测试
+
+\define mulu1()  ^\b\d+(-\d+)?\b-
+\define mulu2()  ^\b\d+(-\d+)?\b
+\define mulu0() 
+
+<$qualify name="toc-state" title={{{ [[$:/state/toc]addsuffix<__path__>addsuffix[-]addsuffix<currentTiddler>] }}}>
+<$button class="tc-btn-invisible">{{$:/core/images/blank}}</$button>
+        <$reveal type="nomatch" stateTitle=<<toc-state>> text="open">
+          <$button setTitle=<<toc-state>> setTo="open" class="tc-btn-invisible tc-popup-keep">
+            <$transclude tiddler=<<toc-closed-icon>> />
+{{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}}
+          </$button>
+        </$reveal>
+        <$reveal type="match" stateTitle=<<toc-state>> text="open">
+          <$button setTitle=<<toc-state>> setTo="close" class="tc-btn-invisible tc-popup-keep">
+            <$transclude tiddler=<<toc-open-icon>> />
+{{{ [<currentTiddler>get[caption]else{!!title}search-replace:g:regexp<mulu1>,<mulu0>search-replace:g:regexp<mulu2>,<mulu0>]}}}
+          </$button>
+        </$reveal>
+
+      <$reveal type="match" stateTitle=<<toc-state>> text="open">
+
+      </$reveal>
+
+</$qualify>

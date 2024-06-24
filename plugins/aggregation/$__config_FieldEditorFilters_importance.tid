@@ -1,0 +1,4 @@
+tags: $:/tags/FieldEditorFilter
+title: $:/config/FieldEditorFilters/importance
+
+[<currentField>match[importance]then[$:/xp/ui/EditTemplate/fieldEditor/importance]]

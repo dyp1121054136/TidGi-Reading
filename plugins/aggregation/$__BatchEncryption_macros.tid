@@ -1,0 +1,20 @@
+tags: $:/tags/Macro
+title: $:/BatchEncryption/macros
+
+\define encryption(filter)
+\whitespace trim
+\define lingo-base() $:/language/Search/
+<$edit-text tag="input" tiddler="$:/temp/password1" placeholder="password" type="password" default="" col="4"/>
+<$edit-text tag="input" tiddler="$:/temp/password2" placeholder="confirm password" type="password" default="" col="4" class="tc-tiny-gap"/>
+<$encryptTiddler passwordTiddler1="$:/temp/password1" passwordTiddler2="$:/temp/password2" filter="$filter$">
+<$button message="tw-encrypt-tiddler" class="tc-tiny-gap"> Encrypt </$button>
+<$button message="tw-decrypt-tiddler"> Decrypt </$button>
+</$encryptTiddler>
+
+<$set name="resultCount" value="""<$count filter="$filter$"/>""">
+<div class="tc-search-results">
+<<lingo Filter/Matches>>
+<$list filter="$filter$" template="$:/plugins/danielo515/encryptTiddler/ui/listItemTemplate"/>
+</div>
+</$set>
+\end

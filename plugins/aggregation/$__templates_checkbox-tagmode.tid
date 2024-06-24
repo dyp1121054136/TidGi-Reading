@@ -1,0 +1,5 @@
+title: $:/templates/checkbox-tagmode
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<currentTiddler>> tag="hide"/> <span class="tc-icon-wrapper"> <$transclude field="caption"/> <i class="tc-muted">-- <$transclude field="description"/></i></span>
+</$draggable>

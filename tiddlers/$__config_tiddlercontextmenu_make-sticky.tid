@@ -1,0 +1,12 @@
+caption: 以选中文字添加待办
+condition: [all[shadows]prefix[$:/plugins/stobot/sticky]]
+created: 20220923003727003
+icon: $:/plugins/stobot/sticky/icon
+markup-prefix: <<sticky "
+markup-suffix: ">>
+modified: 20240109020415302
+tags: $:/tags/tiddlercontextmenu
+title: $:/config/tiddlercontextmenu/make-sticky
+tm-message: tm-markup
+
+hide

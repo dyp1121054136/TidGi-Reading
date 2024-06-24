@@ -1,0 +1,66 @@
+tags: $:/tags/ViewTemplate
+title: $:/xp/ui/ViewTemplate/tiddlertail
+
+\whitespace trim
+
+\define tiddlertail-buttons(actions)
+\whitespace trim
+<div class="tiddlertail-items">
+<$list filter=<<tiddlerTailTabsList>> variable="listItem">
+<$button $actions$ class="tiddlertail-btn">
+<span class="tiddlertail-btn-text"><$transclude tiddler=<<listItem>> field="caption"/></span>
+<$action-setfield $tiddler="$:/config/TiddlerTail/Default" text=<<listItem>> />
+<$action-setfield $tiddler=<<tiddlertail-tabs-state>> text=<<listItem>> />
+</$button>
+</$list>
+</div>
+\end
+
+\define tiddlertail()
+<$reveal state="$:/config/TiddlerTail/Mode" type="match" text="popup">
+<$macrocall $name="tiddlertail-buttons" actions="popup=<<tiddlerTailState>>"/>
+</$reveal>
+<$reveal state="$:/config/TiddlerTail/Mode" type="match" text="sticky">
+<$macrocall $name="tiddlertail-buttons" actions="set=<<tiddlerTailState>> setTo=yes"/>
+</$reveal>
+\end
+
+\define tiddlertail-tabs()
+<div style="position:relative;">
+<div class="tc-tiddler-controls" style="position:absolute;right:0;">
+<$reveal state="$:/config/TiddlerTail/Mode" type="match" text="sticky">
+<$button set=<<tiddlerTailState>> setTo="" tooltip="Close" aria-label="close tiddlertail" class="tc-btn-invisible">
+{{$:/core/images/close-button}}
+</$button>
+</$reveal>
+</div>
+</div>
+
+<$macrocall
+	$name="tabs"
+	tabsList=<<tiddlerTailTabsList>>
+	default={{$:/config/TiddlerTail/Default}}
+	explicitState=<<tiddlertail-tabs-state>>
+/>
+\end
+
+<$reveal state="$:/config/TiddlerTail/Switch" type="match" text="on" default="on">
+<$list filter=<<show-tiddlertail-filter>> variable="ignore">
+<$vars tiddlerTailState=<<qualify "$:/state/popup/tiddler-tail">> tiddlertail-tabs-state=<<qualify "$:/state/tabs/tiddler-tail">>>
+<$wikify name="tiddlerTailTabsList" text={{$:/config/TiddlerTail/Tabs}}>
+<$reveal stateTitle=<<folded-state>> type="nomatch" text="hide" animate="yes">
+<span class="xp-tiddlertail">
+<$reveal state=<<tiddlerTailState>> type="nomatch" text="" default="" class="tc-tiddler-info tc-popup-handle" animate="yes" retain="yes">
+
+<<tiddlertail-tabs>>
+
+</$reveal>
+<$reveal state=<<tiddlerTailState>> type="match" text="" default="">
+<<tiddlertail>>
+</$reveal>
+</span>
+</$reveal>
+</$wikify>
+</$vars>
+</$list>
+</$reveal>

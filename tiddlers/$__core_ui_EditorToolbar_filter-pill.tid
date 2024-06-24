@@ -1,0 +1,16 @@
+caption: {{$:/core/images/filter-pill}} 筛选
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20240322031448672
+description: 添加一个筛选
+icon: $:/core/images/filter-pill
+modified: 20240403082759861
+shortcuts: ((filter-pill))
+tags: 按钮 $:/tags/EditorToolbar 筛选器下拉菜单
+title: $:/core/ui/EditorToolbar/filter-pill
+
+<$action-sendmessage
+	$message="tm-edit-text-operation"
+	$param="wrap-selection"
+	prefix='<<filter-pill "[tag['
+	suffix=']]" 筛选器名称>>'
+/>

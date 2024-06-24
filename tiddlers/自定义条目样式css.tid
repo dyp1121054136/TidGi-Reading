@@ -1,0 +1,47 @@
+created: 20240119193950844
+modified: 20240119194508704
+se-type: 
+tags: 技巧
+title: 自定义条目样式css
+
+!!! 根据标签
+
+标签 `this` 或标签 `that` 创建一个红色边框。
+
+<<code src:"""
+[data-tags~="this"],
+[data-tags~="that"] {
+  border: 2px solid red;
+}
+""">>
+
+!!! 根据字段
+一个名为 `rank` 的字段，可以有不同的值，例如：`species`。
+
+''答：''
+
+现在的想法是：我们动态地创建样式表。该样式表如下：
+
+"""
+title: `myStyles`
+tags: `$:/tags/Stylesheet`
+"""
+
+<<code src:"""
+<$list filter="[rank[species]]"> 
+[data-tiddler-title^="<$view field=title/>"] .tc-tiddler-body {
+    column-count: 2;
+}
+</$list> 
+""">>
+
+此为每个条目名称创建一个 CSS 规则，其具有一个字段 `rank` 和值 `species`。
+
+!!! 根据条目名称
+* 如果条目没有标签，但需要设置样式，请使用：`data-tiddler-title` 作为 CSS 选取器
+** 只有一个条目
+* 如果用户希望以自订方式设置系统条目的样式，请使用：`[data-tiddler-title^="$:"/]` 作为 CSS 选取器
+** 使用 TW 命名空间功能
+
+* 如果用户想要具标签的条目的特殊行为。例如：Learning
+** 请使用：`[data-tags*="Learning"]` 作为 CSS 选取器

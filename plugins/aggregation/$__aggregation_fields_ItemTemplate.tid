@@ -1,0 +1,5 @@
+title: $:/aggregation/fields/ItemTemplate
+
+<$draggable tiddler=<<currentTiddler>>>
+<$checkbox tiddler=<<b-c-title>> field="text" checked="show" unchecked="hide" default="hide" checkactions=<<aggregation-fields-checkactions>> uncheckactions=<<aggregation-fields-uncheckactions>>/> <span class="tc-icon-wrapper"> <$transclude field="title"/></span>
+</$draggable>

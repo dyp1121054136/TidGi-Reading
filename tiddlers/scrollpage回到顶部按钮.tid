@@ -1,0 +1,9 @@
+created: 20240516180245466
+modified: 20240516184006010
+tags: 滚动翻页
+title: scrollpage回到顶部按钮
+
+<$button class="tc-btn-invisible" tooltip="scrollpage回到顶部">
+<$action-sendmessage $message="tm-scrollpage" direction="top" scrollTime="0" scrollContainerSelector=".tc-scrollpage"/>
+{{$:/core/images/tiddler-top-scrollpage|23px}}
+</$button>

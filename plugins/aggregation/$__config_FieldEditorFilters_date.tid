@@ -1,0 +1,4 @@
+tags: $:/tags/FieldEditorFilter
+title: $:/config/FieldEditorFilters/date
+
+[<currentField>match[date]] [<currentField>match[fdate]] +[limit[1]then[$:/xp/ui/EditTemplate/fieldEditor/date]]

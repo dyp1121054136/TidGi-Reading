@@ -1,0 +1,16 @@
+caption: Refnotes
+description: Refnotes
+tags: $:/tags/TiddlerTail
+title: $:/xp/tiddlertail/items/refnotes
+
+<$list filter="[<currentTiddler>search:text:literal,casesensitive[<<fnote ]limit[1]]" variable="ignore">
+<h3>Footnotes</h3>
+</$list>
+
+<<showfnotes>>
+
+<$list filter="[<currentTiddler>search:text:literal,casesensitive[<<abbr ]limit[1]]" variable="ignore">
+<h3>Abbreviations</h3>
+</$list>
+
+<<showabbrs>>

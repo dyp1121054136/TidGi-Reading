@@ -1,0 +1,17 @@
+created: 20240114063553959
+list-after: 目录模板-top
+modified: 20240328041316297
+tags: 小说古剑奇谭1排版
+title: 小说章节模板
+标题1: 
+标题2: 
+
+<$list filter="[<currentTiddler>!match[小说章节模板]has:field[小说章节]]">
+
+<div class="chapter-part-title">
+<span class="chapter-part-title-small">{{!!标题1}}</span><br/>{{!!标题2}}</div>
+
+<div class="chapter-head-img">{{chapter-head.png}}
+</div>
+
+</$list>

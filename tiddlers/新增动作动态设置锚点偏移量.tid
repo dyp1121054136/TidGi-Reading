@@ -1,0 +1,9 @@
+created: 20240507160337756
+modified: 20240507162528467
+tags: 上下滚动
+title: 新增动作动态设置锚点偏移量
+
+未生效，仅供参考：
+
+<<code src:"""<$action-sendmessage $message="update-scroll-anchors"/>
+""" language:"tw">>

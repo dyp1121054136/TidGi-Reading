@@ -1,0 +1,15 @@
+created: 20240401094158776
+modified: 20240423041652104
+tags: 向上弹出的下拉菜单
+title: 向上弹出的下拉菜单测试1
+
+<div class="dropdown-container-mulu">
+    <div class="dropdown-mulu">
+        <button class="dropbtn-mulu">点击我</button>
+        <div class="dropdown-content-mulu">
+            <a href="#">子条目1</a>
+            <a href="#">子条目2</a>
+            <a href="#">子条目3</a>
+        </div>
+    </div>
+</div>

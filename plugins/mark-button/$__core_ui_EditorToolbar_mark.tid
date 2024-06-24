@@ -1,0 +1,10 @@
+caption: {{$:/language/Buttons/Mark/Caption}}
+condition: [<targetTiddler>!has[type]] [<targetTiddler>type[text/vnd.tiddlywiki]]
+created: 20180201153958562
+description: {{$:/language/Buttons/Mark/Hint}}
+dropdown: $:/core/ui/EditorToolbar/mark-dropdown
+icon: $:/core/images/mark
+modified: 20181106165621687
+shortcuts: ((mark))
+tags: $:/tags/EditorToolbar
+title: $:/core/ui/EditorToolbar/mark

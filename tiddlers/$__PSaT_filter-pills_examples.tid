@@ -1,0 +1,11 @@
+created: 20230317000920045
+creator: !build
+modified: 20240322015816977
+modifier: !build
+tags: 筛选器下拉菜单
+title: $:/PSaT/filter-pills/examples
+
+<<filter-pill "[all[tiddlers]prefix[a]]" "A items">>
+<<filter-pill "[all[tiddlers]prefix[bz]!sort[]]" >>
+<<filter-pill "[tag[TableOfContents]]" "Top TOC">>
+<<filter-pill "[has[package-filter]sort[]]" "Packages">>

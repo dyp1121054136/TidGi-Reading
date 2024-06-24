@@ -1,0 +1,27 @@
+created: 20240423041623298
+modified: 20240423042158704
+tags: 向上弹出的下拉菜单
+title: 向上弹出的下拉菜单测试2
+
+\whitespace trim
+\define title-string() "title": "
+\define end-title() "
+
+<$set value={{{ [<currentTiddler>addprefix[$:/temp/mulu-list]] }}} name="mulu-list">
+<div class="dropdown-container-mulu">
+    <div class="dropdown-mulu">
+<$button popup=<<mulu-list>> tooltip="鼠标悬浮提示" class="dropbtn-mulu">
+点击我
+</$button>
+<$reveal type="popup" state=<<mulu-list>> position="belowleft" tag="div" class="tc-popup-keep">
+
+        <div class="dropdown-content-mulu">
+            <a href="#">子条目1</a>
+            <a href="#">子条目2</a>
+            <a href="#">子条目3</a>
+        </div>
+
+</$reveal>
+</div>
+</div>
+</$set>
